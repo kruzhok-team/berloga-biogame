@@ -16,8 +16,8 @@ public class Settings
     private static readonly List<string>
         AvailableLocales = TranslationServer.GetLoadedLocales().ToList();
 
-    private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
-    private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly string DefaultLanguageValue = "ru";
+    private static readonly CultureInfo DefaultCultureValue = new CultureInfo("ru", false);
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
@@ -969,6 +969,7 @@ public class Settings
 
             if (!SceneManager.QuitOrQuitting)
             {
+                settings.SelectedLanguage = new SettingValue<string?>("ru");
                 settings.ApplyAll(true);
             }
             else
