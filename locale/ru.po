@@ -6994,473 +6994,821 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-#~ msgstr "Позволить видам не мигрировать (если не найдена хорошая миграция)"
-
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Позволить видам не мутировать (если не найдена хорошая мутация)"
-
-#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-#~ msgstr "Шанс в каждом биоме с небольшим количеством видов (низкое биоразнообразие) создать новый вид"
-
-#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-#~ msgstr "Шанс появления нового вида для увеличения биоразнообразия из соседнего биома"
-
-#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-#~ msgstr "Дополнительная популяция для видов из соседнего биома, увеличивающих биоразнообразие"
-
-#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-#~ msgstr "Мутировать вид, увеличивающий биоразнообразие, при создании"
-
-#~ msgid "LOW_BIODIVERSITY_LIMIT"
-#~ msgstr "Считать биомы с таким или меньшим количеством видов биомами с низким биоразнообразием"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Максимум видов в биоме перед искусственным вымиранием"
-
-#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-#~ msgstr "Начальная популяция увеличивающих биоразнообразие видов"
-
-#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-#~ msgstr "Защищать только что мигрировавшие популяции от ограничения на виды"
-
-#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-#~ msgstr "Защищать только что созданные виды от ограничения на виды"
-
-#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-#~ msgstr "Возврат миграций в случае вымирания в выбранном биоме"
-
-#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-#~ msgstr "Минимальная популяция вида для разделения на несколько видов с хорошими мутациями"
-
-#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-#~ msgstr "Минимальная доля популяции вида, допускающая разделение по мутациям"
-
-#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-#~ msgstr "Создание вида для увеличения биоразнообразия забирает часть популяции существующего вида"
-
-#~ msgid "NOT_FOUND_CHUNK"
-#~ msgstr "Ошибка: фрагмент не найден"
-
-#~ msgid "BASSBOOST"
-#~ msgstr "BassBoost"
-
-#~ msgid "BASSDOWN"
-#~ msgstr "Bass Down"
-
-#~ msgid "BASSUP"
-#~ msgstr "Bass Up"
-
-#~ msgid "DIRECTIONL"
-#~ msgstr "Налево"
-
-#~ msgid "DIRECTIONR"
-#~ msgstr "Направо"
-
-#~ msgid "HYPERL"
-#~ msgstr "Гипер Влево"
-
-#~ msgid "HYPERR"
-#~ msgstr "Гипер Вправо"
-
-#~ msgid "SUPERL"
-#~ msgstr "Супер Влево"
-
-#~ msgid "SUPERR"
-#~ msgstr "Супер Вправо"
-
-#~ msgid "TREBLEDOWN"
-#~ msgstr "TrebleDown"
-
-#~ msgid "TREBLEUP"
-#~ msgstr "TrebleUp"
-
-#~ msgid "UNKNOWN_ON_WINDOWS"
-#~ msgstr "Неизвестно для Windows"
-
-#~ msgid "GLES2"
-#~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
-
-#~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-#~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Общая Популяция:"
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Анаэробная азотфиксация"
 
 #, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Разрешение:"
+msgid "AEROBIC_RESPIRATION"
+msgstr "Аэробное дыхание"
 
 #, fuzzy
-#~ msgid "TARGET_TIME"
-#~ msgstr "Тип цели:"
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Термосинтез"
 
 #, fuzzy
-#~ msgid "BUILD_SPACE_STRUCTURE"
-#~ msgstr "Построить Структуру"
+msgid "CHEMOSYNTHESIS"
+msgstr "Хемосинтез"
 
 #, fuzzy
-#~ msgid "ENABLED"
-#~ msgstr "Включенные моды"
-
-#~ msgid "PANGONIAN_REGION_NAME"
-#~ msgstr "Пангонский"
-
-#~ msgid "PATCH_MAP_TYPE"
-#~ msgstr "Тип карты биомов"
-
-#~ msgid "PATCH_MAP_TYPE_CLASSIC"
-#~ msgstr "Классическая"
-
-#~ msgid "PATCH_MAP_TYPE_EXPLANATION"
-#~ msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
-
-#~ msgid "PATCH_MAP_TYPE_PROCEDURAL"
-#~ msgstr "Процедурная"
-
-#~ msgid "LOOKING_AT"
-#~ msgstr "Смотрите на:"
-
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "{0} (x{1})"
-
-#~ msgid "BECOME_AWARE"
-#~ msgstr "Станьте осведомлены"
-
-#~ msgid "PLAYER_CELL"
-#~ msgstr "Клетка Игрока"
-
-#~ msgid "AWAKEN"
-#~ msgstr "Пробудить"
-
-#~ msgid "CONFIRM_NORMAL"
-#~ msgstr "Подтвердить"
-
-#~ msgid "DO_NOT_SHOW_AGAIN"
-#~ msgstr "Больше не предупреждайте об этом"
-
-#~ msgid "DISMISS_PERMANENTLY"
-#~ msgstr "Не показывайте это снова"
-
-#~ msgid "STUFF_AT"
-#~ msgstr "Вещи в {0:F1}, {1:F1}:"
-
-#~ msgid "PREDATORY_PILUS"
-#~ msgstr "Хищные пили"
+msgid "EDITING_TITLE"
+msgstr "Название отсутствует"
 
 #, fuzzy
-#~ msgid "SPECIES_DETAILS"
-#~ msgstr "Список Видов"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
+msgstr "мутировал"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "Поколение:"
-
-#~ msgid "STATISTICS_BUTTON_TOOLTIP"
-#~ msgstr "Полная статистика о текущей игре"
-
-#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
-#~ msgstr "Макроскопический прототип"
-
-#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
-#~ msgstr ""
-#~ "Поздравляем, вы дошли до прототипа макроскопической секции многоклеточной стадии!\n"
-#~ "\n"
-#~ "Из-за ограничений разработки, мы не смогли добавить трёхмерный макроскопический геймплей в этом релизе. Но вы можете вернуться в редактор, чтобы продолжить изменять свой организм."
-
-#~ msgid "INVULNERABLE_TO_ENGULFMENT"
-#~ msgstr "Неуязвимо к поглощению"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "Сохранение природной глюкозы"
 
 #, fuzzy
-#~ msgid "AUTO_GPU_NAME"
-#~ msgstr "Кастомное имя пользователя:"
-
-#~ msgid "NOT_RUNNING_DOT"
-#~ msgstr "Не запущен."
-
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "Пангонские Гидротермальные Вулканы"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "Пангонская Толща Воды (от 1 км)"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "Пангонская Поверхность Воды (до 200 м)"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "Пангонский Приливный Бассейн"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "Пангонская Бездна (от 4 км)"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "Пангонское Побережье"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Пангонское Устье Реки"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "Пещера"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "Шельфовый Ледник"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "Пангонское Морское Дно"
-
-#~ msgid "LOADING_DOT"
-#~ msgstr "Загрузка..."
-
-#~ msgid "PREVIOUS"
-#~ msgstr "предыдущее:"
-
-#~ msgid "RUN_RESULT_POP_IN_PATCHES"
-#~ msgstr "популяция в биоме:"
-
-#~ msgid "SAVING"
-#~ msgstr "Сохранение..."
-
-#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-#~ msgstr "Перезаписать существующее сохранение?"
-
-#~ msgid "SAVING_FAILED"
-#~ msgstr "Сохранение не удалось! Бывает же"
-
-#~ msgid "TYPE"
-#~ msgstr "Тип:"
-
-#~ msgid "VERSION"
-#~ msgstr "Версия:"
-
-#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
-#~ msgstr ""
-#~ "Это карта биомов.\n"
-#~ "Здесь вы можете видеть различные биомы, в которых микробы могут жить.\n"
-#~ "Ваш текущий участок подсвечен.\n"
-#~ "Вы можете нажать на участок своей мышью и выбрать его, чтобы увидеть его детали с правой стороны.\n"
-#~ "\n"
-#~ "Если вы выбрали биом, следующий за текущим, вы можете нажать кнопку справа чтобы переместиться сюда. Это позволяет вашей популяции распространяться на новые биомы.\n"
-#~ "\n"
-#~ "Выберите биом для продолжения."
-
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Это редактор клеток, в котором вы можете добавлять или удалять органеллы из своей клетки, затрачивая очки мутации (MP).\n"
-#~ "\n"
-#~ "Вы также можете изменять другие параметры своего вида в других вкладках клеточного редактора. (Пока доступно примерно 50% всех будущих функций)\n"
-#~ "\n"
-#~ "Для продолжения, выберите органеллу из панели слева (цитоплазма - это хороший выбор). Затем кликните рядом с шестигранником в центре экрана, чтобы добавить эту органеллу к вашей клетке."
-
-#~ msgid "VIEW_NOW"
-#~ msgstr "Посмотреть Сейчас"
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "Команда Игрового Дизайна"
 
 #, fuzzy
-#~ msgid "TOTAL_EXTINCTION"
-#~ msgstr "вымерли в {0}"
+msgid "INFO_BOX_EDITORS"
+msgstr "Базовая цена (ОМ)"
 
 #, fuzzy
-#~ msgid "LOCAL_EXTINCTION"
-#~ msgstr "Игрок вымер"
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Энзимы"
 
 #, fuzzy
-#~ msgid "MARINE_SNOW_FOOD_SOURCE"
-#~ msgstr "Морской снег"
-
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
-
-#~ msgid "SAVING_ERROR"
-#~ msgstr "Ошибка Сохранения"
-
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "Убрать органеллу"
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Вместимость"
 
 #, fuzzy
-#~ msgid "TRY_NEW_GAME"
-#~ msgstr "Новая Игра"
-
-#~ msgid "MICROBE_PATCH_LABEL"
-#~ msgstr "Биом: {0}"
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Процессы"
 
 #, fuzzy
-#~ msgid "COLOR"
-#~ msgstr "Окраска"
-
-#~ msgid "TURNS"
-#~ msgstr "Включая"
-
-#~ msgid "INTO"
-#~ msgstr "в"
+msgid "MECHANICS_BUTTON"
+msgstr "Стать опущенным"
 
 #, fuzzy
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy NT"
-
-#~ msgid "DOT_CAN_RELEASE"
-#~ msgstr ". Может выпустить"
+msgid "ORGANELLES_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
-#~ msgid "TOXINS_BY_PRESSING_E"
-#~ msgstr "выпускай токсины нажимая"
+msgid "OTHER_COMPOUNDS"
+msgstr "Соединения"
 
 #, fuzzy
-#~ msgid "CONCENTRATION_OF"
-#~ msgstr "с концентрацией"
+msgid "OUTDATED_NOTICE"
+msgstr "Не начато."
 
-#~ msgid "USES"
-#~ msgstr "Использует"
-
-#, fuzzy
-#~ msgid "DOT_RATE"
-#~ msgstr ". Шкала оценок"
+msgid "SURVIVAL_TITLE"
+msgstr "Выживание"
 
 #, fuzzy
-#~ msgid "SCALES_WITH_CONCENTRATION_OF"
-#~ msgstr "с концентрацией"
-
-#~ msgid "PRODUCES"
-#~ msgstr "Производит"
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr "Карта Биомов"
 
 #, fuzzy
-#~ msgid "DOT_RATE_SCALES_WITH"
-#~ msgstr ". Шкала оценок"
+msgid "THE_WORLD_TITLE"
+msgstr "Мир"
 
-#~ msgid "AND"
-#~ msgstr "и"
-
-#~ msgid "OXYGEN_DOT"
-#~ msgstr "Кислород."
-
-#~ msgid "ALSO_TURNS"
-#~ msgstr "Также включая"
-
-#~ msgid "INREASE_STORAGE_SPACE"
-#~ msgstr "Увеличивает пространство хранения клетки."
-
-#~ msgid "E_DOT"
-#~ msgstr "Д."
-
-#~ msgid "BIOLUMESCENT_VACUOLE"
-#~ msgstr ""
-#~ "Биолюминесцентная\n"
-#~ "вакуоль"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr "Не показаны все последние версии, так как их слишком много."
 
 #, fuzzy
-#~ msgid "END"
-#~ msgstr "и"
+msgid "WIKI_2D"
+msgstr "наша Wiki"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr "2D (ранний), 3D (поздний)"
 
 #, fuzzy
-#~ msgid "LEFT"
-#~ msgstr "Двигаться влево"
+msgid "WIKI_3D"
+msgstr "наша Wiki"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr "3D, Песочница"
 
 #, fuzzy
-#~ msgid "RIGHT"
-#~ msgstr "Свет"
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Не готово"
 
 #, fuzzy
-#~ msgid "FORWARD"
-#~ msgstr "Двигаться вперёд"
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Не готово"
 
 #, fuzzy
-#~ msgid "PARENLEFT"
-#~ msgstr "Поворот влево"
+msgid "WIKI_8_BRACKET_16"
+msgstr "Поворот влево"
 
 #, fuzzy
-#~ msgid "PARENRIGHT"
-#~ msgstr "Поворот вправо"
+msgid "WIKI_ASCENSION"
+msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
 
 #, fuzzy
-#~ msgid "COLON"
-#~ msgstr "ОЗ:"
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Текущие Разработчики"
 
 #, fuzzy
-#~ msgid "SEMICOLON"
-#~ msgstr "Размер:"
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr ""
+"За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
+"\n"
+"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения."
 
 #, fuzzy
-#~ msgid "AT"
-#~ msgstr "АТФ"
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+"Вознесение — это ключевая концепция в Thrive, сравнимая с «победой в игре» в других видеоиграх. Это состояние, в котором разумный организм преобразуется в энергетическую форму с помощью Врат Вознесения и, таким образом, получает богоподобные силы, используя энергия самой Вселенной (по сути делающая чудеса бесплатно).\n"
+"\n"
+"В «Вознесение», если вы исследовали инструменты Бога, появится новая панель «Инструменты Бога», доступная в любом месте игрового процесса, позволяющая вам изменить все, что вы хотите. От создания целых солнечных систем до мельчайших бактерий, от от уничтожения целых цивилизаций до обладания одним из ее членов, все возможно."
 
 #, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Поворот влево"
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Поздравляем!"
 
 #, fuzzy
-#~ msgid "BRACKETRIGHT"
-#~ msgstr "Поворот вправо"
+msgid "WIKI_ASCENSION_UI"
+msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
 
 #, fuzzy
-#~ msgid "QUOTELEFT"
-#~ msgstr "Поворот влево"
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Не готово"
 
 #, fuzzy
-#~ msgid "BRACELEFT"
-#~ msgstr "Поворот влево"
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Стадия пробуждения"
 
 #, fuzzy
-#~ msgid "BRACERIGHT"
-#~ msgstr "Поворот вправо"
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Не готово"
 
 #, fuzzy
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "Колёсико вниз"
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Стадия пробуждения"
 
 #, fuzzy
-#~ msgid "YEN"
-#~ msgstr "Кислород"
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Стадия пробуждения"
 
 #, fuzzy
-#~ msgid "SECTION"
-#~ msgstr "Описание:"
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Стадия пробуждения"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Начался прототип уровня разработки «Aware» и более поздних стадий. Прототипы намного грубее, чем многоклеточные прототипы, которые сами по себе не соответствуют тому качеству, которое мы хотим видеть в готовой игре."
 
 #, fuzzy
-#~ msgid "COPYRIGHT"
-#~ msgstr "Двигаться вправо"
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Стадия Сознания"
 
 #, fuzzy
-#~ msgid "MU"
-#~ msgstr "Заглушить"
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "TBA"
 
 #, fuzzy
-#~ msgid "AE"
-#~ msgstr "Сохранить"
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Стадия Сознания"
 
 #, fuzzy
-#~ msgid "ETH"
-#~ msgstr "Здоровье"
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Нитрогеназа"
 
 #, fuzzy
-#~ msgid "DIVISION"
-#~ msgstr "Версия:"
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Стадия Сознания"
 
 #, fuzzy
-#~ msgid "BACKTAB"
-#~ msgstr "Назад"
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
 
-#~ msgid "CARBON"
-#~ msgstr "Углерод"
-
-#~ msgid "DIOXIDE"
-#~ msgstr "Диоксид"
-
-#~ msgid "PLASTID"
-#~ msgstr "Пластид"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Пангонская Толща Воды (от 2 км)"
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr "Редактор Плана Тела, Редактор Ячеек"
 
 #, fuzzy
-#~ msgid "STATUS_COLON"
-#~ msgstr "Создатель:"
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
 
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} из популяции: {1}"
+#, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
+"\n"
+"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
 
-#~ msgid "PREDATORY_PILUS_DESCRIPTION"
-#~ msgstr "Пили (единственное число: пиль) встречаются на поверхности многих микроорганизмов и напоминают тонкие волоски. Десятки-сотни пили могут присутствовать на поверхности микроорганизма и служить одной из нескольких целей, включая роль в хищничестве. Патогенные микроорганизмы используют пили для вирулентности либо для прикрепления и связывания с тканями хозяина, либо для проникновения через внешнюю мембрану, чтобы получить доступ к цитоплазме. Существует множество подобных пили, но они эволюционно не связаны и возникли в результате конвергентной эволюции. Один организм может обладать способностью экспрессировать несколько типов пили, и те, которые присутствуют на поверхности, постоянно изменяются и заменяются."
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Соединения:"
 
-#~ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-#~ msgstr "Проткните этим другие клетки."
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
+"\n"
+"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+"В Thrive есть несколько разных [b]соединений[/b].\n"
+"\n"
+"[b][u]Облачные соединения[/u][/b]\n"
+"\n"
+"Эти соединения появляются в облаках, созданных в [b]среде[/b].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"glucose\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"iron\"][/thrive:compound] (также создается из [b]Кусков[/b])[/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Экологические газы[/u][/b]\n"
+"\n"
+"Эти соединения не появляются в окружающей среде в виде облаков, но присутствуют по всему участку и влияют на некоторые процессы. Сумма этих соединений в участках всегда достигает 100%. Чтобы узнать больше о газах, см. [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Условия окружающей среды[/url][/color].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Агенты[/u][/b]\n"
+"\n"
+"Эти соединения создаются в особых [color=#3796e1][url=thriveopedia:OrganellesRoot]Органеллах[/url][/color] и имеют особое применение.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]АТФ[/u][/b]\n"
+"\n"
+"[thrive:compound type=\"atp\"][/thrive:compound] создается в основном посредством [thrive:compound type=\"glucose"][/thrive:compound] и необходим для поддержания жизни вашего организма."
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Полный список соединений на этапе микробиологии см. в таблице «Соединения» на странице «Приложения на этапе микробиологии»."
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Сложная система — это одна из основных игровых механик, лежащих в основе симуляций на протяжении всей игры, предназначенная для использования повсюду: от клеточного гомеостаза до межзвездной торговли."
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+"[indent]—   Соединения — это материалы, из которых состоят мир и организмы. Итак, такие вещи, как элементарные соединения (например, углерод), природные ресурсы (соль, вода), органические соединения (аминокислоты) и органические полимеры (белки).[/indent]\n"
+"[indent]—   Позже появятся композиты (кости, мышцы), состоящие из других соединений.[/indent]\n"
+"[indent]—   Конечными продуктами являются такие вещи, как клеточная мембрана, и с ними можно обращаться так же, как с соединениями. Еще одним важным конечным продуктом является энергия.[/indent]\n"
+"[indent]—   В окружающей среде соединения существуют в нескольких состояниях.:[/indent]\n"
+"\n"
+"[indent]—   Никакие соединения не проникают в общую экосистему и не покидают ее.[/indent]\n"
+"[indent]—   Соединения могут менять форму (например, разлагая воду на водород и кислород).[/indent]\n"
+"[indent]—   Составные облака основаны на сеточном представлении ресурсов окружающей среды. Их концентрация может варьироваться, и при более высокой концентрации образуется облако более интенсивного цвета..[/indent]\n"
+"\n"
+"[b][u]Органеллы[/u][/b]\n"
+"\n"
+"[indent]—   Именно здесь обычно происходят процессы. Некоторые процессы требуют определенных органелл. Они могут варьироваться в зависимости от качества органеллы.[/indent]\n"
+"[indent]—   На более поздних стадиях это будут органы, мастерские/фабрики и города.[/indent]\n"
+"\n"
+"[b][u]Сбор и хранение[/u][/b]\n"
+"\n"
+"[indent]—   Количество соединений в системе измеряется в молях.[/indent]\n"
+"[indent]—   Каждое соединение имеет вес. Это влияет на то, сколько места для хранения он занимает в ячейке.[/indent]\n"
+"[indent]—   Соединения автоматически поглощаются микробами, плавая сквозь них, если у микробов есть место для их хранения. Они хранятся в цитоплазме или в вакуолях.[/indent]\n"
+"[indent]—   Вакуоли могут быть предназначены для хранения только определенных соединений.[/indent]\n"
+"\n"
+"[b][u]Система приоритетов[/u][/b]\n"
+"\n"
+"Поскольку хранилище будет общим, необходимо определить приоритеты в отношении того, какие соединения будут храниться и какие из них следует выбросить в первую очередь в случае, если хранилище будет заполнено.\n"
+"\n"
+"[b][u]Процессы[/u][/b]\n"
+"\n"
+"[indent]—   Они контролируют, как соединения преобразуются из одного в другое и что для этого требуется. Если организм не способен выполнять определенный процесс, он может не иметь доступа к продуктам этого процесса и ему придется получать их каким-то другим способом (вероятно, съедая что-нибудь) или он не сможет получить их в любое время. все (например, съев рог носорога, вы не сможете вырастить его самостоятельно).[/indent]\n"
+"[indent]—   Процессы, которые вы можете осуществлять, и то, насколько эффективно вы можете это делать, определяют ваш организм, ваш вид и ваше место в пищевой цепи.[/indent]\n"
+"[indent]—   Не все процессы будут доступны вначале, и игроку нужно будет получить определенные органеллы, чтобы разблокировать их.[/indent]\n"
+"\n"
+"[b][u]Агенты[/u][/b]\n"
+"\n"
+"[indent]—   Агенты представляют собой специальные соединения с мощными эффектами, и большинство из них для простоты сделаны из одних и тех же компонентов. Преобразование поступающих соединений в агенты осуществляется с помощью аппарата Гольджи и эндоплазматической сети, которые потребляют АТФ с фиксированной скоростью независимо от того, выполняют эту задачу или нет.[/indent]\n"
+"[indent]—   Подробности на странице Агенты.[/indent]\n"
+"\n"
+"[b][u]Организмы[/u][/b]\n"
+"\n"
+"[indent]—   Организмы — это особи вида, будь то клетка, растение или существо.[/indent]\n"
+"[indent]—   Каждый из них имеет определенные органеллы/органы, способен к определенным процессам, может хранить определенные соединения и считает другие отходами.[/indent]\n"
+"[indent]—   Каждый из них постоянно осуществляет те процессы, на которые он способен, чтобы производить необходимые ему соединения.[/indent]\n"
+"[indent]—   Соединение может быть питательным веществом для одного вида и не быть питательным веществом для другого.[/indent]\n"
+"\n"
+"[b][u]Выполнение[/u][/b]\n"
+"\n"
+"[indent]—   В начале метода обновления каждый процесс вычисляет свою цену, а функция цены является функцией спроса, предложения и предыдущей цены соединения.[/indent]\n"
+"\n"
+"В текущей реализации функция:\n"
+"\n"
+"[code]P = √(D / (S + 1)) * COMPOUND_PRICE_MOMENTUM + oldP * (1 - COMPOUND_PRICE_MOMENTUM)[/code]\n"
+"\n"
+"С:\n"
+"[code]P[/code] цена\n"
+"[code]D[/code] спрос\n"
+"[code]S[/code] поставка\n"
+"[code]oldP[/code] старая цена\n"
+"[code]COMPOUND_PRICE_MOMENTUM[/code] константа от 0 до 1.\n"
+"\n"
+"\n"
+"Функция также выполняет проверку, чтобы увеличить значение от 0 до небольшого положительного числа, если это необходимо.\n"
+"\n"
+"[indent]—   После этого, если соединение отмечено как «полезное» (это делается в таблице соединений), то цена увеличивается на определенную величину, в зависимости от предложения соединения. Это делается для того, чтобы технологическая система знала, какие соединения она хочет производить (иначе все цены упадут до 0, и это будет неинтересно).[/indent]\n"
+"\n"
+"В текущей реализации функция инфляции цен имеет вид:\n"
+"\n"
+"[code]PI = IMPORTANT_COMPOUND_BIAS / (S + 1)[/code]\n"
+"\n"
+"С:\n"
+"[code]PI[/code] инфляция цен\n"
+"[code]S[/code] поставка\n"
+"[code]IMPORTANT_COMPOUND_BIAS[/code] произвольная константа\n"
+"\n"
+"\n"
+"Важно отметить, что для первого ценового уравнения используется старая цена, не завышенная.\n"
+"Если после всего этого цена окажется ниже определенного небольшого числа, то цена округляется до нуля (и, следовательно, сбрасывается позже).\n"
+"\n"
+"[indent]—   После того, как все эти расчеты выполнены для всех соединений, технологическая система должна определить желаемую скорость для каждого из процессов.[/indent]\n"
+"[indent]—   Потенциально эта скорость может быть больше максимальной мощности процесса.[/indent]\n"
+"[indent]—   Указанная ставка рассчитывается путем простого прогнозирования цен на соединения путем повторения тех же расчетов фазы 1 для каждого соединения, но при условии, что предложение на одну единицу больше, а затем при условии, что цена линейна по отношению к предложению.[/indent]\n"
+"[indent]—   Если цена соединения была равна 0 на этапе 1, предполагается, что цена этого соединения всегда равна 0, независимо от предложения.[/indent]\n"
+"[indent]—   Наконец, предполагается, что цена равна 0 для любого значения предложения, при котором линеаризация сделает его цену отрицательной (то есть минимальное значение функции равно 0).[/indent]\n"
+"[indent]—   Вот пример одной из этих функций, созданной в эквиваленте MS Paint для Google Диска:[/indent]\n"
+"\n"
+"[indent]—   Тогда все, что нужно сделать системе процессов, — это получить ставку, при которой сумма всех входных сложных цен будет равна сумме всех выходных сложных цен, и это и есть желаемая ставка.[/indent]\n"
+"[indent]—   Если все выходные соединения имеют цену 0, то желаемая ставка равна 0.[/indent]\n"
+"[indent]—   Пример процесса может быть таким:[/indent]\n"
+"\n"
+"*Для учета места для хранения производится аналогичный расчет, но цены соединений умножаются на функцию, которая возвращает значение от 0,0 до 1,0, в зависимости от доступного места, а также размера и количества обработанных соединений.\n"
+"\n"
+"В текущей реализации функция:\n"
+"\n"
+"[code]M = 2.0 * (1.0 - sigmoid(RS / (AS + 1.0) * STORAGE_SPACE_MULTIPLIER));[/code]\n"
+"\n"
+"С:\n"
+"[code]M[/code] — множитель от 0 до 1.\n"
+"[code]RS[/code] необходимое пространство комплекса (объем * количество произведенного/переработанного)\n"
+"[code]AS[/code] это доступное место для хранения\n"
+"[code]STORAGE_SPACE_MULTIPLIER[/code] — произвольная константа (на данный момент 2.0)\n"
+"\n"
+"[indent]—   Затем входные данные преобразуются в выходные со скоростью, равной минимальной желаемой скорости, с учетом места для хранения ТОЛЬКО в том случае, если при этом скорость снижается, в противном случае пространство не учитывается (это делается для того, чтобы технологическая система не разрушала соединения для получить пространство, когда это должен сделать составной код очистки), и максимальную мощность процесса (при условии, что для этого достаточно входов и места для хранения).[/indent]\n"
+"\n"
+"[indent]—   После того, как желаемые скорости найдены, процесс должен определить потребность в соединениях.[/indent]\n"
+"[indent]—   Спрос на соединение равен сумме всех требований, порождаемых всеми процессами, что определяется уравнением[/indent]\n"
+"\n"
+"[code]D = DR * IN * soft(PC * IN)[/code]\n"
+"\n"
+"С:\n"
+"[code]D[/code] спрос, создаваемый процессом.\n"
+"[code]DR[/code] желаемая скорость этого процесса (без учета ограничений мощности, ввода или места хранения).\n"
+"[code]IN[/code] входные данные, необходимые для процесса (то есть количество входных данных, потраченных на запуск процесса со скоростью 1).\n"
+"[code]PC[/code] максимальная производительность процесса\n"
+"[code]soft(x)[/code] непрерывная, монотонно возрастающая функция, равная 0, когда x = 0, и 1, когда x ⟶ ∞\n"
+"\n"
+"В текущей реализации:\n"
+"\n"
+"[code]soft(x) = 2 * sigmoid(x * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1[/code]\n"
+"\n"
+"С [code]PROCESS_CAPACITY_DEMAND_MULTIPLIER[/code] являющаяся произвольной константой.\n"
+"\n"
+"[indent]—   Важно отметить, что процесс типа A ⟶ B со скоростью 2 * x точно такой же, как процесс 2 * A ⟶ 2 * B со скоростью x.[/indent]\n"
+"[indent]—   Также важно, чтобы процессы с максимальной мощностью 0 никак не влияли на систему.[/indent]\n"
+"[indent]—   Вот и все! :D[/indent]"
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+"[indent]—   В Thrive вещества, из которых состоят вещи, известны как соединения, которые можно рассматривать как ресурсы. Они не ограничиваются научным определением «соединения» двух или более элементов, связанных вместе. Соединениями в смысле ресурсов могут быть элементы (например, кислород), соединения (например, аммиак) или другие вещества (химические агенты или токсины).[/indent]\n"
+"\n"
+"[indent]—   По сути, все в игре сделано из какого-то соединения. Сложная система предназначена для отслеживания того, из чего состоят организмы, для отслеживания того, что организм съел, во что он это превратил и какие отходы он выбрасывает. Все остальное является частью окружающей среды и доступно другим организмам.[/indent]"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Wiki Разработчиков"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Аксон"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Каждый раз, когда вы входите в [b]Редактор[/b] в Thrive, вы продвигаетесь на одно [b]Поколение[/b]. Затем вы сможете просмотреть статистику, изменить местоположение или внести другие изменения в свой вид. Это называется [b]Сеансом Редактора[/b]."
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Электростанция клетки. Митохондрия  способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+"Любая модификация, которую вы вносите в свой вид, является [b]Мутацией[/b]. Это включает в себя размещение органелл, их обновление и, что немаловажно, [u]даже их удаление[/u].\n"
+"\n"
+"Каждая мутация, которую вы производите для своего вида, будет стоить вам [b]очков мутации[/b] [thrive:icon]MP[/thrive:icon], иначе называемых [b]MP[/b]. Вы всегда будете получать только [b]100[/b] очков мутации за сеанс редактирования. [u]Они не переносятся и не накапливаются.[/u]."
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr "Это [color=#3796e1][url=thriveopedia:Compounds]Соединения[/url][/color], которые присутствуют в окружающей среде только в процентах. Аналогичным образом они изменяют [b]Скорость[/b], с которой происходят определенные [b]Процессы[/b]. Они влияют на большинство органелл."
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Электростанция клетки. Митохондрия  способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+"[b]Цикл дня и ночи[/b] — это настройка, которую можно включить в новом игровом меню. Когда цикл день/ночь включен, патчи с циклом [thrive:compound type=\"sunlight\"][/thrive:compound] между [b]0[/b] и [b]100[/b] [b ]%[/b] люкс за заданное время (которое также можно изменить в настройках).\n"
+"\n"
+"Это приводит к тому, что [b]Фотосинтез[/b] становится гораздо более ненадежным и с ним труднее выжить. Автотрофам, использующим [thrive:compound type=\"sunlight\"][/thrive:compound], необходимо развивать [b]хранилище[/b] (например, с помощью [color=#3796e1][url=thriveopedia:vacuole]вакуолей [/url][/color]), чтобы пережить ночь."
+
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Анаэробная азотфиксация"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Процессы"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Требования"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Требования"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Процессы"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Модификации"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Процессы"
+
+#, fuzzy
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Модификации"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Процессы"
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Физические Условия"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Модификации"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далёкой чужой планете прошли эоны химической эволюции. Её итог привёл к созданию молекулы, способной к саморепликации. Её итог привёл к созданию нового феномена во вселенной.\n"
+"\n"
+"Жизни.\n"
+"\n"
+"Простые микробы обитают в прибрежных тёплых озёрах . Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Одноклеточный редактор"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Одноклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Добро пожаловать в ранний многоклеточный этап!\n"
+"\n"
+"Вы успешно провели свой вид через одноклеточную фазу.\n"
+"\n"
+"Игровой процесс наследует основные механики клеточной стадии. Вам всё ещё надо наращивать свой организм для размножения и редактирования.\n"
+"\n"
+"Однако, теперь вы можете спроектировать дизайн вашей колонии клеток в редакторе и специализировать клетки под определённые роли. Учтите, что члены колонии не могут делиться [thrive:compound type=\"atp\"][/thrive:compound] друг с другом.\n"
+"\n"
+"Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Включить редактор"
+
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "наша Wiki"
+
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Стадия Сознания"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Митохондрия"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Митохондрия"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Протоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Сопло для слизи"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Термопласт"
+
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Аэробное дыхание"
+
+#, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Реснички"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Протоплазма"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Протоплазма"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
+"Чтобы размножаться на [color=#3796e1][url=thriveopedia:microbe_stage]Стадии микробов[/url][/color], вы должны собрать определенное количество воспроизводящих [color=#3796e1][url=thriveopedia:Compounds]соединений. [/url][/color]. А именно [thrive:compound type=\"ammonia\"][/thrive:compound] и [thrive:compound type=\"phosphates"][/thrive:compound]. Вы поглощаете эти соединения пассивно, со скоростью, зависящей от вашей мембраны.\n"
+"\n"
+"[b][u]Размножение органелл[/u][/b]\n"
+"\n"
+"По мере роста вашей клетки некоторые соединения будут откладываться для размножения. Как только будет достигнуто определенное количество соединений, ваши органеллы начнут [b]дублироваться[/b]. Требуемое количество [thrive:compound type=\"аммиак\"][/thrive:compound] и [thrive:compound type=\"фосфаты"][/thrive:compound] зависит от каждой органеллы. У каждой органеллы есть [b]стоимость воспроизводства[/b], которая определяет, сколько соединений ей необходимо [b]дублировать[/b]. Как только все ваши органеллы будут продублированы, вы сможете [b]воспроизвести[/b] и войти в редактор."
+
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "На этом этапе разработка еще не началась. Обсуждений теории и игрового процесса на этом этапе в последние годы не было. Обсуждения необходимо будет возобновить, как только мы фактически достигнем стадии «Общество» в официальном развитии."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Стадия Общества"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Работа на космической сцене еще не началась."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Сопло для слизи"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Стадия Космоса"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Стадия Космоса"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "наша Wiki"
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+"Туман войны — это настройка игры, которую можно включить, которая ограничивает количество патчей, которые игрок может просмотреть.\n"
+"\n"
+"Если установлено значение [b]обычный[/b], будут видны только те патчи, на которых был игрок, а также любые соседние патчи. Хотя участки, прилегающие к [i]этим[/i], видны на карте, но их тип, [color=#3796e1][url=thriveopedia:Compounds]информация о соединении[/url][/color] и [color=# 3796e1][url=thriveopedia:EnvironmentalConditions]Условия окружающей среды[/url][/color] скрыты.\n"
+"\n"
+"Если установлено значение [b]интенсивный[/b], будут видны [b]только[/b] патчи, на которых был игрок. Соседние патчи будут видны, но будут иметь скрытую информацию о типе и составе."
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr "[b]Карта патчей[/b] представляет собой изображение вашей планеты. Он состоит из [b]Патчей[/b] и [b]Регионов[/b] (поясняется ниже). Каждый регион содержит несколько связанных (или соседних) патчей и соединен с другими регионами."
+
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "наша Wiki"
+
+#, fuzzy
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr "Будет реализовано."
