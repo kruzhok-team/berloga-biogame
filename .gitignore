@@ -158,3 +158,6 @@ perf.data
 
 # Dev tools
 .direnv/
+
+# Env files
+.env
