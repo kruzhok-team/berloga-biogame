@@ -7,6 +7,7 @@ using Godot;
 using Newtonsoft.Json;
 using Saving;
 using Environment = System.Environment;
+using APItalent;
 
 /// <summary>
 ///   Class that handles storing and applying player changeable game settings.
@@ -722,6 +723,7 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
+        ApplyEnvironmentSettings();
         if (Engine.IsEditorHint())
         {
             // Do not apply settings within the Godot editor.
@@ -1114,5 +1116,9 @@ public class Settings
 
             setting.AssignFrom(source);
         }
+    }
+
+    private void ApplyEnvironmentSettings(){
+        EnvConfig.EnvLoad("src/APItalent/Config.env");
     }
 }
