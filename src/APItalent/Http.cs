@@ -1,6 +1,7 @@
 ﻿namespace APItalent;
 
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -12,12 +13,13 @@ public class Http
     private static readonly HttpClient HttpClient = new();
     private static readonly string? BaseUrl = Environment.GetEnvironmentVariable("BASE_ADRESS");
 
-    public static async Task<T?> Post<T>(string path, object? data = null, HttpStatusCode statusCode = HttpStatusCode.OK)
+    public static async Task<T?> Post<T>(string path, object? data = null, Dictionary<string, string>? options = null, HttpStatusCode statusCode = HttpStatusCode.OK)
     {
         var requestBody = data != null ? new StringContent(JsonSerializer.Serialize(data),
             Encoding.UTF8,
             "application/json") : null;
-        var response = await HttpClient.PostAsync($"{BaseUrl}/{path}", requestBody);
+        options ??= new Dictionary<string, string>();
+        var response = await HttpClient.PostAsync($"{BaseUrl}/{path}?{GetOptionsString(options)}", requestBody);
 
         var jsonResponce = await response.Content.ReadAsStringAsync();
 
@@ -28,6 +30,34 @@ public class Http
 
         var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponce);
         throw new HttpError(statusCode, err);
+    }
+
+    public static async Task<T?> Get<T>(string path, Dictionary<string, string>? options = null, HttpStatusCode statusCode = HttpStatusCode.OK)
+    {
+        options ??= new Dictionary<string, string>();
+        var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?{GetOptionsString(options)}");
+
+        var jsonResponce = await response.Content.ReadAsStringAsync();
+
+        if (response.StatusCode == statusCode)
+        {
+            return JsonSerializer.Deserialize<T>(jsonResponce);
+        }
+
+        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponce);
+        throw new HttpError(statusCode, err);
+    }
+
+    private static string GetOptionsString(Dictionary<string, string> options)
+    {
+        var sb = new StringBuilder();
+
+        foreach (var key in options.Keys)
+        {
+            sb.Append($"{key}={options[key]}&");
+        }
+
+        return sb.ToString().TrimEnd('&');
     }
 }
 
