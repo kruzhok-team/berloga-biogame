@@ -4,47 +4,83 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 public class Http
 {
+    private static readonly AuthTokenHandler AuthToken = AuthTokenHandler.Instance;
     private static readonly HttpClient HttpClient = new();
     private static readonly string? BaseUrl = Environment.GetEnvironmentVariable("BASE_ADRESS");
 
-    public static async Task<T?> Post<T>(string path, object? data = null, Dictionary<string, string>? options = null, HttpStatusCode statusCode = HttpStatusCode.OK)
+    /// <summary>
+    /// Method for Http Post requests
+    /// </summary>
+    /// <returns>Returns an object of type <typeparamref name="T"/></returns>
+    /// <param name="path">Full request path, without domain</param>
+    /// <param name="data">Data for the request body</param>
+    /// <param name="options">Get request parameters</param>
+    /// <param name="authRequire">Do I need authorization?</param>
+    /// <param name="statusCode">Http error code.</param>
+    /// <exception cref="HttpError">
+    /// Berloga API error sent by the server
+    /// </exception>
+    public static async Task<T?> Post<T>(string path, object? data = null, Dictionary<string, string>? options = null, bool authRequire = false, HttpStatusCode statusCode = HttpStatusCode.OK)
     {
         var requestBody = data != null ? new StringContent(JsonSerializer.Serialize(data),
             Encoding.UTF8,
             "application/json") : null;
         options ??= new Dictionary<string, string>();
-        var response = await HttpClient.PostAsync($"{BaseUrl}/{path}?{GetOptionsString(options)}", requestBody);
+        var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseUrl}/{path}?{GetOptionsString(options)}");
 
-        var jsonResponce = await response.Content.ReadAsStringAsync();
+        if (authRequire)
+            request.Headers.Add("Authorization", AuthToken.AuthToken);
+
+        request.Content = requestBody;
+
+        var response = await HttpClient.SendAsync(request);
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
 
         if (response.StatusCode == statusCode)
         {
-            return JsonSerializer.Deserialize<T>(jsonResponce);
+            return JsonSerializer.Deserialize<T>(jsonResponse);
         }
 
-        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponce);
+        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponse);
         throw new HttpError(statusCode, err);
     }
-
-    public static async Task<T?> Get<T>(string path, Dictionary<string, string>? options = null, HttpStatusCode statusCode = HttpStatusCode.OK)
+    /// <summary>
+    /// Method for Http Get requests
+    /// </summary>
+    /// <returns>Returns an object of type <typeparamref name="T"/></returns>
+    /// <param name="path">Full request path, without domain</param>
+    /// <param name="options">Get request parameters</param>
+    /// <param name="authRequire">Do I need authorization?</param>
+    /// <param name="statusCode">Http error code.</param>
+    /// <exception cref="HttpError">
+    /// Berloga API error sent by the server
+    /// </exception>
+    public static async Task<T?> Get<T>(string path, Dictionary<string, string>? options = null, bool authRequire = false, HttpStatusCode statusCode = HttpStatusCode.OK)
     {
         options ??= new Dictionary<string, string>();
-        var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?{GetOptionsString(options)}");
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUrl}/{path}?{GetOptionsString(options)}");
 
-        var jsonResponce = await response.Content.ReadAsStringAsync();
+        if (authRequire)
+            request.Headers.Add("Authorization", AuthToken.AuthToken);
+
+        var response = await HttpClient.SendAsync(request);
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
 
         if (response.StatusCode == statusCode)
         {
-            return JsonSerializer.Deserialize<T>(jsonResponce);
+            return JsonSerializer.Deserialize<T>(jsonResponse);
         }
 
-        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponce);
+        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponse);
         throw new HttpError(statusCode, err);
     }
 
@@ -73,10 +109,6 @@ public class HttpError : Exception
     /// </summary>
     public HttpStatusCode StatusCode { get; set; }
 
-    /// <summary>
-    /// <param name="statusCode">Http error code.</param>
-    /// <param name="errorResponse">Error description from server answer.</param>
-    /// </summary>
     /// <summary>
     /// Berloga API Error class.
     /// </summary>
