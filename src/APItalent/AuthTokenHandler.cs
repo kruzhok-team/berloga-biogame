@@ -32,7 +32,7 @@ public class AuthTokenHandler{
     private int AuthTokenExpires {get;set;}
 
     public string ErrorMessage {get;set;}
-    public string? VerboseMessage {get;set;} = null
+    public string? VerboseMessage {get;set;} = null;
 
     private AuthTokenHandler(){
 
@@ -78,13 +78,17 @@ public class AuthTokenHandler{
             throw new InvalidOperationException("Cannot get Token without Initialize Auth Data, use Initialize() method and try again");
         }
         try{
-            var responce = await Http.Post<SuccessResponse>("berloga-idp/issue-token",new{application_id = Application_ID,
-                player_id = Player_ID,
-                player_secret = Player_Secret},
-                HttpStatusCode.Created);
+            var responce = await Http.Post<SuccessResponse>(
+                path: "berloga-idp/issue-token",
+                data: new{application_id = Application_ID,
+                    player_id = Player_ID,
+                    player_secret = Player_Secret},
+                statusCode: HttpStatusCode.Created);
             
-            AuthToken = responce?.token;
-            AuthTokenExpires = responce?.expires_in;
+                AuthToken = responce?.token;
+                if(responce.expires_in != null){
+                    AuthTokenExpires = responce.expires_in;
+                }
         }
         catch(HttpRequestException ex){
             //TODO:do something when exception
