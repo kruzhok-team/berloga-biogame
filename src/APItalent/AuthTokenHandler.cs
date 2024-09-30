@@ -79,17 +79,20 @@ public sealed class AuthTokenHandler{
             throw new InvalidOperationException("Cannot get Token without Initialize Auth Data, use Initialize() method and try again");
         }
         try{
-            var responce = await Http.Post<SuccessResponse>(
-                path: "berloga-idp/issue-token",
-                data: new{application_id = Application_ID,
-                    player_id = Player_ID,
-                    player_secret = Player_Secret},
-                statusCode: HttpStatusCode.Created);
+            if(Application_ID != null && Player_ID != null && Player_Secret != null){
+                var responce = await Http.Post<SuccessResponse>(
+                    path: "berloga-idp/issue-token",
+                    data: new{application_id = Application_ID,
+                        player_id = Player_ID,
+                        player_secret = Player_Secret},
+                    statusCode: HttpStatusCode.Created);
             
                 AuthToken = responce.token != null ? responce.token : null;
                 if(responce.expires_in != null){
                     AuthTokenExpires = responce.expires_in;
                 }
+            }
+
         }
         catch(HttpRequestException ex){
             //TODO:do something when exception
@@ -112,9 +115,9 @@ public sealed class AuthTokenHandler{
         timer.Start();
     }
 
-    private async void TimerElapsed(object sender, ElapsedEventArgs e){
+    private async Task TimerElapsed(object sender, ElapsedEventArgs e){
         await ReinitializeTokenAsync();
-        if(isInit){
+        if(isInit && AuthTokenExpires > 0){
             StartTimer(TimeSpan.FromSeconds(AuthTokenExpires));
         }
     }
