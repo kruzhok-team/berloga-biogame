@@ -12,7 +12,7 @@ using APItalent;
 /// </summary>
 
 
-public class AuthTokenHandler{
+public sealed class AuthTokenHandler{
     /// <summary>
     ///   Singleton. "Lazy" is used to ensure thread safety
     /// </summary>
@@ -25,11 +25,11 @@ public class AuthTokenHandler{
     ///   Authentication data
     /// </summary>
     private string? Application_ID {get;set;}
-    private string? Player_ID {get;set;}
-    private string? Player_Secret {get;set;}
+    public string? Player_ID {get;set;}
+    public string? Player_Secret {get;set;}
 
     public string? AuthToken {get;set;} = null;
-    private int AuthTokenExpires {get;set;}
+    private int AuthTokenExpires {get;set;} = 0;
 
     public string ErrorMessage {get;set;}
     public string? VerboseMessage {get;set;} = null;
@@ -41,14 +41,13 @@ public class AuthTokenHandler{
 
     }
 
-    public async void Initialize(string player_id, string player_secret){
+    public void Initialize(){
         if(isInit){
             throw new InvalidOperationException("You already initialize Auth data for this Instance. Cannot Initialize twice, use DeleteAuthData() for delete old Auth data and try Initialize() again");
         }
         Application_ID = Environment.GetEnvironmentVariable("APPLICATION_ID");
-        Player_ID = player_id;
-        Player_Secret = player_secret;
         isInit = true;
+        await RegNewPlayerID();
             
         //when you init instance, token already get ready for work
         await ReinitializeTokenAsync();
@@ -61,7 +60,7 @@ public class AuthTokenHandler{
     /// 
     /// Example:
     ///     AuthTokenHandler obj = AuthTokenHandler.Instance;
-    ///     obj.Initialize(player_id, player_secret);
+    ///     obj.Initialize();
     /// </summary>
 
     public static AuthTokenHandler Instance => SingletonInstance.Value;
@@ -70,6 +69,8 @@ public class AuthTokenHandler{
         Application_ID = null;
         Player_ID = null;
         Player_Secret = null;
+        AuthToken = null;
+        timer.Stop();
         isInit = false;
     }
 
@@ -85,7 +86,7 @@ public class AuthTokenHandler{
                     player_secret = Player_Secret},
                 statusCode: HttpStatusCode.Created);
             
-                AuthToken = responce?.token;
+                AuthToken = responce.token != null ? responce.token : null;
                 if(responce.expires_in != null){
                     AuthTokenExpires = responce.expires_in;
                 }
@@ -117,9 +118,39 @@ public class AuthTokenHandler{
             StartTimer(TimeSpan.FromSeconds(AuthTokenExpires));
         }
     }
-}   
 
-class SuccessResponse{
+    private async Task RegNewPlayerID(){
+        try{
+            var responce = await Http.Post<SuccessRegResponse>(
+                path:"berloga-idp/players",
+                data: new {application_id = Application_ID, device_id = "PC"},
+                statusCode: HttpStatusCode.Created
+            );
+
+            Player_ID = responce.player_id;
+            Player_Secret = responce.player_secret;
+        }
+        catch(HttpRequestException ex){
+            //TODO:do something when exception
+        }
+        catch(JsonException ex){
+            //TODO:do something when exception
+        }
+        catch(TaskCanceledException ex){
+            //TODO:do something when exception
+        }
+        catch(Exception ex){
+            //TODO:do something when exception
+        }
+    }
+}
+
+class SuccessTokenResponse{
     public string token {get;set;}
     public int expires_in {get;set;}
+}
+
+class SuccessRegResponse{
+    public string player_id {get;set;}
+    public string player_secret {get;set;}
 }
