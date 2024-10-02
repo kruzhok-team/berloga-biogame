@@ -6623,9 +6623,6 @@ msgstr ""
 "Визуально соответствует [b][color=#3796e1][url=thriveopedia:cytoplasm]цитоплазме [/url][/color][/b] и наследует многие ее черты"
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr "Нет модификаций."
 
 msgid "WIKI_PROTOPLASM_PROCESSES"
