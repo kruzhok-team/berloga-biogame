@@ -2,6 +2,7 @@ namespace APItalent;
 
 using System;
 using System.Net.Http;
+using System.Net;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Timers;
@@ -41,7 +42,7 @@ public sealed class AuthTokenHandler{
 
     }
 
-    public void Initialize(){
+    public async Task Initialize(){
         if(isInit){
             throw new InvalidOperationException("You already initialize Auth data for this Instance. Cannot Initialize twice, use DeleteAuthData() for delete old Auth data and try Initialize() again");
         }
@@ -80,7 +81,7 @@ public sealed class AuthTokenHandler{
         }
         try{
             if(Application_ID != null && Player_ID != null && Player_Secret != null){
-                var responce = await Http.Post<SuccessResponse>(
+                var responce = await Http.Post<SuccessTokenResponse>(
                     path: "berloga-idp/issue-token",
                     data: new{application_id = Application_ID,
                         player_id = Player_ID,
@@ -115,7 +116,7 @@ public sealed class AuthTokenHandler{
         timer.Start();
     }
 
-    private async Task TimerElapsed(object sender, ElapsedEventArgs e){
+    private async void TimerElapsed(object sender, ElapsedEventArgs e){
         await ReinitializeTokenAsync();
         if(isInit && AuthTokenExpires > 0){
             StartTimer(TimeSpan.FromSeconds(AuthTokenExpires));
