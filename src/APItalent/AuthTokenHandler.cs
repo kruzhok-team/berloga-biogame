@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Timers;
+using static Godot.GD;
 using APItalent;
 
 /// <summary>
@@ -96,16 +97,16 @@ public sealed class AuthTokenHandler{
 
         }
         catch(HttpRequestException ex){
-            //TODO:do something when exception
+            Print("ReinitializeTokenAsync catch HttpRequestException " + ex.Message);
         }
         catch(JsonException ex){
-            //TODO:do something when exception
+            Print("ReinitializeTokenAsync catch JsonException " + ex.Message);
         }
         catch(TaskCanceledException ex){
-            //TODO:do something when exception
+            Print("ReinitializeTokenAsync catch TaskCanceledException " + ex.Message);
         }
         catch(Exception ex){
-            //TODO:do something when exception
+            Print("ReinitializeTokenAsync catch Exception " + ex.Message);
         }
     }
 
@@ -135,16 +136,16 @@ public sealed class AuthTokenHandler{
             Player_Secret = responce.player_secret;
         }
         catch(HttpRequestException ex){
-            //TODO:do something when exception
+            Print("RegNewPlayerID catch HttpRequestException " + ex.Message);
         }
         catch(JsonException ex){
-            //TODO:do something when exception
+            Print("RegNewPlayerID catch JsonException " + ex.Message);
         }
         catch(TaskCanceledException ex){
-            //TODO:do something when exception
+            Print("RegNewPlayerID catch TaskCanceledException " + ex.Message);
         }
         catch(Exception ex){
-            //TODO:do something when exception
+            Print("RegNewPlayerID catch Exception " + ex.Message);
         }
     }
 }
