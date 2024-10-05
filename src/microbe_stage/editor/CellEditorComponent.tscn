@@ -532,7 +532,7 @@ custom_minimum_size = Vector2(350, 0)
 layout_mode = 0
 anchor_bottom = 1.0
 offset_top = 41.0
-offset_right = 350.0
+offset_right = 380.0
 offset_bottom = -49.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -701,7 +701,6 @@ size_flags_vertical = 8
 text = "ENDOSYMBIOSIS_BUTTON"
 
 [node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1

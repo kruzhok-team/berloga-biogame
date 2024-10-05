@@ -75,6 +75,7 @@ DisplayDelay = 0.0
 [node name="speciesPreview" parent="GroupHolder/default" instance=ExtResource("3")]
 visible = false
 layout_mode = 0
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 0.0
@@ -157,7 +158,6 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/editor/timeIndicator/Margi
 DisplayDelay = 0.5
 
 [node name="rigiditySlider" parent="GroupHolder/editor" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
@@ -250,7 +250,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="cytoplasm" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CYTOPLASM"
 ProcessesDescription = "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -272,7 +272,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 2.0
@@ -299,7 +299,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chromatophore" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "THYLAKOID"
 ProcessesDescription = "CHROMATOPHORE_PROCESSES_DESCRIPTION"
@@ -321,7 +321,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CHEMOSYNTHESIZING_PROTEINS"
 ProcessesDescription = "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -346,7 +346,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="rusticyanin" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "RUSTICYANIN"
 ProcessesDescription = "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -368,7 +368,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nitrogenase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "NITROGENASE"
 ProcessesDescription = "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -390,7 +390,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxyProteins" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "OXYTOXISOME"
@@ -413,7 +413,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermosynthase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "THERMOSYNTHASE"
@@ -451,24 +451,8 @@ ModifierValue = "+1"
 ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
-[node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Description" index="1"]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-max_value = 22.0
-step = 1.0
-page = 22.0
-
-[node name="VScrollBar3" type="VScrollBar" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/Description" index="2"]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-step = 1.0
-
 [node name="flagellum" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "FLAGELLUM"
 ProcessesDescription = "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -496,7 +480,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="slimeJet" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "SLIME_JET"
 ProcessesDescription = "SLIME_JET_PROCESSES_DESCRIPTION"
@@ -518,7 +502,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "ORGANELLE_PILUS"
 ProcessesDescription = "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
@@ -534,7 +518,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoreceptor" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CHEMORECEPTOR"
 ProcessesDescription = "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -550,7 +534,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CILIA"
 ProcessesDescription = "CILIA_PROCESSES_DESCRIPTION"
@@ -567,7 +551,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "BINDING_AGENT"
 ProcessesDescription = "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -590,7 +574,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "NUCLEUS"
 ProcessesDescription = "NUCLEUS_SMALL_DESCRIPTION"
@@ -612,7 +596,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="mitochondrion" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "MITOCHONDRION"
 ProcessesDescription = "MITOCHONDRION_PROCESSES_DESCRIPTION"
@@ -635,7 +619,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chloroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CHLOROPLAST"
 ProcessesDescription = "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -658,7 +642,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="thermoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "THERMOPLAST"
 ProcessesDescription = "THERMOPLAST_PROCESSES_DESCRIPTION"
@@ -681,7 +665,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="chemoplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "CHEMOPLAST"
 ProcessesDescription = "CHEMOPLAST_PROCESSES_DESCRIPTION"
@@ -704,7 +688,8 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="ferroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
 offset_right = 373.0
 offset_bottom = 226.0
 DisplayName = "FERROPLAST"
@@ -714,7 +699,7 @@ MutationPointCost = 45
 RequiresNucleus = true
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "NITROGEN_FIXING_PLASTID"
 ProcessesDescription = "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
@@ -737,7 +722,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="vacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "VACUOLE"
@@ -761,7 +746,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="oxytoxy" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "TOXIN_VACUOLE"
 ProcessesDescription = "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
@@ -784,7 +769,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="signalingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "SIGNALING_AGENT"
 ProcessesDescription = "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
@@ -807,7 +792,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="bioluminescentVacuole" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "BIOLUMINESCENT_VACUOLE"
@@ -828,7 +813,7 @@ visible = false
 visible = false
 
 [node name="lysosome" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 DisplayName = "LYSOSOME"
 ProcessesDescription = "LYSOSOME_PROCESSES_DESCRIPTION"
@@ -864,7 +849,7 @@ ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
 [node name="axon" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "ORGANELLE_AXON"
@@ -886,7 +871,7 @@ visible = false
 visible = false
 
 [node name="myofibril" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "ORGANELLE_MYOFIBRIL"
@@ -914,7 +899,6 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="single" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
@@ -951,7 +935,6 @@ DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
 [node name="double" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "DOUBLE"
 Description = "DOUBLE_MEMBRANE_DESCRIPTION"
@@ -988,7 +971,6 @@ DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
 [node name="cellulose" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "CELLULOSE"
 Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
@@ -1042,7 +1024,6 @@ ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
 [node name="chitin" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "CHITIN"
 Description = "CHITIN_MEMBRANE_DESCRIPTION"
@@ -1096,7 +1077,6 @@ ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 DisplayName = "CALCIUM_CARBONATE"
 Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
@@ -1149,7 +1129,6 @@ ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
-visible = false
 layout_mode = 0
 offset_bottom = 173.0
 DisplayName = "SILICA"
@@ -1273,6 +1252,7 @@ Positioning = 1
 
 [node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
+layout_mode = 0
 offset_bottom = 34.0
 DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
@@ -1457,6 +1437,22 @@ layout_mode = 0
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
 DisplayDelay = 2.5
+
+[node name="GroupHolder_organelleSelection_thermosynthase_MarginContainer_VBoxContainer_Description#VScrollBar2" type="VScrollBar" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 22.0
+step = 1.0
+page = 22.0
+
+[node name="GroupHolder_organelleSelection_thermosynthase_MarginContainer_VBoxContainer_Description#VScrollBar3" type="VScrollBar" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
 
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/organelleSelection/cytoplasm"]
