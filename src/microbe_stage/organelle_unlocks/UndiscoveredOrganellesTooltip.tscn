@@ -18,7 +18,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="UndiscoveredOrganellesTooltip" type="PanelContainer"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(700, 0)
 offset_right = 350.0
 offset_bottom = 155.0
 mouse_filter = 2
