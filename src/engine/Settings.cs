@@ -972,6 +972,8 @@ public class Settings
             if (!SceneManager.QuitOrQuitting)
             {
                 settings.SelectedLanguage = new SettingValue<string?>("ru");
+                //Да, мы не используем 3д сцены
+                settings.Menu3DBackgroundEnabled = new(false);
                 settings.ApplyAll(true);
             }
             else
