@@ -268,7 +268,7 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-custom_minimum_size = Vector2(700, 600)
+custom_minimum_size = Vector2(800, 600)
 layout_mode = 2
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
