@@ -392,6 +392,9 @@ error condition checking. And the GDExtension library is required in
 debug mode when running Thrive through Godot without exporting the
 game.
 
+## Enviroment files
+To run the game with the Talent API, you need to configure the environment file (.env). Create a file "Config.env" in the APItalent folder and fill it in according to the example from "Config.env.example".
+
 
 ## Using Development Environments
 
