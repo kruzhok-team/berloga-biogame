@@ -13,7 +13,6 @@ using APItalent;
 ///   Class that is handles processing the logic of obtaining, updating and deleting a unique token for the “talent” platform.
 /// </summary>
 
-
 public sealed class AuthTokenHandler{
     /// <summary>
     ///   Singleton. "Lazy" is used to ensure thread safety
@@ -24,17 +23,22 @@ public sealed class AuthTokenHandler{
     private Timer timer;
 
     /// <summary>
-    ///   Authentication data
+    /// Authentication data corresponding to the application and player.
     /// </summary>
     private string? Application_ID {get;set;}
     public string? Player_ID {get;set;}
     public string? Player_Secret {get;set;}
 
+    /// <summary>
+    /// The current authentication token.
+    /// </summary>
     public string? AuthToken {get;set;} = null;
     private int AuthTokenExpires {get;set;} = 0;
 
-    public string ErrorMessage {get;set;}
-    public string? VerboseMessage {get;set;} = null;
+    /// <summary>
+    /// Popup menu to display exception
+    /// </summary>
+    private ExceptionPopupMenu exceptionPopupMenu {get;set;}
 
     private AuthTokenHandler(){
 
@@ -43,10 +47,19 @@ public sealed class AuthTokenHandler{
 
     }
 
-    public async Task Initialize(){
+    /// <summary>
+    /// Initializes the authentication handler with exception popup menu and obtains a new player ID.
+    /// </summary>
+    /// <param name="popup">
+    /// The ExceptionPopupMenu instance to be used for displaying errors.
+    /// </param>
+    public async Task Initialize(ExceptionPopupMenu popup){ 
         if(isInit){
             throw new InvalidOperationException("You already initialize Auth data for this Instance. Cannot Initialize twice, use DeleteAuthData() for delete old Auth data and try Initialize() again");
         }
+
+        exceptionPopupMenu = popup;
+
         Application_ID = Environment.GetEnvironmentVariable("APPLICATION_ID");
         isInit = true;
         await RegNewPlayerID();
@@ -57,16 +70,13 @@ public sealed class AuthTokenHandler{
     }
 
     /// <summary>
-    /// IMPORTANT!
-    /// the first time you access this class, after creating an instance, you must initialize the properties for requests through the "Initialize()" method.
-    /// 
-    /// Example:
-    ///     AuthTokenHandler obj = AuthTokenHandler.Instance;
-    ///     obj.Initialize();
+    /// Gets the singleton instance of the AuthTokenHandler class.
     /// </summary>
-
     public static AuthTokenHandler Instance => SingletonInstance.Value;
 
+    /// <summary>
+    /// Deletes all authentication data and resets the handler state.
+    /// </summary>
     public void DeleteAuthData(){
         Application_ID = null;
         Player_ID = null;
@@ -76,6 +86,9 @@ public sealed class AuthTokenHandler{
         isInit = false;
     }
 
+    /// <summary>
+    /// Async reinitialize the authentication token.
+    /// </summary>
     public async Task ReinitializeTokenAsync(){
         if(!isInit){
             throw new InvalidOperationException("Cannot get Token without Initialize Auth Data, use Initialize() method and try again");
@@ -97,19 +110,23 @@ public sealed class AuthTokenHandler{
 
         }
         catch(HttpRequestException ex){
-            Print("ReinitializeTokenAsync catch HttpRequestException " + ex.Message);
+            exceptionPopupMenu.OpenException("HttpRequestException: "+ex.Message);
         }
         catch(JsonException ex){
-            Print("ReinitializeTokenAsync catch JsonException " + ex.Message);
+            exceptionPopupMenu.OpenException("JsonException: "+ex.Message);
         }
         catch(TaskCanceledException ex){
-            Print("ReinitializeTokenAsync catch TaskCanceledException " + ex.Message);
+            exceptionPopupMenu.OpenException("TaskCanceledException: "+ex.Message);
         }
         catch(Exception ex){
-            Print("ReinitializeTokenAsync catch Exception " + ex.Message);
+            exceptionPopupMenu.OpenException("UnknownException: "+ex.Message);
         }
     }
 
+    /// <summary>
+    /// Starts a timer that will trigger token reinitialization after the specified interval.
+    /// </summary>
+    /// <param name="interval">The time span after which the token should be reinitialized.</param>
     private void StartTimer(TimeSpan interval){
         timer = new Timer(interval.TotalMilliseconds);
         timer.Elapsed += TimerElapsed;
@@ -117,6 +134,9 @@ public sealed class AuthTokenHandler{
         timer.Start();
     }
 
+    /// <summary>
+    /// Event handler for the timer elapsed event; reinitializes the token.
+    /// </summary>
     private async void TimerElapsed(object sender, ElapsedEventArgs e){
         await ReinitializeTokenAsync();
         if(isInit && AuthTokenExpires > 0){
@@ -124,6 +144,9 @@ public sealed class AuthTokenHandler{
         }
     }
 
+    /// <summary>
+    /// Register a new player ID.
+    /// </summary>
     private async Task RegNewPlayerID(){
         try{
             var responce = await Http.Post<SuccessRegResponse>(
@@ -136,16 +159,16 @@ public sealed class AuthTokenHandler{
             Player_Secret = responce.player_secret;
         }
         catch(HttpRequestException ex){
-            Print("RegNewPlayerID catch HttpRequestException " + ex.Message);
+            exceptionPopupMenu.OpenException("HttpRequestException: "+ex.Message);
         }
         catch(JsonException ex){
-            Print("RegNewPlayerID catch JsonException " + ex.Message);
+            exceptionPopupMenu.OpenException("JsonException: "+ex.Message);
         }
         catch(TaskCanceledException ex){
-            Print("RegNewPlayerID catch TaskCanceledException " + ex.Message);
+            exceptionPopupMenu.OpenException("TaskCanceledException: "+ex.Message);
         }
         catch(Exception ex){
-            Print("RegNewPlayerID catch Exception " + ex.Message);
+            exceptionPopupMenu.OpenException("UnknownException: "+ex.Message);
         }
     }
 }
