@@ -40,25 +40,25 @@ add_library(thrive_native SHARED
   core/NativeLibIntercommunication.hpp
   shared/IntercommunicationManager.cpp core/IntercommunicationManager.hpp)
 
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)
 
-  if (WARNINGS_AS_ERRORS)
+  if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE /WX)
-  endif ()
+  endif()
 
   # TODO debug symbols in release for MSVC (and Distribution mode)
 
 else()
   target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
 
-  if (WARNINGS_AS_ERRORS)
+  if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)
-  endif ()
+  endif()
 
   target_compile_options(thrive_native PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
     $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
-endif ()
+endif()
 
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
@@ -80,10 +80,10 @@ set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 20
   CXX_EXTENSIONS OFF)
 
-if (THRIVE_LTO)
+if(THRIVE_LTO)
   # TODO: figure out why msys2 fails with this or disable this by default there
   set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
   message(STATUS "LTO is on for Thrive")
-endif ()
+endif()
 
 install(TARGETS thrive_native)
