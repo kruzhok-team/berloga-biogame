@@ -724,6 +724,9 @@ To set this up basically create a new folder that you add to PATH (Windows
 registry, `.bashrc` or `.zshrc` for Linux/Mac) and create a copy or 
 symbolic link in it named `godot`. 
 
+For proper export you will also need the `GodotPckTool` - https://github.com/hhyyrylainen/GodotPckTool.
+Download the latest release version of this tool and add it to your PATH in a similar path as `godot`.
+
 For Mac if you copied the Godot editor to your apps folder, like you should,
 run the following (and then edit `.zshrc`):
 ```sh
