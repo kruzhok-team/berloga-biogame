@@ -82,9 +82,9 @@ public class ThreadedRunSimulator
 
         // Create parallel tasks
         var tasks = new List<Task>();
-        for (int i = 0; i < parallelTasks; ++i)
+        for (var i = 0; i < parallelTasks; ++i)
         {
-            int seed = random.Next();
+            var seed = random.Next();
             tasks.Add(new Task(() => RunSimulationAttempts(seed)));
         }
 
@@ -176,7 +176,7 @@ public class ThreadedRunSimulator
         {
             originalGeneralTasks = generalTasks;
 
-            for (int i = 0; i < threadCount; ++i)
+            for (var i = 0; i < threadCount; ++i)
             {
                 // Main tasks are reserved for first thread
                 var thread = new Thread(i + 1, i == 0 ? mainThreadTasks : new List<SystemToSchedule>());
@@ -210,15 +210,15 @@ public class ThreadedRunSimulator
             // of total simulated time)
             double timeSinceBarrier = 0;
             float extraTimeCost = 0;
-            int stuckCount = 0;
+            var stuckCount = 0;
 
             while (HasUpcomingTasks)
             {
-                bool scheduledSomething = false;
+                var scheduledSomething = false;
 
-                double neededTimeSkip = double.MaxValue;
-                bool anyThreadIsAtCurrentTime = false;
-                bool skippedThread = false;
+                var neededTimeSkip = double.MaxValue;
+                var anyThreadIsAtCurrentTime = false;
+                var skippedThread = false;
 
                 foreach (var thread in allThreads)
                 {
@@ -280,12 +280,12 @@ public class ThreadedRunSimulator
                 {
                     // If there are other threads with barely any work to do, there's a chance to steal their
                     // work for another thread
-                    bool attemptTaskSteal = true;
-                    int activeThreads = 0;
+                    var attemptTaskSteal = true;
+                    var activeThreads = 0;
 
                     // Note that thread order is shuffled so the first thread is not necessarily the main thread
                     // stealing work here
-                    for (int i = 1; i < allThreads.Count; ++i)
+                    for (var i = 1; i < allThreads.Count; ++i)
                     {
                         if (runSystems.TryGetValue(allThreads[i], out var systems))
                         {
@@ -420,7 +420,7 @@ public class ThreadedRunSimulator
             }
 
             // Prioritize running exclusive tasks a bit
-            bool triedExclusive = false;
+            var triedExclusive = false;
             if (thread.HasUpcomingExclusiveTask && random.NextDouble() < ExclusiveTaskChance)
             {
                 triedExclusive = true;
@@ -650,7 +650,7 @@ public class ThreadedRunSimulator
 
         private bool StealWorkFromOtherThreads(Thread targetThread)
         {
-            bool stoleWork = false;
+            var stoleWork = false;
 
             foreach (var thread in allThreads)
             {
@@ -690,7 +690,7 @@ public class ThreadedRunSimulator
             // unnecessary barriers that don't guard against anything
             foreach (var thread in allThreads)
             {
-                int index = 0;
+                var index = 0;
 
                 foreach (var count in thread.CalculateTasksBetweenBarriers())
                 {
@@ -709,7 +709,7 @@ public class ThreadedRunSimulator
 
             var pointIndexesToRemove = new List<int>();
 
-            for (int i = 0; i < runningThreadCountsPerSlot.Count - 1; ++i)
+            for (var i = 0; i < runningThreadCountsPerSlot.Count - 1; ++i)
             {
                 if (runningThreadCountsPerSlot[i] < 2 && runningThreadCountsPerSlot[i + 1] < 2)
                 {
@@ -794,7 +794,7 @@ public class ThreadedRunSimulator
 
             threadTasks.Add(system);
 
-            bool removedExclusive = upcomingExclusiveTasks.Remove(system);
+            var removedExclusive = upcomingExclusiveTasks.Remove(system);
 
             if (!removedExclusive && originalExclusiveTasks.Contains(system))
                 throw new Exception("Exclusive task remove was not done");
@@ -838,11 +838,11 @@ public class ThreadedRunSimulator
             // If barrier was at the last point (which is now gone), remove it
             threadBarrierPoints.RemoveAll(p => p == threadTasks.Count);
 
-            int lastBarrier = threadBarrierPoints.Max();
+            var lastBarrier = threadBarrierPoints.Max();
 
             TimeSinceBarrier = 0;
 
-            for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+            for (var i = lastBarrier + 1; i < threadTasks.Count; ++i)
             {
                 TimeSinceBarrier += threadTasks[i].RuntimeCost;
             }
@@ -860,9 +860,9 @@ public class ThreadedRunSimulator
             if (threadTasks.Count < 1)
                 throw new InvalidOperationException("Thread doesn't have any tasks");
 
-            int timeSlot = 1;
+            var timeSlot = 1;
 
-            for (int i = 0; i < threadTasks.Count; ++i)
+            for (var i = 0; i < threadTasks.Count; ++i)
             {
                 var systemToSchedule = threadTasks[i];
                 systemToSchedule.ThreadId = ThreadId;
@@ -895,11 +895,11 @@ public class ThreadedRunSimulator
                 throw new Exception("Barrier points aren't in sorted order");
 
             // This has to start at -1 for the count of tasks in the first barrier group to be correct
-            int previousBarrier = -1;
+            var previousBarrier = -1;
 
             foreach (var barrierPoint in threadBarrierPoints)
             {
-                int tasksBetween = barrierPoint - previousBarrier;
+                var tasksBetween = barrierPoint - previousBarrier;
 
                 yield return tasksBetween;
 
@@ -918,11 +918,11 @@ public class ThreadedRunSimulator
             if (threadBarrierPoints.Count < 1)
                 return threadTasks;
 
-            int lastBarrier = threadBarrierPoints.Max();
+            var lastBarrier = threadBarrierPoints.Max();
 
             var result = new List<SystemToSchedule>();
 
-            for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+            for (var i = lastBarrier + 1; i < threadTasks.Count; ++i)
             {
                 result.Add(threadTasks[i]);
             }

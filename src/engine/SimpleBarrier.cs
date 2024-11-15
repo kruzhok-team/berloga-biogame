@@ -44,7 +44,7 @@ public class SimpleBarrier
         Interlocked.Increment(ref threadsInWaitLoop);
 
         // New thread arriving at the barrier, increment the count
-        int readCount = Interlocked.Increment(ref waitingThreads);
+        var readCount = Interlocked.Increment(ref waitingThreads);
 
         bool managerThread;
 
@@ -60,7 +60,7 @@ public class SimpleBarrier
             // Wait until all threads have arrived
             while (readCount != threadCount)
             {
-                for (int i = 0; i < READ_TESTS_IN_A_ROW; ++i)
+                for (var i = 0; i < READ_TESTS_IN_A_ROW; ++i)
                 {
                     readCount = waitingThreads;
 
@@ -74,7 +74,7 @@ public class SimpleBarrier
                     break;
 
                 // Try to reduce contention on the atomic variable a bit
-                for (int i = 0; i < BUSY_LOOP_COUNT; ++i)
+                for (var i = 0; i < BUSY_LOOP_COUNT; ++i)
                 {
                     _ = i;
                 }

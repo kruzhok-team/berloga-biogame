@@ -121,7 +121,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
     private void ShowDataToStartNew(IEnumerable<KeyValuePair<Species, int>> candidates)
     {
-        bool any = false;
+        var any = false;
 
         var tempSymbionts = new List<(OrganelleDefinition Organelle, int Cost)>();
 

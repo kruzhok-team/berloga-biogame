@@ -133,7 +133,7 @@ public partial class DebugDrawer : ControlWithInput
         triangleMesh = new CustomImmediateMesh(TriangleMaterial);
 
         // Make sure the debug stuff is always rendered
-        float halfVisibility = Constants.DEBUG_DRAW_MAX_DISTANCE_ORIGIN * 0.5f;
+        var halfVisibility = Constants.DEBUG_DRAW_MAX_DISTANCE_ORIGIN * 0.5f;
 
         var quiteBigAABB = new Aabb(-halfVisibility, -halfVisibility, -halfVisibility, halfVisibility * 2,
             halfVisibility * 2, halfVisibility * 2);
@@ -389,7 +389,7 @@ public partial class DebugDrawer : ControlWithInput
 
     private void HandleTimedLines(float delta)
     {
-        for (int i = 0; i < timedLineCount; ++i)
+        for (var i = 0; i < timedLineCount; ++i)
         {
             ref var line = ref timedLines[i];
 
@@ -417,7 +417,7 @@ public partial class DebugDrawer : ControlWithInput
 
     private void OnlyElapseLineTime(float delta)
     {
-        for (int i = 0; i < timedLineCount; ++i)
+        for (var i = 0; i < timedLineCount; ++i)
         {
             ref var line = ref timedLines[i];
             line.TimePassed += delta;

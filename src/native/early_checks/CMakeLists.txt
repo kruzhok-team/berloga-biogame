@@ -6,14 +6,14 @@ add_library(early_checks SHARED
   ../helpers/CPUCheckResult.h)
 
 # Make the library runnable on really old CPUs (and turn on extra warnings)
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # TODO: really old CPU support for MSVC
 
   target_compile_options(early_checks PRIVATE /W4 /wd4068)
 
-  if(WARNINGS_AS_ERRORS)
+  if (WARNINGS_AS_ERRORS)
     target_compile_options(early_checks PRIVATE /WX)
-  endif()
+  endif ()
 
   # Probably really don't need to support debug symbols in release for MSVC
 else()
@@ -26,9 +26,9 @@ else()
 
   target_compile_options(early_checks PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
 
-  if(WARNINGS_AS_ERRORS)
+  if (WARNINGS_AS_ERRORS)
     target_compile_options(early_checks PRIVATE -Werror)
-  endif()
+  endif ()
 
   # For now, no debug symbols as it should be impossible to crash in this
   # simple library
@@ -36,7 +36,7 @@ else()
   #   $<$<CONFIG:Distribution>:-g -O3>)
   target_compile_options(early_checks PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
       $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
-endif()
+endif ()
 
 target_compile_definitions(early_checks PRIVATE EARLY_CHECK_BUILD)
 

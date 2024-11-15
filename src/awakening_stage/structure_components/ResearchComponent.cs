@@ -22,7 +22,7 @@ public class ResearchComponent : StructureComponent
     {
         var technologyProgress = dataAccess.CurrentlyResearchedTechnology;
 
-        bool canResearch = technologyProgress != null;
+        var canResearch = technologyProgress != null;
 
         // Skip if this building can't contribute to this research
         if (technologyProgress != null)

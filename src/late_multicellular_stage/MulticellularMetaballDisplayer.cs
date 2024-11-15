@@ -78,7 +78,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
     {
         var mesh = Multimesh;
 
-        int instances = layout.Count;
+        var instances = layout.Count;
         mesh.InstanceCount = instances;
 
         if (instances < 1)
@@ -91,7 +91,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
 
         var extends = Vector3.Zero;
 
-        int i = 0;
+        var i = 0;
 
         // Setup the metaball parameters for drawing
         foreach (var metaball in layout)

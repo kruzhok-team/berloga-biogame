@@ -199,7 +199,7 @@ public class ThriveJsonConverter : IDisposable
     {
         JsonSerializerSettings settings;
 
-        bool recursive = false;
+        var recursive = false;
 
         if (currentJsonSettings.Value != null)
         {
@@ -403,7 +403,7 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customAttributeData = customAttributes.ToList();
 
-        bool export = customAttributeData.Any(a => a.AttributeType == ExportAttribute);
+        var export = customAttributeData.Any(a => a.AttributeType == ExportAttribute);
 
         if (!export)
             return false;
@@ -508,10 +508,10 @@ public abstract class BaseThriveConverter : JsonConverter
         // TODO: caching the object deserialization object would be a pretty good memory allocation reduction
         var objectLoad = new InProgressObjectDeserialization(objectType, reader, serializer, SkipMember);
 
-        bool readToEnd = false;
+        var readToEnd = false;
         string? refId = null;
 
-        bool normalPropertiesStarted = false;
+        var normalPropertiesStarted = false;
 
         while (true)
         {
@@ -667,7 +667,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var contract = serializer.ContractResolver.ResolveContract(type);
 
-        bool reference = ForceReferenceWrite ||
+        var reference = ForceReferenceWrite ||
             serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
             contract.IsReference == true;
 
@@ -699,7 +699,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 // Seems like a limitation in the JSON library:
                 // https://github.com/JamesNK/Newtonsoft.Json/issues/2126
                 // So we check if the attributes want us to write the type and go with that
-                bool writeType = false;
+                var writeType = false;
 
                 var baseType = type.BaseType;
 

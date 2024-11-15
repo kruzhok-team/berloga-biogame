@@ -177,9 +177,9 @@ public partial class DebugOverlays
         var customPhysicsAverage = customPhysics.Sum(s => s.AveragePhysicsTime);
         _ = customPhysicsAverage;
 
-        long orphaned = (long)Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount);
+        var orphaned = (long)Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount);
 
-        int intentionallyOrphaned = GetOrphanedCacheItems();
+        var intentionallyOrphaned = GetOrphanedCacheItems();
 
         // Don't show intentionally orphaned nodes in the orphaned count
         if (orphaned >= intentionallyOrphaned)

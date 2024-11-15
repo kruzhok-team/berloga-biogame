@@ -351,7 +351,7 @@ public partial class MicrobeBenchmark : Node
             case 9:
             {
                 // Spawn cells and measure FPS constantly
-                float interval = Math.Max(MIN_SPAWN_INTERVAL,
+                var interval = Math.Max(MIN_SPAWN_INTERVAL,
                     SPAWN_INTERVAL - spawnCounter / SPAWN_INTERVAL_REDUCE_EVERY_N * SPAWN_INTERVAL_REDUCE_AMOUNT);
                 if (timer < interval)
                     break;
@@ -365,7 +365,7 @@ public partial class MicrobeBenchmark : Node
 
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
-                float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
+                var endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
                     STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
                     STRESS_TEST_THRESHOLD_REDUCE);
 
@@ -483,7 +483,7 @@ public partial class MicrobeBenchmark : Node
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
         var workMemory = new MutationWorkMemory();
 
-        for (int i = 0; i < SPECIES_COUNT; ++i)
+        for (var i = 0; i < SPECIES_COUNT; ++i)
         {
             var species = CommonMutationFunctions.GenerateRandomSpecies(world.NewMicrobeSpecies(
                     nameGenerator.GenerateNameSection(random),

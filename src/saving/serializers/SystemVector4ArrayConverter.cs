@@ -23,8 +23,8 @@ public class SystemVector4ArrayConverter : JsonConverter
         if (casted.Rank != 2)
             throw new ArgumentException("unexpected array rank");
 
-        int width = casted.GetLength(0);
-        int height = casted.GetLength(1);
+        var width = casted.GetLength(0);
+        var height = casted.GetLength(1);
 
         var elementSize = 4 * sizeof(float);
         var header = sizeof(int) * 2;
@@ -37,9 +37,9 @@ public class SystemVector4ArrayConverter : JsonConverter
         dataWriter.Write(width);
         dataWriter.Write(height);
 
-        for (int x = 0; x < width; ++x)
+        for (var x = 0; x < width; ++x)
         {
-            for (int y = 0; y < width; ++y)
+            for (var y = 0; y < width; ++y)
             {
                 var element = casted[x, y];
 
@@ -72,9 +72,9 @@ public class SystemVector4ArrayConverter : JsonConverter
 
         var result = new Vector4[width, height];
 
-        for (int x = 0; x < width; ++x)
+        for (var x = 0; x < width; ++x)
         {
-            for (int y = 0; y < width; ++y)
+            for (var y = 0; y < width; ++y)
             {
                 var elementX = dataReader.ReadSingle();
                 var elementY = dataReader.ReadSingle();

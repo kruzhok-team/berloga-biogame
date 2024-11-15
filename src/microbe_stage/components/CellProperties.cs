@@ -137,7 +137,7 @@ public static class CellPropertiesHelpers
         CompoundBag compounds, CompoundCloudSystem compoundCloudSystem, Compound compound, float maxAmount,
         Vector3 direction, float displacement = 0)
     {
-        float amount = compounds.TakeCompound(compound, maxAmount);
+        var amount = compounds.TakeCompound(compound, maxAmount);
 
         cellProperties.SpawnEjectedCompound(ref cellPosition, compoundCloudSystem, compound, amount, direction,
             displacement);
@@ -175,9 +175,9 @@ public static class CellPropertiesHelpers
         var organellePositions = organelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
 
         // TODO: switch this to using membrane radius as that'll hopefully fix the last few divide bugs
-        float distanceRight =
+        var distanceRight =
             MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
-        float distanceLeft =
+        var distanceLeft =
             MathUtils.GetMaximumDistanceInDirection(Vector3.Left, Vector3.Zero, organellePositions);
 
         if (entity.Has<MicrobeColony>())
@@ -229,7 +229,7 @@ public static class CellPropertiesHelpers
                  multicellularSpawnState != MulticellularSpawnState.Bud)
         {
             // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
-            bool first = true;
+            var first = true;
 
             foreach (var eventualMember in earlyMulticellularSpecies.Cells)
             {
@@ -254,7 +254,7 @@ public static class CellPropertiesHelpers
             }
         }
 
-        float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
+        var width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
         if (cellProperties.IsBacteria)
             width *= 0.5f;
@@ -300,7 +300,7 @@ public static class CellPropertiesHelpers
 
         var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
-        bool isPlayerMicrobe = entity.Has<PlayerMarker>();
+        var isPlayerMicrobe = entity.Has<PlayerMarker>();
 
         // Split the compounds between the two cells.
         foreach (var compound in keys)
@@ -311,11 +311,11 @@ public static class CellPropertiesHelpers
                 continue;
 
             // If the compound is for reproduction we give player and NPC microbes different amounts.
-            if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
+            if (reproductionCompounds.TryGetValue(compound, out var divideAmount))
             {
                 // The amount taken away from the parent cell depends on if it is a player or NPC. Player
                 // cells always have 50% of the compounds they divided with taken away.
-                float amountToTake = amount * 0.5f;
+                var amountToTake = amount * 0.5f;
 
                 if (!isPlayerMicrobe)
                 {
@@ -328,7 +328,7 @@ public static class CellPropertiesHelpers
 
                 // Since the child cell is always an NPC they are given either 50% of the compound from the
                 // parent, or 90% of the amount required to immediately divide again, whichever is smaller.
-                float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
+                var amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
                 var addedCompound = copyEntityCompounds.AddCompound(compound, amountToGive);
 
                 if (addedCompound < amountToGive)
@@ -481,13 +481,13 @@ public static class CellPropertiesHelpers
 
         var organellePos = Hex.AxialToCartesian(hexPosition);
 
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var middle = Hex.AxialToCartesian(new Hex(0, 0));
         var relativeOrganellePosition = middle - organellePos;
 
         if (relativeOrganellePosition == Vector3.Zero)
             relativeOrganellePosition = DefaultVisualPos;
 
-        Vector3 exit = middle - relativeOrganellePosition;
+        var exit = middle - relativeOrganellePosition;
         var membraneCoords = membrane.GetVectorTowardsNearestPointOfMembrane(exit.X, exit.Z);
 
         var calculatedNewAngle = GetExternalOrganelleAngle(relativeOrganellePosition);
@@ -586,7 +586,7 @@ public static class CellPropertiesHelpers
     /// <param name="delta">The difference between the cell middle and the external organelle position</param>
     private static float GetExternalOrganelleAngle(Vector3 delta)
     {
-        float angle = MathF.Atan2(-delta.Z, delta.X);
+        var angle = MathF.Atan2(-delta.Z, delta.X);
         if (angle < 0)
         {
             angle += 2 * MathF.PI;

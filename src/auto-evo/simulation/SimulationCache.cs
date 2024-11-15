@@ -177,7 +177,7 @@ public class SimulationCache
         var organelles = species.Organelles.Organelles;
         var organelleCount = organelles.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             foreach (var process in organelles[i].Definition.RunnableProcesses)
             {
@@ -371,7 +371,7 @@ public class SimulationCache
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
@@ -407,7 +407,7 @@ public class SimulationCache
         // take in a float in range 0-1 to make much more gradual behaviour changes possible)
         var moving = species.Behaviour.Activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
-        float daySeconds = worldSettings.DayLength * worldSettings.DaytimeFraction;
+        var daySeconds = worldSettings.DayLength * worldSettings.DaytimeFraction;
 
         var cachedCapacities =
             MicrobeInternalCalculations.GetTotalSpecificCapacity(species.Organelles, out var cachedCapacity);
@@ -424,7 +424,7 @@ public class SimulationCache
             MicrobeInternalCalculations.GetCompoundsProducedByProcessesTakingIn(compound, species.Organelles);
 
         float cacheScore = 0;
-        int scoreCount = 0;
+        var scoreCount = 0;
 
         foreach (var requiredAmount in requiredAmounts)
         {
@@ -461,7 +461,7 @@ public class SimulationCache
             if (required <= 0)
                 throw new Exception("Required compound amount should not be zero or negative");
 
-            float insufficientProductionScore = dayGenerated / required;
+            var insufficientProductionScore = dayGenerated / required;
             cacheScore *= insufficientProductionScore;
         }
 

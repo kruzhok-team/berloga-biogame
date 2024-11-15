@@ -52,8 +52,8 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
-            hoveredCompounds.TryGetValue(compound, out float oldAmount);
-            currentHoveredCompounds.TryGetValue(compound, out float newAmount);
+            hoveredCompounds.TryGetValue(compound, out var oldAmount);
+            currentHoveredCompounds.TryGetValue(compound, out var newAmount);
 
             // Delay removing of label to reduce flickering.
             if (newAmount == 0.0f && oldAmount > 0.0f)

@@ -118,14 +118,14 @@ public partial class GuidanceLine : MeshInstance3D
 
         // To form quad, we want it in 'orgin + vector' form, not 'start + end' form
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
-        Vector3 lineVector = lineEnd - lineStart;
+        var lineVector = lineEnd - lineStart;
         lineVector[1] = 0.0f;
 
         // To get a vector that is at a right angle to the line in 2D
         // swap the coords and negate one term, then normalize.
-        Vector3 lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
+        var lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
 
-        Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
+        var yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
 
         mesh.SurfaceAddVertex(LineEnd + yOffsetVector);
         mesh.SurfaceAddVertex(LineStart + lineNormal * lineWidth + yOffsetVector);

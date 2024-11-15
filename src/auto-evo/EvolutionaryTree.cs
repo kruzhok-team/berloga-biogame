@@ -386,17 +386,17 @@ public partial class EvolutionaryTree : Control
         timeline.DrawLine(new Vector2(0, TIMELINE_AXIS_Y),
             new Vector2(Size.X, TIMELINE_AXIS_Y), Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-        int increment = (int)Math.Ceiling(1 / sizeFactor);
+        var increment = (int)Math.Ceiling(1 / sizeFactor);
 
         // Draw time marks
-        int firstDrawnGeneration =
+        var firstDrawnGeneration =
             (int)Math.Ceiling((-dragOffset.X - TreeNodeSize.X / 2) / GENERATION_SEPARATION / increment) * increment;
 
-        int lastDrawnGeneration =
+        var lastDrawnGeneration =
             Math.Min((int)Math.Floor((Size.X / sizeFactor - dragOffset.X - TreeNodeSize.X / 2) /
                 GENERATION_SEPARATION), latestGeneration);
 
-        for (int i = firstDrawnGeneration; i <= lastDrawnGeneration; i += increment)
+        for (var i = firstDrawnGeneration; i <= lastDrawnGeneration; i += increment)
         {
             var x = sizeFactor * (dragOffset.X + i * GENERATION_SEPARATION + TreeNodeSize.X / 2);
 
@@ -437,7 +437,7 @@ public partial class EvolutionaryTree : Control
 
             if (buttonEvent.Pressed && buttonEvent.ButtonIndex is MouseButton.WheelDown or MouseButton.WheelUp)
             {
-                bool zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
+                var zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
 
                 // The current mouse position relative to tree
                 var mouseTreePosition = buttonEvent.Position / sizeFactor - dragOffset;
@@ -473,11 +473,11 @@ public partial class EvolutionaryTree : Control
         // Note that dragOffset's x and y should both be negative.
         var start = tree.Size / sizeFactor - TreeSize;
 
-        float x = dragOffset.X;
+        var x = dragOffset.X;
         x = Math.Max(x, start.X);
         x = Math.Min(x, 0);
 
-        float y = dragOffset.Y;
+        var y = dragOffset.Y;
         y = Math.Max(y, start.Y);
         y = Math.Min(y, 0);
 
@@ -517,7 +517,7 @@ public partial class EvolutionaryTree : Control
             TreeDrawLine(node.ParentNode.Center, node.Center);
         }
 
-        float treeRightPosition =
+        var treeRightPosition =
             sizeFactor * (dragOffset.X + GENERATION_SEPARATION * latestGeneration + TreeNodeSize.X);
 
         // Draw horizontal lines
@@ -541,7 +541,7 @@ public partial class EvolutionaryTree : Control
 
         var size = sizeFactor * smallFontSize;
 
-        float speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
+        var speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
 
         // Draw species name
         foreach (var pair in speciesNodes)

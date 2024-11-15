@@ -125,7 +125,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
 
         ref var extraPhysicsData = ref entity.Get<MicrobePhysicsExtraData>();
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 

@@ -19,10 +19,10 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        int vertexCount = random.Next(6, 10);
-        int minDistance = 180;
+        var vertexCount = random.Next(6, 10);
+        var minDistance = 180;
 
-        int currentPatchId = 0;
+        var currentPatchId = 0;
 
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
@@ -30,7 +30,7 @@ public static class PatchMapGenerator
 
         // Create the graph's random regions
         // i is used as region id. They need to start at 0 for the hardcoded triangulation algorithm below to work
-        for (int i = 0; i < vertexCount; ++i)
+        for (var i = 0; i < vertexCount; ++i)
         {
             var (continentName, regionName) = nameGenerator.Next(random);
             var coordinates = new Vector2(0, 0);
@@ -89,7 +89,7 @@ public static class PatchMapGenerator
                     ++currentPatchId, region, regionName);
 
                 // Add the patches between surface and sea floor
-                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)BiomeType.Abyssopelagic;
+                for (var patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)BiomeType.Abyssopelagic;
                      ++patchIndex, --numberOfPatches)
                 {
                     NewPredefinedPatch((BiomeType)patchIndex, ++currentPatchId, region, regionName);
@@ -155,9 +155,9 @@ public static class PatchMapGenerator
         SubtractEdges(ref graph, vertexCount, edgeCount, random);
 
         // Link regions according to the graph matrix
-        for (int i = 0; i < vertexCount; ++i)
+        for (var i = 0; i < vertexCount; ++i)
         {
-            for (int k = 0; k < vertexCount; ++k)
+            for (var k = 0; k < vertexCount; ++k)
             {
                 if (graph[k, i])
                     LinkRegions(map.Regions[i], map.Regions[k]);
@@ -169,7 +169,7 @@ public static class PatchMapGenerator
 
         // Fix up initial average sunlight values. Note that in the future if there are things that update the biome
         // available sunlight in a patch, this needs to be done again
-        float daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
+        var daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
         foreach (var entry in map.Patches)
         {
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
@@ -222,7 +222,7 @@ public static class PatchMapGenerator
         // Subtract edges until we reach the desired edge count.
         while (currentEdgeCount > edgeCount)
         {
-            int edgeToDelete = random.Next(1, currentEdgeCount + 1);
+            var edgeToDelete = random.Next(1, currentEdgeCount + 1);
             int i;
             int k;
 
@@ -267,7 +267,7 @@ public static class PatchMapGenerator
     {
         visited[point] = true;
 
-        for (int i = 0; i < vertexCount; ++i)
+        for (var i = 0; i < vertexCount; ++i)
         {
             if (graph[point, i] && !visited[i])
                 DepthFirstGraphTraversal(ref graph, vertexCount, i, ref visited);
@@ -279,7 +279,7 @@ public static class PatchMapGenerator
     /// </summary>
     private static bool CheckConnectivity(ref bool[,] graph, int vertexCount)
     {
-        bool[] visited = new bool[vertexCount];
+        var visited = new bool[vertexCount];
         DepthFirstGraphTraversal(ref graph, vertexCount, 0, ref visited);
         return visited.Count(v => v) == vertexCount;
     }
@@ -289,10 +289,10 @@ public static class PatchMapGenerator
     /// </summary>
     private static int CurrentEdgeNumber(ref bool[,] graph, int vertexCount)
     {
-        int edgeNumber = 0;
-        for (int i = 0; i < vertexCount; ++i)
+        var edgeNumber = 0;
+        for (var i = 0; i < vertexCount; ++i)
         {
-            for (int k = 0; k < i; ++k)
+            for (var k = 0; k < i; ++k)
             {
                 if (graph[i, k])
                     ++edgeNumber;
@@ -332,7 +332,7 @@ public static class PatchMapGenerator
     {
         Vector2 coordinate;
 
-        int i = 0;
+        var i = 0;
 
         // Make sure the region doesn't overlap over other regions
         // Try no more than Constants.PATCH_GENERATION_MAX_RETRIES times to avoid infinite loop.
@@ -377,10 +377,10 @@ public static class PatchMapGenerator
             case PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean:
             {
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == BiomeType.Cave);
-                int caveLinkedTo = -1;
+                var caveLinkedTo = -1;
                 var vents = region.Patches.FirstOrDefault(p => p.BiomeType == BiomeType.Vents);
 
-                int waterPatchCount = region.Patches.Count;
+                var waterPatchCount = region.Patches.Count;
 
                 if (cave != null)
                     --waterPatchCount;
@@ -389,7 +389,7 @@ public static class PatchMapGenerator
                     --waterPatchCount;
 
                 // Cave should be the last patch
-                for (int i = 0; i < region.Patches.Count - (cave == null ? 1 : 2); ++i)
+                for (var i = 0; i < region.Patches.Count - (cave == null ? 1 : 2); ++i)
                 {
                     LinkPatches(region.Patches[i], region.Patches[i + 1]);
                 }
@@ -401,7 +401,7 @@ public static class PatchMapGenerator
                     LinkPatches(cave, region.Patches[caveLinkedTo]);
                 }
 
-                for (int i = 0; i < waterPatchCount; ++i)
+                for (var i = 0; i < waterPatchCount; ++i)
                 {
                     region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i * offsetVertical;
                 }
@@ -427,12 +427,12 @@ public static class PatchMapGenerator
                 // Build vents and cave position
                 if (vents != null || cave != null)
                 {
-                    bool ventOrCaveToTheRight = random.Next(2) == 1;
+                    var ventOrCaveToTheRight = random.Next(2) == 1;
 
                     // If the vents and cave is on the left we need to adjust the water patches' position
                     if (!ventOrCaveToTheRight)
                     {
-                        for (int i = 0; i < waterPatchCount; ++i)
+                        for (var i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
@@ -461,16 +461,16 @@ public static class PatchMapGenerator
             case PatchRegion.RegionType.Continent:
             {
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == BiomeType.Cave);
-                int caveLinkedTo = -1;
+                var caveLinkedTo = -1;
 
-                int waterPatchCount = region.Patches.Count;
+                var waterPatchCount = region.Patches.Count;
 
                 if (cave != null)
                     --waterPatchCount;
 
-                for (int i = 0; i < waterPatchCount; ++i)
+                for (var i = 0; i < waterPatchCount; ++i)
                 {
-                    for (int k = 0; k < waterPatchCount; ++k)
+                    for (var k = 0; k < waterPatchCount; ++k)
                     {
                         if (k != i)
                         {
@@ -488,7 +488,7 @@ public static class PatchMapGenerator
                     cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
                 }
 
-                for (int i = 0; i < waterPatchCount; ++i)
+                for (var i = 0; i < waterPatchCount; ++i)
                 {
                     region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i switch
                     {
@@ -505,7 +505,7 @@ public static class PatchMapGenerator
                     // Adjust water patches' position
                     if (caveLinkedTo is 0 or 2)
                     {
-                        for (int i = 0; i < waterPatchCount; ++i)
+                        for (var i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
@@ -538,7 +538,7 @@ public static class PatchMapGenerator
 
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == BiomeType.Cave);
 
-                int waterPatchCount = region.Patches.Count;
+                var waterPatchCount = region.Patches.Count;
 
                 if (cave != null)
                 {
@@ -559,7 +559,7 @@ public static class PatchMapGenerator
 
             case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
             {
-                int verticalPatchCount = region.Patches.Count(IsWaterPatch);
+                var verticalPatchCount = region.Patches.Count(IsWaterPatch);
 
                 region.Width += offset;
 
@@ -606,12 +606,12 @@ public static class PatchMapGenerator
                     {
                         case PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean:
                         {
-                            int maxIndex =
+                            var maxIndex =
                                 Math.Min(region.Patches.Count(IsWaterPatch), adjacent.Patches.Count(IsWaterPatch)) - 1;
 
-                            int lowestConnectedLevel = random.Next(0, maxIndex);
+                            var lowestConnectedLevel = random.Next(0, maxIndex);
 
-                            for (int i = 0; i <= lowestConnectedLevel; ++i)
+                            for (var i = 0; i <= lowestConnectedLevel; ++i)
                             {
                                 LinkPatches(region.Patches[i], adjacent.Patches[i]);
                             }
@@ -637,10 +637,10 @@ public static class PatchMapGenerator
                 {
                     if (adjacent.Type == PatchRegion.RegionType.Continent)
                     {
-                        int maxIndex =
+                        var maxIndex =
                             Math.Min(region.Patches.Count(IsWaterPatch), adjacent.Patches.Count(IsWaterPatch));
 
-                        int patchIndex = random.Next(0, maxIndex);
+                        var patchIndex = random.Next(0, maxIndex);
                         LinkPatches(region.Patches[patchIndex], adjacent.Patches[patchIndex]);
                     }
                 }

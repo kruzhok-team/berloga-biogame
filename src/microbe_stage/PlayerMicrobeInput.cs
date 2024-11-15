@@ -71,7 +71,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
                 return;
             }
 
-            bool screenRelative = false;
+            var screenRelative = false;
             var settingValue = Settings.Instance.TwoDimensionalMovement.Value;
 
             if (settingValue == TwoDimensionalMovementMode.ScreenRelative ||
@@ -433,7 +433,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
     private void SpawnCheatCloud(string name, double delta)
     {
-        float multiplier = 1.0f;
+        var multiplier = 1.0f;
 
         // To make cheating easier in multicellular with large cell layouts
         if (stage.GameWorld.PlayerSpecies is not MicrobeSpecies)

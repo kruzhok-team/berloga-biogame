@@ -55,7 +55,7 @@ public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstanc
 
     protected override void Update(float state, Span<SpatialInstance> components)
     {
-        foreach (ref SpatialInstance spatial in components)
+        foreach (ref var spatial in components)
         {
             var graphicalInstance = spatial.GraphicalInstance;
             if (graphicalInstance == null)

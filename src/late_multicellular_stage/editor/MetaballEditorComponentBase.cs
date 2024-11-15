@@ -137,7 +137,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         get => previewMode;
         set
         {
-            bool updateNeeded = previewMode != value;
+            var updateNeeded = previewMode != value;
 
             previewMode = value;
 
@@ -442,7 +442,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     public void RemoveAtPosition(Vector3 basePosition, TMetaball? baseMetaball)
     {
         var actions = new List<TAction>();
-        int alreadyDeleted = 0;
+        var alreadyDeleted = 0;
 
         RunWithSymmetry(0, basePosition, baseMetaball, (_, metaball) =>
         {
@@ -733,7 +733,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         var rayNormal = camera.ProjectRayNormal(mousePos);
         var rayEnd = rayOrigin + rayNormal * maxIntersectDistance;
 
-        float closestMetaball = float.MaxValue;
+        var closestMetaball = float.MaxValue;
         metaball = null;
 
         // This is to make the compiler realize we've assigned something to position if metaball is set after the next

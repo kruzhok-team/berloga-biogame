@@ -71,12 +71,12 @@ public sealed class AnimationControlSystem : AEntitySetSystem<float>
         // For now a cache is not implemented as this is just for stopping playing an animation once and then not
         // doing anything
 
-        int childCount = spatial.GetChildCount();
+        var childCount = spatial.GetChildCount();
 
         // When no path provided, find the first animation player
         if (string.IsNullOrEmpty(playerPath))
         {
-            for (int i = 0; i < childCount; ++i)
+            for (var i = 0; i < childCount; ++i)
             {
                 var child = spatial.GetChild(i);
 

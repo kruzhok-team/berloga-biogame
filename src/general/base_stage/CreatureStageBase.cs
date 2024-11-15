@@ -140,7 +140,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         if (debugOverlay.PerformanceMetricsVisible)
         {
             float totalEntityWeight = 0;
-            int totalEntityCount = 0;
+            var totalEntityCount = 0;
 
             foreach (var entity in WorldSimulation.EntitySystem)
             {

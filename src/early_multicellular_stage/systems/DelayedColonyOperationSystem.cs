@@ -48,7 +48,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         if (colonyTargetIndex == 0)
             throw new ArgumentException("Cannot delay add the root colony cell");
 
-        int bodyPlanIndex = colonyTargetIndex;
+        var bodyPlanIndex = colonyTargetIndex;
 
         if (bodyPlanIndex < 0 || bodyPlanIndex >= species.Cells.Count)
         {
@@ -142,7 +142,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         }
 
         // First cell is at index 0, so it is always skipped (as it is the lead cell)
-        int bodyPlanIndex = 1;
+        var bodyPlanIndex = 1;
 
         if (!entity.Has<MicrobeColony>())
         {
@@ -178,7 +178,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
 
         ref var species = ref entity.Get<EarlyMulticellularSpeciesMember>();
 
-        bool added = false;
+        var added = false;
         var cellsToGrow = species.Species.Cells.Skip(bodyPlanIndex).Take(members);
 
         ref var parentPosition = ref entity.Get<WorldPosition>();

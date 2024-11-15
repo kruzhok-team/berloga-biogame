@@ -583,7 +583,7 @@ public static class StringUtils
 
     public static int DetectLineIndentationLevel(string line)
     {
-        int spaceCount = 0;
+        var spaceCount = 0;
 
         foreach (var character in line)
         {

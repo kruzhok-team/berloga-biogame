@@ -36,7 +36,7 @@ public partial class DebugOverlays
     {
         file.StoreString($"{new string(' ', 2 * indent)}{node.GetType()}: {node.Name}\n");
 
-        foreach (Node child in node.GetChildren())
+        foreach (var child in node.GetChildren())
             DumpSceneTreeToFile(child, file, indent + 1);
     }
 

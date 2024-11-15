@@ -71,7 +71,7 @@ public class PhysicalWorld : IDisposable
     /// <returns>True when at least one physics simulation step was performed</returns>
     public bool ProcessPhysics(float delta)
     {
-        bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
+        var processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
 
         if (processed && !DisablePhysicsTimeRecording)
         {
@@ -96,7 +96,7 @@ public class PhysicalWorld : IDisposable
 
     public bool WaitUntilPhysicsRunEnds()
     {
-        bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+        var processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
 
         if (processed && !DisablePhysicsTimeRecording)
         {
@@ -416,7 +416,7 @@ public class PhysicalWorld : IDisposable
         {
             Span<IntPtr> nativePointers = stackalloc IntPtr[ignoredBodies.Count];
 
-            for (int i = 0; i < size; ++i)
+            for (var i = 0; i < size; ++i)
             {
                 nativePointers[i] = ignoredBodies[i].AccessBodyInternal();
             }

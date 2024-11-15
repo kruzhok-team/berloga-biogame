@@ -214,7 +214,7 @@ public partial class FossilisationDialog : CustomWindow
         if (previewImage.GetHeight() > Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT ||
             previewImage.GetWidth() > 2 * Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT)
         {
-            float aspectRatio = previewImage.GetWidth() / (float)previewImage.GetHeight();
+            var aspectRatio = previewImage.GetWidth() / (float)previewImage.GetHeight();
             previewImage.Resize((int)(Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT * aspectRatio),
                 Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT);
         }

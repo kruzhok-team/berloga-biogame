@@ -154,7 +154,7 @@ public class CellType : ICellDefinition, ICloneable
             MembraneRigidity.GetHashCode() * 2803 ^ Colour.GetHashCode() * 587 ^ (IsBacteria ? 1 : 0) * 5171 ^
             Organelles.Count * 127;
 
-        int counter = 0;
+        var counter = 0;
 
         foreach (var organelle in Organelles)
         {

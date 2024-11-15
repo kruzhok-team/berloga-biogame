@@ -66,7 +66,7 @@ public partial class HUDMessages : VBoxContainer
 
     public override void _Process(double delta)
     {
-        bool clean = false;
+        var clean = false;
 
         if (extraTime > 0)
         {
@@ -232,7 +232,7 @@ public partial class HUDMessages : VBoxContainer
     private float CalculateMessageAlpha(float timeLeft, float originalTime)
     {
         // First half fades slower, and then again fade fast
-        float halfway = originalTime * 0.5f;
+        var halfway = originalTime * 0.5f;
         if (timeLeft >= halfway)
         {
             return MidwayFadeValue + (1 - MidwayFadeValue) *

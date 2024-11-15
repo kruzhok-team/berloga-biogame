@@ -305,7 +305,7 @@ public partial class ModLoader : Node
             return;
         }
 
-        bool loadedSomething = false;
+        var loadedSomething = false;
 
         if (!string.IsNullOrEmpty(info.Info.PckToLoad))
         {

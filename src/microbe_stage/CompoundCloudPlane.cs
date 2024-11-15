@@ -119,9 +119,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         cachedWorldPosition = Position;
 
         // Whoever made the modulus operator return negatives: i hate u.
-        int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        var newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
-        int newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        var newY = ((newPosition.Y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
 
         if (newX == (position.X + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
@@ -335,9 +335,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         delta *= 100.0f;
         var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
+        for (var i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
+            for (var j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
             {
                 var x0 = i;
                 var y0 = j;
@@ -358,9 +358,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
+        for (var i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
+            for (var j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
             {
                 var x0 = i;
                 var y0 = j;
@@ -544,7 +544,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
+        var amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
         if (amountInCloud - amountToGive < 0.1f)
@@ -612,8 +612,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
-        float amountToGive = amountInCloud * fraction;
+        var amountInCloud = HackyAddress(ref Density[x, y], GetCompoundIndex(compound));
+        var amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
 
@@ -622,7 +622,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
+        for (var i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
             if (compound == null)
@@ -631,7 +631,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             if (!compound.IsAbsorbable && onlyAbsorbable)
                 continue;
 
-            float amount = HackyAddress(ref Density[x, y], i);
+            var amount = HackyAddress(ref Density[x, y], i);
             if (amount > 0)
                 result[compound] = amount;
         }
@@ -704,7 +704,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
+        for (var i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
             if (compound == null)
@@ -718,16 +718,16 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             while (true)
             {
                 // Overestimate of how much compounds we get
-                float cloudAmount = HackyAddress(ref Density[localX, localY], i);
-                float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
+                var cloudAmount = HackyAddress(ref Density[localX, localY], i);
+                var generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
                 // Skip if there isn't enough to absorb
                 if (generousAmount < MathUtils.EPSILON)
                     break;
 
-                float freeSpace = storage.GetFreeSpaceForCompound(compound);
+                var freeSpace = storage.GetFreeSpaceForCompound(compound);
 
-                float multiplier = 1.0f * rate;
+                var multiplier = 1.0f * rate;
 
                 if (freeSpace < generousAmount)
                 {
@@ -739,7 +739,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 }
 
                 if (!TakeCompoundInterlocked(i, localX, localY, fractionToTake * multiplier, cloudAmount,
-                        out float taken))
+                        out var taken))
                 {
                     // Value was updated since we read it, we need to retry
                     continue;
@@ -765,9 +765,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     public void ClearContents()
     {
-        for (int x = 0; x < Size; ++x)
+        for (var x = 0; x < Size; ++x)
         {
-            for (int y = 0; y < Size; ++y)
+            for (var y = 0; y < Size; ++y)
             {
                 Density[x, y] = Vector4.Zero;
                 OldDensity[x, y] = Vector4.Zero;
@@ -829,13 +829,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+        var a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
-                int adjacentClouds = 4;
+                var adjacentClouds = 4;
                 OldDensity[x, y] =
                     Density[x, y] * (1 - a) +
                     (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
@@ -846,13 +846,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialDiffuseEdges(int x0, int y0, int width, int height, float delta)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+        var a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
-                int adjacentClouds = 4;
+                var adjacentClouds = 4;
                 OldDensity[x, y] =
                     Density[x, y] * (1 - a) +
                     (Density[x, (y - 1 + Size) % Size] +
@@ -865,17 +865,17 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.X);
-                    float dy = y + (delta * velocity.Y);
+                    var dx = x + (delta * velocity.X);
+                    var dy = y + (delta * velocity.Y);
 
                     // So this is clamped to not go to the other clouds
                     dx = Math.Clamp(dx, x0 - 0.5f, x0 + width + 0.5f);
@@ -903,17 +903,17 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.X);
-                    float dy = y + (delta * velocity.Y);
+                    var dx = x + (delta * velocity.X);
+                    var dy = y + (delta * velocity.Y);
 
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
@@ -929,9 +929,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
     {
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
                 var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
                 image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
@@ -941,9 +941,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
     {
-        for (int x = x0; x < x0 + width; ++x)
+        for (var x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            for (var y = y0; y < y0 + height; ++y)
             {
                 Density[x, y] = Vector4.Zero;
             }
@@ -978,7 +978,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private int GetCompoundIndex(Compound compound)
     {
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
+        for (var i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             if (Compounds[i] == compound)
                 return i;

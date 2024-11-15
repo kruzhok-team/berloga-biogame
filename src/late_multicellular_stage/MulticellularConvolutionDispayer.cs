@@ -49,8 +49,8 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
     public void DisplayFromLayout(IReadOnlyCollection<MulticellularMetaball> layout)
     {
-        Vector3 minExtends = Vector3.Zero;
-        Vector3 maxExtends = Vector3.Zero;
+        var minExtends = Vector3.Zero;
+        var maxExtends = Vector3.Zero;
 
         foreach (var metaball in layout)
         {

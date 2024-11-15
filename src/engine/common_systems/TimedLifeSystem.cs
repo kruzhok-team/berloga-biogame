@@ -63,7 +63,7 @@ public sealed class TimedLifeSystem : AEntitySetSystem<float>
             var callback = timed.CustomTimeOverCallback;
 
             // If there is a custom callback call it first as it can set the fade time
-            bool wantsToLive = callback != null && !callback.Invoke(entity, ref timed);
+            var wantsToLive = callback != null && !callback.Invoke(entity, ref timed);
 
             if (timed.FadeTimeRemaining != null && timed.FadeTimeRemaining.Value > 0)
             {

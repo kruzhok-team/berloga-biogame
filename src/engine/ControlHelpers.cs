@@ -193,8 +193,8 @@ public static class ControlHelpers
         if (control.FocusMode != Control.FocusModeEnum.None)
             return control;
 
-        int count = control.GetChildCount();
-        for (int i = 0; i < count; ++i)
+        var count = control.GetChildCount();
+        for (var i = 0; i < count; ++i)
         {
             var child = control.GetChild(i);
 
@@ -239,8 +239,8 @@ public static class ControlHelpers
         // var rect = control.GetRect();
         var size = control.GetRect().Size;
 
-        int cornerRadius = Constants.CUSTOM_FOCUS_DRAWER_RADIUS;
-        float quarterCircle = (float)(MathUtils.FULL_CIRCLE * 0.25f);
+        var cornerRadius = Constants.CUSTOM_FOCUS_DRAWER_RADIUS;
+        var quarterCircle = (float)(MathUtils.FULL_CIRCLE * 0.25f);
 
         // Lines
         // Top line
@@ -309,8 +309,8 @@ public static class ControlHelpers
             }
         }
 
-        int count = control.GetChildCount();
-        for (int i = 0; i < count; ++i)
+        var count = control.GetChildCount();
+        for (var i = 0; i < count; ++i)
         {
             var child = control.GetChild(i);
 

@@ -111,7 +111,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         ref var cellProperties = ref entity.Get<CellProperties>();
         ref var position = ref entity.Get<WorldPosition>();
 
-        for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
+        for (var i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
         {
             var engulfedObject = engulfer.EngulfedObjects![i];
 
@@ -221,7 +221,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             var digestibleCount = digestibleCompounds.Count;
 
             // Manual loop to ensure no enumerator allocations
-            for (int j = 0; j < digestibleCount; ++j)
+            for (var j = 0; j < digestibleCount; ++j)
             {
                 var compound = digestibleCompounds[j];
 

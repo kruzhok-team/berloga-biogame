@@ -80,7 +80,7 @@ public partial class SelectBuildingPopup : StructureToBuildPopupBase<StructureDe
             StringBuilder stringBuilder, StringBuilder stringBuilder2)
         {
             // Disabled if can't start the building
-            bool canStart = structureDefinition.CanStart(allResources) == null;
+            var canStart = structureDefinition.CanStart(allResources) == null;
             Disabled = !canStart;
 
             stringBuilder.Clear();

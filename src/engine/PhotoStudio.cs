@@ -101,7 +101,7 @@ public partial class PhotoStudio : SubViewport
             throw new ArgumentException("radius needs to be over 0");
 
         // TODO: figure out if the camera FOV or FOV / 2 is the right thing to use here
-        float angle = Constants.PHOTO_STUDIO_CAMERA_FOV;
+        var angle = Constants.PHOTO_STUDIO_CAMERA_FOV;
 
         // Some right angle triangle math that's hopefully right
         return MathF.Tan(MathUtils.DEGREES_TO_RADIANS * angle) * radius;

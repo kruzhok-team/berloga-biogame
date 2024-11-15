@@ -224,7 +224,7 @@ public partial class MicheTree : Control
         var position = new Vector2(0, depth * DEPTH_SEPARATION);
         var micheHash = miche.GetHashCode();
 
-        MicheTreeNode node = treeNodeScene.Instantiate<MicheTreeNode>();
+        var node = treeNodeScene.Instantiate<MicheTreeNode>();
 
         node.ParentNode = parent;
         node.LogicalPosition = position;
@@ -296,7 +296,7 @@ public partial class MicheTree : Control
 
             if (buttonEvent.Pressed && buttonEvent.ButtonIndex is MouseButton.WheelDown or MouseButton.WheelUp)
             {
-                bool zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
+                var zoomIn = buttonEvent.ButtonIndex == MouseButton.WheelUp;
 
                 // The current mouse position relative to tree
                 var mouseTreePosition = buttonEvent.Position / sizeFactor - dragOffset;
@@ -332,11 +332,11 @@ public partial class MicheTree : Control
         // Note that dragOffset's x and y should both be negative.
         var start = tree.Size / sizeFactor - TreeSize;
 
-        float x = dragOffset.X;
+        var x = dragOffset.X;
         x = Math.Max(x, start.X);
         x = Math.Min(x, 0);
 
-        float y = dragOffset.Y;
+        var y = dragOffset.Y;
         y = Math.Max(y, start.Y);
         y = Math.Min(y, 0);
 

@@ -299,13 +299,13 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
-        float speciesAggression = speciesBehaviour.Aggression *
+        var speciesAggression = speciesBehaviour.Aggression *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
 
-        float speciesFear = speciesBehaviour.Fear *
+        var speciesFear = speciesBehaviour.Fear *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
 
-        float speciesActivity = speciesBehaviour.Activity *
+        var speciesActivity = speciesBehaviour.Activity *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.25f : 1.0f);
 
         // Adjust activity for night if it is currently night
@@ -316,11 +316,11 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             speciesActivity *= MicrobeInternalCalculations.GetActivityNightModifier(speciesBehaviour.Activity);
         }
 
-        float speciesFocus = speciesBehaviour.Focus;
-        float speciesOpportunism = speciesBehaviour.Opportunism;
+        var speciesFocus = speciesBehaviour.Focus;
+        var speciesOpportunism = speciesBehaviour.Opportunism;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
-        Vector3? predator =
+        var predator =
             GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear)?.Position;
         if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value) <
             1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
@@ -343,7 +343,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
             {
-                bool outOfSomething = false;
+                var outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
                 {
                     if (IsVitalCompound(compound.Key, compounds) && compound.Value <= MathUtils.EPSILON)
@@ -427,7 +427,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
-        bool isSessile = speciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;
+        var isSessile = speciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;
 
         // If I'm very far from the player, and I have not been near the player yet, get on stage
         if (!ai.HasBeenNearPlayer)
@@ -486,7 +486,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 return;
             }
 
-            bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
+            var engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
                 EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
                 10.0f * engulfer.EngulfingSize;
 
@@ -517,7 +517,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         out bool isBigIron)
     {
         (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk = null;
-        float bestFoundChunkDistance = float.MaxValue;
+        var bestFoundChunkDistance = float.MaxValue;
 
         BuildChunksCache();
 
@@ -591,7 +591,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 }
             }
 
-            int rivalThreshold = 5;
+            var rivalThreshold = 5;
 
             // Less opportunistic species will avoid chunks even when there are just a few rivals
             if (speciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
@@ -659,7 +659,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
 
         (Entity Entity, Vector3 Position, float EngulfSize)? chosenPrey = null;
-        float minDistance = float.MaxValue;
+        var minDistance = float.MaxValue;
 
         BuildMicrobesCache();
 
@@ -717,7 +717,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             (10 - (9 * health.CurrentHealth / health.MaxHealth)));
 
         (Entity Entity, Vector3 Position, float EngulfSize)? predator = null;
-        float minDistance = float.MaxValue;
+        var minDistance = float.MaxValue;
 
         BuildMicrobesCache();
 
@@ -951,15 +951,15 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         ComputeCompoundsSearchWeights(ref ai, compounds);
 
-        float gradientValue = 0.0f;
+        var gradientValue = 0.0f;
         foreach (var compoundWeight in ai.CompoundsSearchWeights!)
         {
             // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the
             // clouds. Gradient computation is therefore cell-centered, and might be different for different cells.
-            float compoundDifference = 0.0f;
+            var compoundDifference = 0.0f;
 
-            absorber.TotalAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);
-            ai.PreviouslyAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out float quantityAbsorbedPreviousStep);
+            absorber.TotalAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out var quantityAbsorbedThisStep);
+            ai.PreviouslyAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out var quantityAbsorbedPreviousStep);
 
             compoundDifference += quantityAbsorbedThisStep - quantityAbsorbedPreviousStep;
 
@@ -969,7 +969,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         // Implement a detection threshold to possibly rule out too tiny variations
         // TODO: possibly include cell capacity correction
-        float differenceDetectionThreshold = Constants.AI_GRADIENT_DETECTION_THRESHOLD;
+        var differenceDetectionThreshold = Constants.AI_GRADIENT_DETECTION_THRESHOLD;
 
         // If food density is going down, back up and see if there's some more
         if (gradientValue < -differenceDetectionThreshold && random.Next(0, 10) < 9)
@@ -1016,7 +1016,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         var usefulCompounds = storedCompounds.Compounds.Keys;
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-        bool lackingVital = false;
+        var lackingVital = false;
         foreach (var compound in usefulCompounds)
         {
             if (IsVitalCompound(compound, storedCompounds) && storedCompounds.GetCompoundAmount(compound) <

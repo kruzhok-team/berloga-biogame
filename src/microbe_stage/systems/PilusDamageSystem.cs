@@ -36,7 +36,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
         ref var ourSpecies = ref entity.Get<SpeciesMember>();
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 
@@ -49,8 +49,8 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
 
             ref var otherExtraData = ref collision.SecondEntity.Get<MicrobePhysicsExtraData>();
 
-            bool otherIsPilus = otherExtraData.IsSubShapePilus(collision.SecondSubShapeData);
-            bool oursIsPilus = ourExtraData.IsSubShapePilus(collision.FirstSubShapeData);
+            var otherIsPilus = otherExtraData.IsSubShapePilus(collision.SecondSubShapeData);
+            var oursIsPilus = ourExtraData.IsSubShapePilus(collision.FirstSubShapeData);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
@@ -104,7 +104,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
             return;
         }
 
-        float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
+        var damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
         // Skip too small damage
         if (damage < 0.01f)

@@ -35,7 +35,7 @@ public static class DamageCooldownHelpers
             return false;
 
         // Scale the cooldown from the damage range to the cooldown time range
-        float cooldown = minCooldownTime + (maxCooldownTime - minCooldownTime) *
+        var cooldown = minCooldownTime + (maxCooldownTime - minCooldownTime) *
             (damage - minDamageToCooldown) / (maxDamage - minDamageToCooldown);
 
         if (float.IsNaN(cooldown))

@@ -276,7 +276,7 @@ public class GameWorld : ISaveLoadable
         if (species.Obsolete)
             throw new ArgumentException("Cannot switch to an obsolete species");
 
-        bool found = false;
+        var found = false;
 
         foreach (var existingSpecies in worldSpecies)
         {
@@ -335,11 +335,11 @@ public class GameWorld : ISaveLoadable
 
         foreach (var entry in Map.Patches)
         {
-            int speciesToAdd = random.Next(1, 4);
+            var speciesToAdd = random.Next(1, 4);
 
-            for (int i = 0; i < speciesToAdd; ++i)
+            for (var i = 0; i < speciesToAdd; ++i)
             {
-                int population = Constants.INITIAL_SPECIES_POPULATION +
+                var population = Constants.INITIAL_SPECIES_POPULATION +
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
@@ -526,7 +526,7 @@ public class GameWorld : ISaveLoadable
 
         var relatedId = relatedTo.ID;
 
-        int nextGeneration = 0;
+        var nextGeneration = 0;
 
         foreach (var generation in GenerationHistory)
         {
@@ -541,7 +541,7 @@ public class GameWorld : ISaveLoadable
             foreach (var recordSpecies in generation.Value.AllSpeciesData)
             {
                 // Skip already handled species
-                bool handled = false;
+                var handled = false;
 
                 foreach (var alreadyHandled in speciesDistance)
                 {
@@ -593,8 +593,8 @@ public class GameWorld : ISaveLoadable
 
         // Find the best usable species with the minimum distance to the related species
         Species? result = null;
-        int minDistance = int.MaxValue;
-        int minGeneration = int.MaxValue;
+        var minDistance = int.MaxValue;
+        var minGeneration = int.MaxValue;
 
         foreach (var entry in speciesDistance)
         {
@@ -710,7 +710,7 @@ public class GameWorld : ISaveLoadable
                 .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.Parent, metaball))
                 .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
 
-            bool foundSuitableParent = false;
+            var foundSuitableParent = false;
 
             foreach (var parentCandidate in potentialParents)
             {
@@ -752,7 +752,7 @@ public class GameWorld : ISaveLoadable
         }
 
         // And finally apply the positioning
-        for (int i = 0; i < metaballsToPosition.Count; ++i)
+        for (var i = 0; i < metaballsToPosition.Count; ++i)
         {
             var metaball = metaballsToPosition[i];
 
@@ -845,7 +845,7 @@ public class GameWorld : ISaveLoadable
         }
 
         tree.Clear();
-        int nextGeneration = 0;
+        var nextGeneration = 0;
 
         foreach (var generation in GenerationHistory)
         {

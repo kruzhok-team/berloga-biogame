@@ -73,11 +73,11 @@ public partial class MetaballTest : Node
                     };
                     layout.Add(root);
 
-                    bool type1 = true;
+                    var type1 = true;
 
-                    for (int x = -100; x < 100; ++x)
+                    for (var x = -100; x < 100; ++x)
                     {
-                        for (int z = -100; z < 100; ++z)
+                        for (var z = -100; z < 100; ++z)
                         {
                             if (x == 0 && z == 0)
                                 continue;

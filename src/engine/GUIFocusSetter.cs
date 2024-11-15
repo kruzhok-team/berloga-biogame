@@ -67,7 +67,7 @@ public partial class GUIFocusSetter : Control
     private void CheckNodeToGiveFocusTo()
     {
         // Highest priority grabber has focus
-        float highestPriorityGrabber = float.MinValue;
+        var highestPriorityGrabber = float.MinValue;
         FocusGrabber? grabber = null;
 
         foreach (var activeGrabber in activeGrabbers)

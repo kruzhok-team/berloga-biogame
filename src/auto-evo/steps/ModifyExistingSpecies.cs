@@ -389,7 +389,7 @@ public class ModifyExistingSpecies : IRunStep
     private List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
         List<SelectionPressure> selectionPressures)
     {
-        float totalMP = 100 * worldSettings.AIMutationMultiplier;
+        var totalMP = 100 * worldSettings.AIMutationMultiplier;
 
         temporaryMutations1.Clear();
         temporaryMutations1.Add(Tuple.Create(baseSpecies, totalMP));
@@ -409,7 +409,7 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        bool lawk = worldSettings.LAWK;
+        var lawk = worldSettings.LAWK;
 
         mutationSorter.Setup(baseSpecies, selectionPressures);
 
@@ -419,7 +419,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             var inputSpecies = viableVariants;
 
-            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
+            for (var i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
                 temporaryMutations2.Clear();
 

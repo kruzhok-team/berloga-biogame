@@ -280,7 +280,7 @@ public class TutorialState : ITutorialInput
 
     public void OnCurrentTutorialClosed(string name)
     {
-        bool somethingMatched = false;
+        var somethingMatched = false;
 
         foreach (var tutorial in Tutorials)
         {

@@ -60,7 +60,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades configuration)
         {
-            Compound? specialization = shownChoices.Find(c => c == configuration.SpecializedFor);
+            var specialization = shownChoices.Find(c => c == configuration.SpecializedFor);
             isSpecializedCheckbox.ButtonPressed = specialization != null;
 
             compounds.Selected = specialization != null ?
@@ -129,7 +129,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (shownChoices == null)
             return;
 
-        float capacity = SimulationParameters.Instance.GetOrganelleType("vacuole").Components.Storage!.Capacity;
+        var capacity = SimulationParameters.Instance.GetOrganelleType("vacuole").Components.Storage!.Capacity;
         if (!isSpecializedCheckbox.ButtonPressed)
         {
             var text = new LocalizedString("VACUOLE_NOT_SPECIALIZED_DESCRIPTION", capacity);

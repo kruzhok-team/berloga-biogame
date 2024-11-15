@@ -111,9 +111,9 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     /// <returns>Tuple of overlap status and the closest metaball</returns>
     public (bool Overlap, T ClosestMetaball) CheckOverlapAndFindClosest(T metaball, bool assumeOverlapIsClosest = true)
     {
-        float closestDistance = float.MaxValue;
+        var closestDistance = float.MaxValue;
         T? closestMetaball = null;
-        bool overlap = false;
+        var overlap = false;
 
         foreach (var existingMetaball in metaballs)
         {

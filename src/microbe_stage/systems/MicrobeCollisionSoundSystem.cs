@@ -31,7 +31,7 @@ public sealed class MicrobeCollisionSoundSystem : AEntitySetSystem<float>
 
         ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 

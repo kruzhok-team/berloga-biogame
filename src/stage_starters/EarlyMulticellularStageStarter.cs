@@ -25,7 +25,7 @@ public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        for (int q = 1; q < 1000; ++q)
+        for (var q = 1; q < 1000; ++q)
         {
             var template = new CellTemplate(cellType, new Hex(q, 1), 0);
 
@@ -36,7 +36,7 @@ public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
             break;
         }
 
-        for (int q = -1; q > -1000; --q)
+        for (var q = -1; q > -1000; --q)
         {
             var template = new CellTemplate(cellType, new Hex(q, 1), 0);
 

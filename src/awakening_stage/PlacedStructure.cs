@@ -69,7 +69,7 @@ public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructab
                 return Localization.Translate("STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD");
 
             // Display the still required resources
-            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
+            var resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
             return Localization.Translate("STRUCTURE_REQUIRED_RESOURCES_TO_FINISH")
                 .FormatSafe(string.Join(", ",

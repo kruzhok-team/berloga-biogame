@@ -46,25 +46,25 @@ public static class MembraneComputationHelpers
 
         var collectionCount = organelles.Count;
 
-        for (int i = 0; i < collectionCount; ++i)
+        for (var i = 0; i < collectionCount; ++i)
         {
             length += organelles[i].Definition.HexCount;
         }
 
         var result = ArrayPool<Vector2>.Shared.Rent(length);
-        int resultWriteIndex = 0;
+        var resultWriteIndex = 0;
 
-        for (int i = 0; i < collectionCount; ++i)
+        for (var i = 0; i < collectionCount; ++i)
         {
             // The membrane needs hex positions (rather than organelle positions) to handle cells with multihex
             // organelles
             var entry = organelles[i];
 
             var rotatedHexes = entry.Definition.GetRotatedHexes(entry.Orientation);
-            int hexCount = rotatedHexes.Count;
+            var hexCount = rotatedHexes.Count;
 
             // Manual loop to reduce memory allocations in this often called method
-            for (int j = 0; j < hexCount; ++j)
+            for (var j = 0; j < hexCount; ++j)
             {
                 var hexCartesian = Hex.AxialToCartesian(entry.Position + rotatedHexes[j]);
                 result[resultWriteIndex++] = new Vector2(hexCartesian.X, hexCartesian.Z);
@@ -121,12 +121,12 @@ public static class MembraneComputationHelpers
 
         unchecked
         {
-            long hash = 1409 + nameHash + ((long)nameHash << 28);
+            var hash = 1409 + nameHash + ((long)nameHash << 28);
 
             hash ^= (count + 1) * 7793;
-            int hashMultiply = 1;
+            var hashMultiply = 1;
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 var posHash = positions[i].GetHashCode();
 
@@ -162,7 +162,7 @@ public static class MembraneComputationHelpers
 
         var sourcePoints = dataSource.HexPositions;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             if (sourcePoints[i] != otherPoints[i])
                 return false;

@@ -153,8 +153,8 @@ public class EarlyMulticellularSpecies : Species
     {
         var totalOrganelles = 0;
 
-        int count = Cells.Count;
-        for (int i = 0; i < count; ++i)
+        var count = Cells.Count;
+        for (var i = 0; i < count; ++i)
         {
             totalOrganelles += Cells[i].Organelles.Count;
         }

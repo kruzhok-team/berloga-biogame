@@ -36,7 +36,7 @@ public class PlanetSystem
         }
 
         float storage = 0;
-        int population = 0;
+        var population = 0;
 
         foreach (var planet in worldRoot.GetChildrenToProcess<PlacedPlanet>(Constants.PLANET_ENTITY_GROUP))
         {
@@ -72,7 +72,7 @@ public class PlanetSystem
     public void CalculateDerivedStats()
     {
         float storage = 0;
-        int population = 0;
+        var population = 0;
 
         foreach (var planet in worldRoot.GetChildrenToProcess<PlacedPlanet>(Constants.PLANET_ENTITY_GROUP))
         {

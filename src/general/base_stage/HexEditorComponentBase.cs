@@ -258,12 +258,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         // Create new hover hexes. See the TODO comment in _Process
         // This seems really cluttered, there must be a better way.
-        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
+        for (var i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
         {
             hoverHexes.Add(CreateEditorHex());
         }
 
-        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
+        for (var i = 0; i < Constants.MAX_SYMMETRY; ++i)
         {
             hoverModels.Add(CreatePreviewModelHolder());
         }
@@ -387,7 +387,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         if (MovingPlacedHex != null)
         {
-            GetMouseHex(out int q, out int r);
+            GetMouseHex(out var q, out var r);
             PerformMove(q, r);
         }
         else
@@ -526,7 +526,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             return true;
         }
 
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
         var hex = GetHexAt(new Hex(q, r));
 
@@ -586,7 +586,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public void RemoveHex(Hex hex)
     {
         var actions = new List<TAction>();
-        int alreadyDeleted = 0;
+        var alreadyDeleted = 0;
 
         RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
         {
@@ -610,9 +610,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     [RunOnKeyDown("e_delete")]
     public void RemoveHexAtCursor()
     {
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
-        Hex mouseHex = new Hex(q, r);
+        var mouseHex = new Hex(q, r);
 
         var hex = GetHexAt(mouseHex);
 
@@ -940,12 +940,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         foreach (var hex in toBePlacedHexes)
         {
-            int posQ = hex.Q + q;
-            int posR = hex.R + r;
+            var posQ = hex.Q + q;
+            var posR = hex.R + r;
 
             var pos = Hex.AxialToCartesian(new Hex(posQ, posR));
 
-            bool duplicate = false;
+            var duplicate = false;
 
             // Skip if there is a placed organelle here already
             foreach (var placed in placedHexes)
@@ -975,7 +975,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             }
 
             // Or if there is already a hover hex at this position
-            for (int i = 0; i < usedHoverHex; ++i)
+            for (var i = 0; i < usedHoverHex; ++i)
             {
                 if ((pos - hoverHexes[i].Position).LengthSquared() < 0.001f)
                 {
@@ -1000,7 +1000,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         IEnumerable<(Hex BasePosition, IEnumerable<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
         bool forceHide = false)
     {
-        int nextFreeHex = 0;
+        var nextFreeHex = 0;
 
         foreach (var (position, itemHexes, placedThisSession) in hexes)
         {

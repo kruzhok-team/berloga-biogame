@@ -127,9 +127,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
         // Check for overlapping hexes with existing hexes
         GetHexComponentPositions(hex, temporaryStorage);
 
-        int count = temporaryStorage.Count;
+        var count = temporaryStorage.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             if (GetElementAt(temporaryStorage[i] + position, temporaryStorage2) != null)
                 return false;
@@ -151,9 +151,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
         // Check for overlapping hexes with existing hexes
         GetHexComponentPositions(hex, temporaryStorage);
 
-        int count = temporaryStorage.Count;
+        var count = temporaryStorage.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             if (GetElementAt(temporaryStorage[i] + position, temporaryStorage2) != null)
                 return false;
@@ -186,9 +186,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
 
         GetHexComponentPositions(hex, temporaryStorage);
 
-        int count = temporaryStorage.Count;
+        var count = temporaryStorage.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             if (CheckIfAHexIsNextTo(temporaryStorage[i] + hex.Position, temporaryStorage2))
                 return true;
@@ -217,11 +217,11 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     /// </summary>
     public T? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
-        int count = existingHexes.Count;
+        var count = existingHexes.Count;
 
         // This uses a manual loop as this method is called a lot so this needs to ensure that this doesn't do any
         // unnecessary computations
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var existingHex = existingHexes[i];
 
@@ -229,9 +229,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
             temporaryHexesStorage.Clear();
             GetHexComponentPositions(existingHex, temporaryHexesStorage);
 
-            int hexCount = temporaryHexesStorage.Count;
+            var hexCount = temporaryHexesStorage.Count;
 
-            for (int j = 0; j < hexCount; ++j)
+            for (var j = 0; j < hexCount; ++j)
             {
                 if (temporaryHexesStorage[j].Equals(relative))
                 {
@@ -382,9 +382,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
         foreach (var hex in existingHexes)
         {
             GetHexComponentPositions(hex, workMemory);
-            int count = workMemory.Count;
+            var count = workMemory.Count;
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 result.Add(hex.Position + workMemory[i]);
             }

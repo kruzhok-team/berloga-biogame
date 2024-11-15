@@ -118,7 +118,7 @@ public partial class CellEditorComponent
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        float osmoregulationCostPerHex = Membrane.OsmoregulationFactor * Constants.ATP_COST_FOR_OSMOREGULATION
+        var osmoregulationCostPerHex = Membrane.OsmoregulationFactor * Constants.ATP_COST_FOR_OSMOREGULATION
             * Editor.CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
 
         foreach (var organelle in organelles)
@@ -127,7 +127,7 @@ public partial class CellEditorComponent
             if (organelle.Unimplemented || organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
                 continue;
 
-            float osmoregulationCost = organelle.HexCount * osmoregulationCostPerHex;
+            var osmoregulationCost = organelle.HexCount * osmoregulationCostPerHex;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
 
@@ -141,7 +141,7 @@ public partial class CellEditorComponent
     /// </summary>
     private void SetRigiditySliderTooltip(int rigidity)
     {
-        float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+        var convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
 
@@ -151,8 +151,8 @@ public partial class CellEditorComponent
         var healthModifier = rigidityTooltip.GetModifierInfo("health");
         var baseMobilityModifier = rigidityTooltip.GetModifierInfo("baseMobility");
 
-        float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+        var healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        var baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
         // Don't show negative zero
         if (baseMobilityChange == 0 && float.IsNegative(baseMobilityChange))
@@ -233,7 +233,7 @@ public partial class CellEditorComponent
 
         var description = new LocalizedStringBuilder(100);
 
-        bool first = true;
+        var first = true;
 
         foreach (var entry in storage)
         {
@@ -275,7 +275,7 @@ public partial class CellEditorComponent
 
         var description = new LocalizedStringBuilder(100);
 
-        bool first = true;
+        var first = true;
 
         foreach (var enzyme in efficiencies)
         {
@@ -542,7 +542,7 @@ public partial class CellEditorComponent
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
         Dictionary<Compound, float> specificStorages)
     {
-        float lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
+        var lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds * (1 - lightFraction);
 
@@ -578,7 +578,7 @@ public partial class CellEditorComponent
         atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
         atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
 
-        float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
+        var maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
         atpProductionBar.MaxValue = maxValue;
         atpConsumptionBar.MaxValue = maxValue;
 

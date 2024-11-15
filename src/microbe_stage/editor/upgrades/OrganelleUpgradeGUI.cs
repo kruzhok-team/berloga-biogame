@@ -73,7 +73,7 @@ public partial class OrganelleUpgradeGUI : Control
         // Organelles that have no special upgrades, specify no scene, but they must have general upgrades in that case
         var availableGeneralUpgrades = organelle.Definition.AvailableUpgrades;
 
-        bool somethingAdded = false;
+        var somethingAdded = false;
 
         if (!string.IsNullOrEmpty(upgraderScene))
         {
@@ -265,7 +265,7 @@ public partial class OrganelleUpgradeGUI : Control
 
     private void UpdateSelectedUpgradeButton()
     {
-        bool selectedAButton = false;
+        var selectedAButton = false;
         MicrobePartSelection? defaultOption = null;
 
         foreach (var selectorButton in generalUpgradeSelectorButtons)

@@ -54,7 +54,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
 
-        float strengthModifier = Constants.TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH;
+        var strengthModifier = Constants.TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH;
 
         // Some toxin types are way too strong with the default modifier, so decrease their effects further
         if (type == ToxinType.ChannelInhibitor)
@@ -103,7 +103,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
 
-        bool engulfed = entity.Has<Engulfable>() &&
+        var engulfed = entity.Has<Engulfable>() &&
             entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
@@ -164,7 +164,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         if (!cellProperties.IsMembraneReady())
             return;
 
-        float ejectionDistance = cellProperties.CreatedMembrane!.EncompassingCircleRadius +
+        var ejectionDistance = cellProperties.CreatedMembrane!.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
 
         if (cellProperties.IsBacteria)
@@ -202,7 +202,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             if (compounds == null || agentType == null)
                 return;
 
-            float amountAvailable = compounds.GetCompoundAmount(agentType);
+            var amountAvailable = compounds.GetCompoundAmount(agentType);
 
             var selectedToxinType = ToxinType.Oxytoxy;
 
@@ -218,7 +218,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 {
                     var selectedRange = control.FiredToxinCount % totalToxins;
 
-                    int typeCounter = 0;
+                    var typeCounter = 0;
 
                     foreach (var toxinType in organelles.AvailableToxinTypes)
                     {
@@ -238,7 +238,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 // aren't used per agent type)
 
                 // Emit as much as you have, but don't start if there's way too little toxin
-                float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
+                var amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
                 if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
                     return;
 
@@ -304,7 +304,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         if (organelles.SlimeJets == null)
             return;
 
-        int jetCount = organelles.SlimeJets.Count;
+        var jetCount = organelles.SlimeJets.Count;
 
         if (jetCount < 1)
             return;
@@ -332,7 +332,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 jet.Active = true;
 
                 // Secrete the slime
-                float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
+                var slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
                     compounds.GetCompoundAmount(mucilage));
 
                 var direction = jet.GetDirection();

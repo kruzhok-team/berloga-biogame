@@ -103,7 +103,7 @@ public class PatchMap : ISaveLoadable
             return false;
         }
 
-        bool result = true;
+        var result = true;
 
         // Link verification caches
         var incomingLinks = new Dictionary<Patch, bool>();
@@ -149,7 +149,7 @@ public class PatchMap : ISaveLoadable
         foreach (var entry1 in seenLinks)
         {
             // Find the other way
-            bool found = false;
+            var found = false;
 
             foreach (var entry2 in seenLinks)
             {
@@ -242,7 +242,7 @@ public class PatchMap : ISaveLoadable
         {
             foreach (var speciesEntry in entry.Value.SpeciesInPatch)
             {
-                Species species = speciesEntry.Key;
+                var species = speciesEntry.Key;
 
                 if (!seenPopulations.ContainsKey(species))
                     seenPopulations[species] = 0;

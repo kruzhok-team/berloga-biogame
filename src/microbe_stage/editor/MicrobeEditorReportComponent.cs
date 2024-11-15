@@ -311,7 +311,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         // Populate charts with data from patch history. We use reverse loop here because the original collection is
         // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
-        for (int i = patch.History.Count - 1; i >= 0; i--)
+        for (var i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);
             var temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -413,7 +413,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             // Need to manually make this list distinct as otherwise an inefficient default comparer is used
             foreach (var pair in extinctSpecies)
             {
-                bool exist = false;
+                var exist = false;
 
                 // A linear search should be fine as there shouldn't be that many items
                 foreach (var seenEntry in seenEntries)

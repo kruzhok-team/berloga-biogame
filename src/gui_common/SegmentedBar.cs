@@ -75,7 +75,7 @@ public partial class SegmentedBar : HBoxContainer
 
         foreach (var progressBar in SubBars)
         {
-            bool match = false;
+            var match = false;
             foreach (var dataPair in data)
             {
                 if (progressBar.Name == dataPair.Key)
@@ -192,7 +192,7 @@ public partial class SegmentedBar : HBoxContainer
                 barValues.FindIndex(v => v.Key == b.Name);
         });
 
-        int location = 0;
+        var location = 0;
         foreach (var bar in SubBars)
         {
             if (GetChild(location) != bar)

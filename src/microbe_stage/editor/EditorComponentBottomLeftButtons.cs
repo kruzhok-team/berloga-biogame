@@ -270,7 +270,7 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            bool nameLengthValid = ValidateNameLength(text);
+            var nameLengthValid = ValidateNameLength(text);
 
             // Only defocus if the name is valid to indicate invalid namings to the player
             if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX) && nameLengthValid)

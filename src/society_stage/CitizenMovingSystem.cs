@@ -115,7 +115,7 @@ public class CitizenMovingSystem
         {
             var first = result[0];
 
-            for (int i = 0; i < 4; ++i)
+            for (var i = 0; i < 4; ++i)
             {
                 result.Add(new Vector3(first.X + random.NextSingle() * 40, 0, first.Z + random.NextSingle() * 40));
                 result.Add(new Vector3(first.X - random.NextSingle() * 40, 0, first.Z - random.NextSingle() * 40));

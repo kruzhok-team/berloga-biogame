@@ -522,7 +522,7 @@ public partial class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         // 3-segment line, U shape
-        for (int i = 1; i <= 3; ++i)
+        for (var i = 1; i <= 3; ++i)
         {
             intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
             intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);
@@ -557,7 +557,7 @@ public partial class PatchMapDrawer : Control
     {
         foreach (var region in Map!.Regions)
         {
-            int regionId = region.Key;
+            var regionId = region.Key;
             var connectionStartHere = connections.Where(p => p.Key.X == regionId);
             var connectionEndHere = connections.Where(p => p.Key.Y == regionId);
 
@@ -569,7 +569,7 @@ public partial class PatchMapDrawer : Control
             // TODO: refactor this to use an enum
             var connectionsToDirections = new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>[4];
 
-            for (int i = 0; i < 4; ++i)
+            for (var i = 0; i < 4; ++i)
             {
                 connectionsToDirections[i] =
                     new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>();
@@ -617,7 +617,7 @@ public partial class PatchMapDrawer : Control
             // Separation
             const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
-            for (int direction = 0; direction < 4; ++direction)
+            for (var direction = 0; direction < 4; ++direction)
             {
                 var connectionsToDirection = connectionsToDirections[direction];
 
@@ -627,8 +627,8 @@ public partial class PatchMapDrawer : Control
 
                 if (direction is 1 or 3)
                 {
-                    float right = (connectionsToDirection.Count - 1) / 2.0f;
-                    float left = -right;
+                    var right = (connectionsToDirection.Count - 1) / 2.0f;
+                    var left = -right;
 
                     foreach (var (path, endpoint, intermediate, _) in
                              connectionsToDirection.OrderBy(t => t.Distance))
@@ -649,8 +649,8 @@ public partial class PatchMapDrawer : Control
                 }
                 else
                 {
-                    float down = (connectionsToDirection.Count - 1) / 2.0f;
-                    float up = -down;
+                    var down = (connectionsToDirection.Count - 1) / 2.0f;
+                    var up = -down;
 
                     foreach (var (path, endpoint, intermediate, _) in
                              connectionsToDirection.OrderBy(t => t.Distance))
@@ -683,11 +683,11 @@ public partial class PatchMapDrawer : Control
 
         // Intersections with regions are considered worse than that with lines.
         // So an intersect with region adds count by 10.
-        int regionIntersectionCount = 0;
-        int pathIntersectionCount = 0;
-        int startPointOverlapCount = 0;
+        var regionIntersectionCount = 0;
+        var pathIntersectionCount = 0;
+        var startPointOverlapCount = 0;
 
-        for (int i = 1; i < path.Length; ++i)
+        for (var i = 1; i < path.Length; ++i)
         {
             var startPoint = path[i - 1];
             var endPoint = path[i];
@@ -705,12 +705,12 @@ public partial class PatchMapDrawer : Control
         // Calculate line-to-line intersections
         foreach (var target in connections.Values)
         {
-            for (int i = 1; i < path.Length; ++i)
+            for (var i = 1; i < path.Length; ++i)
             {
                 var startPoint = path[i - 1];
                 var endPoint = path[i];
 
-                for (int j = 1; j < target.Length; ++j)
+                for (var j = 1; j < target.Length; ++j)
                 {
                     if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
                         ++pathIntersectionCount;
@@ -831,12 +831,12 @@ public partial class PatchMapDrawer : Control
             AddPatchNode(entry.Value, entry.Value.ScreenCoordinates);
         }
 
-        bool runNodeSelectionsUpdate = true;
+        var runNodeSelectionsUpdate = true;
 
         if (SelectedPatch != null)
         {
             // Unset the selected patch if it was removed from the map
-            bool found = false;
+            var found = false;
             foreach (var node in nodes.Values)
             {
                 if (node.Patch == SelectedPatch)
@@ -1019,7 +1019,7 @@ public partial class PatchMapDrawer : Control
 
     private void CheckNodeSelectionUpdate()
     {
-        bool needsUpdate = false;
+        var needsUpdate = false;
 
         foreach (var node in nodes.Values)
         {

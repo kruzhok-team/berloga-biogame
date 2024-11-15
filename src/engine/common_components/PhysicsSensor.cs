@@ -114,7 +114,7 @@ public static class PhysicsSensorHelpers
     {
         var count = physicsSensor.GetActiveCollisions(out var collisions);
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 

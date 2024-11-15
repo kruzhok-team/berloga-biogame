@@ -142,7 +142,7 @@ public class InProgressObjectDeserialization
                 // we deserialize it immediately here (and we don't deserialize the current property unless absolutely
                 // required). But only if id or ref value has been seen, otherwise we can use normal deserialization
                 // to skip on some extra processing
-                bool read = false;
+                var read = false;
                 if (!instanceCreationStarted && seenSpecialValues)
                 {
                     SetPriorityReadCallbackForConstructor(() =>
@@ -365,7 +365,7 @@ public class InProgressObjectDeserialization
         instanceCreationStarted = true;
 
         // Detect scene loaded type
-        bool sceneLoad = type.CustomAttributes.Any(a => a.AttributeType == typeof(SceneLoadedClassAttribute));
+        var sceneLoad = type.CustomAttributes.Any(a => a.AttributeType == typeof(SceneLoadedClassAttribute));
 
         createdInstance = !sceneLoad ?
             CreateDeserializedInstance(type) :
@@ -422,7 +422,7 @@ public class InProgressObjectDeserialization
             if (candidate.ContainsGenericParameters)
                 continue;
 
-            bool hasCustomAttribute = candidate.CustomAttributes.Any(a => a.AttributeType == constructorAttribute);
+            var hasCustomAttribute = candidate.CustomAttributes.Any(a => a.AttributeType == constructorAttribute);
 
             if (hasCustomAttribute)
             {
@@ -452,7 +452,7 @@ public class InProgressObjectDeserialization
         var constructorParameterInfo = best.GetParameters();
         object?[] constructorArgs = new object?[constructorParameterInfo.Length];
 
-        int index = 0;
+        var index = 0;
 
         // We need to read enough attributes to be able to call the constructor
         foreach (var param in constructorParameterInfo)

@@ -76,7 +76,7 @@ public class UnlockProgress
 
         if (autoUnlock)
         {
-            bool anyConditionSatisfied = false;
+            var anyConditionSatisfied = false;
             foreach (var condition in organelle.UnlockConditions)
             {
                 if (condition.Satisfied(worldAndPlayerArgs))

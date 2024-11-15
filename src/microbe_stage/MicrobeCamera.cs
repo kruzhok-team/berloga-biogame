@@ -329,7 +329,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         if (materialToUpdate == null)
             throw new InvalidOperationException("Camera not initialized yet");
 
-        for (int i = 0; i < 4; ++i)
+        for (var i = 0; i < 4; ++i)
         {
             // TODO: switch this loop away to reuse StringName instances if this causes significant allocations
             materialToUpdate.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));

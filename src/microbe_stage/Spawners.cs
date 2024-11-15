@@ -243,7 +243,7 @@ public static class SpawnHelpers
             entity.Set(default(SiderophoreTarget));
         }
 
-        bool hasMicrobeShaderParameters = false;
+        var hasMicrobeShaderParameters = false;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)
         if (!selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport)
@@ -273,7 +273,7 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
-        bool hasCompounds = false;
+        var hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is 0 to disallow adding any more compounds to the compound bag
@@ -707,7 +707,7 @@ public static class SpawnHelpers
 
         entity.Set(new ReadableName(new LocalizedString(species.FormattedName)));
 
-        float spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
+        var spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
 
         if (multicellularSpawnState != MulticellularSpawnState.Bud && multicellular != null)
         {
@@ -734,7 +734,7 @@ public static class SpawnHelpers
                         // -1 here as the bud is always spawned so the number of cells to add on top of that is the max
                         // count
                         var maxCount = multicellular.Cells.Count - 1;
-                        int cellsToAdd = 0;
+                        var cellsToAdd = 0;
 
                         while (cellsToAdd < maxCount)
                         {
@@ -770,7 +770,7 @@ public static class SpawnHelpers
         Random random)
     {
         // +1 is used here as Next has a non-exclusive upper bound
-        int maxSize = Constants.MAX_BACTERIAL_SWARM_SIZE + 1;
+        var maxSize = Constants.MAX_BACTERIAL_SWARM_SIZE + 1;
 
         if (species.BaseHexSize >= Constants.FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT)
         {
@@ -791,7 +791,7 @@ public static class SpawnHelpers
 
         var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
-        for (int i = 0; i < clumpSize; ++i)
+        for (var i = 0; i < clumpSize; ++i)
         {
             result.Add(initialLocation + currentPoint);
 
@@ -1120,7 +1120,7 @@ public class MicrobeSpawner : Spawner
 
         var microbeSpecies = Species as MicrobeSpecies;
 
-        bool bacteria = false;
+        var bacteria = false;
 
         if (microbeSpecies != null)
             bacteria = microbeSpecies.IsBacteria;

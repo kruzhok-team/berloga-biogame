@@ -285,7 +285,7 @@ public partial class TabButtons : HBoxContainer
 
     private void TryToMoveToNextTab()
     {
-        bool foundPressed = false;
+        var foundPressed = false;
         Button? firstTab = null;
 
         foreach (var potentialButton in tabButtons)

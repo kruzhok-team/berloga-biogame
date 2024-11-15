@@ -20,7 +20,7 @@ public class TranslationsInfo : IRegistryType
                 "translation progress is empty");
         }
 
-        foreach (string locale in TranslationServer.GetLoadedLocales())
+        foreach (var locale in TranslationServer.GetLoadedLocales())
         {
             if (!TranslationProgress.ContainsKey(locale))
             {

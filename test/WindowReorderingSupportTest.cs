@@ -13,7 +13,7 @@ public partial class WindowReorderingSupportTest : Control
 
     private void EnableAllWindows(Array<Node> children)
     {
-        foreach (Node child in children)
+        foreach (var child in children)
         {
             (child as TopLevelContainer)?.Show();
             EnableAllWindows(child.GetChildren());

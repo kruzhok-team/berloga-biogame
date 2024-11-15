@@ -197,7 +197,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
-        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
+        var checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
 
@@ -224,7 +224,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             }
         }
 
-        bool hasColony = false;
+        var hasColony = false;
 
         // Colony leader detects all collisions, even when not in engulf mode, as long as colony is in engulf mode
         if (entity.Has<MicrobeColony>())
@@ -248,7 +248,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         // Update animations and move between different states when necessary for all the currently engulfed
         // objects
-        for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
+        for (var i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
         {
             var engulfedEntity = engulfer.EngulfedObjects![i];
 
@@ -403,11 +403,11 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             // This cannot use a basic .Contains call here as that would allocate a lot of memory as this runs
             // a bunch on each game update
-            bool contains = false;
+            var contains = false;
 
-            int topLevelCount = usedTopLevelEngulfers.Count;
+            var topLevelCount = usedTopLevelEngulfers.Count;
 
-            for (int i = 0; i < topLevelCount; ++i)
+            for (var i = 0; i < topLevelCount; ++i)
             {
                 if (usedTopLevelEngulfers[i] == entry.Key)
                 {
@@ -426,11 +426,11 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             {
                 var key = new KeyValuePair<Entity, Entity>(entry.Key, childEntry.Key);
 
-                int usedEngulfedCount = usedEngulfedObjects.Count;
+                var usedEngulfedCount = usedEngulfedObjects.Count;
 
                 contains = false;
 
-                for (int i = 0; i < usedEngulfedCount; ++i)
+                for (var i = 0; i < usedEngulfedCount; ++i)
                 {
                     var usedEngulfedObject = usedEngulfedObjects[i];
 
@@ -532,7 +532,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 "to do something wrong");
         }
 
-        float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
+        var radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
             radius *= 0.5f;
@@ -832,7 +832,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private bool HandleEngulfModeStateUpdate(ref MicrobeControl control, in Entity entity, bool actuallyEngulfing,
         float delta)
     {
-        bool checkEngulfStartCollisions = false;
+        var checkEngulfStartCollisions = false;
 
         if (actuallyEngulfing)
         {
@@ -842,7 +842,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             var compounds = entity.Get<CompoundStorage>().Compounds;
 
             // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
-            bool engulfed = false;
+            var engulfed = false;
 
             if (entity.Has<Engulfable>())
             {
@@ -997,7 +997,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         ref var species = ref entity.Get<SpeciesMember>();
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 
@@ -1170,7 +1170,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             return false;
         }
 
-        float radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
+        var radius = engulferCellProperties.CreatedMembrane.EncompassingCircleRadius;
 
         if (engulferCellProperties.IsBacteria)
             radius *= 0.5f;
@@ -1731,7 +1731,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             // will be deleted in a few frames anyway
 
             // 1 is from membrane
-            int basePriority = 1 + Constants.HEX_MAX_RENDER_PRIORITY;
+            var basePriority = 1 + Constants.HEX_MAX_RENDER_PRIORITY;
 
             if (engulfedObject.Has<RenderPriorityOverride>())
             {
@@ -1921,7 +1921,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         // Immediately force eject all the engulfed objects
         // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
-        for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
+        for (var i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
         {
             ForceEjectSingleEngulfable(ref engulfer, entity, engulfer.EngulfedObjects![i]);
         }

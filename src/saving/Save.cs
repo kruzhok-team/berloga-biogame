@@ -260,7 +260,7 @@ public class Save
 
         if (screenshot != null)
         {
-            byte[] data = screenshot.SavePngToBuffer();
+            var data = screenshot.SavePngToBuffer();
 
             if (data.Length > 0)
                 TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
@@ -330,7 +330,7 @@ public class Save
         byte[]? screenshotData = null;
 
         // Used for early stop in reading
-        int itemsToRead = 0;
+        var itemsToRead = 0;
 
         if (info)
             ++itemsToRead;

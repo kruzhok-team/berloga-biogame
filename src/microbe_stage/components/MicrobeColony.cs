@@ -314,7 +314,7 @@ public static class MicrobeColonyHelpers
     public static bool GetMicrobeFromSubShape(this ref MicrobeColony colony,
         ref MicrobePhysicsExtraData physicsExtraData, uint subShape, out Entity microbe)
     {
-        if (physicsExtraData.MicrobeIndexFromSubShape(subShape, out int microbeIndex))
+        if (physicsExtraData.MicrobeIndexFromSubShape(subShape, out var microbeIndex))
         {
 #if DEBUG
             if (microbeIndex == -1)
@@ -372,7 +372,7 @@ public static class MicrobeColonyHelpers
         // places currently so having the length exceed the actual member count will be problematic
         var newMembers = new Entity[colony.ColonyMembers.Length + 1];
 
-        for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+        for (var i = 0; i < colony.ColonyMembers.Length; ++i)
         {
             newMembers[i] = colony.ColonyMembers[i];
         }
@@ -427,14 +427,14 @@ public static class MicrobeColonyHelpers
             intendedNewMemberIndex = newMembers.Length - 1;
 
         // Place at the intended index
-        for (int i = 0; i < colony.ColonyMembers.Length && i < intendedNewMemberIndex; ++i)
+        for (var i = 0; i < colony.ColonyMembers.Length && i < intendedNewMemberIndex; ++i)
         {
             newMembers[i] = colony.ColonyMembers[i];
         }
 
         newMembers[intendedNewMemberIndex] = newMember;
 
-        for (int i = intendedNewMemberIndex + 1; i < newMembers.Length; ++i)
+        for (var i = intendedNewMemberIndex + 1; i < newMembers.Length; ++i)
         {
             // As we inserted one new item, the items don't anymore map 1-to-1 between the arrays
             newMembers[i] = colony.ColonyMembers[i - 1];
@@ -508,7 +508,7 @@ public static class MicrobeColonyHelpers
         if (!removedMember.IsAlive)
             throw new Exception("Cannot process a dead entity remove from a colony");
 
-        bool removedMemberIsLeader = false;
+        var removedMemberIsLeader = false;
 
         // Colony members or leader can be removed by this method
         if (removedMember.Has<MicrobeColony>())
@@ -543,9 +543,9 @@ public static class MicrobeColonyHelpers
             recorder.Record(colonyEntity).Remove<MicrobeColony>();
 
             // Call the remove callback on the members
-            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            for (var i = 0; i < colony.ColonyMembers.Length; ++i)
             {
-                bool leader = true;
+                var leader = true;
 
                 var currentMember = colony.ColonyMembers[i];
                 if (currentMember != colonyEntity)
@@ -800,7 +800,7 @@ public static class MicrobeColonyHelpers
     public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, EarlyMulticellularSpecies species,
         float originalWeight)
     {
-        int members = species.Cells.Count - 1;
+        var members = species.Cells.Count - 1;
 
         // Ignore fully spawning early multicellular species that only have one cell in them
         if (members < 1)
@@ -834,7 +834,7 @@ public static class MicrobeColonyHelpers
         // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
         // be more physically accurate
 
-        float colonyRotation = MicrobeInternalCalculations
+        var colonyRotation = MicrobeInternalCalculations
             .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
 
         foreach (var colonyMember in colony.ColonyMembers)
@@ -874,12 +874,12 @@ public static class MicrobeColonyHelpers
     public static int CalculateSensibleParentIndexForMulticellular(this ref MicrobeColony colony,
         ref AttachedToEntity calculatedPosition)
     {
-        float bestDistance = float.MaxValue;
-        int bestParentIndex = 0;
+        var bestDistance = float.MaxValue;
+        var bestParentIndex = 0;
 
         var members = colony.ColonyMembers;
 
-        for (int i = 0; i < members.Length; ++i)
+        for (var i = 0; i < members.Length; ++i)
         {
             float distance;
             if (i == 0)
@@ -925,12 +925,12 @@ public static class MicrobeColonyHelpers
         if (indexToAddTo < 1)
             GD.PrintErr("Index to add to should be at least 1 when looking for colony parent to use");
 
-        float bestDistance = float.MaxValue;
-        int bestParentIndex = 0;
+        var bestDistance = float.MaxValue;
+        var bestParentIndex = 0;
 
         var members = colony.ColonyMembers;
 
-        for (int i = 0; i < members.Length && i < indexToAddTo; ++i)
+        for (var i = 0; i < members.Length && i < indexToAddTo; ++i)
         {
             float distance;
             if (i == 0)
@@ -1199,10 +1199,10 @@ public static class MicrobeColonyHelpers
         // more of these lists...
         var newMembers = new Entity[colony.ColonyMembers.Length - 1];
 
-        int writeIndex = 0;
+        var writeIndex = 0;
 
         // Copy all members except the removed one
-        for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+        for (var i = 0; i < colony.ColonyMembers.Length; ++i)
         {
             var member = colony.ColonyMembers[i];
 
@@ -1252,9 +1252,9 @@ public static class MicrobeColonyHelpers
 
     private static void UpdateColonyEntityCachedStatistics(this ref MicrobeColony colony)
     {
-        bool canEngulf = false;
-        int hexCount = 0;
-        bool success = true;
+        var canEngulf = false;
+        var hexCount = 0;
+        var success = true;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {

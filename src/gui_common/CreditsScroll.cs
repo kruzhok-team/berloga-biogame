@@ -223,7 +223,7 @@ public partial class CreditsScroll : Control
 
     private void LoadCurrentDevelopers()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var leadLabel = CreateDynamicPart(offset, Localization.Translate("LEAD_DEVELOPERS"), SectionNameFont);
         offset += (int)leadLabel.Height + OffsetAfterSection;
@@ -295,7 +295,7 @@ public partial class CreditsScroll : Control
 
     private void LoadPastDevelopers()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, Localization.Translate("PAST_DEVELOPERS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
@@ -310,7 +310,7 @@ public partial class CreditsScroll : Control
 
     private void LoadOutsideDevelopers()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel =
             CreateDynamicPart(offset, Localization.Translate("OUTSIDE_CONTRIBUTORS"), SectionNameFont);
@@ -329,7 +329,7 @@ public partial class CreditsScroll : Control
 
     private void LoadPatrons()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, Localization.Translate("PATRONS"), SectionNameFont);
         offset += (int)currentLabel.Height + 15;
@@ -352,7 +352,7 @@ public partial class CreditsScroll : Control
 
     private void LoadDonators()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, Localization.Translate("DONATIONS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
@@ -375,7 +375,7 @@ public partial class CreditsScroll : Control
 
     private void LoadTranslators()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, Localization.Translate("TRANSLATORS"), SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
@@ -389,7 +389,7 @@ public partial class CreditsScroll : Control
 
     private void LoadLicenses()
     {
-        int offset = GetNextDynamicSectionOffset();
+        var offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, Localization.Translate("USED_LIBRARIES_LICENSES"),
             SectionNameFont);
@@ -472,7 +472,7 @@ public partial class CreditsScroll : Control
                 Constants.GODOT_LICENSE_FILE);
         godotLicenseLabel.OnBecomeVisible += () =>
         {
-            int offset = GetNextDynamicSectionOffset();
+            var offset = GetNextDynamicSectionOffset();
 
             // An empty text to detect when licenses are about to end
             var endOfLicensesMarker = CreateDynamicPart(offset, " ");
@@ -486,7 +486,7 @@ public partial class CreditsScroll : Control
 
                 runtimeLicenseLabel.OnBecomeVisible += () =>
                 {
-                    int offset2 = GetNextDynamicSectionOffset();
+                    var offset2 = GetNextDynamicSectionOffset();
                     var secondEndMarker = CreateDynamicPart(offset2, " ");
 
                     secondEndMarker.OnBecomeVisible += () =>
@@ -502,7 +502,7 @@ public partial class CreditsScroll : Control
 
     private void LoadEndRemarks()
     {
-        int offset = GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart;
+        var offset = GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart;
 
         CreateDynamicPart(offset, Localization.Translate("THANKS_FOR_PLAYING"));
 
@@ -580,7 +580,7 @@ public partial class CreditsScroll : Control
 
         using (var textEnumerator = texts.GetEnumerator())
         {
-            bool done = false;
+            var done = false;
             while (!done)
             {
                 foreach (var column in splitTexts)
@@ -727,8 +727,8 @@ public partial class CreditsScroll : Control
 
     private int GetNextDynamicSectionOffset()
     {
-        int height = (int)Size.Y;
-        int offset = 0;
+        var height = (int)Size.Y;
+        var offset = 0;
 
         foreach (var part in dynamicParts)
         {

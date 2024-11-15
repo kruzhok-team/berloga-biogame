@@ -71,7 +71,7 @@ public static class VersionUtils
             var parsedA = NormalizeVersion(Version.Parse(aSplit[0]));
             var parsedB = NormalizeVersion(Version.Parse(bSplit[0]));
 
-            int versionDiff = parsedA.CompareTo(parsedB);
+            var versionDiff = parsedA.CompareTo(parsedB);
             if (versionDiff != 0)
             {
                 return versionDiff;
@@ -100,8 +100,8 @@ public static class VersionUtils
         }
 
         // Compare predefined suffixes
-        int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToLowerInvariant());
-        int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLowerInvariant());
+        var aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToLowerInvariant());
+        var bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLowerInvariant());
         if (aSuffixIndex >= 0 && bSuffixIndex >= 0)
         {
             var difference = aSuffixIndex - bSuffixIndex;

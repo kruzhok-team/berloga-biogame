@@ -280,7 +280,7 @@ public partial class Jukebox : Node
 
     private void PlayTrack(AudioPlayer player, TrackList.Track track, string trackBus, float fromPosition = 0)
     {
-        bool changedTrack = false;
+        var changedTrack = false;
 
         if (player.CurrentTrack != track.ResourcePath)
         {
@@ -326,7 +326,7 @@ public partial class Jukebox : Node
     {
         var target = categories[PlayingCategory];
 
-        bool faded = false;
+        var faded = false;
 
         operations.Clear();
         foreach (var player in audioPlayers)
@@ -460,7 +460,7 @@ public partial class Jukebox : Node
     private void OnSomeTrackEnded()
     {
         // Check that a stream has actually ended, as we get this callback when also purposefully stopping
-        bool actuallyEnded = false;
+        var actuallyEnded = false;
 
         foreach (var player in audioPlayers)
         {
@@ -484,7 +484,7 @@ public partial class Jukebox : Node
         var target = categories[PlayingCategory];
         previouslyPlayedCategory = target;
 
-        int nextPlayerToUse = 0;
+        var nextPlayerToUse = 0;
 
         // Resume tracks
         if (target.Return == MusicCategory.ReturnType.Continue)
@@ -526,7 +526,7 @@ public partial class Jukebox : Node
             needToStartFrom.Add(list);
         }
 
-        int nextPlayerToUse = 0;
+        var nextPlayerToUse = 0;
 
         foreach (var list in needToStartFrom)
         {

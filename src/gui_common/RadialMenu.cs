@@ -169,13 +169,13 @@ public partial class RadialMenu : CenterContainer
         var anglePerItem = CalculateAnglePerItem();
         var halfAngle = anglePerItem / 2;
 
-        double currentAngle = FirstItemAngle;
+        var currentAngle = FirstItemAngle;
 
         // The lines are drawn -half to +half around the angle for the items
         // Also we draw just one line per item to not draw lines over existing ones
-        for (int i = 0; i < createdLabels.Count; ++i)
+        for (var i = 0; i < createdLabels.Count; ++i)
         {
-            bool selected = HoveredItem == createdLabels[i].Id;
+            var selected = HoveredItem == createdLabels[i].Id;
 
             bool previousSelected;
 
@@ -299,7 +299,7 @@ public partial class RadialMenu : CenterContainer
     {
         var anglePerItem = CalculateAnglePerItem();
 
-        double currentAngle = FirstItemAngle;
+        var currentAngle = FirstItemAngle;
 
         // This is added to make the centers of the labels line up with the positions we calculate
         var centerOffset = new Vector2(-MaxRadialLabelLength / 2, 0);
@@ -378,7 +378,7 @@ public partial class RadialMenu : CenterContainer
     /// <param name="selectionAngle">The angle towards which the user is pointing</param>
     private void UpdateHoveredFromAngle(float selectionAngle)
     {
-        float fullCircle = MathF.PI * 2;
+        var fullCircle = MathF.PI * 2;
         var anglePerItem = CalculateAnglePerItem();
 
         selectionAngle -= (float)FirstItemAngle;

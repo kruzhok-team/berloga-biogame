@@ -44,14 +44,14 @@ public class RunOnAxisAttribute : InputAttribute
     public RunOnAxisAttribute(string[] inputNames, float[] associatedValues)
     {
         // Preprocess input to handle mouse inputs
-        int excessInputs = inputNames.Count(i => i.StartsWith(RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX));
+        var excessInputs = inputNames.Count(i => i.StartsWith(RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX));
 
         if (inputNames.Length - excessInputs != associatedValues.Length)
             throw new ArgumentException("input names and associated values have to be the same length");
 
         RunOnRelativeMouseAttribute.CapturedMouseAxis? nextInputMouse = null;
 
-        int valueIndex = 0;
+        var valueIndex = 0;
 
         foreach (var name in inputNames)
         {
@@ -224,7 +224,7 @@ public class RunOnAxisAttribute : InputAttribute
             delta *= 1.5f;
         }
 
-        int highestFoundPressed = int.MinValue;
+        var highestFoundPressed = int.MinValue;
         (RunOnInputWithStrengthAttribute Input, MemberData Data)? pressedEntry = null;
 
         foreach (var entry in inputs)

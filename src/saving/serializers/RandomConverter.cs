@@ -182,7 +182,7 @@ public class RandomConverter : JsonConverter
 
         reader.Read();
 
-        bool is32Bit = xoshiro32BitBase.IsAssignableFrom(objectType);
+        var is32Bit = xoshiro32BitBase.IsAssignableFrom(objectType);
 
         // In case the JSON is badly formed, reset the value storages to not allow duplicating a random that was
         // previously read
@@ -201,7 +201,7 @@ public class RandomConverter : JsonConverter
             initialValueStorage64[3] = 0;
         }
 
-        int seedsRead = 0;
+        var seedsRead = 0;
 
         while (reader.TokenType == JsonToken.PropertyName)
         {
@@ -215,7 +215,7 @@ public class RandomConverter : JsonConverter
             if (reader.TokenType != JsonToken.Integer)
                 throw new JsonException("Expected an integer seed value");
 
-            bool read = true;
+            var read = true;
 
             if (is32Bit)
             {

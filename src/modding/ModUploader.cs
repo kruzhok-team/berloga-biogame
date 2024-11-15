@@ -453,7 +453,7 @@ public partial class ModUploader : Control
             return;
         }
 
-        if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
+        if (!ulong.TryParse(manualIdEntry.Text, out var id))
         {
             SetError(Localization.Translate("ID_IS_NOT_A_NUMBER"));
             return;

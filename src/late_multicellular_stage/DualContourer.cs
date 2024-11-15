@@ -45,9 +45,9 @@ public class DualContourer
         // int is point's index in points[]
         var placedPoints = new Dictionary<Vector3I, int>();
 
-        Vector3I gridFrom = new Vector3I((int)(UnitsFrom.X * PointsPerUnit), (int)(UnitsFrom.Y * PointsPerUnit),
+        var gridFrom = new Vector3I((int)(UnitsFrom.X * PointsPerUnit), (int)(UnitsFrom.Y * PointsPerUnit),
             (int)(UnitsFrom.Z * PointsPerUnit));
-        Vector3I gridTo = new Vector3I((int)(UnitsTo.X * PointsPerUnit), (int)(UnitsTo.Y * PointsPerUnit),
+        var gridTo = new Vector3I((int)(UnitsTo.X * PointsPerUnit), (int)(UnitsTo.Y * PointsPerUnit),
             (int)(UnitsTo.Z * PointsPerUnit));
 
         // Safety checks not to blow up PCs
@@ -72,13 +72,13 @@ public class DualContourer
 
         CalculatePoints(shapePoints, gridFrom, gridTo);
 
-        Vector3I gridOffset = -gridFrom;
+        var gridOffset = -gridFrom;
 
-        for (int x = gridFrom.X; x <= gridTo.X; ++x)
+        for (var x = gridFrom.X; x <= gridTo.X; ++x)
         {
-            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
+            for (var y = gridFrom.Y; y <= gridTo.Y; ++y)
             {
-                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
+                for (var z = gridFrom.Z; z <= gridTo.Z; ++z)
                 {
                     // var realPos = new Vector3(x, y, z) / PointsPerUnit;
                     var gridPos = new Vector3I(x, y, z);
@@ -116,7 +116,7 @@ public class DualContourer
         // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
         // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
 
-        ArrayMesh mesh = new ArrayMesh();
+        var mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
         sw.Stop();
@@ -132,16 +132,16 @@ public class DualContourer
 
         // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
 
-        bool reverseTriangleFaces = false;
+        var reverseTriangleFaces = false;
 
-        for (int i = 1; i <= 254; ++i)
+        for (var i = 1; i <= 254; ++i)
         {
-            Cube cube = new Cube(i); // Make cube from index
+            var cube = new Cube(i); // Make cube from index
 
             // [0;0;0] point is the origin (center of the cube)
             // All other points point to neighbouring cubes.
             // All the coordinates are one of the following: -1, 0, or 1
-            List<Vector3I> tris = new List<Vector3I>(6);
+            var tris = new List<Vector3I>(6);
 
             // Use XOR to ensure that only one of the two points is in the shape
             // If both or none are in the shape, then there are no triangles going between them
@@ -159,7 +159,7 @@ public class DualContourer
 
                 if (cube.Points[0, 1, 1])
                 {
-                    int lastID = tris.Count - 1;
+                    var lastID = tris.Count - 1;
 
                     (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
                     (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
@@ -179,7 +179,7 @@ public class DualContourer
 
                 if (cube.Points[1, 1, 0])
                 {
-                    int lastID = tris.Count - 1;
+                    var lastID = tris.Count - 1;
 
                     (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
                     (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
@@ -199,7 +199,7 @@ public class DualContourer
 
                 if (cube.Points[1, 0, 1])
                 {
-                    int lastID = tris.Count - 1;
+                    var lastID = tris.Count - 1;
 
                     (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
                     (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
@@ -208,7 +208,7 @@ public class DualContourer
 
             if (reverseTriangleFaces)
             {
-                for (int j = 1; j < tris.Count; j += 3)
+                for (var j = 1; j < tris.Count; j += 3)
                 {
                     (tris[j], tris[j + 1]) = (tris[j + 1], tris[j]);
                 }
@@ -230,29 +230,29 @@ public class DualContourer
     {
         var tasks = new List<Task>();
 
-        Vector3I gridOffset = -gridFrom;
+        var gridOffset = -gridFrom;
 
-        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+        var availableThreads = TaskExecutor.Instance.ParallelTasks;
 
-        int threadsPerEdge = Math.Clamp((int)MathF.Ceiling(2.0f * availableThreads / 8.0f), 2, 3);
+        var threadsPerEdge = Math.Clamp((int)MathF.Ceiling(2.0f * availableThreads / 8.0f), 2, 3);
 
         if (availableThreads > 27)
             threadsPerEdge = 4;
 
-        int stepX = (gridTo.X - gridFrom.X) / threadsPerEdge;
-        int stepY = (gridTo.Y - gridFrom.Y) / threadsPerEdge;
-        int stepZ = (gridTo.Z - gridFrom.Z) / threadsPerEdge;
+        var stepX = (gridTo.X - gridFrom.X) / threadsPerEdge;
+        var stepY = (gridTo.Y - gridFrom.Y) / threadsPerEdge;
+        var stepZ = (gridTo.Z - gridFrom.Z) / threadsPerEdge;
 
-        for (int x = gridFrom.X; x <= gridTo.X; x += stepX + 1)
+        for (var x = gridFrom.X; x <= gridTo.X; x += stepX + 1)
         {
-            for (int y = gridFrom.Y; y <= gridTo.Y; y += stepY + 1)
+            for (var y = gridFrom.Y; y <= gridTo.Y; y += stepY + 1)
             {
-                for (int z = gridFrom.Z; z <= gridTo.Z; z += stepZ + 1)
+                for (var z = gridFrom.Z; z <= gridTo.Z; z += stepZ + 1)
                 {
                     // TODO: avoid lambda captures of variables here (at least from and this is captured)
                     // that cause memory allocations
-                    Vector3I from = new Vector3I(x, y, z);
-                    Vector3I to = from + new Vector3I(stepX, stepY, stepZ);
+                    var from = new Vector3I(x, y, z);
+                    var to = from + new Vector3I(stepX, stepY, stepZ);
                     to = to.Clamp(from, gridTo);
                     var task = new Task(() => CalculatePointsInRange(shapePoints, from, to, gridOffset));
                     tasks.Add(task);
@@ -265,13 +265,13 @@ public class DualContourer
 
     private void CalculatePointsInRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo, Vector3I gridOffset)
     {
-        float realFactor = 1.0f / PointsPerUnit;
+        var realFactor = 1.0f / PointsPerUnit;
 
-        for (int x = gridFrom.X; x <= gridTo.X; ++x)
+        for (var x = gridFrom.X; x <= gridTo.X; ++x)
         {
-            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
+            for (var y = gridFrom.Y; y <= gridTo.Y; ++y)
             {
-                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
+                for (var z = gridFrom.Z; z <= gridTo.Z; ++z)
                 {
                     // var gridPos = new Vector3I(x, y, z);
                     var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
@@ -284,7 +284,7 @@ public class DualContourer
 
     private void SetColours(List<Vector3> points, Color[] colours)
     {
-        for (int i = 0; i < colours.Length; ++i)
+        for (var i = 0; i < colours.Length; ++i)
         {
             colours[i] = MathFunction.GetColour(points[i]);
         }
@@ -293,7 +293,7 @@ public class DualContourer
     private int IdOf(bool x0Y0Z0, bool x0Y0Z1, bool x0Y1Z0, bool x0Y1Z1, bool x1Y0Z0, bool x1Y0Z1, bool x1Y1Z0,
         bool x1Y1Z1)
     {
-        int id = 0;
+        var id = 0;
 
         if (x0Y0Z0)
             id += 1;
@@ -317,7 +317,7 @@ public class DualContourer
 
     private Vector3I[]? GetBestTriangles(int x, int y, int z, bool[,,] shapePoints)
     {
-        int id = IdOf(shapePoints[x, y, z],
+        var id = IdOf(shapePoints[x, y, z],
             shapePoints[x, y, z + 1],
             shapePoints[x, y + 1, z],
             shapePoints[x, y + 1, z + 1],
@@ -336,7 +336,7 @@ public class DualContourer
         // TODO: there's quite many divisions in a few methods here that are still called in loops that execute very
         // many times. It's perhaps faster to convert these to use multiplications as division is the most expensive
         // basic math operation for a CPU to do.
-        Vector3 direction = new Vector3(
+        var direction = new Vector3(
             (MathFunction.GetValue(new Vector3(realPos.X + d, realPos.Y, realPos.Z)) - funcAtPoint) / d,
             (MathFunction.GetValue(new Vector3(realPos.X, realPos.Y + d, realPos.Z)) - funcAtPoint) / d,
             (MathFunction.GetValue(new Vector3(realPos.X, realPos.Y, realPos.Z + d)) - funcAtPoint) / d);
@@ -360,19 +360,19 @@ public class DualContourer
 
         var tasks = new List<Task>();
 
-        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+        var availableThreads = TaskExecutor.Instance.ParallelTasks;
 
-        int step = points.Count / availableThreads;
+        var step = points.Count / availableThreads;
 
         if (step < 1)
             step = 1;
 
-        int count = points.Count;
+        var count = points.Count;
 
-        for (int i = 0; i < count; i += step + 1)
+        for (var i = 0; i < count; i += step + 1)
         {
-            int from = i;
-            int to = Math.Clamp(i + step, i, count - 1);
+            var from = i;
+            var to = Math.Clamp(i + step, i, count - 1);
 
             // TODO: try to avoid lambda allocations that capture many variables
             var task = new Task(() => AdjustVerticesInRange(from, to, points, changeClamp, meshNormals));
@@ -385,22 +385,22 @@ public class DualContourer
     private void AdjustVerticesInRange(int from, int to, List<Vector3> points, float changeClamp = 0.5f,
         Vector3[]? meshNormals = null)
     {
-        float maxToleratedChange = changeClamp / PointsPerUnit;
-        float d = 0.25f / PointsPerUnit;
+        var maxToleratedChange = changeClamp / PointsPerUnit;
+        var d = 0.25f / PointsPerUnit;
 
-        for (int i = from; i <= to; ++i)
+        for (var i = from; i <= to; ++i)
         {
             var point = points[i];
 
-            float functionAtPoint = MathFunction.GetValue(point);
+            var functionAtPoint = MathFunction.GetValue(point);
 
-            Vector3 normal = GetFunctionMomentarySpeed(point, functionAtPoint, d);
+            var normal = GetFunctionMomentarySpeed(point, functionAtPoint, d);
 
             // If we move one unit in the direction of the normal, function value should be this much more.
             // (If we assume that the function is completely )
-            float instantaneousSpeed = normal.Length();
+            var instantaneousSpeed = normal.Length();
 
-            Vector3 change = (normal / instantaneousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
+            var change = (normal / instantaneousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
                 / instantaneousSpeed);
 
             change.X = Math.Clamp(change.X, -maxToleratedChange, maxToleratedChange);

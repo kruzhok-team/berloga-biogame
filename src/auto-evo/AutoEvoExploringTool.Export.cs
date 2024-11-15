@@ -17,7 +17,7 @@ public partial class AutoEvoExploringTool
         worldExportButton.Disabled = true;
         var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
 
-        for (int worldToExport = 0; worldToExport < worldsList.Count; ++worldToExport)
+        for (var worldToExport = 0; worldToExport < worldsList.Count; ++worldToExport)
         {
             // Init the world (we need evolutionary tree data so tree needs to be built)
             WorldsListMenuIndexChanged(worldToExport);
@@ -70,7 +70,7 @@ public partial class AutoEvoExploringTool
 
         for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
         {
-            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            for (var generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 if (!world.SpeciesHistoryList[generation].TryGetValue(speciesId, out var species))
                     continue;
@@ -134,7 +134,7 @@ public partial class AutoEvoExploringTool
 
         foreach (var patch in world.GameProperties.GameWorld.Map.Patches.Values)
         {
-            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            for (var generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 var snapshot = world.PatchHistoryList[generation][patch.ID];
                 foreach (var speciesPopulation in snapshot.SpeciesInPatch)
@@ -176,7 +176,7 @@ public partial class AutoEvoExploringTool
 
         foreach (var patch in world.GameProperties.GameWorld.Map.Patches.Values)
         {
-            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            for (var generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 var data = new List<string>
                     { patch.Name.ToString(), generation.ToString(), patch.BiomeType.ToString() };

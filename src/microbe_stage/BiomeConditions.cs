@@ -129,7 +129,7 @@ public class BiomeConditions : ICloneable
 
                 foreach (var compound in chunk.Compounds)
                 {
-                    compounds.TryGetValue(compound.Key, out BiomeCompoundProperties properties);
+                    compounds.TryGetValue(compound.Key, out var properties);
                     properties.Amount += compound.Value.Amount;
                     result[compound.Key] = properties;
                 }
@@ -234,8 +234,8 @@ public class BiomeConditions : ICloneable
     {
         const float epsilon = 0.000001f;
 
-        bool hasNormally = Compounds.TryGetValue(compound, out var normal);
-        bool hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimum);
+        var hasNormally = Compounds.TryGetValue(compound, out var normal);
+        var hasMinimum = MinimumCompounds.TryGetValue(compound, out var minimum);
 
         // Not varying if the numbers are the same
         if (!hasNormally && !hasMinimum)

@@ -474,7 +474,7 @@ public partial class MetaballBodyEditorComponent :
 
         metaball.Size = metaballSize;
 
-        bool added = AddMetaball(metaball);
+        var added = AddMetaball(metaball);
 
         if (added)
         {
@@ -749,7 +749,7 @@ public partial class MetaballBodyEditorComponent :
             // TODO: find metaball that overlaps with the position too much
             // var oldCell = cellPositions.FirstOrDefault(p => p.Hex == hex);
             // bool occupied = oldCell != default;
-            bool occupied = false;
+            var occupied = false;
 
             cellPositions.Add((hex, cell, orientation, occupied));
         }
@@ -855,7 +855,7 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnDeletePressed()
     {
-        int alreadyDeleted = 0;
+        var alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(metaballPopupMenu.SelectedMetaballs
                 .Select(m => TryCreateMetaballRemoveAction(m, ref alreadyDeleted)).WhereNotNull());
@@ -897,7 +897,7 @@ public partial class MetaballBodyEditorComponent :
             // TODO: tooltips for these
         }
 
-        bool clearSelection = false;
+        var clearSelection = false;
 
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())

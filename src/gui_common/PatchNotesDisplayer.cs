@@ -72,7 +72,7 @@ public partial class PatchNotesDisplayer : VBoxContainer
             return false;
 
         // Find the oldest patch notes we should show, and count how many versions there's been
-        int newVersions = 0;
+        var newVersions = 0;
         string? oldestToShow = null;
 
         foreach (var entry in SimulationParameters.Instance.GetPatchNotes())

@@ -82,7 +82,7 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
                     continue;
 
                 // Render priority can be fully calculated from the organelle position and the base render priority
-                int organelleRenderOrder =
+                var organelleRenderOrder =
                     renderOrder.RenderPriority + Hex.GetRenderPriority(placedOrganelle.Position);
 
                 if (!placedOrganelle.OrganelleGraphics.GetMaterial(tempMaterialsList,
@@ -93,7 +93,7 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
                     // It's fine to fall through here as the materials list will be empty if it was failed to fetch
                 }
 
-                bool first = true;
+                var first = true;
 
                 foreach (var material in tempMaterialsList)
                 {

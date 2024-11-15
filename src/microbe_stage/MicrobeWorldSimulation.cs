@@ -328,7 +328,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+        var availableThreads = TaskExecutor.Instance.ParallelTasks;
 
         var settings = Settings.Instance;
         if (settings.RunAutoEvoDuringGamePlay)

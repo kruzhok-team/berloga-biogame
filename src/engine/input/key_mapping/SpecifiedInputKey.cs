@@ -123,14 +123,14 @@ public class SpecifiedInputKey : ICloneable
             direction *= -1;
         }
 
-        int axis = (int)((packed & 0xfffcL) >> 2);
+        var axis = (int)((packed & 0xfffcL) >> 2);
 
         if ((packed & 0x2) != 0)
         {
             axis *= -1;
         }
 
-        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+        var device = (int)((packed & 0xffffffff00000000L) >> 33);
 
         if ((packed & 0x100000000L) != 0)
         {
@@ -187,7 +187,7 @@ public class SpecifiedInputKey : ICloneable
             code *= -1;
         }
 
-        int device = (int)((packed & 0xffffffff00000000L) >> 33);
+        var device = (int)((packed & 0xffffffff00000000L) >> 33);
 
         if ((packed & 0x100000000L) != 0)
         {

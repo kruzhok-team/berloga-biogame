@@ -161,7 +161,7 @@ public partial class GenerateThreadedSystems : Node
 
         if (acceptComments)
         {
-            for (int i = 0; i < line.Length; ++i)
+            for (var i = 0; i < line.Length; ++i)
             {
                 if (line[i] <= ' ')
                     continue;
@@ -351,7 +351,7 @@ public partial class GenerateThreadedSystems : Node
         // Run a threaded run simulator to determine a good grouping of systems onto threads
         var simulator = new ThreadedRunSimulator(mainSystems, otherSystems, backgroundThreads + 1);
 
-        int tasks = 1;
+        var tasks = 1;
 
         if (UseMultithreadingToDoMoreSimulations)
         {
@@ -437,15 +437,15 @@ public partial class GenerateThreadedSystems : Node
     private void WriteResultOfThreadedRunning(List<List<SystemToSchedule>> threads, List<string> lineReceiver,
         Dictionary<string, VariableInfo> variables)
     {
-        int threadCount = threads.Count;
+        var threadCount = threads.Count;
 
-        int indent = 0;
+        var indent = 0;
 
         // Tasks for background operations
-        for (int i = 1; i < threadCount; ++i)
+        for (var i = 1; i < threadCount; ++i)
         {
             var thread = threads[i];
-            int threadId = thread.First().ThreadId;
+            var threadId = thread.First().ThreadId;
             lineReceiver.Add($"var background{i} = new Task(() =>");
             ++indent;
             lineReceiver.Add($"{StringUtils.GetIndent(indent)}{{");
@@ -521,8 +521,8 @@ public partial class GenerateThreadedSystems : Node
     private void GenerateCodeForThread(List<SystemToSchedule> systems, List<string> lineReceiver,
         int indent)
     {
-        int timeslot = int.MaxValue;
-        int threadId = int.MaxValue;
+        var timeslot = int.MaxValue;
+        var threadId = int.MaxValue;
 
         foreach (var system in systems)
         {
@@ -548,7 +548,7 @@ public partial class GenerateThreadedSystems : Node
         if (!MeasureThreadWaits)
             throw new Exception("Only call this when measurement is enabled");
 
-        for (int i = 1; i <= threadCount; ++i)
+        for (var i = 1; i <= threadCount; ++i)
         {
             variables["timer" + i] = new VariableInfo("Stopwatch", true);
             variables["waitTime" + i] = new VariableInfo("double", false, null);
@@ -566,7 +566,7 @@ public partial class GenerateThreadedSystems : Node
         if (PrintThreadWaits)
             lineReceiver.Add(StringUtils.GetIndent(1) + @"GD.Print($""Simulation thread wait times: "");");
 
-        for (int i = 1; i <= threadCount; ++i)
+        for (var i = 1; i <= threadCount; ++i)
         {
             if (PrintThreadWaits)
                 lineReceiver.Add(StringUtils.GetIndent(1) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
@@ -611,8 +611,8 @@ public partial class GenerateThreadedSystems : Node
         // This is really not efficient but for now the sorting needs to continue until all the constraints are taken
         // into account and nothing is sorted anymore
 
-        int maxSorts = systems.Count;
-        int sortAttempt = 0;
+        var maxSorts = systems.Count;
+        var sortAttempt = 0;
         bool sortedSomething;
         do
         {
@@ -620,16 +620,16 @@ public partial class GenerateThreadedSystems : Node
             ++sortAttempt;
 
             // Used to prevent infinite loop when trying to sort something that cannot fulfil all the constraints
-            int singleSpotRetries = systems.Count * 10;
+            var singleSpotRetries = systems.Count * 10;
 
-            for (int i = 1; i < systems.Count; ++i)
+            for (var i = 1; i < systems.Count; ++i)
             {
                 var item = systems[i];
-                int insertPoint = i;
+                var insertPoint = i;
 
                 // Look for any items the current item should be before. This is required as the comparer can encounter
                 // sequences of items it cannot order
-                for (int j = i - 1; j >= 0; --j)
+                for (var j = i - 1; j >= 0; --j)
                 {
                     var other = systems[j];
 
@@ -677,9 +677,9 @@ public partial class GenerateThreadedSystems : Node
     {
         var comparer = new SystemToSchedule.SystemRequirementsBasedComparer();
 
-        for (int i = 0; i < systems.Count; ++i)
+        for (var i = 0; i < systems.Count; ++i)
         {
-            for (int j = i + 1; j < systems.Count; ++j)
+            for (var j = i + 1; j < systems.Count; ++j)
             {
                 if (comparer.CompareWeak(systems[i], systems[j]) > 0)
                 {
@@ -748,8 +748,8 @@ public partial class GenerateThreadedSystems : Node
                 if (ReferenceEquals(item1, item2))
                     continue;
 
-                int sort1 = comparer.Compare(item1, item2);
-                int sort2 = comparer.Compare(item2, item1);
+                var sort1 = comparer.Compare(item1, item2);
+                var sort2 = comparer.Compare(item2, item1);
 
                 if (sort1 == 0 && sort2 == 0)
                     continue;
@@ -795,7 +795,7 @@ public partial class GenerateThreadedSystems : Node
 
         using var writer = new StreamWriter(fileStream, new UTF8Encoding(true));
 
-        int indent = 0;
+        var indent = 0;
 
         writer.WriteLine("// Automatically generated file. DO NOT EDIT!");
         writer.WriteLine("// Run GenerateThreadedSystems to generate this file");
@@ -825,7 +825,7 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine('{');
 
         indent += 1;
-        bool addedVariables = false;
+        var addedVariables = false;
 
         foreach (var pair in variables.OrderByDescending(p => p.Value.IsReadonly))
         {
@@ -940,7 +940,7 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
         indent += 1;
 
-        bool firstBlank = true;
+        var firstBlank = true;
 
         foreach (var line in ThreadComponentCheckCode.Split('\n'))
         {

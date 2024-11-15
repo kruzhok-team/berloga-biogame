@@ -129,13 +129,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
     public bool ProcessAll(float delta)
     {
-        bool useSpecialPhysicsMode = !disableComponentChecking && GenerateThreadedSystems.UseCheckedComponentAccess;
+        var useSpecialPhysicsMode = !disableComponentChecking && GenerateThreadedSystems.UseCheckedComponentAccess;
 
         // See the comment below about this special physics
         if (useSpecialPhysicsMode)
             WaitForStartedPhysicsRun();
 
-        bool processed = ProcessLogic(delta);
+        var processed = ProcessLogic(delta);
         ProcessFrameLogic(delta);
 
         if (useSpecialPhysicsMode)
@@ -191,7 +191,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         ApplyECSThreadCount(ecsThreadsToUse);
 
         // See the similar check in ProcessAll to see what this is about (this is about special component debug mode)
-        bool useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
+        var useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
 
         // Make sure physics is not running while the systems are
         if (useNormalPhysics)
@@ -320,7 +320,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         // This loop is here to ensure that no entities are left after destroy callbacks have been used
         while (true)
         {
-            bool despawned = false;
+            var despawned = false;
 
             // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
             foreach (var entity in entities.ToList())

@@ -412,7 +412,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         if (AtpBalanceBarHighlight == null)
             throw new InvalidOperationException("Balance bar highlight control is not set");
 
-        bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
+        var eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
         AtpBalanceBarHighlight.Visible = atpBalanceIntroduction.Visible;
 
         // Force the scroll panel to scroll down

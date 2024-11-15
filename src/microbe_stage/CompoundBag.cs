@@ -149,9 +149,9 @@ public class CompoundBag : ICompoundStorage
         if (amount <= 0.0f)
             return amount;
 
-        float existingAmount = GetCompoundAmount(compound);
+        var existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
+        var newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
 
         Compounds[compound] = newAmount;
 
@@ -274,7 +274,7 @@ public class CompoundBag : ICompoundStorage
                 continue;
             }
 
-            float toAdd = entry.Value - existingAmount;
+            var toAdd = entry.Value - existingAmount;
 
             if (toAdd > 0)
                 Compounds[entry.Key] = existingAmount + toAdd;

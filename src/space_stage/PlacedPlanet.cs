@@ -142,7 +142,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)
     {
-        float neededFood = CalculateFoodConsumption() * elapsed;
+        var neededFood = CalculateFoodConsumption() * elapsed;
 
         if (globalResourceHack.Take(foodResource, neededFood, true) < neededFood)
         {

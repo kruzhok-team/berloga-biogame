@@ -46,7 +46,7 @@ public class ReproductionStatistic : IStatistic
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int CountOrganellesOfType(OrganelleDefinition definition, OrganelleLayout<PlacedOrganelle> layout)
     {
-        int count = 0;
+        var count = 0;
 
         foreach (var organelle in layout.Organelles)
         {

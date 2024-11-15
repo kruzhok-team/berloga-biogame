@@ -59,7 +59,7 @@ public class CombinedEditorAction : EditorAction
         if (newDataList.Count < 1)
             throw new InvalidOperationException("Merged data didn't contain anything");
 
-        int consumedItems = ApplyPartialMergedData(newDataList, 0);
+        var consumedItems = ApplyPartialMergedData(newDataList, 0);
 
         if (consumedItems != newDataList.Count)
             throw new InvalidOperationException("Merged data didn't contain right number of data items");
@@ -67,11 +67,11 @@ public class CombinedEditorAction : EditorAction
 
     public override int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex)
     {
-        int index = 0;
+        var index = 0;
 
         foreach (var subAction in actions.ToList())
         {
-            int applied = subAction.ApplyPartialMergedData(newData, startIndex + index);
+            var applied = subAction.ApplyPartialMergedData(newData, startIndex + index);
 
             if (applied < 1)
             {

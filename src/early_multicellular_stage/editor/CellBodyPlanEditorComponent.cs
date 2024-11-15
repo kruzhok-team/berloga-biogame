@@ -261,7 +261,7 @@ public partial class CellBodyPlanEditorComponent :
         // Show the cell that is about to be placed
         if (activeActionName != null && Editor.ShowHover)
         {
-            GetMouseHex(out int q, out int r);
+            GetMouseHex(out var q, out var r);
 
             var effectiveSymmetry = Symmetry;
 
@@ -375,7 +375,7 @@ public partial class CellBodyPlanEditorComponent :
 
             hexWithData.Data!.Position = new Hex(0, 0);
 
-            int distance = 0;
+            var distance = 0;
 
             while (true)
             {
@@ -444,7 +444,7 @@ public partial class CellBodyPlanEditorComponent :
             return true;
         }
 
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
         var cells = new List<HexWithData<CellTemplate>>();
 
@@ -652,9 +652,9 @@ public partial class CellBodyPlanEditorComponent :
 
         // For now a single hex represents entire cells
         RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
-            out bool hadDuplicate);
+            out var hadDuplicate);
 
-        bool showModel = !hadDuplicate;
+        var showModel = !hadDuplicate;
 
         // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
         // it becomes visible it doesn't have outdated graphics on it
@@ -677,7 +677,7 @@ public partial class CellBodyPlanEditorComponent :
     /// <returns>True when at least one hex got placed</returns>
     private bool AddCell(CellType cellType)
     {
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
         var placementActions = new List<EditorAction>();
 
@@ -756,7 +756,7 @@ public partial class CellBodyPlanEditorComponent :
             var (hex, orientation) = hexes[i];
             var cell = cells[i];
             var oldCell = cellPositions.FirstOrDefault(p => p.Hex == hex);
-            bool occupied = oldCell != default;
+            var occupied = oldCell != default;
 
             cellPositions.Add((hex, cell, orientation, occupied));
         }
@@ -843,7 +843,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnDeletePressed()
     {
-        int alreadyDeleted = 0;
+        var alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(cellPopupMenu.SelectedCells
                 .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
@@ -886,7 +886,7 @@ public partial class CellBodyPlanEditorComponent :
             // TODO: tooltips for these
         }
 
-        bool clearSelection = false;
+        var clearSelection = false;
 
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
@@ -973,7 +973,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
             Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islandResults);
 
-        int nextFreeCell = 0;
+        var nextFreeCell = 0;
 
         foreach (var hexWithData in editedMicrobeCells)
         {
@@ -1005,7 +1005,7 @@ public partial class CellBodyPlanEditorComponent :
         var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
         CellBillboard billboard;
-        bool wasExisting = false;
+        var wasExisting = false;
 
         // Create a new billboard if one not already there for the displayer
         if (modelHolder.InstancedNode is CellBillboard existing)

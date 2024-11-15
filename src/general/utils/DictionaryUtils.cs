@@ -33,7 +33,7 @@ public static class DictionaryUtils
     public static float SumValues<T>(this Dictionary<T, float> items)
         where T : notnull
     {
-        float sum = 0.0f;
+        var sum = 0.0f;
 
         foreach (var entry in items.Values)
         {

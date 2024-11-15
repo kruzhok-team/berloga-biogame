@@ -89,7 +89,7 @@ public sealed class CountLimitedDespawnSystem : AEntitySetSystem<float>
         base.PostUpdate(state);
 
         // Limit despawns per frame
-        int despawnsLeft = maxDespawnsPerFrame;
+        var despawnsLeft = maxDespawnsPerFrame;
 
         // Process all the groups and despawn the farthest entity from each group where the group size is over its
         // limit

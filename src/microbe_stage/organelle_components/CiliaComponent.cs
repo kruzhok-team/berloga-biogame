@@ -268,7 +268,7 @@ public class CiliaComponent : IOrganelleComponent
             if (distance < MathUtils.EPSILON)
                 return;
 
-            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * delta /
+            var force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * delta /
                 (distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
 
             ref var targetPhysics = ref pulledEntity.Get<ManualPhysicsControl>();

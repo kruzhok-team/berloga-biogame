@@ -159,7 +159,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
     private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
     {
-        float rotationSpeed = organelles.RotationSpeed;
+        var rotationSpeed = organelles.RotationSpeed;
 
         // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
         // only
@@ -230,10 +230,10 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         }
 
         // Base movement force
-        float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
+        var force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
             cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
-        bool usesSprintingForce = false;
+        var usesSprintingForce = false;
 
         if (entity.Has<StrainAffected>())
         {
@@ -312,7 +312,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             strain.IsUnderStrain = false;
         }*/
 
-        bool hasColony = entity.Has<MicrobeColony>();
+        var hasColony = entity.Has<MicrobeColony>();
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
         {

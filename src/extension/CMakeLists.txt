@@ -12,25 +12,25 @@ add_library(thrive_extension SHARED
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
 )
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_extension PRIVATE /W4 /wd4068)
 
-  if(WARNINGS_AS_ERRORS)
+  if (WARNINGS_AS_ERRORS)
     target_compile_options(thrive_extension PRIVATE /WX)
-  endif()
+  endif ()
 
   # TODO debug symbols in release for MSVC (and Distribution mode)
 
 else()
   target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
 
-  if(WARNINGS_AS_ERRORS)
+  if (WARNINGS_AS_ERRORS)
     target_compile_options(thrive_extension PRIVATE -Werror)
-  endif()
+  endif ()
 
   target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
     $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
-endif()
+endif ()
 
 target_compile_definitions(thrive_extension PRIVATE thrive_extension_BUILD)
 
@@ -48,12 +48,12 @@ set_target_properties(thrive_extension PROPERTIES
   CXX_STANDARD 20
   CXX_EXTENSIONS OFF)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
   message(STATUS "Disabling LTO for thrive_extension with Clang as that results in link failures")
   target_compile_options(thrive_extension PRIVATE "-fno-lto")
 else()
   message(STATUS "Enabling LTO for thrive_extension")
   set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-endif()
+endif ()
 
 install(TARGETS thrive_extension)

@@ -495,7 +495,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
         if (selectedCellTypeToEdit == null)
             return;
 
-        bool affectedACell = false;
+        var affectedACell = false;
 
         foreach (var actionData in action.Data)
         {
