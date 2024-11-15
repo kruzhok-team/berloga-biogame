@@ -19,7 +19,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
     public const string GODOT_HEADLESS_FLAG = "--headless";
 
-    private const string EXPECTED_THRIVE_PCK_FILE = "Thrive.pck";
+    private const string EXPECTED_THRIVE_PCK_FILE = "BerlogaEvolution.pck";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
@@ -373,7 +373,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteNormalLine($"Exporting to folder: {folder}");
 
-        var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
+        var targetFile = Path.Join(folder, "BerlogaEvolution" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add(GODOT_HEADLESS_FLAG);
@@ -418,6 +418,35 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                     $"export. Are export templates installed? Or did code build fail?");
                 return false;
             }
+        }
+
+        var pcktool = ExecutableFinder.Which("godotpcktool");
+
+        if (pcktool == null)
+        {
+            ExecutableFinder.PrintPathInfo(Console.Out);
+            ColourConsole.WriteErrorLine("godotpcktool not found in PATH with name \"godotpcktool\" please make it available");
+            return false;
+        }
+
+        var pathPck = Path.Join(folder, EXPECTED_THRIVE_PCK_FILE);
+
+        // We use GodotPckTool for add .env file in .pck file
+        var startInfoPCK = new ProcessStartInfo(pcktool);
+        startInfoPCK.ArgumentList.Add("--pack");
+        startInfoPCK.ArgumentList.Add(pathPck);
+        startInfoPCK.ArgumentList.Add("--action");
+        startInfoPCK.ArgumentList.Add("add");
+        startInfoPCK.ArgumentList.Add("--file");
+        startInfoPCK.ArgumentList.Add("src/APItalent/Config.env");
+
+
+        var resultPCK = await ProcessRunHelpers.RunProcessAsync(startInfoPCK, cancellationToken, true);
+
+        if (resultPCK.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("add .env pck with GodotPckTool failed. Are .env file exists?");
+            return false;
         }
 
         ColourConsole.WriteSuccessLine("Godot export succeeded");
