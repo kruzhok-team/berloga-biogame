@@ -1,41 +1,44 @@
 using System;
-using System.IO;
+using Godot;
 
 namespace APItalent{
     /// <summary>
     ///   Static class needed only to read and setup the .env file.
     /// </summary>
     
-    public static class EnvConfig{
-        public static void EnvLoad(string filePath){
-            if(File.Exists(filePath)){
-                var lines = File.ReadAllLines(filePath);
+public static class EnvConfig
+{
+    public static void EnvLoad(string filePath)
+    {
+        if (FileAccess.FileExists(filePath))
+        {
+            using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
+            var lines = file.GetAsText().Split('\n');
+            file.Close();
 
-                foreach (var line in lines)
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#"))
                 {
-                    if(string.IsNullOrWhiteSpace(line) || line.StartsWith("#")){
-                        continue;
-                    }
+                    continue;
+                }
 
-                    var parts = line.Split(new[] { '=' }, 2);
-                    
-                    if(parts.Length == 2){
-                        var key = parts[0].Trim();
-                        var value = parts[1].Trim();
+                var parts = line.Split(new[] { '=' }, 2);
 
-                        Environment.SetEnvironmentVariable(key, value);
-                    }
+                if (parts.Length == 2)
+                {
+                    var key = parts[0].Trim();
+                    var value = parts[1].Trim();
+
+                    System.Environment.SetEnvironmentVariable(key, value);
                 }
             }
-            else{
-                throw new InvalidOperationException("Incorrect file path, cannot find .env file");
-            }
+            GD.Print("Env file load succses");
         }
-
-            /// <summary>
-            ///   Example:
-            ///     EnvConfig.EnvLoad("src/APItalent/Config.env");
-            ///     string baseAdress = Environment.GetEnvironmentVariable("BASE_ADRESS");
-            /// </summary>
+        else
+        {
+            throw new InvalidOperationException("Incorrect file path, cannot find .env file");
+        }
     }
+}
 }
