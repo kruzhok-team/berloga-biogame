@@ -723,7 +723,6 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
-        ApplyEnvironmentSettings();
         if (Engine.IsEditorHint())
         {
             // Do not apply settings within the Godot editor.
@@ -753,6 +752,7 @@ public class Settings
         ApplyAudioOutputDeviceSettings();
         ApplyLanguageSettings();
         ApplyWindowSettings();
+        ApplyEnvironmentSettings();
     }
 
     /// <summary>
@@ -1121,6 +1121,6 @@ public class Settings
     }
 
     private void ApplyEnvironmentSettings(){
-        EnvConfig.EnvLoad("src/APItalent/Config.env");
+        EnvConfig.EnvLoad("res://src/APItalent/Config.env");
     }
 }
