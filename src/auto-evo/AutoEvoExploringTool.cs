@@ -388,7 +388,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     {
         var gameWorld = world.GameProperties.GameWorld;
 
-        for (int i = generationDisplayed; i >= 0; --i)
+        for (var i = generationDisplayed; i >= 0; --i)
         {
             gameWorld.GenerationHistory[i].AllSpeciesData
                 .TryGetValue(speciesId, out var speciesRecord);
@@ -802,7 +802,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Rebuild history list
         historyListMenu.ClearAllItems();
-        for (int i = 0; i <= world.CurrentGeneration; ++i)
+        for (var i = 0; i <= world.CurrentGeneration; ++i)
         {
             historyListMenu.AddItem(i.ToString(CultureInfo.CurrentCulture), false, Colors.White);
         }
@@ -915,7 +915,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         patchListMenu.Text = patch.Name.ToString();
 
         if (generationDisplayed != world.CurrentGeneration &&
-            world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche))
+            world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out var miche))
         {
             micheTree.SetMiche(miche);
         }

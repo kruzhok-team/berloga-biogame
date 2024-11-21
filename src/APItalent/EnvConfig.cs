@@ -5,7 +5,7 @@ namespace APItalent{
     /// <summary>
     ///   Static class needed only to read and setup the .env file.
     /// </summary>
-    
+
 public static class EnvConfig
 {
     public static void EnvLoad(string filePath)

@@ -112,7 +112,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
 
     public override int GetHashCode()
     {
-        int hashCode = 2031027761;
+        var hashCode = 2031027761;
         hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(translationKey);
 
         if (formatStringArgs != null)

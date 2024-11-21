@@ -297,12 +297,12 @@ public class SystemToSchedule
 
     public void GetRunningText(List<string> lineReceiver, int indent, int thread)
     {
-        for (int i = 0; i < RequiresBarrierBefore; ++i)
+        for (var i = 0; i < RequiresBarrierBefore; ++i)
         {
             GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
         }
 
-        bool closeBrace = false;
+        var closeBrace = false;
 
         if (RunCondition != null)
         {
@@ -381,7 +381,7 @@ public class SystemToSchedule
 
         // Barriers after condition so that barriers aren't conditionally skipped, that would be really hard to
         // balance across threads
-        for (int i = 0; i < RequiresBarrierAfter; ++i)
+        for (var i = 0; i < RequiresBarrierAfter; ++i)
         {
             GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
         }
@@ -494,8 +494,8 @@ public class SystemToSchedule
             // there are systems that both write to a component type that the other just reads.
             // Might be fun to debug print info when systems cannot do this cleanly to give potential places to
             // improve the systems decoupling
-            bool xWantsWrite = x.WantsToWriteBefore(y);
-            bool yWantsWrite = y.WantsToWriteBefore(x);
+            var xWantsWrite = x.WantsToWriteBefore(y);
+            var yWantsWrite = y.WantsToWriteBefore(x);
             if (xWantsWrite && !yWantsWrite)
                 return -1;
 

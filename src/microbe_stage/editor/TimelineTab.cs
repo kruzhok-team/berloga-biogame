@@ -130,7 +130,7 @@ public partial class TimelineTab : PanelContainer
 
         var targetPatch = patch ?? selectedPatch ?? editor.CurrentPatch;
 
-        for (int i = targetPatch.History.Count - 1; i >= 0; i--)
+        for (var i = targetPatch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = targetPatch.History[i];
             var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,

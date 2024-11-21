@@ -74,7 +74,7 @@ public class PhysicsShape : IDisposable
         // is missing data for this membrane)
         var convertedData = ArrayPool<JVecF3>.Shared.Rent(membranePoints.Count);
 
-        for (int i = 0; i < pointCount; ++i)
+        for (var i = 0; i < pointCount; ++i)
         {
             convertedData[i] = new JVecF3(membranePoints[i].X, 0, membranePoints[i].Y);
         }
@@ -114,7 +114,7 @@ public class PhysicsShape : IDisposable
 
         try
         {
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 var data = subShapes[i];
                 buffer[i] = new SubShapeDefinition(data.Position, data.Rotation, data.Shape.AccessShapeInternal());
@@ -200,7 +200,7 @@ public class PhysicsShape : IDisposable
             case ConvexPolygonShape3D convexShape:
             {
                 var dataSource = convexShape.Points;
-                int points = dataSource.Length;
+                var points = dataSource.Length;
 
                 if (points < 1)
                     throw new NotSupportedException("Can't convert convex polygon with no points");
@@ -210,7 +210,7 @@ public class PhysicsShape : IDisposable
                 var pool = ArrayPool<JVecF3>.Shared;
                 var buffer = pool.Rent(points);
 
-                for (int i = 0; i < points; ++i)
+                for (var i = 0; i < points; ++i)
                 {
                     buffer[i] = new JVecF3(dataSource[i]);
                 }

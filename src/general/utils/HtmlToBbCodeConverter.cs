@@ -335,9 +335,9 @@ public class HtmlToBbCodeConverter
             stringBuilder.Append(text);
         }
 
-        bool match = true;
+        var match = true;
 
-        for (int i = text.Length; i > 0; --i)
+        for (var i = text.Length; i > 0; --i)
         {
             if (stringBuilder[stringBuilder.Length - i] != text[text.Length - i])
             {

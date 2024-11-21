@@ -155,7 +155,7 @@ public partial class PhysicsTest : Node
             UpdateCameraFollow(delta);
 
             var count = testMicrobesToProcess.Count;
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 if (Math.Abs(testMicrobesToProcess[i].GodotPhysicsPosition.Y) > YDriftThreshold)
                 {
@@ -217,7 +217,7 @@ public partial class PhysicsTest : Node
 
             // There used to be a variant of this that used sphereMultiMesh.TransformArray that was faster in Godot 3
             // when all items needed to be updated
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 sphereMultiMesh.SetInstanceTransform(i, physicalWorld.ReadBodyTransform(sphereBodies[i]));
             }
@@ -230,7 +230,7 @@ public partial class PhysicsTest : Node
             var sphereVisual = new Lazy<Mesh>(() => CreateSphereMesh().Mesh);
 
             var count = sphereBodies.Count;
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 if (i >= testVisuals.Count)
                 {
@@ -266,8 +266,8 @@ public partial class PhysicsTest : Node
             var cameraPos = camera.Position;
 
             var count = microbeAnalogueBodies.Count;
-            int usedVisualIndex = 0;
-            for (int i = 0; i < count; ++i)
+            var usedVisualIndex = 0;
+            for (var i = 0; i < count; ++i)
             {
                 var transform = physicalWorld.ReadBodyTransform(microbeAnalogueBodies[i]);
 
@@ -510,11 +510,11 @@ public partial class PhysicsTest : Node
             };
 
             var visuals = CreateSphereMesh();
-            int created = 0;
+            var created = 0;
 
-            for (int x = -100; x < 100; x += 2)
+            for (var x = -100; x < 100; x += 2)
             {
-                for (int z = -100; z < 100; z += 2)
+                for (var z = -100; z < 100; z += 2)
                 {
                     var body = new RigidBody3D();
                     body.AddChild(new MeshInstance3D
@@ -556,9 +556,9 @@ public partial class PhysicsTest : Node
         {
             var sphere = PhysicsShape.CreateSphere(0.5f);
 
-            for (int x = -100; x < 100; x += 2)
+            for (var x = -100; x < 100; x += 2)
             {
-                for (int z = -100; z < 100; z += 2)
+                for (var z = -100; z < 100; z += 2)
                 {
                     sphereBodies.Add(physicalWorld.CreateMovingBody(sphere,
                         new Vector3(x, 1 + (float)random.NextDouble() * 25, z), Quaternion.Identity));
@@ -592,15 +592,15 @@ public partial class PhysicsTest : Node
         testMicrobeOrganellePositions =
             microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();
 
-        int created = 0;
+        var created = 0;
 
         if (SpawnPattern < 2)
         {
             // Pattern 1: cells clumped together
 
-            for (int x = -20; x < 20; x += 5)
+            for (var x = -20; x < 20; x += 5)
             {
-                for (int z = -20; z < 20; z += 5)
+                for (var z = -20; z < 20; z += 5)
                 {
                     ++created;
 
@@ -612,9 +612,9 @@ public partial class PhysicsTest : Node
         {
             // Pattern 2: a lot of spread out microbes
 
-            for (int x = -200; x <= 200; x += 20)
+            for (var x = -200; x <= 200; x += 20)
             {
-                for (int z = -200; z <= 200; z += 20)
+                for (var z = -200; z <= 200; z += 20)
                 {
                     ++created;
 
@@ -626,9 +626,9 @@ public partial class PhysicsTest : Node
         {
             // Pattern 3: a full on stress test of the system
 
-            for (int x = -300; x <= 300; x += 20)
+            for (var x = -300; x <= 300; x += 20)
             {
-                for (int z = -300; z <= 300; z += 20)
+                for (var z = -300; z <= 300; z += 20)
                 {
                     ++created;
 
@@ -716,7 +716,7 @@ public partial class PhysicsTest : Node
     private void CreateGodotMicrobePhysics(RigidBody3D body, JVecF3[] points)
     {
         var shape = new ConvexPolygonShape3D();
-        float thickness = 0.2f;
+        var thickness = 0.2f;
 
         shape.Points = points.Select(p => (Vector3)p)
             .SelectMany(p => new[] { p, new Vector3(p.X, p.Y + thickness, p.Z) }).ToArray();
@@ -748,7 +748,7 @@ public partial class PhysicsTest : Node
 
         multiMesh.InstanceCount = organellePositions.Count;
 
-        for (int i = 0; i < organellePositions.Count; ++i)
+        for (var i = 0; i < organellePositions.Count; ++i)
         {
             multiMesh.SetInstanceTransform(i, new Transform3D(Basis.Identity, organellePositions[i]));
         }

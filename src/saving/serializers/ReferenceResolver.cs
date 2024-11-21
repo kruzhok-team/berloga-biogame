@@ -37,7 +37,7 @@ public class ReferenceResolver : IReferenceResolver
         if (objectToReference.TryGetValue(value, out var existing))
             return existing;
 
-        string reference = (++referenceCounter).ToString(CultureInfo.InvariantCulture);
+        var reference = (++referenceCounter).ToString(CultureInfo.InvariantCulture);
 
         objectToReference[value] = reference;
         referenceToObject[reference] = value;

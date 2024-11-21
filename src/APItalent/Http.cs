@@ -52,6 +52,83 @@ public class Http
         var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponse);
         throw new HttpError(statusCode, err);
     }
+
+    /// <summary>
+    /// Method for Http Put requests
+    /// </summary>
+    /// <returns>Returns an object of type <typeparamref name="T"/></returns>
+    /// <param name="path">Full request path, without domain</param>
+    /// <param name="data">Data for the request body</param>
+    /// <param name="options">Get request parameters</param>
+    /// <param name="authRequire">Do I need authorization?</param>
+    /// <param name="statusCode">Http error code.</param>
+    /// <exception cref="HttpError">
+    /// Berloga API error sent by the server
+    /// </exception>
+    public static async Task<T?> Put<T>(string path, object? data = null, Dictionary<string, string>? options = null, bool authRequire = false, HttpStatusCode statusCode = HttpStatusCode.OK)
+    {
+        var requestBody = data != null ? new StringContent(JsonSerializer.Serialize(data),
+            Encoding.UTF8,
+            "application/json") : null;
+        options ??= new Dictionary<string, string>();
+        var request = new HttpRequestMessage(HttpMethod.Put, $"{BaseUrl}/{path}?{GetOptionsString(options)}");
+
+        if (authRequire)
+            request.Headers.Add("Authorization", AuthToken.AuthToken);
+
+        request.Content = requestBody;
+
+        var response = await HttpClient.SendAsync(request);
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
+
+        if (response.StatusCode == statusCode)
+        {
+            return JsonSerializer.Deserialize<T>(jsonResponse);
+        }
+
+        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponse);
+        throw new HttpError(statusCode, err);
+    }
+
+    /// <summary>
+    /// Method for Http Delete requests
+    /// </summary>
+    /// <returns>Returns an object of type <typeparamref name="T"/></returns>
+    /// <param name="path">Full request path, without domain</param>
+    /// <param name="data">Data for the request body</param>
+    /// <param name="options">Get request parameters</param>
+    /// <param name="authRequire">Do I need authorization?</param>
+    /// <param name="statusCode">Http error code.</param>
+    /// <exception cref="HttpError">
+    /// Berloga API error sent by the server
+    /// </exception>
+    public static async Task<T?> Delete<T>(string path, object? data = null, Dictionary<string, string>? options = null, bool authRequire = false, HttpStatusCode statusCode = HttpStatusCode.OK)
+    {
+        var requestBody = data != null ? new StringContent(JsonSerializer.Serialize(data),
+            Encoding.UTF8,
+            "application/json") : null;
+        options ??= new Dictionary<string, string>();
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"{BaseUrl}/{path}?{GetOptionsString(options)}");
+
+        if (authRequire)
+            request.Headers.Add("Authorization", AuthToken.AuthToken);
+
+        request.Content = requestBody;
+
+        var response = await HttpClient.SendAsync(request);
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
+
+        if (response.StatusCode == statusCode)
+        {
+            return JsonSerializer.Deserialize<T>(jsonResponse);
+        }
+
+        var err = JsonSerializer.Deserialize<HttpErrorResponse>(jsonResponse);
+        throw new HttpError(statusCode, err);
+    }
+
     /// <summary>
     /// Method for Http Get requests
     /// </summary>
@@ -117,8 +194,7 @@ public class HttpError : Exception
     /// <param name="errorResponse">Error description from server answer.</param>
     public HttpError(HttpStatusCode statusCode, HttpErrorResponse? errorResponse)
         : base(errorResponse != null ?
-            errorResponse.verbose_message != null
-                ? errorResponse.verbose_message : errorResponse.error_message
+            errorResponse.verbose_message ?? errorResponse.error_message
             : "Не возможно десеализировать ответ")
     {
         StatusCode = statusCode;
@@ -137,6 +213,19 @@ public class HttpError : Exception
 
 public class HttpErrorResponse
 {
-    public string error_message { get; set; }
-    public string? verbose_message { get; set; } = null;
+    public string error { get; init; }
+
+    public string error_message
+    {
+        get
+        {
+            return error;
+        }
+        init
+        {
+            error = value;
+        }
+    }
+
+    public string? verbose_message { get; init; }
 }

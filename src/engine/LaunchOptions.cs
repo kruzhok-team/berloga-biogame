@@ -39,7 +39,7 @@ public static class LaunchOptions
 
     private static bool ReadDisableVideo()
     {
-        bool value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.DISABLE_VIDEOS_LAUNCH_OPTION);
+        var value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.DISABLE_VIDEOS_LAUNCH_OPTION);
 
         if (value)
             GD.Print("Videos are disabled with a command line option");
@@ -49,7 +49,7 @@ public static class LaunchOptions
 
     private static bool ReadLaunchedThroughLauncher()
     {
-        bool value =
+        var value =
             GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.OPENED_THROUGH_LAUNCHER_OPTION);
 
         if (value)
@@ -60,7 +60,7 @@ public static class LaunchOptions
 
     private static bool ReadSkipCPUCheck()
     {
-        bool value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.SKIP_CPU_CHECK_OPTION);
+        var value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.SKIP_CPU_CHECK_OPTION);
 
         if (value)
             GD.Print("CPU feature check is disabled with a command line option");
@@ -70,7 +70,7 @@ public static class LaunchOptions
 
     private static bool ReadDisableAvx()
     {
-        bool value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.DISABLE_CPU_AVX_OPTION);
+        var value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.DISABLE_CPU_AVX_OPTION);
 
         if (value)
             GD.Print("AVX CPU feature usage is disabled with a command line option");
@@ -80,7 +80,7 @@ public static class LaunchOptions
 
     private static bool ReadLaunchingLauncherIsHidden()
     {
-        bool value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.OPENING_LAUNCHER_IS_HIDDEN);
+        var value = GodotLaunchOptions.Value.Any(o => o == ThriveLauncherSharedConstants.OPENING_LAUNCHER_IS_HIDDEN);
 
         if (value)
             GD.Print("Launcher opening us is hidden");

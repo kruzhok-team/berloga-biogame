@@ -190,7 +190,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 multicellularGrowth.GetCompoundsNeededForNextCell(speciesData.Species);
         }
 
-        bool stillNeedsSomething = false;
+        var stillNeedsSomething = false;
 
         ref var microbeStatus = ref entity.Get<MicrobeStatus>();
         microbeStatus.ConsumeReproductionCompoundsReverse = !microbeStatus.ConsumeReproductionCompoundsReverse;
@@ -206,7 +206,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
 
             float usedAmount = 0;
 
-            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+            var allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
 
             if (remainingFreeCompounds > 0)
             {
@@ -242,7 +242,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 multicellularGrowth.CompoundsNeededForNextCell[entry.Key] = left;
             }
 
-            multicellularGrowth.CompoundsUsedForMulticellularGrowth!.TryGetValue(entry.Key, out float alreadyUsed);
+            multicellularGrowth.CompoundsUsedForMulticellularGrowth!.TryGetValue(entry.Key, out var alreadyUsed);
 
             multicellularGrowth.CompoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + usedAmount;
 

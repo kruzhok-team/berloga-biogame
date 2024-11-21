@@ -261,7 +261,7 @@ public class CustomImmediateMesh : IDisposable
 
     private T[] GetTemporaryCopy<T>(List<T> sourceData, ref T[]? tempStorage)
     {
-        int size = sourceData.Count;
+        var size = sourceData.Count;
 
         // TODO: somehow try to figure out how the temporary storage can be more efficiently reused
         if (tempStorage == null || size != tempStorage.Length)

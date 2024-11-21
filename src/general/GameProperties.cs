@@ -164,7 +164,7 @@ public class GameProperties
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        for (int r = 0; r > -1000; --r)
+        for (var r = 0; r > -1000; --r)
         {
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
@@ -268,7 +268,7 @@ public class GameProperties
     /// </summary>
     public bool IsBoolSet(string key)
     {
-        setBoolStatuses.TryGetValue(key, out bool boolean);
+        setBoolStatuses.TryGetValue(key, out var boolean);
         return boolean;
     }
 
@@ -360,7 +360,7 @@ public class GameProperties
 
         var type = species.CellTypes.First();
 
-        int columns = 3;
+        var columns = 3;
 
         var inEachColumn = Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC / columns;
 
@@ -374,12 +374,12 @@ public class GameProperties
         {
             var columnStart = startHex + new Hex(columnDirection, 0);
 
-            bool placed = false;
+            var placed = false;
 
             // Find where we can place the first cell in this column
             while (!placed)
             {
-                bool breakInnerLoop = false;
+                var breakInnerLoop = false;
 
                 while (!placed)
                 {
@@ -405,9 +405,9 @@ public class GameProperties
                 columnStart -= new Hex(0, -1);
             }
 
-            int columnCellsLeft = inEachColumn - 1;
+            var columnCellsLeft = inEachColumn - 1;
 
-            for (int distance = 0; distance < 10000; ++distance)
+            for (var distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
                 if (species.Cells.CanPlace(template, workMemory1, workMemory2))
@@ -426,7 +426,7 @@ public class GameProperties
         {
             var direction = new Vector2(0, -1);
 
-            for (int distance = 1; distance < 1000; ++distance)
+            for (var distance = 1; distance < 1000; ++distance)
             {
                 var finalPos = direction * distance;
                 var template = new CellTemplate(type,
@@ -467,7 +467,7 @@ public class GameProperties
         };
 
         // Start at a slightly positive value to put the brain above
-        for (float y = 0.6f; y < 100; y += 0.34f)
+        for (var y = 0.6f; y < 100; y += 0.34f)
         {
             for (float radius = 0; radius < 5; radius += 0.5f)
             {
@@ -507,7 +507,7 @@ public class GameProperties
     private void ApplyDescensionPerks()
     {
         // TODO: implement the other perks
-        float osmoregulationMultiplier = MathF.Pow(0.8f, AscensionCounter);
+        var osmoregulationMultiplier = MathF.Pow(0.8f, AscensionCounter);
 
         // Need to ensure the world has a custom difficulty we can modify here
         var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();

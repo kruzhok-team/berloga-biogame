@@ -31,7 +31,7 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
 
         ref var control = ref entity.Get<MicrobeControl>();
 
-        bool wantsMucocyst = control.State == MicrobeState.MucocystShield;
+        var wantsMucocyst = control.State == MicrobeState.MucocystShield;
 
         // Skip processing if already in correct state (and not currently using mucocyst which has an upkeep cost)
         if (control.MucocystEffectsApplied == wantsMucocyst && !control.MucocystEffectsApplied)

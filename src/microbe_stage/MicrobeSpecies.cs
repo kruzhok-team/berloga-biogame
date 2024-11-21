@@ -93,8 +93,8 @@ public class MicrobeSpecies : Species, ICellDefinition
 
             // Need to do the calculation this way to avoid extra memory allocations
             var organelles = Organelles.Organelles;
-            int count = organelles.Count;
-            for (int i = 0; i < count; ++i)
+            var count = organelles.Count;
+            for (var i = 0; i < count; ++i)
             {
                 raw += organelles[i].Definition.HexCount;
             }
@@ -175,7 +175,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         var glucose = simulationParameters.GetCompound("glucose");
         var atp = simulationParameters.GetCompound("atp");
-        bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
+        var giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
 
@@ -310,7 +310,7 @@ public class MicrobeSpecies : Species, ICellDefinition
         hash ^= MembraneType.GetHashCode() * 5743 ^ MembraneRigidity.GetHashCode() * 5749 ^
             (IsBacteria ? 1 : 0) * 5779 ^ Organelles.Count * 131;
 
-        int counter = 0;
+        var counter = 0;
 
         foreach (var organelle in Organelles)
         {

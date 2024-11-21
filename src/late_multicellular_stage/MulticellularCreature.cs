@@ -410,7 +410,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     {
         if (target.CanBeCarried)
         {
-            bool full = !FitsInCarryingCapacity(target);
+            var full = !FitsInCarryingCapacity(target);
             yield return (InteractionType.Pickup, !full,
                 full ? Localization.Translate("INTERACTION_PICK_UP_CANNOT_FULL") : null);
         }
@@ -444,7 +444,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
         if (target is IAcceptsResourceDeposit { DepositActionAllowed: true } deposit)
         {
-            bool takesItems = deposit.GetWantedItems(this) != null;
+            var takesItems = deposit.GetWantedItems(this) != null;
 
             yield return (InteractionType.DepositResources, takesItems,
                 takesItems ?
@@ -454,7 +454,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
         if (target is IConstructable { Completed: false } constructable)
         {
-            bool canBeBuilt = constructable.HasRequiredResourcesToConstruct;
+            var canBeBuilt = constructable.HasRequiredResourcesToConstruct;
 
             yield return (InteractionType.Construct, canBeBuilt,
                 canBeBuilt ?

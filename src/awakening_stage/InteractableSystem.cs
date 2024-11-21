@@ -115,14 +115,14 @@ public partial class InteractableSystem : Control
         var thresholdSquared = Constants.INTERACTION_DEFAULT_VISIBILITY_DISTANCE *
             Constants.INTERACTION_DEFAULT_VISIBILITY_DISTANCE;
 
-        int nextPromptIndex = 0;
+        var nextPromptIndex = 0;
 
         foreach (var createdPrompt in createdKeyPromptButtons)
         {
             createdPrompt.Marked = false;
         }
 
-        foreach (Node node in nodes)
+        foreach (var node in nodes)
         {
             if (node is not IInteractableEntity interactable)
             {

@@ -102,8 +102,8 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         playingSoundCount = 0;
 
         // First check the status of any sound players to detect when some end playing, and handle looping
-        int positionalCount = usedPositionalPlayers.Count;
-        for (int i = 0; i < positionalCount; ++i)
+        var positionalCount = usedPositionalPlayers.Count;
+        for (var i = 0; i < positionalCount; ++i)
         {
             var playerWrapper = usedPositionalPlayers[i];
             if (playerWrapper.Player.Playing)
@@ -136,8 +136,8 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
             }
         }
 
-        int nonPositionalCount = used2DPlayers.Count;
-        for (int i = 0; i < nonPositionalCount; ++i)
+        var nonPositionalCount = used2DPlayers.Count;
+        for (var i = 0; i < nonPositionalCount; ++i)
         {
             var playerWrapper = used2DPlayers[i];
             if (playerWrapper.Player.Playing)
@@ -232,7 +232,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         {
             var count = slots.Length;
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -247,7 +247,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
             // If no exact match, do a partial match to report the player is no longer associated with the
             // sound slot
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -288,9 +288,9 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
                 continue;
             }
 
-            bool play2D = soundEffectPlayer.AutoDetectPlayer && entity.Has<SoundListener>();
+            var play2D = soundEffectPlayer.AutoDetectPlayer && entity.Has<SoundListener>();
 
-            bool skippedSomething = false;
+            var skippedSomething = false;
 
             // Slots are locked so that they aren't modified while this system runs. If any systems modify the
             // sounds after this system, then that sound will be picked up on next sound update
@@ -299,9 +299,9 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
                 // The slots are intentionally left unlocked as if sound effects are modified while this system
                 // runs it would lead to sometimes unexpected results
 
-                int slotCount = slots.Length;
+                var slotCount = slots.Length;
 
-                for (int i = 0; i < slotCount; ++i)
+                for (var i = 0; i < slotCount; ++i)
                 {
                     ref var slot = ref slots[i];
 
@@ -325,7 +325,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
                     {
                         // This slot wants to play a sound
 
-                        bool startNew = slot.InternalPlayingState == 0;
+                        var startNew = slot.InternalPlayingState == 0;
 
                         if (!startNew)
                         {

@@ -39,7 +39,7 @@ public class MigrateSpecies : IRunStep
 
         // To limit species migrations to the actual limit, we need to pick random patches to try to migrate from
         // to ensure all patches have a chance to eventually send some population
-        int attemptsLeft = worldSettings.AutoEvoConfiguration.MoveAttemptsPerSpecies;
+        var attemptsLeft = worldSettings.AutoEvoConfiguration.MoveAttemptsPerSpecies;
 
         var sourcePatches = new List<Patch>();
 

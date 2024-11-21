@@ -100,7 +100,7 @@ public class SlimeJetComponent : IOrganelleComponent
 
     public Vector3 GetDirection()
     {
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
             delta = CellPropertiesHelpers.DefaultVisualPos;
@@ -118,7 +118,7 @@ public class SlimeJetComponent : IOrganelleComponent
         // Scale total added force by the amount ejected
         // TODO: this used to be divided by "microbe.MassFromOrganelles" make sure this force still makes sense (and
         // considering the new physics engine)
-        float force = Constants.MUCILAGE_JET_FACTOR * slimeAmount;
+        var force = Constants.MUCILAGE_JET_FACTOR * slimeAmount;
 
         var direction = GetDirection();
 

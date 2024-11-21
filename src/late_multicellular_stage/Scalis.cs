@@ -39,7 +39,7 @@ public class Scalis : IMeshGeneratingFunction
     {
         points = new MulticellularMetaball[metaballs.Count];
 
-        int i = 0;
+        var i = 0;
 
         foreach (var point in metaballs)
         {
@@ -57,7 +57,7 @@ public class Scalis : IMeshGeneratingFunction
             if (pointParent == null)
                 continue;
 
-            float maxDistanceFromCenter = (point.Position - pointParent.Position).Length() * 0.5f
+            var maxDistanceFromCenter = (point.Position - pointParent.Position).Length() * 0.5f
                 + point.Radius + pointParent.Radius;
             maxDistanceFromCenter *= CutoffPointMultiplier;
 
@@ -81,20 +81,20 @@ public class Scalis : IMeshGeneratingFunction
         const float sigma = 1.0f;
         const float inverseSigma = 1 / sigma;
 
-        float value = 0.0f;
+        var value = 0.0f;
 
         pos *= inverseSigma;
 
         const int i = 3;
 
-        for (int j = 0; j < points.Length; ++j)
+        for (var j = 0; j < points.Length; ++j)
         {
             var point = points[j];
 
             if (point.Parent == null && points.Length > 1)
                 continue;
 
-            float aRadius = point.Radius;
+            var aRadius = point.Radius;
             float bRadius;
 
             if (points.Length == 1)
@@ -106,7 +106,7 @@ public class Scalis : IMeshGeneratingFunction
                 bRadius = point.Parent!.Radius;
             }
 
-            Vector3 a = point.Position * inverseSigma;
+            var a = point.Position * inverseSigma;
             Vector3 b;
 
             if (points.Length == 1)
@@ -125,8 +125,8 @@ public class Scalis : IMeshGeneratingFunction
                 continue;
             }
 
-            float tau0 = aRadius > bRadius ? bRadius : aRadius;
-            float deltaTau = MathF.Abs(aRadius - bRadius);
+            var tau0 = aRadius > bRadius ? bRadius : aRadius;
+            var deltaTau = MathF.Abs(aRadius - bRadius);
 
             if (aRadius > bRadius)
             {
@@ -136,7 +136,7 @@ public class Scalis : IMeshGeneratingFunction
             // Since "i" is always 3, we can cut down on some calculations and make static coeff array
             // var coeff = BinomialExpansion(i - 1);
 
-            for (int k = 0; k < Coefficients.Length; ++k)
+            for (var k = 0; k < Coefficients.Length; ++k)
             {
                 value += Coefficients[k] * MathF.Pow(deltaTau, k) * MathF.Pow(tau0, i - k - 1)
                     * Convolution(k, i, a, b, pos);
@@ -151,20 +151,20 @@ public class Scalis : IMeshGeneratingFunction
         if (points.Length == 1)
             return points[0].Colour;
 
-        Color colourSum = Colors.Black;
+        var colourSum = Colors.Black;
 
-        float contributionSum = 0.0f;
+        var contributionSum = 0.0f;
 
         foreach (var point in points)
         {
             if (point.Parent == null)
                 continue;
 
-            float abDistanceSquared = point.Position.DistanceSquaredTo(point.Parent.Position);
+            var abDistanceSquared = point.Position.DistanceSquaredTo(point.Parent.Position);
 
-            Vector3 linePos = ClosestPoint(pos, point.Position, point.Parent.Position);
+            var linePos = ClosestPoint(pos, point.Position, point.Parent.Position);
 
-            float contribution = 1.0f / linePos.DistanceSquaredTo(pos);
+            var contribution = 1.0f / linePos.DistanceSquaredTo(pos);
 
             contributionSum += contribution;
 
@@ -205,12 +205,12 @@ public class Scalis : IMeshGeneratingFunction
         var ab = b - a;
         var ap = pos - a;
 
-        float cos = ab.Dot(ap) / MathF.Sqrt(ab.LengthSquared() * ap.LengthSquared());
+        var cos = ab.Dot(ap) / MathF.Sqrt(ab.LengthSquared() * ap.LengthSquared());
 
         if (cos < 0)
             return a;
 
-        Vector3 linePos = a + ab.Normalized() * cos * ap.Length();
+        var linePos = a + ab.Normalized() * cos * ap.Length();
 
         if ((linePos - a).LengthSquared() > ab.LengthSquared())
             return b;
@@ -220,7 +220,7 @@ public class Scalis : IMeshGeneratingFunction
 
     private float Convolution(int k, int i, Vector3 pointA, Vector3 pointB, Vector3 pointP)
     {
-        float discriminant = pointA.DistanceSquaredTo(pointB) * pointA.DistanceSquaredTo(pointP)
+        var discriminant = pointA.DistanceSquaredTo(pointB) * pointA.DistanceSquaredTo(pointP)
             - MathF.Pow((pointB - pointA).Dot(pointP - pointA), 2.0f);
         if (discriminant <= 0)
         {

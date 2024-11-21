@@ -423,7 +423,7 @@ public partial class SaveListItem : PanelContainer
             if (Save!.Screenshot != null)
             {
                 // Rescale the screenshot to save memory etc.
-                float aspectRatio = Save.Screenshot.GetWidth() / (float)Save.Screenshot.GetHeight();
+                var aspectRatio = Save.Screenshot.GetWidth() / (float)Save.Screenshot.GetHeight();
 
                 if (Save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
                 {

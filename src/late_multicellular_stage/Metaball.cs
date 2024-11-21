@@ -99,7 +99,7 @@ public abstract class Metaball
         precomputedDirection ??=
             DirectionToParent() ?? throw new Exception("direction to parent should have returned a value");
 
-        float wantedDistance = Parent.Radius + Radius;
+        var wantedDistance = Parent.Radius + Radius;
 
         var offset = precomputedDirection.Value * wantedDistance;
 

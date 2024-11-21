@@ -121,7 +121,7 @@ public partial class SaveList : ScrollContainer
 
     public override void _Process(double delta)
     {
-        bool isCurrentlyVisible = IsVisibleInTree();
+        var isCurrentlyVisible = IsVisibleInTree();
 
         if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
                 (AutoRefreshOnBecomingVisible && !wasVisible)))

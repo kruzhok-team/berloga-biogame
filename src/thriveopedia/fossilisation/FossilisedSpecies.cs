@@ -202,7 +202,7 @@ public class FossilisedSpecies
 
         if (previewImage != null)
         {
-            byte[] data = previewImage.SavePngToBuffer();
+            var data = previewImage.SavePngToBuffer();
 
             if (data.Length > 0)
                 TarHelper.OutputEntry(tar, SAVE_PREVIEW_IMAGE, data);

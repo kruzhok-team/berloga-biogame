@@ -31,7 +31,7 @@ public class PatchMapNameGenerator : IRegistryType
     {
         random ??= new XoShiRo128starstar();
 
-        int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
+        var nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)
         {
             if (random.Next() % 2 == 0)
@@ -42,9 +42,9 @@ public class PatchMapNameGenerator : IRegistryType
         int suffixIndex;
 
         // Construct the word with syllables
-        for (int i = 0; i < nameLength; ++i)
+        for (var i = 0; i < nameLength; ++i)
         {
-            int syllablesIndex = random.Next(0, syllables.Count);
+            var syllablesIndex = random.Next(0, syllables.Count);
 
             // First letter is upper case
             name.Append(syllables[syllablesIndex]);

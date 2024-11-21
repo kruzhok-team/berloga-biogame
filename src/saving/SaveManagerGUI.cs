@@ -257,9 +257,9 @@ public partial class SaveManagerGUI : Control
 
     private void DeleteOldButtonPressed()
     {
-        int autoSavesToDeleteCount = Math.Max(currentAutoSaveCount - 1, 0);
-        int quickSavesToDeleteCount = Math.Max(currentQuickSaveCount - 1, 0);
-        int oldBackupsToDeleteCount = Math.Max(currentBackupCount, 0);
+        var autoSavesToDeleteCount = Math.Max(currentAutoSaveCount - 1, 0);
+        var quickSavesToDeleteCount = Math.Max(currentQuickSaveCount - 1, 0);
+        var oldBackupsToDeleteCount = Math.Max(currentBackupCount, 0);
 
         deleteOldConfirmDialog.DialogText = Localization.Translate("DELETE_ALL_OLD_SAVE_WARNING_2").FormatSafe(
             autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
@@ -290,7 +290,7 @@ public partial class SaveManagerGUI : Control
 
     private void OnConfirmDeleteOld()
     {
-        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.AutoSaveRegex));
+        var message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.AutoSaveRegex));
 
         if (message.Length > 0)
             message += ", ";

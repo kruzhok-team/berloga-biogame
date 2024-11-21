@@ -53,7 +53,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         // Check for active collisions that count as a hit and use up this projectile
         var count = collisions.GetActiveCollisions(out var activeCollisions);
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref activeCollisions![i];
 

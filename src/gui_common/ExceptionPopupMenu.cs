@@ -37,9 +37,10 @@ public partial class ExceptionPopupMenu : TopLevelContainer
     /// This method calculates the size of the panel and positions the popup accordingly.
     /// </summary>
     /// <param name="exceptionText">Text that will be inserted into the body of the popup menu</param>
-    public void OpenException(string exceptionText){
+    public void OpenException(string exceptionText)
+    {
         bodyLabel.Text = $"Произошла ошибка:{exceptionText}\n Пожалуйста, попробуйте еще раз позже";
-        Vector2 panelSize = panelContainer.GetCombinedMinimumSize();
+        var panelSize = panelContainer.GetCombinedMinimumSize();
         OpenCentered(true, new Vector2(panelSize.X, panelSize.Y));
     }
 
@@ -55,7 +56,8 @@ public partial class ExceptionPopupMenu : TopLevelContainer
     /// Event handler for the button pressed signal. Closes the popup when the button is clicked.
     /// <see cref="TopLevelContainer.Close"/>
     /// </summary>
-    private void OnButtonPressed(){
+    private void OnButtonPressed()
+    {
         Close();
     }
 
@@ -63,15 +65,20 @@ public partial class ExceptionPopupMenu : TopLevelContainer
     /// Disposes of the resources used by this instance of the popup
     /// and releases references to nodes when the popup is no longer needed.
     /// </summary>
-    protected override void Dispose(bool disposing){
-        if(disposing){
-            if(BodyLabelPath != null){
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BodyLabelPath != null)
+            {
                 BodyLabelPath.Dispose();
             }
-            if(PanelContainerPath != null){
+            if (PanelContainerPath != null)
+            {
                 PanelContainerPath.Dispose();
             }
-            if(ButtonPath != null){
+            if (ButtonPath != null)
+            {
                 ButtonPath.Dispose();
             }
         }

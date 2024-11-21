@@ -78,25 +78,25 @@ public partial class ResourceManager : Node
         if (preparingBackgroundResource?.LoadingPrepared == true)
             preparingBackgroundResource = null;
 
-        bool hasThingsInQueue = processingResources.Count > 0;
+        var hasThingsInQueue = processingResources.Count > 0;
 
         // Ensures at least something gets loaded
-        bool progressedLoading = false;
+        var progressedLoading = false;
 
         while (true)
         {
-            float timeRemaining = (float)(originalBudget - timeTracker.Elapsed).TotalSeconds;
+            var timeRemaining = (float)(originalBudget - timeTracker.Elapsed).TotalSeconds;
 
             if (timeRemaining <= 0)
                 break;
 
             if (hasThingsInQueue)
             {
-                bool didSomething = false;
+                var didSomething = false;
 
-                int count = processingResources.Count;
+                var count = processingResources.Count;
 
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     var resource = processingResources[i];
 

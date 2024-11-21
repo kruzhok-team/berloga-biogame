@@ -53,9 +53,9 @@ public class MembraneShapeGenerator
     {
         // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
         // Half the side length of the original square that is compressed to make the membrane.
-        int cellDimensions = 10;
+        var cellDimensions = 10;
 
-        for (int i = 0; i < hexCount; ++i)
+        for (var i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
             if (MathF.Abs(pos.X) + 1 > cellDimensions)
@@ -77,25 +77,25 @@ public class MembraneShapeGenerator
         // Integer divides are intentional here
         // ReSharper disable PossibleLossOfFraction
 
-        for (int i = MembraneResolution; i > 0; i--)
+        for (var i = MembraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(-cellDimensions,
                 cellDimensions - 2 * cellDimensions / MembraneResolution * i));
         }
 
-        for (int i = MembraneResolution; i > 0; i--)
+        for (var i = MembraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(cellDimensions - 2 * cellDimensions / MembraneResolution * i,
                 cellDimensions));
         }
 
-        for (int i = MembraneResolution; i > 0; i--)
+        for (var i = MembraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(cellDimensions,
                 -cellDimensions + 2 * cellDimensions / MembraneResolution * i));
         }
 
-        for (int i = MembraneResolution; i > 0; i--)
+        for (var i = MembraneResolution; i > 0; i--)
         {
             startingBuffer.Add(new Vector2(-cellDimensions + 2 * cellDimensions / MembraneResolution * i,
                 -cellDimensions));
@@ -148,8 +148,8 @@ public class MembraneShapeGenerator
         Vector3[] vertices, Vector2[] uvs, MembraneType membraneType)
     {
         // common variables
-        float height = 0.1f;
-        float multiplier = 2.0f * MathF.PI;
+        var height = 0.1f;
+        var multiplier = 2.0f * MathF.PI;
         var center = new Vector2(0.5f, 0.5f);
 
         // cell walls need obvious inner/outer membranes (we can worry
@@ -168,7 +168,7 @@ public class MembraneShapeGenerator
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.
 
-            float currentRadians = multiplier * i / end;
+            var currentRadians = multiplier * i / end;
 
             var sourceVertex = vertices2D[i % end];
             vertices[writeIndex] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
@@ -187,13 +187,13 @@ public class MembraneShapeGenerator
     /// </summary>
     private static Vector2 FindClosestOrganelleHex(Vector2[] hexPositions, int hexCount, Vector2 target)
     {
-        float closestDistanceSoFar = float.MaxValue;
-        Vector2 closest = new Vector2(0.0f, 0.0f);
+        var closestDistanceSoFar = float.MaxValue;
+        var closest = new Vector2(0.0f, 0.0f);
 
-        for (int i = 0; i < hexCount; ++i)
+        for (var i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-            float lenToObject = (target - pos).LengthSquared();
+            var lenToObject = (target - pos).LengthSquared();
 
             if (lenToObject < closestDistanceSoFar)
             {
@@ -223,9 +223,9 @@ public class MembraneShapeGenerator
 
         // Index mapping to build all triangles
         var indices = new int[indexSize];
-        int currentVertexIndex = 1;
+        var currentVertexIndex = 1;
 
-        for (int i = 0; i < indexSize; i += 3)
+        for (var i = 0; i < indexSize; i += 3)
         {
             indices[i] = 0;
             indices[i + 1] = currentVertexIndex + 1;
@@ -238,7 +238,7 @@ public class MembraneShapeGenerator
         var vertices = new Vector3[bufferSize];
         var uvs = new Vector2[bufferSize];
 
-        int writeIndex = 0;
+        var writeIndex = 0;
         writeIndex = InitializeCorrectMembrane(vertices2D, vertexCount, writeIndex, vertices, uvs, membraneType);
 
         if (writeIndex != bufferSize)
@@ -288,7 +288,7 @@ public class MembraneShapeGenerator
         var vertices = new Vector3[trueVertexCount];
         var uvs = new Vector2[trueVertexCount];
 
-        for (int i = 0; i < vertexCount; ++i)
+        for (var i = 0; i < vertexCount; ++i)
         {
             var index = i * 2;
 
@@ -297,7 +297,7 @@ public class MembraneShapeGenerator
             var sourceVertex = vertices2D[vertexCount - i - 1];
             var extrudeDir = sourceVertex - center;
 
-            Vector2 extrudedVertex = sourceVertex + extrudeDir *
+            var extrudedVertex = sourceVertex + extrudeDir *
                 Constants.MEMBRANE_ENGULF_ANIMATION_DISTANCE;
 
             indices[index] = index;
@@ -351,7 +351,7 @@ public class MembraneShapeGenerator
             startingBuffer[i] = closestOrganelle + movement;
         }
 
-        float circumference = 0.0f;
+        var circumference = 0.0f;
 
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
@@ -364,16 +364,16 @@ public class MembraneShapeGenerator
 
         vertices2D.Add(lastAddedPoint);
 
-        float gap = circumference / startingBuffer.Count;
-        float distanceToLastAddedPoint = 0.0f;
-        float distanceToLastPassedPoint = 0.0f;
+        var gap = circumference / startingBuffer.Count;
+        var distanceToLastAddedPoint = 0.0f;
+        var distanceToLastPassedPoint = 0.0f;
 
         // Go around the membrane and place points evenly in the target buffer.
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
         {
             var currentPoint = startingBuffer[i];
             var nextPoint = startingBuffer[(i + 1) % end];
-            float distance = (nextPoint - currentPoint).Length();
+            var distance = (nextPoint - currentPoint).Length();
 
             // Add a new point if the next point is too far
             if (distance + distanceToLastAddedPoint - distanceToLastPassedPoint > gap)
@@ -399,13 +399,13 @@ public class MembraneShapeGenerator
             }
         }
 
-        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
+        var waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
 
-        float heightMultiplier = membraneType.CellWall ?
+        var heightMultiplier = membraneType.CellWall ?
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
 
-        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+        var waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
             * heightMultiplier;
 
         // Make the membrane wavier

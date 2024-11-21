@@ -57,10 +57,10 @@ public class ProcessStatistics
                     temporaryRemovedItems.Add(entry.Key);
             }
 
-            int count = temporaryRemovedItems.Count;
+            var count = temporaryRemovedItems.Count;
             if (count > 0)
             {
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     if (!Processes.Remove(temporaryRemovedItems[i]))
                         GD.PrintErr("Failed to remove item from ProcessStatistics");
@@ -170,7 +170,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         if (snapshots.Count < 1)
             return computedStatistics;
 
-        int entriesProcessed = 0;
+        var entriesProcessed = 0;
 
         float totalSpeed = 0;
         computedStatistics.WritableInputs.Clear();
@@ -196,7 +196,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
 
         // TODO: probably want to come up with a better way for averaging this
-        int limitorCutoff = entriesProcessed / 2;
+        var limitorCutoff = entriesProcessed / 2;
 
         // It is assumed that the updates have happened at pretty consistent intervals. So we do a rough average
         // based on the entry count. If we wanted to get fancy we could take the delta in each snapshot into account
@@ -225,7 +225,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         float seenTime = 0;
 
         // Remove statistics that are outside the keep time
-        for (int i = snapshots.Count - 1; i >= 0; --i)
+        for (var i = snapshots.Count - 1; i >= 0; --i)
         {
             var current = snapshots[i];
 

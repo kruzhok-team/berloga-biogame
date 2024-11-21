@@ -198,7 +198,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     protected override void UpdateAbilitiesHotBar()
     {
         // This button is visible when the player is in the awakening stage
-        bool isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
+        var isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
         interactAction.Visible = isAwakened;
         inventoryButton.Visible = isAwakened;
         buildButton.Visible = isAwakened;
@@ -271,7 +271,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
             return;
         }
 
-        float brainPower = player.Species.BrainPower;
+        var brainPower = player.Species.BrainPower;
 
         // TODO: require being ready to reproduce? Or do we want the player first to play as an awakened creature
         // before getting to the editor where they can still make some changes?

@@ -95,7 +95,7 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        bool result = false;
+        var result = false;
 
         // Exact match is not used as doing things like holding down shift makes all inputs no longer work
         if (@event.IsActionPressed(InputName, false, false))

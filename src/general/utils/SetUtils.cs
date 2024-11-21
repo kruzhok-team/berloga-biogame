@@ -16,8 +16,8 @@ public static class SetUtils
         if (items == null || items.Count < 1)
             throw new ArgumentException("There must be at least one item", nameof(items));
 
-        int selectedIndex = random.Next(0, items.Count);
-        int index = 0;
+        var selectedIndex = random.Next(0, items.Count);
+        var index = 0;
 
         // This allocates an enumerator but that's probably the best way
         using var enumerator = items.GetEnumerator();

@@ -12,7 +12,7 @@ public static class CraftingHelpers
 
         foreach (var producedTuple in recipe.ProducesEquipment)
         {
-            for (int i = 0; i < producedTuple.Value; ++i)
+            for (var i = 0; i < producedTuple.Value; ++i)
             {
                 result.Add(SpawnHelpers.CreateEquipmentEntity(producedTuple.Key));
             }

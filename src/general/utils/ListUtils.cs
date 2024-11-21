@@ -51,10 +51,10 @@ public static class ListUtils
     /// </summary>
     public static void Shuffle<T>(this IList<T> list, Random random)
     {
-        int length = list.Count;
-        for (int i = 0; i < length - 1; ++i)
+        var length = list.Count;
+        for (var i = 0; i < length - 1; ++i)
         {
-            int j = random.Next(i, length);
+            var j = random.Next(i, length);
 
             (list[i], list[j]) = (list[j], list[i]);
         }
@@ -75,9 +75,9 @@ public static class ListUtils
     /// <returns>The matched index or -1 if not found</returns>
     public static int FindIndex<T>(this IReadOnlyList<T> list, Predicate<T> match)
     {
-        int length = list.Count;
+        var length = list.Count;
 
-        for (int i = 0; i < length; ++i)
+        for (var i = 0; i < length; ++i)
         {
             if (match.Invoke(list[i]))
                 return i;
@@ -126,7 +126,7 @@ public static class ListUtils
         var closest = values[0];
         var closestDistance = Math.Abs(valueToSearchFor - closest);
 
-        for (int i = 1; i < values.Length; ++i)
+        for (var i = 1; i < values.Length; ++i)
         {
             var distance = Math.Abs(valueToSearchFor - values[i]);
 

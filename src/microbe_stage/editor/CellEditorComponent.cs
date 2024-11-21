@@ -523,7 +523,7 @@ public partial class CellEditorComponent :
     {
         get
         {
-            int result = 0;
+            var result = 0;
 
             foreach (var organelle in editedMicrobeOrganelles.Organelles)
             {
@@ -611,7 +611,7 @@ public partial class CellEditorComponent :
         }
 
         // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
-        bool first = true;
+        var first = true;
 
         foreach (var shaderMaterial in temporaryDataHolder)
         {
@@ -851,7 +851,7 @@ public partial class CellEditorComponent :
         // Show the organelle that is about to be placed
         if (Editor.ShowHover && !MicrobePreviewMode)
         {
-            GetMouseHex(out int q, out int r);
+            GetMouseHex(out var q, out var r);
 
             OrganelleDefinition? shownOrganelle = null;
 
@@ -1183,7 +1183,7 @@ public partial class CellEditorComponent :
 
     public void OnRigidityChanged(int desiredRigidity)
     {
-        int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        var previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (CanCancelAction)
         {
@@ -1195,7 +1195,7 @@ public partial class CellEditorComponent :
         if (previousRigidity == desiredRigidity)
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+        var costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
         {
@@ -1206,7 +1206,7 @@ public partial class CellEditorComponent :
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            var stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
@@ -1238,7 +1238,7 @@ public partial class CellEditorComponent :
             return true;
         }
 
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
         // This is a list to preserve order, Distinct is used later to ensure no duplicate organelles are added
         var organelles = new List<OrganelleTemplate>();
@@ -1418,7 +1418,7 @@ public partial class CellEditorComponent :
 
         // Update rigidity slider in case it was disabled
         // TODO: could come up with a bit nicer design here
-        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        var intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
         UpdateRigiditySlider(intRigidity);
     }
 
@@ -1675,7 +1675,7 @@ public partial class CellEditorComponent :
         var count = organelles.Count;
 
         // Disable delete for nucleus or the last organelle.
-        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        var attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
         if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
@@ -1897,7 +1897,7 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+        var moving = calculateBalancesWhenMoving.ButtonPressed;
 
         // TODO: pass moving variable
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, moving, true,
@@ -1961,7 +1961,7 @@ public partial class CellEditorComponent :
 
         ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
 
-        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+        var consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         foreach (var process in processes)
         {
@@ -1989,9 +1989,9 @@ public partial class CellEditorComponent :
         OrganelleUpgrades? upgrades)
     {
         RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
-            out bool hadDuplicate);
+            out var hadDuplicate);
 
-        bool showModel = !hadDuplicate;
+        var showModel = !hadDuplicate;
 
         // Model
         if (showModel && shownOrganelleDefinition.TryGetGraphicsScene(upgrades, out var modelInfo))
@@ -2019,7 +2019,7 @@ public partial class CellEditorComponent :
     /// <returns>True when at least one organelle got placed</returns>
     private bool AddOrganelle(string organelleType)
     {
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
         var placementActions = new List<EditorAction>();
 
@@ -2087,7 +2087,7 @@ public partial class CellEditorComponent :
 
     private bool IsValidPlacement(OrganelleTemplate organelle, bool allowOverwritingCytoplasm)
     {
-        bool notPlacingCytoplasm = organelle.Definition.InternalName != cytoplasm.InternalName;
+        var notPlacingCytoplasm = organelle.Definition.InternalName != cytoplasm.InternalName;
 
         if (!allowOverwritingCytoplasm)
             notPlacingCytoplasm = false;
@@ -2283,7 +2283,7 @@ public partial class CellEditorComponent :
         UpdateAlreadyPlacedHexes(editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
             Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islandResults, microbePreviewMode);
 
-        int nextFreeOrganelle = 0;
+        var nextFreeOrganelle = 0;
 
         foreach (var organelle in editedMicrobeOrganelles)
         {
@@ -2350,7 +2350,7 @@ public partial class CellEditorComponent :
 
     private void OnDeletePressed()
     {
-        int alreadyDeleted = 0;
+        var alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(organelleMenu.SelectedOrganelles
                 .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());

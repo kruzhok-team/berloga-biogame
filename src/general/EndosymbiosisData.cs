@@ -169,7 +169,7 @@ public class EndosymbiosisData
         if (StartedEndosymbiosis == inProgressDataToResume)
             return null;
 
-        bool removed = false;
+        var removed = false;
 
         if (Endosymbionts != null)
         {

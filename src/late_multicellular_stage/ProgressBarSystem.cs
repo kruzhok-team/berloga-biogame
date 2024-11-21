@@ -69,14 +69,14 @@ public partial class ProgressBarSystem : Control
         var thresholdSquared = Constants.WORLD_PROGRESS_BAR_MAX_DISTANCE *
             Constants.WORLD_PROGRESS_BAR_MAX_DISTANCE;
 
-        int nextBarIndex = 0;
+        var nextBarIndex = 0;
 
         foreach (var createdBar in createdProgressBars)
         {
             createdBar.Marked = false;
         }
 
-        foreach (Node node in nodes)
+        foreach (var node in nodes)
         {
             if (node is not IActionProgressSource progressSource)
             {

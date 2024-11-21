@@ -46,7 +46,7 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var patch = targetWorld.Map.Patches[key];
 
-            if (!patch.Biome.ChangeableCompounds.TryGetValue(glucose, out BiomeCompoundProperties glucoseValue))
+            if (!patch.Biome.ChangeableCompounds.TryGetValue(glucose, out var glucoseValue))
                 return;
 
             totalAmount += glucoseValue.Amount;

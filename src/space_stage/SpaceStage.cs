@@ -566,7 +566,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         var radiusSquared = Constants.SPACE_FLEET_SELECTION_RADIUS * Constants.SPACE_FLEET_SELECTION_RADIUS;
 
-        float bestDistance = float.MaxValue;
+        var bestDistance = float.MaxValue;
         SpaceFleet? bestFleet = null;
 
         foreach (var fleet in rootOfDynamicallySpawned.GetChildrenToProcess<SpaceFleet>(Constants

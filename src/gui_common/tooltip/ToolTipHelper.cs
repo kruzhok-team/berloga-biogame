@@ -57,7 +57,7 @@ public static class ToolTipHelper
 
     public static int GetDefaultToolTipCacheSize()
     {
-        int count = 0;
+        var count = 0;
 
         // Need to also count children to get an accurate count
         foreach (var toolTip in DefaultToolTipCache)

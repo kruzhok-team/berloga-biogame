@@ -218,7 +218,7 @@ public partial class InventoryScreen : ControlWithInput
     [RunOnKeyDown("ui_cancel")]
     public bool Close()
     {
-        bool closedSomething = false;
+        var closedSomething = false;
 
         if (groundPanelPopup.Visible)
         {
@@ -250,7 +250,7 @@ public partial class InventoryScreen : ControlWithInput
         objectsOnGround.Clear();
         objectsOnGround.AddRange(groundObjects);
 
-        int nextIndex = 0;
+        var nextIndex = 0;
 
         foreach (var objectOnGround in objectsOnGround)
         {
@@ -309,7 +309,7 @@ public partial class InventoryScreen : ControlWithInput
         }
 
         // Find the item to craft
-        InventorySlot? fromSlot = AllSlots.FirstOrDefault(s => s.Item == target);
+        var fromSlot = AllSlots.FirstOrDefault(s => s.Item == target);
 
         if (fromSlot == null)
         {
@@ -377,7 +377,7 @@ public partial class InventoryScreen : ControlWithInput
     {
         displayingInventoryOf = creature;
 
-        int nextIndex = 0;
+        var nextIndex = 0;
 
         foreach (var slotData in creature.ListInventoryContents())
         {
@@ -412,7 +412,7 @@ public partial class InventoryScreen : ControlWithInput
 
     private void SetEquipmentDataFrom(ICharacterInventory creature)
     {
-        int nextIndex = 0;
+        var nextIndex = 0;
 
         var areaSize = equipmentSlotParent.Size;
 
@@ -714,7 +714,7 @@ public partial class InventoryScreen : ControlWithInput
             // Moving an item to a transient slot needs to be specifically allowed here
             // Inspection disabled as it looks way more difficult to read that way
             // ReSharper disable once ReplaceWithSingleAssignment.True
-            bool isAllowed = true;
+            var isAllowed = true;
 
             if (to is { Transient: true, Item: { ShownAsGhostIn: not null } })
                 isAllowed = false;
@@ -1051,7 +1051,7 @@ public partial class InventoryScreen : ControlWithInput
 
     private void UpdateCraftingGUIState()
     {
-        bool hasCraftingResults = false;
+        var hasCraftingResults = false;
 
         foreach (var resultSlot in craftingResultSlots)
         {
@@ -1123,7 +1123,7 @@ public partial class InventoryScreen : ControlWithInput
             return;
         }
 
-        bool error = false;
+        var error = false;
 
         // All items found, now we can consume them
         foreach (var slot in slotsToConsumeFrom)
@@ -1173,7 +1173,7 @@ public partial class InventoryScreen : ControlWithInput
         EnsureCraftingResultHasEmptySlots(items.Count);
 
         // Then fill up the empty slots in sequence
-        int nextIndex = 0;
+        var nextIndex = 0;
         foreach (var item in items)
         {
             while (true)
@@ -1277,7 +1277,7 @@ public partial class InventoryScreen : ControlWithInput
     private void RefreshRecipesList()
     {
         shownAvailableRecipes.UnMarkAll();
-        bool sawSelected = false;
+        var sawSelected = false;
 
         if (craftingDataSource != null)
         {
@@ -1376,7 +1376,7 @@ public partial class InventoryScreen : ControlWithInput
     /// <returns>True when crafting results are now empty, false if there wasn't enough space for the results</returns>
     private bool TakeAllCraftingResults()
     {
-        bool anyLeft = false;
+        var anyLeft = false;
 
         foreach (var slot in craftingResultSlots)
         {
@@ -1411,7 +1411,7 @@ public partial class InventoryScreen : ControlWithInput
 
     private bool ClearCraftingInputs()
     {
-        bool anyLeft = false;
+        var anyLeft = false;
 
         // Move crafting inputs back to the slots they are from originally
         foreach (var slot in craftingSlots)

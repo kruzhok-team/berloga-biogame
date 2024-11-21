@@ -248,12 +248,12 @@ public static class EngulfableHelpers
 
         spatial.VisualScale = engulfable.OriginalScale;
 
-        bool alreadyDeathProcessed = false;
+        var alreadyDeathProcessed = false;
 
         if (entity.Has<Health>())
             alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
 
-        bool hasCellProperties = entity.Has<CellProperties>();
+        var hasCellProperties = entity.Has<CellProperties>();
 
         if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
         {
@@ -379,7 +379,7 @@ public static class EngulfableHelpers
     {
         glucose ??= SimulationParameters.Instance.GetCompound("glucose");
 
-        result.TryGetValue(glucose, out float existingGlucose);
+        result.TryGetValue(glucose, out var existingGlucose);
 
         if (existingGlucose < 0)
         {
@@ -407,7 +407,7 @@ public static class EngulfableHelpers
                 if (!entry.Key.Digestible)
                     continue;
 
-                result.TryGetValue(entry.Key, out float existing);
+                result.TryGetValue(entry.Key, out var existing);
                 result[entry.Key] = existing + entry.Value;
             }
         }

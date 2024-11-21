@@ -152,7 +152,7 @@ public static class HealthHelpers
         //    return;
 
         // Damage reduction is only wanted for non-starving damage
-        bool canApplyDamageReduction = true;
+        var canApplyDamageReduction = true;
 
         if (damageSource is "toxin" or "oxytoxy" or "injectisome")
         {
@@ -213,7 +213,7 @@ public static class HealthHelpers
             return;
         }
 
-        float currentFraction = health.CurrentHealth / health.MaxHealth;
+        var currentFraction = health.CurrentHealth / health.MaxHealth;
 
         health.MaxHealth = newMaxHealth;
 

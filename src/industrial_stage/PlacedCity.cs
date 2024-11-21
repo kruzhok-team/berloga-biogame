@@ -181,7 +181,7 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
     /// <returns>True if can fit</returns>
     public bool HasSpaceToGarrison(int units)
     {
-        int existingUnits = garrisonedUnits.Count;
+        var existingUnits = garrisonedUnits.Count;
 
         // Take build queue into account
         foreach (var buildQueueItem in buildQueue)
@@ -269,7 +269,7 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)
     {
-        float neededFood = CalculateFoodConsumption() * elapsed;
+        var neededFood = CalculateFoodConsumption() * elapsed;
 
         if (globalResourceHack.Take(foodResource, neededFood, true) < neededFood)
         {

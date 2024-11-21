@@ -48,10 +48,10 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
         }
 
         // Handle any current collisions
-        bool collided = false;
+        var collided = false;
 
         var count = collisionManagement.GetActiveCollisions(out var collisions);
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
 

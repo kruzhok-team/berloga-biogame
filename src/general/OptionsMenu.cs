@@ -868,9 +868,7 @@ public partial class OptionsMenu : ControlWithInput
         webFeedsEnabled.ButtonPressed = settings.ThriveNewsFeedEnabled;
         showNewPatchNotes.ButtonPressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
-        screenEffectSelect.Selected = settings.CurrentScreenEffect.Value != null ?
-            settings.CurrentScreenEffect.Value.Index :
-            simulationParameters.GetScreenEffectByIndex(0).Index;
+        screenEffectSelect.Selected = settings.CurrentScreenEffect.Value?.Index ?? simulationParameters.GetScreenEffectByIndex(0).Index;
         unsavedProgressWarningEnabled.ButtonPressed = settings.ShowUnsavedProgressWarning;
 
         UpdateDismissedNoticeCount();
@@ -1118,7 +1116,7 @@ public partial class OptionsMenu : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        OptionsTab selection = (OptionsTab)Enum.Parse(typeof(OptionsTab), newTabName);
+        var selection = (OptionsTab)Enum.Parse(typeof(OptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
@@ -1449,7 +1447,7 @@ public partial class OptionsMenu : ControlWithInput
     /// <returns>Value in range 0-100 to be used for a slider</returns>
     private int MouseInputSensitivityToBarValue(float value)
     {
-        int converted = (int)(value / Constants.MOUSE_INPUT_SENSITIVITY_STEP);
+        var converted = (int)(value / Constants.MOUSE_INPUT_SENSITIVITY_STEP);
 
         return Math.Clamp(converted, 0, 100);
     }
@@ -1464,7 +1462,7 @@ public partial class OptionsMenu : ControlWithInput
 
     private int ControllerInputSensitivityToBarValue(float value)
     {
-        int converted = (int)(value / Constants.CONTROLLER_INPUT_SENSITIVITY_STEP);
+        var converted = (int)(value / Constants.CONTROLLER_INPUT_SENSITIVITY_STEP);
 
         return Math.Clamp(converted, 0, 100);
     }
@@ -1532,7 +1530,7 @@ public partial class OptionsMenu : ControlWithInput
     private void UpdateResetSaveButtonState()
     {
         // Enable the save and reset buttons if the current setting values differ from the saved ones.
-        bool result = CompareSettings();
+        var result = CompareSettings();
 
         resetButton.Disabled = result;
         saveButton.Disabled = result;
@@ -1580,8 +1578,8 @@ public partial class OptionsMenu : ControlWithInput
 
     private void UpdateCurrentLanguageProgress()
     {
-        string locale = TranslationServer.GetLocale();
-        float progress = 100 * SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress[locale];
+        var locale = TranslationServer.GetLocale();
+        var progress = 100 * SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress[locale];
 
         string textFormat;
 
@@ -2096,7 +2094,7 @@ public partial class OptionsMenu : ControlWithInput
         if (!Settings.Instance.UseManualThreadCount.Value)
             return;
 
-        int threads = Math.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
+        var threads = Math.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
         Settings.Instance.ApplyThreadSettings();
 

@@ -296,7 +296,7 @@ public partial class AddWindowReorderingSupportToSiblings : Control
             ancestor = childOfAncestor.GetParent();
         }
 
-        for (int i = 0; i < maxSearchDepth; ++i)
+        for (var i = 0; i < maxSearchDepth; ++i)
         {
             if (ancestor == null)
                 break;
@@ -380,7 +380,7 @@ public partial class AddWindowReorderingSupportToSiblings : Control
         var childCount = parent.GetChildCount();
 
         // Search for the first sibling that is part of the reordering system
-        for (int i = childCount - 1; i >= 0; --i)
+        for (var i = childCount - 1; i >= 0; --i)
         {
             var sibling = parent.GetChild(i);
             if (!connectedSiblings.Contains(sibling))
@@ -405,7 +405,7 @@ public partial class AddWindowReorderingSupportToSiblings : Control
 
         UpdateTopSibling();
 
-        int topSiblingIndex = topSibling!.GetIndex();
+        var topSiblingIndex = topSibling!.GetIndex();
 
         if (topSiblingIndex == targetSibling.GetIndex())
         {
@@ -420,7 +420,7 @@ public partial class AddWindowReorderingSupportToSiblings : Control
 
         // For unexplained reasons this has to be here to update the order visually
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4349 fix this hack
-        bool isSetAsToplevel = window.TopLevel;
+        var isSetAsToplevel = window.TopLevel;
         window.TopLevel = !isSetAsToplevel;
         window.TopLevel = isSetAsToplevel;
     }
@@ -462,7 +462,7 @@ public partial class AddWindowReorderingSupportToSiblings : Control
         }
 
         // Reorder the windows
-        foreach (CustomWindow window in justOpenedWindows)
+        foreach (var window in justOpenedWindows)
         {
             OnWindowReorder(window);
         }

@@ -56,7 +56,7 @@ public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
         processedCompoundKeys.AddRange(compounds.Compounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
-        bool vented = false;
+        var vented = false;
         foreach (var compound in processedCompoundKeys)
         {
             if (compounds.VentChunkCompound(compound, delta * venter.VentEachCompoundPerSecond, position.Position,

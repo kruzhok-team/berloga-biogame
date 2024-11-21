@@ -73,7 +73,7 @@ public class GodotFileStream : Stream
         else
         {
             // We need a temporary copy
-            byte[] copy = new byte[count];
+            var copy = new byte[count];
             Array.Copy(buffer, offset, copy, 0, count);
             file.StoreBuffer(copy);
         }

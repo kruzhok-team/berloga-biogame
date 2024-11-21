@@ -101,7 +101,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             return false;
         }
 
-        int selectedIndex = toxinTypeSelection.Selected;
+        var selectedIndex = toxinTypeSelection.Selected;
 
         if (selectedIndex < 0)
         {

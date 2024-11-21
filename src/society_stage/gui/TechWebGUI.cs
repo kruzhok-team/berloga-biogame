@@ -65,7 +65,7 @@ public partial class TechWebGUI : HBoxContainer
         techWeb = availableTechnologies;
 
         // TODO: proper technology display nodes that differentiate between researched and available technologies
-        int y = 1;
+        var y = 1;
 
         // TODO: preserve existing nodes that are still good / update their state
         // this will be needed to make controller focus navigation at least a bit usable

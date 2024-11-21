@@ -75,7 +75,7 @@ public static class SoundEffectPlayerHelpers
     {
         // There's a race condition here but it should only extremely rarely happen if two sounds want to start
         // at the exact same moment in time
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
         {
@@ -85,9 +85,9 @@ public static class SoundEffectPlayerHelpers
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -154,16 +154,16 @@ public static class SoundEffectPlayerHelpers
     public static bool StopSound(this ref SoundEffectPlayer soundEffectPlayer, string sound,
         bool immediately = true)
     {
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
             return false;
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -198,16 +198,16 @@ public static class SoundEffectPlayerHelpers
     /// </param>
     public static void StopAllSounds(this ref SoundEffectPlayer soundEffectPlayer, bool immediately = true)
     {
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
             return;
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -240,7 +240,7 @@ public static class SoundEffectPlayerHelpers
         string sound, float maxVolume, float initialVolume, float changeSpeed)
     {
         // See the comments in PlaySoundEffect
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
         {
@@ -250,11 +250,11 @@ public static class SoundEffectPlayerHelpers
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            int emptySlot = -1;
+            var emptySlot = -1;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -311,16 +311,16 @@ public static class SoundEffectPlayerHelpers
     public static bool PlayGraduallyTurningDownSound(this ref SoundEffectPlayer soundEffectPlayer, string sound,
         float changeSpeed)
     {
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
             return false;
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 
@@ -353,7 +353,7 @@ public static class SoundEffectPlayerHelpers
         float volume)
     {
         // See the comments in PlaySoundEffect
-        SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+        var slots = soundEffectPlayer.SoundEffectSlots;
 
         if (slots == null)
         {
@@ -363,11 +363,11 @@ public static class SoundEffectPlayerHelpers
 
         lock (slots)
         {
-            int slotCount = slots.Length;
+            var slotCount = slots.Length;
 
-            int emptySlot = -1;
+            var emptySlot = -1;
 
-            for (int i = 0; i < slotCount; ++i)
+            for (var i = 0; i < slotCount; ++i)
             {
                 ref var slot = ref slots[i];
 

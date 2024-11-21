@@ -484,8 +484,8 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     private void SetWorldSceneObjectVisibilityWeControl()
     {
-        bool cellEditor = selectedEditorTab == EditorTab.CellTypeEditor;
-        bool bodyEditor = selectedEditorTab == EditorTab.CellEditor;
+        var cellEditor = selectedEditorTab == EditorTab.CellTypeEditor;
+        var bodyEditor = selectedEditorTab == EditorTab.CellEditor;
 
         // Set the right active camera
         if (cellEditor)
@@ -560,7 +560,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
         if (selectedCellTypeToEdit == null)
             return;
 
-        bool affectedACell = false;
+        var affectedACell = false;
 
         foreach (var actionData in action.Data)
         {

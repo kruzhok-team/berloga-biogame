@@ -141,14 +141,14 @@ public class TaskExecutor : IParallelRunner
     /// <returns>The number of threads to use</returns>
     public static int GetWantedThreadCount(bool hyperthreading, bool autoEvoDuringGameplay)
     {
-        int targetTaskCount = CPUCount;
+        var targetTaskCount = CPUCount;
 
         // The divisible by 2 check here makes sure there are 2n number of threads (where n is the number of real cores
         // this holds for desktop hyperthreading where there's always 2 threads per core)
         if (hyperthreading && targetTaskCount % 2 == 0)
             targetTaskCount /= 2;
 
-        int max = MaximumThreadCount;
+        var max = MaximumThreadCount;
         if (targetTaskCount > max)
             targetTaskCount = max;
 
@@ -174,7 +174,7 @@ public class TaskExecutor : IParallelRunner
         if (managedCount <= 6)
             return 3;
 
-        int targetTaskCount = Math.Clamp((int)Math.Round(managedCount * 0.5f), 2, CPUCount);
+        var targetTaskCount = Math.Clamp((int)Math.Round(managedCount * 0.5f), 2, CPUCount);
 
         // Cap the maximum threads as there isn't that much benefit from too many threads
         // And in fact in the benchmark these hurt the first part score
@@ -202,13 +202,13 @@ public class TaskExecutor : IParallelRunner
     /// </summary>
     public void Run(IParallelRunnable runnable)
     {
-        int maxIndex = DegreeOfParallelism - 1;
+        var maxIndex = DegreeOfParallelism - 1;
 
         if (maxIndex > 0)
         {
             Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
 
-            for (int i = 0; i < maxIndex; ++i)
+            for (var i = 0; i < maxIndex; ++i)
             {
                 queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
             }
@@ -226,7 +226,7 @@ public class TaskExecutor : IParallelRunner
         while (queuedParallelRunnableCount > 0)
         {
             // Busy loop a bit before checking the variable again
-            for (int i = 0; i < 10; ++i)
+            for (var i = 0; i < 10; ++i)
             {
                 _ = i;
             }
@@ -298,7 +298,7 @@ public class TaskExecutor : IParallelRunner
 
             // This should be the non-blocking variant so the current thread won't wait for more tasks,
             // just immediately exits the loop if there are no tasks to run
-            while (queuedTasks.TryDequeue(out ThreadCommand command))
+            while (queuedTasks.TryDequeue(out var command))
             {
                 // If we take out a quit command here, we need to put it back for the actual threads to get and break
                 if (command.CommandType == ThreadCommand.Type.Quit)
@@ -429,7 +429,7 @@ public class TaskExecutor : IParallelRunner
 
         lock (threadNotifySync)
         {
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 Monitor.Pulse(threadNotifySync);
             }
@@ -439,7 +439,7 @@ public class TaskExecutor : IParallelRunner
     private void RunExecutorThread()
     {
         // This is used to sleep only when no new work is arriving to allow this thread to sleep only sometimes
-        int noWorkCounter = 0;
+        var noWorkCounter = 0;
 
         // This whole thing is in a try-catch now to try to solve issue of background threads disappearing without a
         // trace
@@ -459,7 +459,7 @@ public class TaskExecutor : IParallelRunner
                     }
                 }
 
-                if (queuedTasks.TryDequeue(out ThreadCommand command))
+                if (queuedTasks.TryDequeue(out var command))
                 {
                     if (command.CommandType == ThreadCommand.Type.Quit)
                     {

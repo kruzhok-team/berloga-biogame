@@ -77,14 +77,14 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     {
         var scaledPosition = position * POSITION_SCALING;
 
-        float disturbancesX = noiseDisturbancesX.GetNoise(scaledPosition.X, scaledPosition.Y,
+        var disturbancesX = noiseDisturbancesX.GetNoise(scaledPosition.X, scaledPosition.Y,
             currentsTimePassed * DISTURBANCE_TIMESCALE);
-        float disturbancesY = noiseDisturbancesY.GetNoise(scaledPosition.X, scaledPosition.Y,
+        var disturbancesY = noiseDisturbancesY.GetNoise(scaledPosition.X, scaledPosition.Y,
             currentsTimePassed * DISTURBANCE_TIMESCALE);
 
-        float currentsX = noiseCurrentsX.GetNoise(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
+        var currentsX = noiseCurrentsX.GetNoise(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
             scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE);
-        float currentsY = noiseCurrentsY.GetNoise(scaledPosition.X,
+        var currentsY = noiseCurrentsY.GetNoise(scaledPosition.X,
             scaledPosition.Y * CURRENTS_STRETCHING_MULTIPLIER,
             currentsTimePassed * CURRENTS_TIMESCALE);
 

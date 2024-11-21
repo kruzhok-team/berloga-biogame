@@ -123,7 +123,7 @@ public static class InventoryHelpers
             // Find items to satisfy the amount left
             while (amountLeft > 0)
             {
-                bool foundSomething = false;
+                var foundSomething = false;
 
                 foreach (var availableItem in availableItems)
                 {
@@ -180,7 +180,7 @@ public static class InventoryHelpers
             // Find items to satisfy the amount left
             while (amountLeft > 0)
             {
-                bool foundSomething = false;
+                var foundSomething = false;
 
                 foreach (var availableItem in availableItems)
                 {

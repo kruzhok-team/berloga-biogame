@@ -61,7 +61,7 @@ public static class NodeHelpers
     {
         while (true)
         {
-            int count = node.GetChildCount();
+            var count = node.GetChildCount();
 
             if (count < 1)
                 break;
@@ -86,7 +86,7 @@ public static class NodeHelpers
     {
         while (true)
         {
-            int count = node.GetChildCount();
+            var count = node.GetChildCount();
 
             if (count < 1)
                 break;
@@ -190,7 +190,7 @@ public static class NodeHelpers
             return false;
         }
 
-        bool success = false;
+        var success = false;
 
         try
         {
@@ -237,7 +237,7 @@ public static class NodeHelpers
     /// <returns>Enumerable sequence of the children</returns>
     public static IEnumerable<T> GetChildrenToProcess<T>(this Node node, string group)
     {
-        foreach (Node child in node.GetChildren())
+        foreach (var child in node.GetChildren())
         {
             if (!child.IsInGroup(group))
                 continue;
@@ -260,11 +260,11 @@ public static class NodeHelpers
     /// <param name="includeInternal">If true internal Nodes are also counted</param>
     public static int RecursiveCountChildren(this Node node, bool includeInternal = false)
     {
-        int childCount = node.GetChildCount(includeInternal);
+        var childCount = node.GetChildCount(includeInternal);
 
-        int count = 0;
+        var count = 0;
 
-        for (int i = 0; i < childCount; ++i)
+        for (var i = 0; i < childCount; ++i)
         {
             var child = node.GetChild(i, includeInternal);
 
@@ -333,7 +333,7 @@ public static class NodeHelpers
     public static T? FirstDescendantOfType<T>(this Node node)
         where T : Node
     {
-        foreach (Node child in node.GetChildren())
+        foreach (var child in node.GetChildren())
         {
             if (child is T casted)
                 return casted;

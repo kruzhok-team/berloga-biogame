@@ -64,7 +64,7 @@ public static class EngulferHelpers
         if (!target.IsAlive)
             return EngulfCheckResult.TargetDead;
 
-        bool invulnerable = false;
+        var invulnerable = false;
 
         // Can't engulf dead microbes (unlikely to happen but this is a fail-safe)
         if (target.Has<Health>())
@@ -153,7 +153,7 @@ public static class EngulferHelpers
             return null;
 
         Vector3? nearestPoint = null;
-        float nearestDistanceSquared = float.MaxValue;
+        var nearestDistanceSquared = float.MaxValue;
         var searchRadiusSquared = searchRadius * searchRadius;
 
         // Retrieve nearest potential entities

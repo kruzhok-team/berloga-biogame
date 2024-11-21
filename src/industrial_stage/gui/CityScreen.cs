@@ -160,7 +160,7 @@ public partial class CityScreen : CustomWindow
         if (managedCity == null)
             throw new InvalidOperationException("City to manage not set");
 
-        int usedIndex = 0;
+        var usedIndex = 0;
 
         foreach (var buildQueueItemData in managedCity.GetBuildQueue())
         {

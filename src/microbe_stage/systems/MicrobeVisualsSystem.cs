@@ -355,7 +355,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 throw new Exception("Organelle graphics should not get reset to null");
 
             // Materials need to be always fully fetched again to make sure we don't forget any active ones
-            int start = tempMaterialsList.Count;
+            var start = tempMaterialsList.Count;
 
             // Use the model data from when the graphics were loaded for consistency
             if (!graphics.GetMaterial(tempMaterialsList, placedOrganelle.LoadedGraphicsSceneInfo.ModelPath))
@@ -365,8 +365,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             }
 
             // Apply tint (again) to make sure it is up-to-date
-            int count = tempMaterialsList.Count;
-            for (int i = start; i < count; ++i)
+            var count = tempMaterialsList.Count;
+            for (var i = start; i < count; ++i)
             {
                 tempMaterialsList[i].SetShaderParameter(tintParameterName, organelleColour);
             }
@@ -399,7 +399,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         var executor = TaskExecutor.Instance;
 
         // Limit concurrent tasks
-        int max = Math.Max(1, executor.ParallelTasks - Constants.MEMBRANE_TASKS_LEAVE_EMPTY_THREADS);
+        var max = Math.Max(1, executor.ParallelTasks - Constants.MEMBRANE_TASKS_LEAVE_EMPTY_THREADS);
         if (runningMembraneTaskCount >= max)
             return;
 

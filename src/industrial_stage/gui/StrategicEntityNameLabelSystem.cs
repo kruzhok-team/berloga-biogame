@@ -82,7 +82,7 @@ public partial class StrategicEntityNameLabelSystem : Control
 
         var cameraPos = camera.GlobalTransform.Origin;
 
-        foreach (Node node in nodes)
+        foreach (var node in nodes)
         {
             if (node is not IEntityWithNameLabel labelable)
             {
@@ -107,7 +107,7 @@ public partial class StrategicEntityNameLabelSystem : Control
 
             // TODO: should we store indexes per type for faster lookup here?
 
-            bool reused = false;
+            var reused = false;
 
             foreach (var nameLabel in labelCategory)
             {

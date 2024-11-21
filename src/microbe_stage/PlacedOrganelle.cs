@@ -184,11 +184,11 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         if (tempCompoundsToProcess.Count > 0)
         {
-            int count = tempCompoundsToProcess.Count;
+            var count = tempCompoundsToProcess.Count;
 
             if (!reverseCompoundsLeftOrder)
             {
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     // This breaks when out of compound use. A separate helper method is used to make these two loops
                     // share their logic without needing a temporary list
@@ -201,7 +201,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
             }
             else
             {
-                for (int i = count - 1; i >= 0; --i)
+                for (var i = count - 1; i >= 0; --i)
                 {
                     if (!GrowWithCompoundType(compounds, ref allowedCompoundUse, ref freeCompoundsLeft,
                             tempCompoundsToProcess[i], ref totalTaken))
@@ -438,7 +438,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         float usedAmount = 0;
 
-        float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
+        var allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
 
         if (freeCompoundsLeft > 0)
         {

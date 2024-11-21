@@ -106,7 +106,7 @@ public partial class RecipeListItem : Button
         materialsStringBuilder.Clear();
         topLevelStringBuilder.Clear();
 
-        bool canCraft = displayedRecipe.CanCraft(availableMaterials) == null;
+        var canCraft = displayedRecipe.CanCraft(availableMaterials) == null;
 
         if (!canCraft)
         {

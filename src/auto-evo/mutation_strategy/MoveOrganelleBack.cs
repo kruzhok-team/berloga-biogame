@@ -26,9 +26,9 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+        foreach (var organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
             newSpecies.Organelles.Remove(organelle);
 

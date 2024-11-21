@@ -285,7 +285,7 @@ public static class SaveHelper
     /// </summary>
     public static (int Count, ulong DiskSpace) CountSaves(Regex? nameMatches = null)
     {
-        int count = 0;
+        var count = 0;
         ulong totalSize = 0;
 
         foreach (var save in CreateListOfSaves())
@@ -406,16 +406,16 @@ public static class SaveHelper
     /// <returns>True if certainly incompatible</returns>
     public static bool IsKnownIncompatible(string saveVersion)
     {
-        int currentVersionPlaceInList = -1;
-        int savePlaceInList = -1;
+        var currentVersionPlaceInList = -1;
+        var savePlaceInList = -1;
 
         var current = Constants.Version;
 
-        for (int i = 0; i < KnownSaveIncompatibilityPoints.Count; ++i)
+        for (var i = 0; i < KnownSaveIncompatibilityPoints.Count; ++i)
         {
             var version = KnownSaveIncompatibilityPoints[i];
 
-            bool anyMatched = false;
+            var anyMatched = false;
 
             var currentDifference = VersionUtils.Compare(current, version);
             var saveDifference = VersionUtils.Compare(saveVersion, version);

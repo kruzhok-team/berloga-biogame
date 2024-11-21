@@ -130,7 +130,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
         // Queues either 1 corpse chunk or a factor of the hexes
-        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+        var chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         // Apply a soft cap to the number of chunks
         if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
@@ -150,10 +150,10 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
             chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
 
-        for (int i = 0; i < chunksToSpawn; ++i)
+        for (var i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
+            var amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -223,7 +223,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             chunkType.Meshes.Add(sceneToUse);
 
             var position = basePosition + positionAdded;
-            Vector3 velocity = Vector3.Zero;
+            var velocity = Vector3.Zero;
 
             if (customizeCallback != null)
             {
@@ -450,7 +450,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         Species species, EntityCommandRecorder recorder)
     {
         // To not completely deadlock in this there is a maximum limit
-        int createdAgents = 0;
+        var createdAgents = 0;
 
         var amount = compounds.GetCompoundAmount(oxytoxy);
 

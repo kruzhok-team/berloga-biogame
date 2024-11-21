@@ -63,7 +63,7 @@ public class MicrobeMovement : TutorialPhase
         {
             case TutorialEventType.MicrobePlayerOrientation:
             {
-                bool consumed = false;
+                var consumed = false;
 
                 if (!HasBeenShown && overallState.MicrobeStageWelcome.Complete && CanTrigger)
                 {

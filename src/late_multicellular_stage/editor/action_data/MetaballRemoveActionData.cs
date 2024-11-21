@@ -45,7 +45,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
 
         var result = new List<MetaballMoveActionData<TMetaball>>();
 
-        Metaball? parentMetaball = removedMetaball.Parent;
+        var parentMetaball = removedMetaball.Parent;
 
         var descendantList = new List<TMetaball>();
 
@@ -64,7 +64,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 newPosition = removedMetaball.Position;
             }
 
-            Vector3 movementVector = newPosition - childMetaball.Position;
+            var movementVector = newPosition - childMetaball.Position;
 
             if (parentMetaball == childMetaball)
                 throw new Exception("logic error in child metaball adjustment action generation");

@@ -151,11 +151,11 @@ public partial class MouseHoverPanel : PanelContainer
         {
             get
             {
-                int visibleCount = 0;
+                var visibleCount = 0;
 
                 var children = container.GetChildren();
-                int count = children.Count;
-                for (int i = 0; i < count; ++i)
+                var count = children.Count;
+                for (var i = 0; i < count; ++i)
                 {
                     if (children[i] is Control control && control.Visible)
                         ++visibleCount;

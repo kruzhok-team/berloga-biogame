@@ -43,7 +43,7 @@ public class GenerationRecord
         Species? updatedSpecies = null;
 
         // Loop through previous generations until we find a non-null record and update the species
-        for (int i = currentGeneration; i >= 0; i--)
+        for (var i = currentGeneration; i >= 0; i--)
         {
             if (generationHistory[i].AllSpeciesData.TryGetValue(speciesID, out var candidateRecord) &&
                 candidateRecord.Species != null)

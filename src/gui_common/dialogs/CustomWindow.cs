@@ -386,7 +386,7 @@ public partial class CustomWindow : TopLevelContainer
 
         var contentSize = Vector2.Zero;
 
-        for (int i = 0; i < GetChildCount(); ++i)
+        for (var i = 0; i < GetChildCount(); ++i)
         {
             var child = GetChildOrNull<Control>(i);
 
@@ -698,7 +698,7 @@ public partial class CustomWindow : TopLevelContainer
         var childPos = new Vector2(customMargin, customMargin);
         var childSize = new Vector2(Size.X - customMargin * 2, Size.Y - customMargin * 2);
 
-        for (int i = 0; i < GetChildCount(); ++i)
+        for (var i = 0; i < GetChildCount(); ++i)
         {
             var child = GetChildOrNull<Control>(i);
 

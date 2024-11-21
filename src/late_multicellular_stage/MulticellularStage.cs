@@ -270,7 +270,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        Node sceneInstance = scene.Instantiate();
+        var sceneInstance = scene.Instantiate();
         var editor = (LateMulticellularEditor)sceneInstance;
 
         editor.CurrentGame = CurrentGame;
@@ -355,7 +355,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         }
 
         // Despawn everything except the player
-        foreach (Node child in rootOfDynamicallySpawned.GetChildren())
+        foreach (var child in rootOfDynamicallySpawned.GetChildren())
         {
             if (child != Player)
                 child.QueueFree();

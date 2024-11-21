@@ -18,7 +18,7 @@ public class Settings
         AvailableLocales = TranslationServer.GetLoadedLocales().ToList();
 
     private static readonly string DefaultLanguageValue = "ru";
-    private static readonly CultureInfo DefaultCultureValue = new CultureInfo("ru", false);
+    private static readonly CultureInfo DefaultCultureValue = new("ru", false);
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
@@ -690,7 +690,7 @@ public class Settings
     /// </summary>
     public void LoadDefaults()
     {
-        Settings settings = new Settings();
+        var settings = new Settings();
         CopySettings(settings);
     }
 
@@ -871,7 +871,7 @@ public class Settings
     /// </summary>
     public void ApplyLanguageSettings()
     {
-        string? language = SelectedLanguage.Value;
+        var language = SelectedLanguage.Value;
         CultureInfo cultureInfo;
 
         // Process locale info in case it isn't exactly right
@@ -936,7 +936,7 @@ public class Settings
     /// </summary>
     public Settings Clone()
     {
-        Settings settings = new Settings();
+        var settings = new Settings();
         settings.CopySettings(this);
 
         return settings;
@@ -944,7 +944,7 @@ public class Settings
 
     public override int GetHashCode()
     {
-        int hashCode = 17;
+        var hashCode = 17;
 
         var type = GetType();
 
@@ -961,7 +961,7 @@ public class Settings
     {
         try
         {
-            Settings? settings = LoadSettings();
+            var settings = LoadSettings();
 
             if (settings == null)
             {
@@ -1120,7 +1120,9 @@ public class Settings
         }
     }
 
-    private void ApplyEnvironmentSettings(){
+    private void ApplyEnvironmentSettings()
+
+    {
         EnvConfig.EnvLoad("res://src/APItalent/Config.env");
     }
 }

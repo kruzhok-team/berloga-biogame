@@ -181,7 +181,7 @@ public partial class NewSaveMenu : Control
         // Deselect all except the last one
         if (selected.Count > 1)
         {
-            for (int i = 0; i < selected.Count - 1; ++i)
+            for (var i = 0; i < selected.Count - 1; ++i)
             {
                 selected[i].Selected = false;
             }

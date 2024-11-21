@@ -30,7 +30,7 @@ public class NegativeAtpBalanceTutorial : TutorialPhase
                 if (args is EnergyBalanceEventArgs energyBalanceEventArgs)
                 {
                     var energyBalanceInfo = energyBalanceEventArgs.EnergyBalanceInfo;
-                    bool isNegativeAtpBalance =
+                    var isNegativeAtpBalance =
                         energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
 
                     if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())

@@ -296,7 +296,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         float hp = 0;
 
-        string hpText = playerWasDigested ?
+        var hpText = playerWasDigested ?
             Localization.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
@@ -471,7 +471,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             usingMucocyst = control.State == MicrobeState.MucocystShield;
         }
 
-        bool isDigesting = false;
+        var isDigesting = false;
 
         ref var engulfer = ref stage.Player.Get<Engulfer>();
 
@@ -502,7 +502,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         foreach (var compound in hoveredCompoundControls)
         {
             var compoundControl = compound.Value;
-            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out float amount);
+            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out var amount);
 
             // It is not useful to show trace amounts of a compound, so those are skipped
             if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
@@ -557,7 +557,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
 
             var key = (category, name);
-            hoveredEntities.TryGetValue(key, out int count);
+            hoveredEntities.TryGetValue(key, out var count);
             hoveredEntities[key] = count + 1;
         }
 
@@ -631,7 +631,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
         else
         {
-            bool canBecomeMulticellular = newColonySize >= Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+            var canBecomeMulticellular = newColonySize >= Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
             multicellularButton.Disabled = !canBecomeMulticellular;
 
             if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
@@ -861,7 +861,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         var processesCount = activeProcesses.Count;
 
-        for (int i = 0; i < processesCount; ++i)
+        for (var i = 0; i < processesCount; ++i)
         {
             // Update speed of the process controlled by the GUI control that signaled this change
             if (equation.EquationFromProcess.MatchesUnderlyingProcess(activeProcesses[i].Process))

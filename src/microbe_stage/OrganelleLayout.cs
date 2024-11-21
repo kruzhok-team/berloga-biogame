@@ -38,13 +38,13 @@ public class OrganelleLayout<T> : HexLayout<T>
             // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
             // to do as simply
             // float totalMass = 0;
-            int count = 0;
-            Vector3 weightedSum = Vector3.Zero;
+            var count = 0;
+            var weightedSum = Vector3.Zero;
 
             // TODO: shouldn't this take multihex organelles into account?
             var organelleList = Organelles;
             var listLength = organelleList.Count;
-            for (int i = 0; i < listLength; ++i)
+            for (var i = 0; i < listLength; ++i)
             {
                 // totalMass += organelle.Definition.Mass;
                 ++count;
@@ -77,10 +77,10 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
         // Check for overlapping hexes with existing organelles
         var hexes = organelleType.GetRotatedHexes(orientation);
-        int hexCount = hexes.Count;
+        var hexCount = hexes.Count;
 
         // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
-        for (int i = 0; i < hexCount; ++i)
+        for (var i = 0; i < hexCount; ++i)
         {
             var overlapping = GetElementAt(hexes[i] + position, temporaryStorage);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
@@ -134,7 +134,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
         List<Hex> workData2)
     {
-        int radius = 1;
+        var radius = 1;
 
         while (true)
         {
@@ -144,18 +144,18 @@ public class OrganelleLayout<T> : HexLayout<T>
             startR += radiusOffset.R;
 
             // Iterates in the ring
-            for (int side = 1; side <= 6; ++side)
+            for (var side = 1; side <= 6; ++side)
             {
                 var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
 
                 // Moves "radius" times into each direction
-                for (int i = 1; i <= radius; ++i)
+                for (var i = 1; i <= radius; ++i)
                 {
                     startQ += offset.Q;
                     startR += offset.R;
 
                     // Checks every possible rotation value.
-                    for (int j = 0; j <= 5; ++j)
+                    for (var j = 0; j <= 5; ++j)
                     {
                         newOrganelle.Position = new Hex(startQ, startR);
 
@@ -197,7 +197,7 @@ public class OrganelleLayout<T> : HexLayout<T>
         var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
         var count = rotated.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             result.Add(rotated[i]);
         }

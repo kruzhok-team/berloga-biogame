@@ -44,7 +44,7 @@ public class InputDataList : ICloneable
     /// </summary>
     internal void ApplyToGodotInputMap()
     {
-        bool printedUIWarning = false;
+        var printedUIWarning = false;
 
         foreach (var action in Data)
         {

@@ -52,12 +52,12 @@ public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
         ref var position = ref entity.Get<WorldPosition>();
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
+        var amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
 
-        int count = ventableCompounds.Count;
+        var count = ventableCompounds.Count;
 
         // Manual loop here to avoid enumerator allocations
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var type = ventableCompounds[i];
 
@@ -75,7 +75,7 @@ public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
             else if (compounds.GetCompoundAmount(type) > venter.VentThreshold * capacity)
             {
                 // Vent the part that went over
-                float toVent = compounds.GetCompoundAmount(type) - venter.VentThreshold * capacity;
+                var toVent = compounds.GetCompoundAmount(type) - venter.VentThreshold * capacity;
 
                 amountToVent -= cellProperties.EjectCompound(ref position, compounds, compoundCloudSystem, type,
                     Math.Min(toVent, amountToVent), Vector3.Back);

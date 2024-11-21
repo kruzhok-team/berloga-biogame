@@ -64,7 +64,7 @@ public static class JSONDebug
         }
         else
         {
-            bool first = true;
+            var first = true;
 
             foreach (var trace in QueuedTraces)
             {

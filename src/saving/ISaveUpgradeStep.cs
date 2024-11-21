@@ -563,7 +563,7 @@ internal abstract class BaseJSONUpgradeStep : ISaveUpgradeStep
             {
                 var array = (JArray)property.Value;
 
-                for (int i = 0; i < array.Count; ++i)
+                for (var i = 0; i < array.Count; ++i)
                 {
                     var arrayItem = array[i];
 

@@ -47,7 +47,7 @@ public static class ResourceAmountHelpers
         IReadOnlyDictionary<WorldResource, int> availableResources, StringBuilder stringBuilder,
         bool requirementMetIconFirst = false)
     {
-        bool first = true;
+        var first = true;
 
         foreach (var tuple in requiredResources)
         {
@@ -58,7 +58,7 @@ public static class ResourceAmountHelpers
 
             availableResources.TryGetValue(tuple.Key, out var availableAmount);
 
-            bool enough = HasEnoughResource(tuple.Key, availableAmount, requiredResources);
+            var enough = HasEnoughResource(tuple.Key, availableAmount, requiredResources);
 
             WriteResourceText(stringBuilder, tuple.Value.ToString(CultureInfo.CurrentCulture), tuple.Key.InternalName,
                 enough, requirementMetIconFirst);
@@ -75,7 +75,7 @@ public static class ResourceAmountHelpers
         IResourceContainer availableResources, StringBuilder stringBuilder,
         bool requirementMetIconFirst = false)
     {
-        bool first = true;
+        var first = true;
 
         foreach (var tuple in requiredResources)
         {
@@ -84,7 +84,7 @@ public static class ResourceAmountHelpers
                 stringBuilder.Append(", ");
             }
 
-            bool enough = HasEnoughResource(tuple.Key, availableResources.GetAvailableAmount(tuple.Key),
+            var enough = HasEnoughResource(tuple.Key, availableResources.GetAvailableAmount(tuple.Key),
                 requiredResources);
 
             WriteResourceText(stringBuilder, tuple.Value.ToString(CultureInfo.CurrentCulture), tuple.Key.InternalName,

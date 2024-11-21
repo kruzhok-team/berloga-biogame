@@ -8,11 +8,11 @@ public static class MicrobeInternalCalculations
 {
     public static Vector3 MaximumSpeedDirection(IReadOnlyList<OrganelleTemplate> organelles)
     {
-        Vector3 maximumMovementDirection = Vector3.Zero;
+        var maximumMovementDirection = Vector3.Zero;
 
         var organelleCount = organelles.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
@@ -24,7 +24,7 @@ public static class MicrobeInternalCalculations
 
         // After calculating the sum of all organelle directions we subtract the movement components which
         // are symmetric, and we choose the one who would benefit the max-speed the most.
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
@@ -56,9 +56,9 @@ public static class MicrobeInternalCalculations
     {
         var totalNominalCap = 0.0f;
 
-        int count = organelles.Count;
+        var count = organelles.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
@@ -67,7 +67,7 @@ public static class MicrobeInternalCalculations
         var capacities = new Dictionary<Compound, float>();
 
         // Update the variant of this logic in UpdateSpecificCapacities if changes are made
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
 
@@ -101,8 +101,8 @@ public static class MicrobeInternalCalculations
     {
         compoundBag.ClearSpecificCapacities();
 
-        int count = organelles.Count;
-        for (int i = 0; i < count; ++i)
+        var count = organelles.Count;
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
@@ -191,17 +191,17 @@ public static class MicrobeInternalCalculations
 
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
-        int totalHexes = 0;
-        int organelleCount = organelles.Count;
+        var totalHexes = 0;
+        var organelleCount = organelles.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
             totalHexes += organelle.Definition.HexCount;
 
             if (organelle.Definition.HasMovementComponent)
             {
-                Vector3 organelleDirection = GetOrganelleDirection(organelle);
+                var organelleDirection = GetOrganelleDirection(organelle);
 
                 // We decompose the vector of the organelle orientation in 2 vectors, forward and right
                 // To get the backward and left is easy because they are the opposite of those former 2
@@ -210,7 +210,7 @@ public static class MicrobeInternalCalculations
                 rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
                 leftDirectionFactor = -rightDirectionFactor;
 
-                float movementConstant =
+                var movementConstant =
                     Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
 
                 if (!isBacteria)
@@ -247,11 +247,11 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
+        var baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
         var finalMass = useEstimate ? massEstimate : shapeMass;
 
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
+        var finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
     }
@@ -296,11 +296,11 @@ public static class MicrobeInternalCalculations
         float inertia = 1;
         float ciliaFactor = 0;
 
-        int count = organelles.Count;
+        var count = organelles.Count;
 
         // Simple moment of inertia calculation. Note that it is mass multiplied by square of the distance, so we can
         // use the cheaper distance calculations
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
 
@@ -332,9 +332,9 @@ public static class MicrobeInternalCalculations
 
     public static float CalculateAverageDensity(IEnumerable<IPositionedOrganelle> organelles)
     {
-        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
+        var totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
 
-        float density = Constants.BASE_CELL_DENSITY * Constants.BASE_CELL_DENSITY_VOLUME;
+        var density = Constants.BASE_CELL_DENSITY * Constants.BASE_CELL_DENSITY_VOLUME;
 
         foreach (var organelle in organelles)
         {
@@ -395,7 +395,7 @@ public static class MicrobeInternalCalculations
             var upgrades = configuration as LysosomeUpgrades;
             var enzyme = upgrades == null ? lipase : upgrades.Enzyme;
 
-            enzymes.TryGetValue(enzyme, out int count);
+            enzymes.TryGetValue(enzyme, out var count);
             enzymes[enzyme] = count + 1;
         }
 
@@ -569,7 +569,7 @@ public static class MicrobeInternalCalculations
 
         var nightSeconds = worldSettings.DayLength * (1 - worldSettings.DaytimeFraction);
 
-        bool enoughStorage = true;
+        var enoughStorage = true;
         var requiredCapacities = new Dictionary<Compound, float>();
 
         foreach (var normalBalance in dayCompoundBalances)
@@ -623,7 +623,7 @@ public static class MicrobeInternalCalculations
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                bool usesInput = false;
+                var usesInput = false;
 
                 foreach (var processInput in process.Process.Inputs)
                 {
@@ -652,8 +652,8 @@ public static class MicrobeInternalCalculations
     {
         var organelles = species.Organelles.Organelles;
 
-        int organelleCount = organelles.Count;
-        for (int i = 0; i < organelleCount; ++i)
+        var organelleCount = organelles.Count;
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
@@ -666,7 +666,7 @@ public static class MicrobeInternalCalculations
                 continue;
 
             // Handle each resulting organelle type just once
-            bool alreadyHandled = false;
+            var alreadyHandled = false;
 
             foreach (var handledTuple in result)
             {
@@ -680,10 +680,10 @@ public static class MicrobeInternalCalculations
             if (alreadyHandled)
                 continue;
 
-            int count = 1;
+            var count = 1;
 
             // Count all other instances giving the same thing to calculate the cost
-            for (int j = i + 1; j < organelleCount; ++j)
+            for (var j = i + 1; j < organelleCount; ++j)
             {
                 if (organelles[j].Definition.EndosymbiosisUnlocks == resultType)
                     ++count;
@@ -768,9 +768,9 @@ public static class MicrobeInternalCalculations
     private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyList<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        int organelleCount = organelles.Count;
+        var organelleCount = organelles.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
             if (!organelle.Definition.HasMovementComponent)

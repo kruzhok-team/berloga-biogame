@@ -99,7 +99,7 @@ public class AutoEvoRun
     {
         get
         {
-            int total = totalSteps;
+            var total = totalSteps;
 
             if (total <= 0)
                 return 0;
@@ -133,7 +133,7 @@ public class AutoEvoRun
             if (!started)
                 return Localization.Translate("NOT_STARTED_DOT");
 
-            int total = totalSteps;
+            var total = totalSteps;
 
             if (total > 0)
             {
@@ -517,7 +517,7 @@ public class AutoEvoRun
 
         Running = true;
 
-        bool complete = false;
+        var complete = false;
 
         while (!Aborted && !complete)
         {
@@ -573,7 +573,7 @@ public class AutoEvoRun
                         // Try to use extra threads to speed this up
                         // If we ever want to use background processing in a loading screen to do something time
                         // sensitive while auto-evo runs this value needs to be reduced
-                        int maxTasksAtOnce = 1000;
+                        var maxTasksAtOnce = 1000;
 
                         while (runSteps.TryPeek(out var step) && step.CanRunConcurrently && maxTasksAtOnce > 0)
                         {
@@ -628,7 +628,7 @@ public class AutoEvoRun
 
     private void RunSingleStepToCompletion(IRunStep step)
     {
-        int steps = 0;
+        var steps = 0;
 
         // This condition is here to allow abandoning auto-evo runs quickly
         while (!Aborted)
@@ -691,7 +691,7 @@ public class AutoEvoRun
                         continue;
                     }
 
-                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
+                    var currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
                     results.AddPopulationResultForSpecies(entry.Species, entry.Patch,
                         currentPopulation + entry.Constant);

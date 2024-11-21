@@ -177,7 +177,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
         timeRemaining = SettleDownTimeStart;
 
         // Deadzones start at 0 and get increased as they are moved
-        for (int i = 0; i < currentDeadzones.Count; ++i)
+        for (var i = 0; i < currentDeadzones.Count; ++i)
         {
             currentDeadzones[i] = 0;
         }
@@ -196,7 +196,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
             OnFinishedCalibrating();
         }
 
-        for (int i = 0; i < currentDeadzones!.Count; ++i)
+        for (var i = 0; i < currentDeadzones!.Count; ++i)
         {
             currentDeadzones[i] = Constants.CONTROLLER_DEFAULT_DEADZONE;
         }
@@ -209,7 +209,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
     private void OnFinishedCalibrating()
     {
         // Any axes that didn't get any values, reset to default
-        for (int i = 0; i < currentDeadzones!.Count; ++i)
+        for (var i = 0; i < currentDeadzones!.Count; ++i)
         {
             if (currentDeadzones[i] < MathUtils.EPSILON)
                 currentDeadzones[i] = Constants.CONTROLLER_DEFAULT_DEADZONE;

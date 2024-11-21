@@ -132,10 +132,10 @@ public class InProgressSave : IDisposable
 
     private static int FindExistingSavesOfType(out int totalCount, out string? oldestSave, string matchRegex)
     {
-        int highestNumber = 0;
+        var highestNumber = 0;
         totalCount = 0;
         oldestSave = null;
-        ulong oldestModifiedTime = ulong.MaxValue;
+        var oldestModifiedTime = ulong.MaxValue;
 
         foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
         {
@@ -144,7 +144,7 @@ public class InProgressSave : IDisposable
             if (match.Success)
             {
                 if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture,
-                        out int found))
+                        out var found))
                 {
                     continue;
                 }
@@ -276,7 +276,7 @@ public class InProgressSave : IDisposable
                 }
 
                 // Find the next unused save number
-                int number = 0;
+                var number = 0;
 
                 foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
                 {
@@ -285,7 +285,7 @@ public class InProgressSave : IDisposable
                     if (match.Success)
                     {
                         if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture,
-                                out int found))
+                                out var found))
                         {
                             continue;
                         }

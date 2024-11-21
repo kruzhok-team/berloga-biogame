@@ -148,7 +148,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
-        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
+        var minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
         spawner.Density = spawnDensity;
 
@@ -167,7 +167,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         ClearSpawnQueue();
 
-        float despawned = 0.0f;
+        var despawned = 0.0f;
 
         foreach (ref readonly var entity in spawnedEntitiesSet.GetEntities())
         {
@@ -257,7 +257,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         var entityLimit = Settings.Instance.MaxSpawnedEntities.Value;
 
-        float limitExcess = estimateEntityCount + extra - entityLimit *
+        var limitExcess = estimateEntityCount + extra - entityLimit *
             Constants.REPRODUCTION_PLAYER_ALLOWED_ENTITY_LIMIT_EXCEED;
 
         if (limitExcess < 1)
@@ -360,14 +360,14 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
     private void HandleQueuedSpawns(ref float spawnsLeftThisFrame)
     {
-        float spawnedCount = 0.0f;
+        var spawnedCount = 0.0f;
 
         // Spawn from the queue
         while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
         {
             var spawn = queuedSpawns.First();
 
-            bool finished = false;
+            var finished = false;
 
             while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value &&
                    spawnsLeftThisFrame > 0)
@@ -421,22 +421,22 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Vector2I>(12);
-        for (int y = -1; y <= 1; ++y)
+        for (var y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
         }
 
-        for (int x = -1; x <= 1; ++x)
+        for (var x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
         }
 
-        for (int y = -1; y <= 1; ++y)
+        for (var y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
         }
 
-        for (int x = -1; x <= 1; ++x)
+        for (var x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
         }
@@ -451,7 +451,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         // Only spawn microbes around the player if below the threshold.
         // This is to prioritize spawning in sectors.
-        float entitiesThreshold = Settings.Instance.MaxSpawnedEntities.Value *
+        var entitiesThreshold = Settings.Instance.MaxSpawnedEntities.Value *
             Constants.ENTITY_SPAWNING_AROUND_PLAYER_THRESHOLD;
         if (estimateEntityCount < entitiesThreshold)
         {
@@ -469,7 +469,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     /// <param name="spawnsLeftThisFrame">How many spawns are still allowed this frame</param>
     private void SpawnInSector(Vector2I sector, ref float spawnsLeftThisFrame)
     {
-        float spawns = 0.0f;
+        var spawns = 0.0f;
 
         foreach (var spawnType in spawnTypes)
         {
@@ -497,7 +497,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         var angle = random.NextSingle() * 2 * MathF.PI;
 
-        float spawns = 0.0f;
+        var spawns = 0.0f;
         foreach (var spawnType in spawnTypes)
         {
             if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
@@ -527,7 +527,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     /// </summary>
     private float SpawnWithSpawner(Spawner spawnType, Vector3 location, ref float spawnsLeftThisFrame)
     {
-        float spawns = 0.0f;
+        var spawns = 0.0f;
 
         if (random.NextSingle() > spawnType.Density)
         {
@@ -540,7 +540,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         if (spawnQueue == null)
             return spawns;
 
-        bool finished = false;
+        var finished = false;
 
         while (spawnsLeftThisFrame > 0)
         {
@@ -581,10 +581,10 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     /// <returns>The number of alive entities (combined weight), used to limit the total</returns>
     private float DespawnEntities()
     {
-        float entitiesDeleted = 0.0f;
-        float spawnedEntityWeight = 0.0f;
+        var entitiesDeleted = 0.0f;
+        var spawnedEntityWeight = 0.0f;
 
-        int despawnedCount = 0;
+        var despawnedCount = 0;
 
         foreach (ref readonly var entity in spawnedEntitiesSet.GetEntities())
         {

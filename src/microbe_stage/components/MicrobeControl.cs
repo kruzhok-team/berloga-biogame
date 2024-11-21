@@ -217,7 +217,7 @@ public static class MicrobeControlHelpers
         if (organelles.AgentVacuoleCount < 1)
             return false;
 
-        float amountAvailable = availableCompounds.GetCompoundAmount(agentType);
+        var amountAvailable = availableCompounds.GetCompoundAmount(agentType);
 
         // Skip if too little agent available
         if (amountAvailable < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
@@ -375,7 +375,7 @@ public static class MicrobeControlHelpers
         if (NeedsToUseForcedState(ref compoundStorage, atp))
         {
             // Don't force if the damage would kill the cell to avoid state change being a death button
-            float damage = Constants.ENGULF_NO_ATP_DAMAGE;
+            var damage = Constants.ENGULF_NO_ATP_DAMAGE;
 
             if (damage >= health.CurrentHealth)
                 return;

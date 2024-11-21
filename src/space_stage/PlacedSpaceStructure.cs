@@ -69,7 +69,7 @@ public partial class PlacedSpaceStructure : Node3D, IEntityWithNameLabel
                 return Localization.Translate("SPACE_STRUCTURE_HAS_RESOURCES");
 
             // Display the still required resources
-            string resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
+            var resourceAmountFormat = Localization.Translate("RESOURCE_AMOUNT_SHORT");
 
             return Localization.Translate("SPACE_STRUCTURE_WAITING_CONSTRUCTION")
                 .FormatSafe(string.Join(", ",

@@ -242,7 +242,7 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
             if (InARow)
             {
                 var list = data.CountInGenerations;
-                int old = Math.Max(list.Count - Generations, 0);
+                var old = Math.Max(list.Count - Generations, 0);
                 var elements = list.Skip(old).Reverse().TakeWhile(c => c >= MinimumCount);
 
                 return elements.Count();

@@ -61,11 +61,11 @@ public class RunOnAxisGroupAttribute : InputAttribute
     {
         // Read new axis values
         // TODO: could this run only if OnInput used something? (currently wouldn't work for mouse look)
-        int axisCount = axes.Count;
+        var axisCount = axes.Count;
 
-        int parameterOffset = 0;
+        var parameterOffset = 0;
 
-        int wantedLength = axisCount;
+        var wantedLength = axisCount;
 
         if (InvokeWithDelta)
         {
@@ -81,7 +81,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
         var convertedDelta = (float)delta;
 
-        for (int i = 0; i < axisCount; ++i)
+        for (var i = 0; i < axisCount; ++i)
         {
             var value = axes[i].GetCurrentResult(convertedDelta);
             currentAxisValues[i] = value;
@@ -95,10 +95,10 @@ public class RunOnAxisGroupAttribute : InputAttribute
         // Skip process if all axes have default values, and invoke also with no input is not set
         if (!InvokeAlsoWithNoInput)
         {
-            bool hasDifference = false;
+            var hasDifference = false;
 
             // TODO: check if combining this into the first loop in this method would be faster
-            for (int i = 0; i < axisCount; ++i)
+            for (var i = 0; i < axisCount; ++i)
             {
                 var difference = currentAxisValues[i] - axes[i].DefaultState;
                 if (difference is > 0.001f or < -0.001f)

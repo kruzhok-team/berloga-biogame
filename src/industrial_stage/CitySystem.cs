@@ -50,7 +50,7 @@ public class CitySystem
         }
 
         float storage = 0;
-        int population = 0;
+        var population = 0;
         FirstLaunchableSpacecraft = null;
 
         foreach (var city in worldRoot.GetChildrenToProcess<PlacedCity>(Constants.CITY_ENTITY_GROUP))
@@ -96,7 +96,7 @@ public class CitySystem
     public void CalculateDerivedStats()
     {
         float storage = 0;
-        int population = 0;
+        var population = 0;
 
         foreach (var city in worldRoot.GetChildrenToProcess<PlacedCity>(Constants.CITY_ENTITY_GROUP))
         {

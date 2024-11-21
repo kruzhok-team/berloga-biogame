@@ -23,7 +23,7 @@ public partial class OrganelleMeshWithChildren : MeshInstance3D
 
     public void GetChildrenMaterials(List<ShaderMaterial> result, bool quiet = false)
     {
-        bool found = false;
+        var found = false;
 
         if (meshChildren == null || meshChildren.Count < 1)
         {

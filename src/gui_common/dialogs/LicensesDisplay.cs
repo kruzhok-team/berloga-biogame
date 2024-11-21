@@ -43,7 +43,7 @@ public partial class LicensesDisplay : CustomWindow
 
         var match = regex.Match(normal);
 
-        string extraText = "Error library list not found";
+        var extraText = "Error library list not found";
 
         if (match.Success)
         {
@@ -61,7 +61,7 @@ public partial class LicensesDisplay : CustomWindow
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
-        bool isSteamVersion = SteamHandler.IsTaggedSteamRelease();
+        var isSteamVersion = SteamHandler.IsTaggedSteamRelease();
 
         // These don't react to language change, but I doubt it's important enough to fix
         licensesToShow = new List<(string Heading, Func<string> Content)>

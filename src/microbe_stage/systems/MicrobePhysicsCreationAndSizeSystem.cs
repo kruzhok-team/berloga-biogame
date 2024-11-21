@@ -134,7 +134,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             // TODO comment)
 
             // If there are no pili or colony members then a single shape is enough for this microbe
-            bool requiresCompoundShape = false;
+            var requiresCompoundShape = false;
 
             if (entity.Has<MicrobeColony>())
             {
@@ -311,13 +311,13 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             ref var colony = ref entity.Get<MicrobeColony>();
 
             var members = colony.ColonyMembers;
-            int memberCount = members.Length;
+            var memberCount = members.Length;
 
             if (memberOrganelles == null)
                 throw new Exception("This should not be null with colonies");
 
             // The bodies need to be added colony member list order
-            for (int i = 0; i < memberCount; ++i)
+            for (var i = 0; i < memberCount; ++i)
             {
                 var member = members[i];
 
@@ -351,7 +351,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
         // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
         // And to detect between the pilus variants, first normal pili are created and only then injectisomes
-        bool hasInjectisomes = false;
+        var hasInjectisomes = false;
 
         foreach (var organelle in organelles.Organelles!)
         {

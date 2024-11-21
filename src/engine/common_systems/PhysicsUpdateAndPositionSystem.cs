@@ -87,7 +87,7 @@ public sealed class PhysicsUpdateAndPositionSystem : AEntitySetSystem<float>
         if (physics.DisableCollisionState != Physics.CollisionState.DoNotChange)
         {
             // Because the struct default data is 0 (false) we need to use a reversed value for the flag here
-            bool wantedState = physics.DisableCollisionState == Physics.CollisionState.DisableCollisions;
+            var wantedState = physics.DisableCollisionState == Physics.CollisionState.DisableCollisions;
 
             if (wantedState != physics.InternalDisableCollisionState)
             {

@@ -492,9 +492,9 @@ public static class OrganelleContainerHelpers
         container.HexCount = container.Organelles.HexCount;
 
         var organelles = container.Organelles;
-        int count = organelles.Count;
+        var count = organelles.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var organelleDefinition = organelle.Definition;
@@ -503,9 +503,9 @@ public static class OrganelleContainerHelpers
                 ++container.OxygenUsingOrganelles;
 
             var components = organelle.Components;
-            int componentCount = components.Count;
+            var componentCount = components.Count;
 
-            for (int j = 0; j < componentCount; ++j)
+            for (var j = 0; j < componentCount; ++j)
             {
                 var organelleComponent = components[j];
 
@@ -688,15 +688,15 @@ public static class OrganelleContainerHelpers
         {
             foreach (var key in gatheredCompounds.Keys.ToList())
             {
-                float value = Math.Max(0.0f, storedCompounds.GetCompoundAmount(key) -
+                var value = Math.Max(0.0f, storedCompounds.GetCompoundAmount(key) -
                     Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
                 if (value > 0)
                 {
-                    float existing = gatheredCompounds[key];
+                    var existing = gatheredCompounds[key];
 
                     // Only up to the total needed
-                    float total = totalCompounds[key];
+                    var total = totalCompounds[key];
 
                     gatheredCompounds[key] = Math.Min(total, existing + value);
                 }
@@ -774,9 +774,9 @@ public static class OrganelleContainerHelpers
         result.Clear();
 
         var organelles = organelleContainer.Organelles;
-        int count = organelles.Count;
+        var count = organelles.Count;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
 

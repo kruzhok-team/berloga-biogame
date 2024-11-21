@@ -419,7 +419,7 @@ public partial class ModManager : Control
     {
         base._Process(delta);
 
-        bool isCurrentlyVisible = IsVisibleInTree();
+        var isCurrentlyVisible = IsVisibleInTree();
 
         if (isCurrentlyVisible && !wasVisible)
         {

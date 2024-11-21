@@ -78,8 +78,8 @@ public class MovementComponent : IOrganelleComponent
     /// </summary>
     private static Vector3 CalculateForce(Hex pos, float momentum)
     {
-        Vector3 organellePosition = Hex.AxialToCartesian(pos);
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var organellePosition = Hex.AxialToCartesian(pos);
+        var middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
             delta = CellPropertiesHelpers.DefaultVisualPos;

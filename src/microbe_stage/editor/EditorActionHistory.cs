@@ -51,7 +51,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         var processedHistory = History;
         var copyLength = processedHistory.Count;
 
-        for (int compareIndex = 1; compareIndex < copyLength; ++compareIndex)
+        for (var compareIndex = 1; compareIndex < copyLength; ++compareIndex)
         {
             while (true)
             {
@@ -287,11 +287,11 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             return null;
 
         // For now we allow combining only if all data values can be combined
-        bool matches = true;
+        var matches = true;
 
         foreach (var currentData in currentActionData)
         {
-            bool currentMatched = false;
+            var currentMatched = false;
 
             foreach (var previousData in previousActionData)
             {
@@ -324,7 +324,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         // Perform the combining now that we've confirmed it should be supported
         foreach (var currentData in currentActionData)
         {
-            bool merged = false;
+            var merged = false;
 
             foreach (var newData in newDataList)
             {

@@ -53,7 +53,7 @@ public class SingleEditorAction<T> : EditorAction
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
     {
-        bool applied = false;
+        var applied = false;
 
         foreach (var data in newData)
         {

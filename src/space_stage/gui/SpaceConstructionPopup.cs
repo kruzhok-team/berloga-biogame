@@ -73,7 +73,7 @@ public partial class SpaceConstructionPopup : StructureToBuildPopupBase<SpaceStr
             StringBuilder stringBuilder2)
         {
             // Disabled if can't start the building
-            bool canStart = structureDefinition.CanStart(allResources) == null;
+            var canStart = structureDefinition.CanStart(allResources) == null;
             Disabled = !canStart;
 
             stringBuilder.Clear();

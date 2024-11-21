@@ -42,8 +42,8 @@ public static class SpeciesMemberLocationDataHelpers
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
 
-        bool closestFound = false;
-        float nearestDistanceSquared = float.MaxValue;
+        var closestFound = false;
+        var nearestDistanceSquared = float.MaxValue;
 
         var searchRadiusSquared = searchRadius * searchRadius;
 

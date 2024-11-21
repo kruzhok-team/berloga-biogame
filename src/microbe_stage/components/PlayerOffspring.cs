@@ -22,7 +22,7 @@ public static class PlayerOffspringHelpers
     /// <returns>The latest offspring or invalid entity value if there are no offspring</returns>
     public static Entity FindLatestSpawnedOffspring(World entitySystem)
     {
-        int highest = int.MinValue;
+        var highest = int.MinValue;
         Entity result = default;
 
         foreach (var entity in entitySystem.GetEntities().With<PlayerOffspring>().AsEnumerable())

@@ -534,7 +534,7 @@ public partial class NewGameSettings : ControlWithInput
 
     private void SetSeed(string text)
     {
-        bool valid = long.TryParse(text, out var seed) && seed > 0;
+        var valid = long.TryParse(text, out var seed) && seed > 0;
         ReportValidityOfGameSeed(valid);
         if (valid)
             latestValidSeed = seed;
@@ -546,7 +546,7 @@ public partial class NewGameSettings : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+        var selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)

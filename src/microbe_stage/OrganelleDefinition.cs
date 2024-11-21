@@ -453,11 +453,11 @@ public class OrganelleDefinition : IRegistryType
         }
 
         // Check for duplicate position hexes
-        for (int i = 0; i < Hexes.Count; ++i)
+        for (var i = 0; i < Hexes.Count; ++i)
         {
-            bool duplicate = false;
+            var duplicate = false;
 
-            for (int j = i + 1; j < Hexes.Count; ++j)
+            for (var j = i + 1; j < Hexes.Count; ++j)
             {
                 if (Hexes[i].Equals(Hexes[j]))
                 {
@@ -611,7 +611,7 @@ public class OrganelleDefinition : IRegistryType
         }
 
         // Precompute rotations
-        for (int i = 0; i < 6; ++i)
+        for (var i = 0; i < 6; ++i)
         {
             GetRotatedHexes(i);
         }
@@ -632,7 +632,7 @@ public class OrganelleDefinition : IRegistryType
     {
         if (UnlockConditions != null)
         {
-            bool first = true;
+            var first = true;
             foreach (var unlockCondition in UnlockConditions)
             {
                 if (!first)

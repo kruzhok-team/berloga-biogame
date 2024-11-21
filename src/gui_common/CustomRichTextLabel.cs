@@ -229,7 +229,7 @@ public partial class CustomRichTextLabel : RichTextLabel
         // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
-        for (int index = 0; index < extendedBbcode.Length; ++index)
+        for (var index = 0; index < extendedBbcode.Length; ++index)
         {
             var character = extendedBbcode[index];
 
@@ -398,7 +398,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             int width, int height, ImageVerticalAlignment verticalAlignment = ImageVerticalAlignment.Center,
             ImageAlignmentReferencePoint textAnchorPoint = ImageAlignmentReferencePoint.Center)
         {
-            if (pairs.TryGetValue("size", out string? sizeInput))
+            if (pairs.TryGetValue("size", out var sizeInput))
             {
                 var separator = sizeInput.Find("x");
 
@@ -468,7 +468,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string? value))
+                if (pairs.TryGetValue("type", out var value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -525,7 +525,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             case ThriveBbCode.Constant:
             {
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
-                parsedAttributes.TryGetValue("format", out string? format);
+                parsedAttributes.TryGetValue("format", out var format);
 
                 switch (input)
                 {
@@ -594,7 +594,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             {
                 var internalName = string.Empty;
 
-                if (pairs.TryGetValue("type", out string? value))
+                if (pairs.TryGetValue("type", out var value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
@@ -618,7 +618,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                 var resource = simulationParameters.GetWorldResource(internalName);
 
                 // Resources by default don't show the name
-                bool showName = false;
+                var showName = false;
 
                 if (pairs.TryGetValue("type", out value))
                 {

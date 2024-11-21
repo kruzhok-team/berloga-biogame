@@ -50,7 +50,7 @@ public partial class ControlHighlight : Control
         if (!Visible)
             return;
 
-        bool hasTarget = TargetControl != null;
+        var hasTarget = TargetControl != null;
 
         leftPlane.Visible = hasTarget;
         topPlane.Visible = hasTarget;

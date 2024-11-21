@@ -26,7 +26,7 @@ public class MicrobeTemporaryEffectsSystem : AEntitySetSystem<float>
         if (temporaryEffects.StateApplied)
             return;
 
-        bool hasDebuff = false;
+        var hasDebuff = false;
 
         // TODO: would be nice to have a place in the GUI to show with icons the current effects on the player
 

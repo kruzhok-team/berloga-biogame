@@ -126,7 +126,7 @@ public sealed class EntitySignalingSystem : AEntitySetSystem<float>
         ref var signaling = ref entity.Get<CommandSignaler>();
 
         // Find closest signaler on the channel this entity is on
-        bool foundSignal = false;
+        var foundSignal = false;
 
         if (entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var signalers))
         {
@@ -134,7 +134,7 @@ public sealed class EntitySignalingSystem : AEntitySetSystem<float>
 
             // We kind of simulate how strong the "smell" of a signal is by finding the closest active signal
             (Entity Entity, Vector3 Position)? bestSignaler = null;
-            float minDistanceFound = float.MaxValue;
+            var minDistanceFound = float.MaxValue;
 
             // In the old microbe AI implementation this actually used the last smelled position to calculate a new
             // min distance, which could result in different kind of "pinning" behaviour of previous commands. That

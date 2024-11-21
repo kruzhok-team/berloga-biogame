@@ -74,7 +74,7 @@ public partial class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, ThriveLauncherSharedConstants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        bool loadNative = true;
+        var loadNative = true;
 
         try
         {

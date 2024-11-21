@@ -407,7 +407,7 @@ public partial class LineChart : VBoxContainer
                 var visible = visibleDataSetCount < initialVisibleDataSets;
 
                 // Override visible value if stored value exists
-                if (stored.TryGetValue(data.Key, out bool value))
+                if (stored.TryGetValue(data.Key, out var value))
                     visible = value;
 
                 UpdateDataSetVisibility(data.Key, visible);
@@ -934,7 +934,7 @@ public partial class LineChart : VBoxContainer
             return;
 
         // Populate the rows
-        for (int i = 0; i < XAxisTicks; ++i)
+        for (var i = 0; i < XAxisTicks; ++i)
         {
             var label = new Label
             {
@@ -948,7 +948,7 @@ public partial class LineChart : VBoxContainer
         }
 
         // Populate the columns (in reverse order)
-        for (int i = YAxisTicks - 1; i >= 0; i--)
+        for (var i = YAxisTicks - 1; i >= 0; i--)
         {
             var label = new Label
             {
@@ -1058,7 +1058,7 @@ public partial class LineChart : VBoxContainer
 
     private void ProperlyRemovePointAndLineToolTips()
     {
-        bool alreadyDetached = toolTipsDetached;
+        var alreadyDetached = toolTipsDetached;
 
         // Remove tooltips correctly
         foreach (var entry in dataPointToolTips)
@@ -1093,7 +1093,7 @@ public partial class LineChart : VBoxContainer
 
     private void ProperlyRemoveLegendToolTips()
     {
-        bool alreadyDetached = toolTipsDetached;
+        var alreadyDetached = toolTipsDetached;
 
         foreach (var entry in legendToolTips)
         {

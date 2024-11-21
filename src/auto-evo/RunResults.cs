@@ -158,11 +158,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         lock (result.SpreadToPatches)
         {
             var spreads = result.SpreadToPatches;
-            int migrationCount = spreads.Count;
+            var migrationCount = spreads.Count;
 
-            for (int i = 1; i < migrationCount; ++i)
+            for (var i = 1; i < migrationCount; ++i)
             {
-                for (int j = 0; j < i; ++j)
+                for (var j = 0; j < i; ++j)
                 {
                     // Remove later migrations that target the same patch as an earlier one
                     if (spreads[i].To != spreads[j].To)
@@ -352,7 +352,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             if (entry.Value.NewlyCreated != null)
             {
                 // If we split off from a species that didn't take a population hit, we need to register ourselves
-                bool register = false;
+                var register = false;
                 if (entry.Value.SplitFrom == null)
                 {
                     register = true;
@@ -381,8 +381,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 var from = world.Map.GetPatch(spreadEntry.From.ID);
                 var to = world.Map.GetPatch(spreadEntry.To.ID);
 
-                long remainingPopulation = from.GetSpeciesSimulationPopulation(entry.Key) - spreadEntry.Population;
-                long newPopulation = to.GetSpeciesSimulationPopulation(entry.Key) + spreadEntry.Population;
+                var remainingPopulation = from.GetSpeciesSimulationPopulation(entry.Key) - spreadEntry.Population;
+                var newPopulation = to.GetSpeciesSimulationPopulation(entry.Key) + spreadEntry.Population;
 
                 if (!from.UpdateSpeciesSimulationPopulation(entry.Key, remainingPopulation))
                 {
@@ -486,7 +486,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </summary>
     public long? GetPopulationInPatchIfExists(Species species, Patch patch)
     {
-        if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+        if (results[species].NewPopulationInPatches.TryGetValue(patch, out var population))
         {
             return Math.Max(population, 0);
         }
@@ -867,7 +867,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
 
             foreach (var patchPopulation in entry.NewPopulationInPatches)
             {
-                long adjustedPopulation = patchPopulation.Value;
+                var adjustedPopulation = patchPopulation.Value;
 
                 if (resolveMigrations)
                 {
@@ -979,7 +979,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         {
             foreach (var species in patch.SpeciesInPatch.Keys)
             {
-                long globalPopulation = GetGlobalPopulation(species, true, true);
+                var globalPopulation = GetGlobalPopulation(species, true, true);
 
                 var previousGlobalPopulation = world.Map.GetSpeciesGlobalSimulationPopulation(species);
 

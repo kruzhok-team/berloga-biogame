@@ -77,14 +77,14 @@ public static class MathUtils
     /// <returns>The positive modulo</returns>
     public static int PositiveModulo(this int val, int mod)
     {
-        int result = val % mod;
+        var result = val % mod;
         return result < 0 ? result + mod : result;
     }
 
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
         this IEnumerable<int> enumerable)
     {
-        int count = 0;
+        var count = 0;
         double sum = 0;
         double sumOfSquares = 0;
 
@@ -98,15 +98,15 @@ public static class MathUtils
         if (count == 0)
             throw new InvalidOperationException("Sequence contains no elements");
 
-        double average = sum / count;
-        double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
+        var average = sum / count;
+        var standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
         return (average, standardDeviation);
     }
 
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
         this IEnumerable<double> enumerable)
     {
-        int count = 0;
+        var count = 0;
         double sum = 0;
         double sumOfSquares = 0;
 
@@ -120,8 +120,8 @@ public static class MathUtils
         if (count == 0)
             throw new InvalidOperationException("Sequence contains no elements");
 
-        double average = sum / count;
-        double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
+        var average = sum / count;
+        var standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
         return (average, standardDeviation);
     }
 
@@ -136,7 +136,7 @@ public static class MathUtils
     public static float GetMaximumDistanceInDirection(Vector3 direction, Vector3 referencePoint,
         IEnumerable<Vector3> listOfPoints)
     {
-        float distance = 0.0f;
+        var distance = 0.0f;
 
         foreach (var point in listOfPoints)
         {
@@ -145,13 +145,13 @@ public static class MathUtils
 
             var difference = point - referencePoint;
 
-            float angle = difference.AngleTo(direction);
+            var angle = difference.AngleTo(direction);
 
             if (angle >= RIGHT_ANGLE)
                 continue;
 
             // Get the length of the part of the vector that's parallel to the direction
-            float directionalLength = difference.Length() * MathF.Cos(angle);
+            var directionalLength = difference.Length() * MathF.Cos(angle);
 
             if (directionalLength > distance)
                 distance = directionalLength;
@@ -172,7 +172,7 @@ public static class MathUtils
 
     public static float DistanceBetweenRadians(float p1, float p2)
     {
-        float distance = Math.Abs(p1 - p2);
+        var distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 }

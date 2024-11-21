@@ -83,7 +83,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         }
 
         // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
-        int renderPriority = -1;
+        var renderPriority = -1;
 
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
@@ -104,14 +104,14 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             return;
         }
 
-        for (int i = 0; i < clouds.Count; ++i)
+        for (var i = 0; i < clouds.Count; ++i)
         {
             Compound cloud1;
             Compound? cloud2 = null;
             Compound? cloud3 = null;
             Compound? cloud4 = null;
 
-            int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
+            var startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
 
             cloud1 = allCloudCompounds[startOffset + 0];
 
@@ -152,7 +152,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // Find the target cloud //
         foreach (var cloud in clouds)
         {
-            if (cloud.ContainsPosition(worldPosition, out int x, out int y))
+            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
                 // Within cloud
 
@@ -237,12 +237,12 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             return;
         }
 
-        int resolution = Resolution;
+        var resolution = Resolution;
 
         // This version is used when working with cloud local coordinates
-        float localGrabRadius = radius / resolution;
+        var localGrabRadius = radius / resolution;
 
-        float localGrabRadiusSquared = MathF.Pow(radius / resolution, 2);
+        var localGrabRadiusSquared = MathF.Pow(radius / resolution, 2);
 
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
@@ -259,13 +259,13 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             // For simplicity all points within a bounding box around the
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
-            int xEnd = (int)MathF.Round(cloudRelativeX + localGrabRadius);
-            int yEnd = (int)MathF.Round(cloudRelativeY + localGrabRadius);
+            var xEnd = (int)MathF.Round(cloudRelativeX + localGrabRadius);
+            var yEnd = (int)MathF.Round(cloudRelativeY + localGrabRadius);
 
             // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
-            for (int x = (int)MathF.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
+            for (var x = (int)MathF.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
             {
-                for (int y = (int)MathF.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                for (var y = (int)MathF.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
@@ -296,12 +296,12 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
 
-        int resolution = Resolution;
+        var resolution = Resolution;
 
         // This version is used when working with cloud local coordinates
-        float localRadius = searchRadius / resolution;
+        var localRadius = searchRadius / resolution;
 
-        float nearestDistanceSquared = float.MaxValue;
+        var nearestDistanceSquared = float.MaxValue;
 
         Vector3? closestPoint = null;
 
@@ -318,12 +318,12 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
             // Search each angle for nearby compounds
-            for (int radius = 1; radius < localRadius; radius += 1)
+            for (var radius = 1; radius < localRadius; radius += 1)
             {
                 for (double theta = 0; theta <= MathUtils.FULL_CIRCLE; theta += Constants.CHEMORECEPTOR_ARC_SIZE)
                 {
-                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
-                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
+                    var x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
+                    var y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
 
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)

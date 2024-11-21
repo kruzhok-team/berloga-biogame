@@ -120,7 +120,7 @@ public static class MichePopulation
 
             foreach (var patch in patches)
             {
-                long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
+                var currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
                 // If this is a replacement species, this instead takes the
                 if (currentPopulation == 0)
@@ -190,7 +190,7 @@ public static class MichePopulation
         _ = random;
 
         var populations = simulationConfiguration.Results;
-        bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
+        var trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
@@ -299,12 +299,12 @@ public static class MichePopulation
             }
 
             var individualCost = CalculateMicrobeIndividualCost(microbeSpecies, patch.Biome, cache);
-            long newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
+            var newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
 
             // Remove any species that don't hold a miche
             // Probably should make this a setting and throw a multiplier here
             // It does give a large speed-up though
-            bool isOccupantSomewhere = false;
+            var isOccupantSomewhere = false;
 
             foreach (var leafNode in leafNodes)
             {

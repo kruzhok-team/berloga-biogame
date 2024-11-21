@@ -79,7 +79,7 @@ public partial class Membrane : MeshInstance3D
             if (ReferenceEquals(membraneData, value))
                 return;
 
-            bool reapply = membraneData != null!;
+            var reapply = membraneData != null!;
 
             membraneData = value;
             IsChangingShape = false;
@@ -195,12 +195,12 @@ public partial class Membrane : MeshInstance3D
     /// </remarks>
     public bool Contains(float x, float y)
     {
-        bool crosses = false;
+        var crosses = false;
 
-        int n = membraneData.VertexCount;
+        var n = membraneData.VertexCount;
         var vertices = membraneData.Vertices2D;
 
-        for (int i = 0; i < n - 1; ++i)
+        for (var i = 0; i < n - 1; ++i)
         {
             if ((vertices[i].Y <= y && y < vertices[i + 1].Y) ||
                 (vertices[i + 1].Y <= y && y < vertices[i].Y))
@@ -258,15 +258,15 @@ public partial class Membrane : MeshInstance3D
     /// </remarks>
     public Vector3 GetVectorTowardsNearestPointOfMembrane(float x, float y)
     {
-        float organelleAngle = MathF.Atan2(y, x);
+        var organelleAngle = MathF.Atan2(y, x);
 
-        Vector2 closestSoFar = new Vector2(0, 0);
-        float angleToClosest = MathF.PI * 2;
+        var closestSoFar = new Vector2(0, 0);
+        var angleToClosest = MathF.PI * 2;
 
-        int count = membraneData.VertexCount;
+        var count = membraneData.VertexCount;
         var vertices = membraneData.Vertices2D;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var vertex = vertices[i];
             if (MathF.Abs(MathF.Atan2(vertex.Y, vertex.X) - organelleAngle) < angleToClosest)
@@ -330,10 +330,10 @@ public partial class Membrane : MeshInstance3D
         if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
             return;
 
-        float wigglyNessToApply =
+        var wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
-        float finalWiggly = MathF.Min(WigglyNess, wigglyNessToApply);
+        var finalWiggly = MathF.Min(WigglyNess, wigglyNessToApply);
 
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
@@ -345,10 +345,10 @@ public partial class Membrane : MeshInstance3D
         if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
             return;
 
-        float wigglyNessToApply =
+        var wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
-        float finalWiggly = MathF.Min(MovementWigglyNess, wigglyNessToApply);
+        var finalWiggly = MathF.Min(MovementWigglyNess, wigglyNessToApply);
 
         MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);

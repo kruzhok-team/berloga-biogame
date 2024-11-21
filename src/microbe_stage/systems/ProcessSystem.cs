@@ -69,23 +69,23 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
         // A basic linear scan over all organelles and their processes with combining duplicates into the result
-        int count = organelles.Count;
-        for (int i = 0; i < count; ++i)
+        var count = organelles.Count;
+        for (var i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var processes = organelle.Definition.RunnableProcesses;
-            int processCount = processes.Count;
+            var processCount = processes.Count;
 
-            for (int j = 0; j < processCount; ++j)
+            for (var j = 0; j < processCount; ++j)
             {
                 var process = processes[j];
                 var processKey = process.Process;
 
-                bool added = false;
+                var added = false;
 
                 // Try to add to existing result first
-                int resultCount = result.Count;
-                for (int k = 0; k < resultCount; ++k)
+                var resultCount = result.Count;
+                for (var k = 0; k < resultCount; ++k)
                 {
                     if (result[k].Process == processKey)
                     {
@@ -173,14 +173,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // further items
         var result = new EnergyBalanceInfo();
 
-        float processATPProduction = 0.0f;
-        float processATPConsumption = 0.0f;
-        float movementATPConsumption = 0.0f;
+        var processATPProduction = 0.0f;
+        var processATPConsumption = 0.0f;
+        var movementATPConsumption = 0.0f;
 
-        int hexCount = 0;
+        var hexCount = 0;
 
-        int organelleCount = organelles.Count;
-        for (int i = 0; i < organelleCount; ++i)
+        var organelleCount = organelles.Count;
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
@@ -340,7 +340,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+        var consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
         bool useRatio;
 
         foreach (var organelle in organelles)
@@ -360,7 +360,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     if (input.Key == ATP)
                         continue;
 
-                    float amount = input.Value;
+                    var amount = input.Value;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
@@ -374,7 +374,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     if (output.Key == ATP)
                         continue;
 
-                    float amount = output.Value;
+                    var amount = output.Value;
 
                     if (useRatio)
                         amount *= consumptionProductionRatio;
@@ -426,8 +426,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
         BiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
     {
-        float processATPProduction = 0.0f;
-        float processATPConsumption = 0.0f;
+        var processATPProduction = 0.0f;
+        var processATPConsumption = 0.0f;
 
         foreach (var process in organelle.Definition.RunnableProcesses)
         {
@@ -479,8 +479,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         var result = new ProcessSpeedInformation(process.Process);
 
-        float speedFactor = 1.0f;
-        float efficiency = 1.0f;
+        var speedFactor = 1.0f;
+        var efficiency = 1.0f;
 
         if (requireInputCompoundsInBiome)
         {
@@ -723,15 +723,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ref BioProcesses processorInfo, SingleProcessStatistics? currentProcessStatistics)
     {
         // Can your cell do the process
-        bool canDoProcess = true;
+        var canDoProcess = true;
 
-        float environmentModifier = 1.0f;
+        var environmentModifier = 1.0f;
 
         // This modifies the process overall speed to allow really fast processes to run, for example if there are
         // a ton of one organelle it might consume 100 glucose per go, which might be unlikely for the cell to have
         // so if there is *some* but not enough space for results (and also inputs) this can run the process as
         // fraction of the speed to allow the cell to still function well
-        float spaceConstraintModifier = 1.0f;
+        var spaceConstraintModifier = 1.0f;
 
         // First check the environmental compounds so that we can build the right environment modifier for accurate
         // check of normal compound input amounts
@@ -789,7 +789,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             var availableAmount = bag.GetCompoundAmount(entry.Key);
             if (availableAmount < inputRemoved)
             {
-                bool canRun = false;
+                var canRun = false;
 
                 if (availableAmount > MathUtils.EPSILON)
                 {
@@ -814,7 +814,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        bool isATPProducer = false;
+        var isATPProducer = false;
 
         foreach (var entry in processData.Outputs)
         {
@@ -836,7 +836,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             var remainingSpace = bag.GetCapacityForCompound(entry.Key) - bag.GetCompoundAmount(entry.Key);
             if (outputAdded > remainingSpace)
             {
-                bool canRun = false;
+                var canRun = false;
 
                 if (remainingSpace > MathUtils.EPSILON)
                 {
@@ -871,7 +871,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
+        var totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
             process.SpeedMultiplier;
 
         // Apply ATP production speed cap if in effect

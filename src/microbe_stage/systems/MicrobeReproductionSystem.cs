@@ -95,13 +95,13 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         // TODO: make the current patch affect this?
         // TODO: make being in a colony affect this
-        float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
+        var remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
         if (isMulticellular)
             remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
 
-        float remainingAllowedCompoundUse = float.MaxValue;
+        var remainingAllowedCompoundUse = float.MaxValue;
 
         if (worldSettings.LimitReproductionCompoundUseSpeed)
         {
@@ -161,15 +161,15 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             }
         }
 
-        bool reproductionStageComplete = true;
+        var reproductionStageComplete = true;
 
-        int count = tempStorageForProcessing.Count;
+        var count = tempStorageForProcessing.Count;
 
         if (count > 0)
         {
             if (consumeInReverseOrder)
             {
-                for (int i = count - 1; i >= 0; --i)
+                for (var i = count - 1; i >= 0; --i)
                 {
                     ProcessBaseReproductionForCompoundType(tempStorageForProcessing[i],
                         requiredCompoundsForBaseReproduction, compounds, ref remainingAllowedCompoundUse,
@@ -178,7 +178,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             }
             else
             {
-                for (int i = 0; i < count; ++i)
+                for (var i = 0; i < count; ++i)
                 {
                     ProcessBaseReproductionForCompoundType(tempStorageForProcessing[i],
                         requiredCompoundsForBaseReproduction, compounds, ref remainingAllowedCompoundUse,
@@ -237,7 +237,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
 
-        bool isInColony = entity.Has<MicrobeColony>();
+        var isInColony = entity.Has<MicrobeColony>();
 
         if (isInColony)
         {
@@ -253,7 +253,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         base.PostUpdate(state);
 
-        bool printedError = false;
+        var printedError = false;
 
         // Apply scales
         while (organellesNeedingScaleUpdate.TryPop(out var organelle))
@@ -300,7 +300,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
         float usedAmount = 0;
 
-        float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+        var allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
 
         if (remainingFreeCompounds > 0)
         {
@@ -408,7 +408,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                 // Manual loops are used here as profiling showed the reproduction system enumerator allocations caused
                 // quite a lot of memory allocations during gameplay
                 var organelleCount = organelles.Organelles.Count;
-                for (int i = 0; i < organelleCount; ++i)
+                for (var i = 0; i < organelleCount; ++i)
                 {
                     var organelle = organelles.Organelles[i];
 
@@ -430,7 +430,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                         continue;
 
                     // Give it some compounds to make it larger.
-                    bool grown = organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
+                    var grown = organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
                         ref remainingFreeCompounds, consumeInReverseOrder);
 
                     if (organelle.GrowthValue >= 1.0f)
@@ -466,7 +466,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         if (reproductionStageComplete)
         {
             var organelleCount = organelles.Organelles!.Count;
-            for (int i = 0; i < organelleCount; ++i)
+            for (var i = 0; i < organelleCount; ++i)
             {
                 var organelle = organelles.Organelles[i];
 

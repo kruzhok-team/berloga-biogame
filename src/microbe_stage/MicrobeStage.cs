@@ -214,7 +214,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             }
         }
 
-        bool playerAlive = HasAlivePlayer;
+        var playerAlive = HasAlivePlayer;
 
         if (WorldSimulation.ProcessAll((float)delta))
         {
@@ -514,7 +514,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Re-apply species here so that the player cell knows it is multicellular after this
         // Also apply species here to other members of the player's previous species
         // This prevents previous members of the player's colony from immediately being hostile
-        bool playerHandled = false;
+        var playerHandled = false;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
@@ -642,7 +642,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
-        bool playerIsMulticellular = Player.Has<EarlyMulticellularSpeciesMember>();
+        var playerIsMulticellular = Player.Has<EarlyMulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
         {
@@ -1133,7 +1133,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         HandlePlayerDeath();
 
-        bool engulfed = PlayerIsEngulfed(player);
+        var engulfed = PlayerIsEngulfed(player);
 
         // Engulfing death has a different tutorial
         if (!engulfed)
@@ -1290,7 +1290,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         List<(Compound Compound, Color Colour, Vector3 Target)>? activeCompoundDetections,
         List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? activeSpeciesDetections, Vector3 position)
     {
-        int currentLineIndex = 0;
+        var currentLineIndex = 0;
 
         if (activeCompoundDetections != null)
         {

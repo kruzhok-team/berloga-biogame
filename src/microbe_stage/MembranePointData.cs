@@ -51,10 +51,10 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
         // might exist a reference to this class instance (that's why it is only released in the finalizer)
-        int count = verticesToCopy.Count;
+        var count = verticesToCopy.Count;
         var copyTarget = ArrayPool<Vector2>.Shared.Rent(count);
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             copyTarget[i] = verticesToCopy[i];
         }
@@ -207,10 +207,10 @@ public sealed class MembraneCollisionShape : ICacheableData
     {
         unchecked
         {
-            long hash = ~(long)pointCount;
+            var hash = ~(long)pointCount;
             hash ^= density.GetHashCode();
 
-            for (int i = 0; i < pointCount; ++i)
+            for (var i = 0; i < pointCount; ++i)
             {
                 hash ^= i * 17 + points[i].GetHashCode();
             }
@@ -229,10 +229,10 @@ public sealed class MembraneCollisionShape : ICacheableData
 
         unchecked
         {
-            long hash = ~(long)pointCount;
+            var hash = ~(long)pointCount;
             hash ^= density.GetHashCode();
 
-            for (int i = 0; i < pointCount; ++i)
+            for (var i = 0; i < pointCount; ++i)
             {
                 var point = points[i];
                 hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
@@ -259,7 +259,7 @@ public sealed class MembraneCollisionShape : ICacheableData
         var points = MembranePoints;
         var otherPoints = data.MembranePoints;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             if (points[i] != otherPoints[i])
                 return false;
@@ -280,7 +280,7 @@ public sealed class MembraneCollisionShape : ICacheableData
 
         var points = MembranePoints;
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
             var point = points[i];
             var otherPoint = otherMembranePoints[i];

@@ -135,7 +135,7 @@ public static class CommonMutationFunctions
 
             // Compute the shortest hex distance
             Hex minSubHex = default;
-            int minDistance = int.MaxValue;
+            var minDistance = int.MaxValue;
             foreach (var mainHex in mainHexes)
             {
                 if (islandHexes.Contains(mainHex))
@@ -144,7 +144,7 @@ public static class CommonMutationFunctions
                 foreach (var islandHex in islandHexes)
                 {
                     var sub = islandHex - mainHex;
-                    int distance = (Math.Abs(sub.Q) + Math.Abs(sub.Q + sub.R) + Math.Abs(sub.R)) / 2;
+                    var distance = (Math.Abs(sub.Q) + Math.Abs(sub.Q + sub.R) + Math.Abs(sub.R)) / 2;
                     if (distance < minDistance)
                     {
                         minDistance = distance;
@@ -170,7 +170,7 @@ public static class CommonMutationFunctions
 
             // Move all island organelles by minSubHex
             var organelleCount = organelles.Count;
-            for (int i = 0; i < organelleCount; ++i)
+            for (var i = 0; i < organelleCount; ++i)
             {
                 var organelle = organelles[i];
 
@@ -214,7 +214,7 @@ public static class CommonMutationFunctions
                 foreach (int side in SideTraversalOrder(hex, direction, random))
                 {
                     // pick a hex direction, with a slight bias towards forwards
-                    for (int radius = 1; radius <= 3; ++radius)
+                    for (var radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
                         var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
@@ -234,7 +234,7 @@ public static class CommonMutationFunctions
                         }
 
                         // Check every possible rotation value.
-                        for (int rotation = 0; rotation <= 5; ++rotation)
+                        for (var rotation = 0; rotation <= 5; ++rotation)
                         {
                             result.Orientation = rotation;
 

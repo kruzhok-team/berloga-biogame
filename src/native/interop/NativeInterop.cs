@@ -692,7 +692,7 @@ public static class NativeInterop
             return false;
         }
 
-        for (int take = folders.Length; take > 0; --take)
+        for (var take = folders.Length; take > 0; --take)
         {
             try
             {

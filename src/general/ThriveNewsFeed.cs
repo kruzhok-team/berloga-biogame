@@ -109,7 +109,7 @@ public static class ThriveNewsFeed
     {
         var potentialItems = document.Descendants().Where(e => e.Name.LocalName == "item");
 
-        int seenItems = 0;
+        var seenItems = 0;
 
         foreach (var element in potentialItems)
         {
@@ -228,7 +228,7 @@ public static class ThriveNewsFeed
 
         public string GetFooterText()
         {
-            string footer = string.Empty;
+            var footer = string.Empty;
 
             if (PublishedAt != null)
             {

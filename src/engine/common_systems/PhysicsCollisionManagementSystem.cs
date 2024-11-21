@@ -147,7 +147,7 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
             physicalWorld.BodyStopCollisionRecording(physicsBody);
         }
 
-        bool wantedFilterState = collisionManagement.CollisionFilter != null;
+        var wantedFilterState = collisionManagement.CollisionFilter != null;
 
         if (wantedFilterState != collisionManagement.CollisionFilterCallbackRegistered)
         {

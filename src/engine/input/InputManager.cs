@@ -98,7 +98,7 @@ public partial class InputManager : Node
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
 
-        bool registered = false;
+        var registered = false;
 
         var reference = new WeakReference(instance);
 
@@ -137,7 +137,7 @@ public partial class InputManager : Node
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
 
-        int removed = 0;
+        var removed = 0;
 
         var removeList = staticInstance.temporaryItemsToDelete;
 
@@ -264,7 +264,7 @@ public partial class InputManager : Node
             {
                 // Apply button style from initial controller
 
-                int controllerId = controllers[0];
+                var controllerId = controllers[0];
                 lastUsedControllerName = Input.GetJoyName(controllerId);
                 lastUsedControllerId = controllerId;
 
@@ -521,7 +521,7 @@ public partial class InputManager : Node
     {
         UpdateUsedInputMethodType(@event);
 
-        bool isDown = false;
+        var isDown = false;
 
         // For now let's always assume mouse motion is not a "down" action
         if (@event is not InputEventMouseMotion)
@@ -530,7 +530,7 @@ public partial class InputManager : Node
             {
                 // Apply controller axis deadzone
                 var motionAxis = (int)(joypadMotion.Axis - JoyAxis.LeftX);
-                controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
+                controllerAxisDeadzones.TryGetValue(motionAxis, out var deadzone);
 
                 if (Math.Abs(joypadMotion.AxisValue) < deadzone)
                 {
@@ -556,7 +556,7 @@ public partial class InputManager : Node
             isDown = @event.IsPressed();
         }
 
-        bool handled = false;
+        var handled = false;
 
         foreach (var entry in attributes)
         {
@@ -704,7 +704,7 @@ public partial class InputManager : Node
 
         controllerAxisDeadzones.Clear();
 
-        for (int i = 0; i < values.Count; ++i)
+        for (var i = 0; i < values.Count; ++i)
         {
             controllerAxisDeadzones[i] = values[i];
         }

@@ -59,7 +59,7 @@ public partial class PlayerInspectInfo : Node
         validHits = PhysicalWorld.CastRayGetAllHits(from, offsetToEnd, hits);
 
         // Process hits to real microbes (as in colonies the body hit is the colony leader always)
-        for (int i = 0; i < validHits; ++i)
+        for (var i = 0; i < validHits; ++i)
         {
             var originalHitEntity = hits[i].BodyEntity;
             if (originalHitEntity.Has<MicrobeColony>() && originalHitEntity.Has<PhysicsShapeHolder>())
@@ -122,7 +122,7 @@ public partial class PlayerInspectInfo : Node
     /// <returns>True when the data was found</returns>
     public bool GetRaycastData(Entity entity, out PhysicsRayWithUserData rayData)
     {
-        for (int i = 0; i < validHits; ++i)
+        for (var i = 0; i < validHits; ++i)
         {
             if (hits[i].BodyEntity == entity)
             {

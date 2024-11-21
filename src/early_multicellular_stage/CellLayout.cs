@@ -43,8 +43,8 @@ public class CellLayout<T> : HexLayout<T>
         {
             // TODO: with the new physics its no longer possible to easily calculate the center of mass exactly
             // this instead has to rely on just hex positions (for now). See OrganelleLayout.CenterOfMass
-            Vector3 weightedSum = Vector3.Zero;
-            int count = 0;
+            var weightedSum = Vector3.Zero;
+            var count = 0;
             foreach (var organelle in existingHexes.SelectMany(c => c.Organelles))
             {
                 ++count;
@@ -63,16 +63,16 @@ public class CellLayout<T> : HexLayout<T>
         result.Clear();
 
         var organellesInternal = hex.Organelles.Organelles;
-        int organelleCount = organellesInternal.Count;
+        var organelleCount = organellesInternal.Count;
 
-        for (int i = 0; i < organelleCount; ++i)
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organellesInternal[i];
 
             var organelleHexes = organelle.Definition.GetRotatedHexes(organelle.Orientation);
-            int hexCount = organelleHexes.Count;
+            var hexCount = organelleHexes.Count;
 
-            for (int j = 0; j < hexCount; ++j)
+            for (var j = 0; j < hexCount; ++j)
             {
                 result.Add(Hex.RotateAxialNTimes(organelleHexes[j], hex.Orientation) + organelle.Position);
             }
