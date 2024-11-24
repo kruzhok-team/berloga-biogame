@@ -126,6 +126,7 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LAWK" type="CheckBox" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
@@ -711,6 +712,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LAWKAdvanced" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
@@ -896,12 +898,13 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="IncludeMulticellular" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-button_pressed = true
+toggle_mode = false
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
@@ -930,6 +933,7 @@ label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="ExperimentalFeatures" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
