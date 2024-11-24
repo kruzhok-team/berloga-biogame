@@ -438,6 +438,7 @@ mouse_filter = 1
 text = "THRIVEOPEDIA"
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+visible = false
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -459,6 +460,7 @@ mouse_filter = 1
 text = "LICENSES"
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+visible = false
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
