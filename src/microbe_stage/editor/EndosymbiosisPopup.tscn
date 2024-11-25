@@ -5,6 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_50ouf"]
 
 [node name="EndosymbiosisPopup" node_paths=PackedStringArray("generalExplanationLabel", "inProgressAdviceLabel", "prokaryoteFullLabel", "choicesContainer", "progressContainer") instance=ExtResource("1_o4oq3")]
+visible = true
 custom_minimum_size = Vector2(400, 400)
 offset_left = 444.0
 offset_top = 162.0
@@ -21,7 +22,8 @@ WindowTitle = "ENDOSYMBIOSIS_TITLE"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-custom_minimum_size = Vector2(400, 400)
+visible = false
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 0
 offset_right = 460.0
 offset_bottom = 400.0
