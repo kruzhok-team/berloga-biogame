@@ -487,7 +487,7 @@ msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-msgid "BEGIN_THRIVING"
+msgid "BEGIN_THRIVING" 
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
@@ -10070,3 +10070,30 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:600
+msgid "TEST_FOSSILS_TUTORIAL"
+msgstr ""
+
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:18
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:158
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:401
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:450
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
+msgid "TUTORIAL_BEAR_SCIENCE"
+msgstr ""
+
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:18
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:158
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:401
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:450
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
+msgid "TUTORIAL_BEAR_HELPER"
+msgstr ""
