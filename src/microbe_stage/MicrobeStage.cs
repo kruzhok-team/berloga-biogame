@@ -134,6 +134,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
+    [JsonProperty]
+    private InGameTimeManager timeManager = new InGameTimeManager();
+
+    private PauseManager pauseManager = PauseManager.Instance;
+
     /// <summary>
     ///   This method gets called the first time the stage scene is put into an active scene tree.
     ///   So returning from the editor doesn't cause this to re-run.
@@ -154,6 +159,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
+        HUD.Connect("OnMulticellularPressed", Callable.From(OnEndGameStatistics));
         HoverInfo.Init(Clouds, Camera);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -196,6 +202,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if(HasAlivePlayer && !pauseManager.Paused){
+            timeManager.AddCurrentTime(delta);
+        }
 
         WorldPosition playerPosition = default;
 
@@ -473,6 +483,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     public void MoveToMulticellular()
     {
+        GD.Print("FIRST STAGE COMPLETE. MOVE TO MULTICELLULAR STAGE?");
+
         if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>() || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
@@ -1179,7 +1191,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private void OnPlayerUnbindEnabled(Entity player)
     {
         Invoke.Instance.QueueForObject(
-            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this), this);
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this), this); 
     }
 
     [DeserializedCallbackAllowed]
@@ -1390,5 +1402,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Localization.Translate("SUCCESSFUL_KILL");
         Localization.Translate("SUCCESSFUL_SCAVENGE");
         Localization.Translate("ESCAPE_ENGULFING");
+    }
+
+    private void OnEndGameStatistics(){
+        var playerSpecies = (MicrobeSpecies)this!.GameWorld.PlayerSpecies;
+
+        StatisticsManager.Instance.InGameTime = timeManager.GetTransformCurrentTime();
+        
+        var population = this.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
+        StatisticsManager.Instance.PlayerMicrobePopulation = population.ToString();
+
+        StatisticsManager.Instance.Generation = playerSpecies.Generation.ToString();
+
+        StatisticsManager.Instance.Organells = playerSpecies.Organelles.Count.ToString();
+
+        StatisticsManager.Instance.PlayerMicrobeName = playerSpecies.ToString();
     }
 }
