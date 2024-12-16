@@ -30,7 +30,7 @@ bg_color = Color(0, 0.435294, 0.52549, 0.27451)
 offset_right = 838.0
 offset_bottom = 142.0
 theme = ExtResource("2")
-theme_override_styles/panel = SubResource("1")
+  
 script = ExtResource("5")
 SaveNamePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveName")
 ScreenshotPath = NodePath("MarginContainer/HBoxContainer/Screenshot")
@@ -48,7 +48,7 @@ HighlightPath = NodePath("Highlight")
 visible = false
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("2")
+  
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

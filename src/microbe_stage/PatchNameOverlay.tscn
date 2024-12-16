@@ -58,7 +58,7 @@ offset_bottom = 65.0
 size_flags_horizontal = 3
 mouse_filter = 2
 theme = ExtResource("1_um53y")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_02uav")
+  
 script = ExtResource("3")
 PatchLabelPath = NodePath("VBoxContainer/PatchLabel")
 PatchOverlayAnimatorPath = NodePath("AnimationPlayer")

@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://u6e0vkj6modk"]
+
+[ext_resource type="Texture2D" uid="uid://baoydmwkiffau" path="res://assets/themes/tips-3.png" id="1_l0al2"]
+
+[resource]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+texture = ExtResource("1_l0al2")
