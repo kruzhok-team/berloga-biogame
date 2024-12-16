@@ -617,7 +617,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
 
-        settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
+        settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed; 
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
@@ -637,8 +637,10 @@ public partial class NewGameSettings : ControlWithInput
                 GD.Print("Applying old game data to starting microbe stage");
                 microbeStage.CurrentGame.BecomeDescendedVersionOf(descendedGame);
             }
+            
+            OnStartCutscene(microbeStage);
 
-            SceneManager.Instance.SwitchToScene(microbeStage);
+            // SceneManager.Instance.SwitchToScene(microbeStage);
         }
 
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
@@ -647,13 +649,14 @@ public partial class NewGameSettings : ControlWithInput
             TransitionManager.Instance.AddSequence(
                 TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f), () =>
                 {
+                    OnStartGame();
                     // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
                     EmitSignal(SignalName.OnNewGameVideoStarted);
                 });
 
-            TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
-                true, false);
+            // TransitionManager.Instance.AddSequence(
+            //     TransitionManager.Instance.CreateCutscene("res://src/cutscenes/StartScene.tscn", 0.65f), OnStartGame, 
+            //     true, false);
         }
         else
         {
@@ -1000,5 +1003,12 @@ public partial class NewGameSettings : ControlWithInput
         // TODO: check that the meta has the correct content?
 
         EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
+    }
+
+    private void OnStartCutscene(MicrobeStage microbeStage){
+        GD.Print("Some start good");
+        var cutscene = (StartScene)SceneManager.Instance.LoadScene("res://src/cutscenes/startScene/StartScene.tscn").Instantiate();
+        cutscene.newMicrobeStage = microbeStage;
+        SceneManager.Instance.SwitchToScene(cutscene);
     }
 }
