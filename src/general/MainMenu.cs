@@ -643,8 +643,8 @@ public partial class MainMenu : NodeWithInput
         {
             storeLoggedInDisplay.Visible = false;
 
-            itchButton.Visible = true;
-            patreonButton.Visible = true;
+            // itchButton.Visible = true;
+            // patreonButton.Visible = true;
         }
         else
         {
@@ -931,7 +931,7 @@ public partial class MainMenu : NodeWithInput
     private void ViewSourceCodePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
+        OS.ShellOpen("https://github.com/kruzhok-team/berloga-biogame");
     }
 
     private void QuitPressed()
