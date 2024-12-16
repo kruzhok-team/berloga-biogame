@@ -37,3 +37,4 @@ en.po text linguist-generated=false
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.ogv filter=lfs diff=lfs merge=lfs -text
 addons/** -filter=lfs diff=lfs merge=lfs -text
+assets/themes/** -filter=lfs diff=lfs merge=lfs -text
