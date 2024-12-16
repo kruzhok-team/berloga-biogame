@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/ControlHighlight.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="8"]
@@ -59,6 +59,7 @@ grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_EDITOR_TEXT"
 ShowDelay = 0.7
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="PatchMapTutorial" parent="." instance=ExtResource("8")]
@@ -76,6 +77,7 @@ offset_bottom = 161.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource("8")]
@@ -94,6 +96,7 @@ grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 ShowDelay = 0.7
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource("8")]
@@ -112,12 +115,15 @@ grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 ShowDelay = 0.3
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="UndoButtonHighlight" parent="." instance=ExtResource("3")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="RedoTutorial" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 380)
@@ -132,16 +138,20 @@ offset_bottom = 345.0
 grow_horizontal = 2
 Description = "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 ShowDelay = 0.3
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="RedoButtonHighlight" parent="." instance=ExtResource("3")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(360, 390)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -150,12 +160,14 @@ offset_left = -180.0
 offset_top = -185.0
 offset_right = 180.0
 offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 DescriptionForController = ""
 ShowDelay = 0.7
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 custom_minimum_size = Vector2(230, 230)
@@ -188,6 +200,8 @@ text = "GOT_IT"
 [node name="AutoEvoPredictionHighlight" parent="." instance=ExtResource("3")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="AutoEvoPrediction" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(390, 400)
@@ -205,6 +219,7 @@ grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
@@ -224,12 +239,14 @@ grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 ShowDelay = 0.7
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="FlagellumPlacementTutorial" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 385)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -238,12 +255,14 @@ offset_left = 221.474
 offset_top = -142.0
 offset_right = 596.474
 offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 DescriptionForController = ""
 ShowDelay = 0.7
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="FlagellumPlacementTutorial"]
 custom_minimum_size = Vector2(230, 230)
@@ -289,11 +308,13 @@ grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 ShowDelay = 0.7
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="StaySmall" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 420)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -302,12 +323,14 @@ offset_left = -185.0
 offset_top = -180.0
 offset_right = 190.0
 offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 DescriptionForController = ""
 ShowDelay = 0.7
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StaySmall"]
 custom_minimum_size = Vector2(230, 230)
@@ -339,7 +362,8 @@ text = "CLOSE"
 
 [node name="MadeNoChangesTutorial" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 230)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -348,12 +372,14 @@ offset_left = -185.0
 offset_top = -99.1827
 offset_right = 190.0
 offset_bottom = 130.817
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 DescriptionForController = ""
 ShowDelay = 0.1
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MadeNoChangesTutorial"]
 custom_minimum_size = Vector2(375, 230)
@@ -398,7 +424,7 @@ theme = ExtResource("2")
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 PreventsMouseCaptureWhileOpen = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NegativeAtpBalanceTutorial"]
@@ -432,6 +458,8 @@ text = "CLOSE"
 [node name="AtpBalanceBarHighlight" parent="." instance=ExtResource("3")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="AtpBalanceIntroduction" type="Control" parent="."]
 visible = false
@@ -447,7 +475,7 @@ theme = ExtResource("2")
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 PreventsMouseCaptureWhileOpen = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AtpBalanceIntroduction"]

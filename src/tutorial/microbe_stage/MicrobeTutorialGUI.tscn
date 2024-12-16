@@ -23,6 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
+FossilsTutorialPath = NodePath("FossilsTutorial")
 MicrobeWelcomeMessagePath = NodePath("MicrobeWelcome")
 MicrobeMovementKeyPromptsPath = NodePath("MicrobeMovementTutorial/KeyPrompts")
 MicrobeMovementPopupPath = NodePath("MicrobeMovementTutorial/ExplainingPopup")
@@ -136,6 +137,7 @@ grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_CONTROL_TEXT"
 DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
@@ -205,6 +207,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_COLLECT_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 280)
@@ -221,6 +224,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="OrganelleDivisionTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 280)
@@ -237,6 +241,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="BecomeMulticellularTutorial" parent="." instance=ExtResource("10")]
 layout_mode = 1
@@ -250,6 +255,7 @@ offset_top = -187.0
 offset_right = 0.0
 offset_bottom = 53.0
 Description = "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource("10")]
 layout_mode = 1
@@ -265,6 +271,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_HEALTH_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 310)
@@ -281,6 +288,7 @@ offset_bottom = 91.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource("11")]
 visible = false
@@ -305,6 +313,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="UnbindTutorial" parent="." instance=ExtResource("10")]
@@ -321,6 +330,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource("13")]
@@ -342,7 +352,7 @@ LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 DescriptionForController = ""
 ShowDelay = 0.5
-WindowTitle = "TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
 custom_minimum_size = Vector2(230, 230)
@@ -386,6 +396,7 @@ offset_bottom = 119.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="EngulfmentTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 290)
@@ -402,6 +413,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="EngulfedTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 310)
@@ -418,6 +430,7 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="LeaveColonyTutorial" parent="." instance=ExtResource("10")]
@@ -435,6 +448,7 @@ offset_bottom = 96.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(450, 480)
@@ -447,6 +461,7 @@ offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 Exclusive = true
 PreventsMouseCaptureWhileOpen = true
 
@@ -466,6 +481,11 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_s6a8v")
 theme_override_font_sizes/font_size = 18
 text = "CONTINUE_THRIVING"
+
+[node name="FossilsTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(300, 350)
+Description = "TEST_FOSSILS_TUTORIAL"
+WindowTitle = "TUTORIAL_BEAR_HELPER"
 
 [connection signal="hidden" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
