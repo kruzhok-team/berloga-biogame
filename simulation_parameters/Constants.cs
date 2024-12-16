@@ -8,7 +8,7 @@ using LauncherThriveShared;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Holds some constants that must be kept constant after first setting
+///   Holds some constants that must be kept constant after first setting 
 /// </summary>
 public static class Constants
 {
@@ -1379,14 +1379,14 @@ public static class Constants
     public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
     public const string FILE_NAME_DISALLOWED_CHARACTERS = "<>:\"/\\|?*\0";
-    public const string SAVE_EXTENSION = "thrivesave";
+    public const string SAVE_EXTENSION = "berlogasave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
     public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
-    public const string FOSSIL_EXTENSION = "thrivefossil";
+    public const string FOSSIL_EXTENSION = "berlogafossil";
     public const string FOSSIL_EXTENSION_WITH_DOT = "." + FOSSIL_EXTENSION;
 
     /// <summary>
