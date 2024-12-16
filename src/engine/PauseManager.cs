@@ -23,7 +23,9 @@ public partial class PauseManager : Node
 
     public static PauseManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public bool Paused
+    public bool isInGamePaused {get;set;} = false;
+
+    public bool Paused 
     {
         get => isPaused;
         private set
