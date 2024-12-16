@@ -1,0 +1,19 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(0.976563, 0.830472, 0.759125, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": ""
+},
+"default_portrait": "",
+"description": "Старший научный сотрудник в НИИ. Обладает острым умом и быстрой реакцией, всегда готова прийти на помощь профессору в проведении экспериментов и анализе данных.",
+"display_name": "Слава Медвежова",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 0),
+"portraits": {},
+"scale": 1.0
+}

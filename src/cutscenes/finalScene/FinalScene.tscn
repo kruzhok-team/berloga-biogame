@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://booy8iflfy6xd"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_o5usi"]
+[ext_resource type="Script" path="res://src/cutscenes/finalScene/FinalScene.cs" id="2_fr0ej"]
+[ext_resource type="Script" path="res://src/cutscenes/finalScene/final_scene.gd" id="3_wfu1h"]
+[ext_resource type="PackedScene" uid="uid://b0xtr0w0ik3g5" path="res://src/cutscenes/finalScene/StatisticPanel.tscn" id="4_ixowl"]
+
+[node name="FinalScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o5usi")
+script = ExtResource("2_fr0ej")
+StatisticPanelPath = NodePath("StatisticPanel")
+
+[node name="Dialog" type="Node2D" parent="."]
+script = ExtResource("3_wfu1h")
+
+[node name="StatisticPanel" parent="." instance=ExtResource("4_ixowl")]
+layout_mode = 1
+ExclusiveAllowCloseOnEscape = false
