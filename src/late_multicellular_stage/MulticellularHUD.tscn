@@ -310,7 +310,7 @@ offset_bottom = -183.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("29")
+
 
 [node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
 layout_mode = 2
