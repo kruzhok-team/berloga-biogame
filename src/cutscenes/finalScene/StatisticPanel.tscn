@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0xtr0w0ik3g5"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_kh2h3"]
+[ext_resource type="Script" path="res://src/cutscenes/finalScene/StatisticPanel.cs" id="2_wq8yg"]
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="3_fs3j1"]
+[ext_resource type="FontVariation" uid="uid://vyfnlgjndphg" path="res://assets/fonts/variants/NotoSans-SemiBold.tres" id="4_vbnh5"]
+
+[node name="StatisticPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kh2h3")
+script = ExtResource("2_wq8yg")
+PanelContainerPath = NodePath("PanelContainer")
+BodyLabelPath = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Body")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_fs3j1")
+text = "Статистика"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Body" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 170)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_kh2h3")
+theme_override_fonts/normal_font = ExtResource("4_vbnh5")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
