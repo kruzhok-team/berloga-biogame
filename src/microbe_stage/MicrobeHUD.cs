@@ -94,6 +94,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
 
+    [Signal]
+    public delegate void OnMulticellularPressedEventHandler();
+
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -709,16 +712,25 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void OnBecomeMulticellularPressed()
     {
-        if (!Paused)
-        {
-            PauseButtonPressed(true);
-        }
-        else
-        {
-            GUICommon.Instance.PlayButtonPressSound();
-        }
+        // if (!Paused)
+        // {
+        //     PauseButtonPressed(true);
+        // }
+        // else
+        // {
+        //     GUICommon.Instance.PlayButtonPressSound();
+        // }
 
-        multicellularConfirmPopup.PopupCenteredShrink();
+        // multicellularConfirmPopup.PopupCenteredShrink();
+
+        EmitSignal(SignalName.OnMulticellularPressed);
+
+        GD.Print("Move to final cutscene");
+        TransitionManager.Instance.AddSequence(
+            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.7f), ()=>{
+                var cutscene = (FinalScene)SceneManager.Instance.LoadScene("res://src/cutscenes/finalScene/FinalScene.tscn").Instantiate();
+                SceneManager.Instance.SwitchToScene(cutscene);
+            });
     }
 
     private void OnBecomeMulticellularCanceled()
@@ -732,6 +744,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void OnBecomeMulticellularConfirmed()
     {
+        GD.Print("OnBecomeMulticell? There was something that we can use!");
+
         GUICommon.Instance.PlayButtonPressSound();
 
         if (stage == null)

@@ -160,5 +160,6 @@ public partial class PlayButton : MarginContainer
         }
 
         EmitSignal(SignalName.OnPressed, Paused);
+        PauseManager.Instance.isInGamePaused = Paused;
     }
 }
