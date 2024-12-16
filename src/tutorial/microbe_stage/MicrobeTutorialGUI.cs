@@ -11,6 +11,9 @@ using Tutorial;
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     [Export]
+    public NodePath? FossilsTutorialPath = null!;
+
+    [Export]
     public NodePath? MicrobeWelcomeMessagePath;
 
     [Export]
@@ -77,6 +80,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EditorButtonHighlightPath = null!;
 
 #pragma warning disable CA2213
+    private TutorialDialog fossilsTutorial = null!;
     private TutorialDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
@@ -114,6 +118,25 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
+
+    public bool isFirstTimePaused {get;set;} = false;
+
+    public bool FossilsTutorialVisible
+    {
+        get => fossilsTutorial.Visible;
+        set
+        {
+            if(value == fossilsTutorial.Visible){
+                return;
+            }
+            if(value){
+                fossilsTutorial.PopupCenteredShrink();
+            }
+            else{
+                fossilsTutorial.Hide();
+            }
+        }
+    }
 
     public bool MicrobeWelcomeVisible
     {
@@ -433,6 +456,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
+        fossilsTutorial = GetNode<TutorialDialog>(FossilsTutorialPath);
         microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
         microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
@@ -462,6 +486,10 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Process(double delta)
     {
+        if(PauseManager.Instance.isInGamePaused && !isFirstTimePaused){
+            FossilsTutorialVisible = true;
+            isFirstTimePaused = true;
+        }
         TutorialHelper.ProcessTutorialGUI(this, (float)delta);
     }
 
@@ -498,6 +526,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         {
             if (MicrobeWelcomeMessagePath != null)
             {
+                FossilsTutorialPath.Dispose();
                 MicrobeWelcomeMessagePath.Dispose();
                 MicrobeMovementKeyPromptsPath.Dispose();
                 MicrobeMovementPopupPath.Dispose();
