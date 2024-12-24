@@ -1,13 +1,16 @@
-[gd_scene load_steps=51 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=53 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dqy51ffw8rlr5" path="res://assets/misc/thrive_logo_big.png" id="8_2hkeb"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="10"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_wltm2"]
 [ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_hlko5"]
+[ext_resource type="Texture2D" uid="uid://douc27fv46tnk" path="res://assets/themes/tips 9.png" id="14_r2767"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="15_oik7u"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
@@ -16,17 +19,15 @@
 [ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="33_l4434"]
 [ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="35_h7kw8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
-[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
 [ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
-[ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
 [ext_resource type="PackedScene" uid="uid://cp23vdxwoeegx" path="res://src/microbe_stage/gui/WinBox.tscn" id="53"]
 [ext_resource type="PackedScene" uid="uid://b2uw1x2g8awbf" path="res://src/microbe_stage/gui/ExtinctionBox.tscn" id="54"]
 [ext_resource type="PackedScene" uid="uid://b1ucm37efll76" path="res://src/microbe_stage/MicrobeCheatMenu.tscn" id="55"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="57"]
-[ext_resource type="PackedScene" uid="uid://br2qdth74t78h" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
+[ext_resource type="PackedScene" uid="uid://76yfxggfbkq5" path="res://src/thriveopedia/fossilisation/FossilisationButton.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="59"]
 [ext_resource type="PackedScene" uid="uid://g70pm5ndiqf2" path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" id="60"]
 [ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="61"]
@@ -218,25 +219,26 @@ _data = {
 "ShowEnvironmentPanel": SubResource("42")
 }
 
-[sub_resource type="StyleBoxFlat" id="28"]
-bg_color = Color(0.47451, 0.560784, 0.588235, 0.392157)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pttlh"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+texture = ExtResource("14_r2767")
 
-[sub_resource type="StyleBoxTexture" id="29"]
-texture = ExtResource("44")
-region_rect = Rect2(0, 0, 86, 52)
+[sub_resource type="LabelSettings" id="LabelSettings_4v41e"]
+font = ExtResource("15_oik7u")
 
-[sub_resource type="StyleBoxFlat" id="46"]
+[sub_resource type="LabelSettings" id="LabelSettings_rk6us"]
+font = ExtResource("15_oik7u")
+
+[sub_resource type="StyleBoxFlat" id="43"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+border_color = Color(0.709804, 0.188235, 0.188235, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -254,13 +256,13 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id="43"]
+[sub_resource type="StyleBoxFlat" id="46"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.709804, 0.188235, 0.188235, 1)
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -284,13 +286,13 @@ WinBoxScene = ExtResource("53")
 bindingModeHotkey = NodePath("ScrollContainer/HotBar/BindingMode")
 unbindAllHotkey = NodePath("ScrollContainer/HotBar/UnbindAll")
 siderophoreHotkey = NodePath("ScrollContainer/HotBar/Siderophore")
-multicellularButton = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
+multicellularButton = NodePath("HBoxContainer/Control/Multicellular")
 multicellularConfirmPopup = NodePath("StagePrototypeConfirm")
-macroscopicButton = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
+macroscopicButton = NodePath("HBoxContainer/Control/Macroscopic")
 MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
-PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
+PopulationLabelPath = NodePath("HBoxContainer/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("../PatchNameOverlay")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
@@ -320,10 +322,80 @@ pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.04
+anchor_right = 0.45
+anchor_bottom = 0.2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(247, 0)
+layout_mode = 2
+texture = ExtResource("8_2hkeb")
+expand_mode = 5
+
+[node name="PopulationData" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(247, 17)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/PopulationData"]
+custom_minimum_size = Vector2(87, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "POPULATION_CAPITAL"
+label_settings = ExtResource("39_2oma1")
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="HBoxContainer/VBoxContainer/PopulationData"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "100"
+label_settings = ExtResource("39_2oma1")
+vertical_alignment = 1
+
+[node name="Control" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[node name="Multicellular" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+theme = ExtResource("5")
+text = "BECOME_MULTICELLULAR"
+alignment = 0
+
+[node name="Macroscopic" type="Button" parent="HBoxContainer/Control"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "MOVE_TO_MACROSCOPIC_TOOLTIP"
+theme = ExtResource("5")
+text = "BECOME_MACROSCOPIC"
+alignment = 0
+
 [node name="TopRight" type="MarginContainer" parent="."]
-layout_mode = 0
-anchor_left = 1.0
-anchor_right = 1.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96
+anchor_top = 0.06
+anchor_right = 0.96
 anchor_bottom = 1.0
 offset_left = -260.0
 offset_bottom = -641.0
@@ -337,9 +409,11 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 
 [node name="BottomLeft" type="Control" parent="."]
-anchors_preset = 0
-anchor_top = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchor_left = 0.04
+anchor_top = 0.94
+anchor_right = 0.04
+anchor_bottom = 0.94
 offset_top = -632.0
 offset_right = 455.0
 mouse_filter = 2
@@ -347,7 +421,9 @@ mouse_filter = 2
 [node name="LeftPanels" type="VBoxContainer" parent="BottomLeft"]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.024
 anchor_top = -0.139
+anchor_right = 0.024
 anchor_bottom = 1.0
 offset_left = 2.0
 offset_top = 5.848
@@ -369,6 +445,9 @@ ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.024
+anchor_right = 0.055
 offset_left = 2.0
 offset_top = -46.0
 offset_right = 447.0
@@ -385,72 +464,18 @@ libraries = {
 }
 
 [node name="BottomRight" type="Control" parent="."]
-anchors_preset = 0
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchor_left = 0.94
+anchor_top = 0.94
+anchor_right = 0.96
+anchor_bottom = 0.94
 offset_left = -274.0
 offset_top = -317.0
 offset_right = 1.0
 offset_bottom = -1.0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
-layout_mode = 0
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -229.0
-offset_top = -317.0
-offset_right = -10.0
-offset_bottom = -242.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/separation = 8
-alignment = 2
-
-[node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Multicellular" type="Button" parent="BottomRight/VBoxContainer/Control"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-tooltip_text = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-text = "BECOME_MULTICELLULAR"
-
-[node name="Macroscopic" type="Button" parent="BottomRight/VBoxContainer/Control"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-tooltip_text = "MOVE_TO_MACROSCOPIC_TOOLTIP"
-text = "BECOME_MACROSCOPIC"
-
-[node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
-custom_minimum_size = Vector2(0, 17)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-custom_minimum_size = Vector2(87, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("28")
-text = "POPULATION_CAPITAL"
-label_settings = ExtResource("39_2oma1")
-
-[node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("28")
-text = "100"
-label_settings = ExtResource("39_2oma1")
+mouse_filter = 2
 
 [node name="DataValue" type="PanelContainer" parent="BottomRight"]
 layout_mode = 1
@@ -460,15 +485,15 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -89.0
-offset_top = -237.0
-offset_right = -9.0
+offset_top = -244.0
+offset_right = 9.0
 offset_bottom = -182.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-  
+theme_override_styles/panel = SubResource("StyleBoxTexture_pttlh")
 
 [node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
 layout_mode = 2
@@ -489,14 +514,18 @@ alignment = 1
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("15_oik7u")
 text = "Hitpoints"
-label_settings = ExtResource("39_nfpcw")
+label_settings = SubResource("LabelSettings_4v41e")
+horizontal_alignment = 1
 
 [node name="ATPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
 layout_mode = 2
 mouse_filter = 0
+theme_override_fonts/font = ExtResource("15_oik7u")
 text = "ATP"
-label_settings = ExtResource("39_nfpcw")
+label_settings = SubResource("LabelSettings_rk6us")
+horizontal_alignment = 1
 clip_text = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="BottomRight"]
@@ -513,14 +542,15 @@ mouse_filter = 2
 step = 0.1
 value = 100.0
 fill_mode = 4
+radial_initial_angle = 237.0
+radial_fill_degrees = 126.0
 texture_under = ExtResource("67")
 texture_progress = ExtResource("67")
 tint_under = Color(0, 0, 0, 0.752941)
-tint_progress = Color(0.960784, 0.270588, 0.478431, 1)
-radial_initial_angle = 237.0
-radial_fill_degrees = 126.0
+tint_progress = Color(0.890196, 0.443137, 0.941176, 1)
 
 [node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar"]
+visible = false
 layout_mode = 0
 offset_left = 21.46
 offset_top = 197.749
@@ -530,7 +560,8 @@ texture = ExtResource("42")
 expand_mode = 1
 
 [node name="ATPBar" type="TextureProgressBar" parent="BottomRight"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -539,18 +570,21 @@ offset_left = -202.756
 offset_top = -201.525
 offset_right = 6.24402
 offset_bottom = 7.47501
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
 step = 0.1
 value = 100.0
 fill_mode = 4
+radial_initial_angle = 237.0
+radial_fill_degrees = 129.0
 texture_under = ExtResource("43")
 texture_progress = ExtResource("43")
 tint_under = Color(0, 0, 0, 0.752941)
-tint_progress = Color(0.439216, 0.956863, 0.137255, 1)
-radial_initial_angle = 237.0
-radial_fill_degrees = 129.0
+tint_progress = Color(0.552941, 0.917647, 0.501961, 1)
 
 [node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar"]
+visible = false
 layout_mode = 0
 offset_left = 18.5
 offset_top = 156.5
@@ -561,7 +595,6 @@ expand_mode = 1
 
 [node name="EditorButton" parent="BottomRight" instance=ExtResource("23_satig")]
 layout_mode = 1
-anchors_preset = -1
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -599,16 +632,18 @@ offset_bottom = -24.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(550, 69)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.555
+anchor_top = 0.94
+anchor_right = 0.555
+anchor_bottom = 0.94
 offset_left = -274.0
 offset_top = -69.0
 theme = ExtResource("5")
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
@@ -618,10 +653,10 @@ alignment = 1
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
+theme_override_styles/disabled = SubResource("43")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
-theme_override_styles/disabled = SubResource("43")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("9")
 ActionName = "g_toggle_engulf"
@@ -630,9 +665,9 @@ ActionName = "g_toggle_engulf"
 visible = false
 layout_mode = 2
 tooltip_text = "EJECT_ENGULFED_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("7")
 ActionName = "g_eject_engulfed"
 
@@ -640,9 +675,9 @@ ActionName = "g_eject_engulfed"
 visible = false
 layout_mode = 2
 tooltip_text = "FIRE_TOXIN_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("10")
 ActionName = "g_fire_toxin"
 
@@ -650,9 +685,9 @@ ActionName = "g_fire_toxin"
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_BINDING_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("72")
 ActionName = "g_toggle_binding"
@@ -661,9 +696,9 @@ ActionName = "g_toggle_binding"
 visible = false
 layout_mode = 2
 tooltip_text = "UNBIND_ALL_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("70")
 ActionName = "g_unbind_all"
 
@@ -671,9 +706,9 @@ ActionName = "g_unbind_all"
 visible = false
 layout_mode = 2
 tooltip_text = "SIGNALING_AGENTS_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("68")
 ActionName = "g_pack_commands"
@@ -682,9 +717,9 @@ ActionName = "g_pack_commands"
 visible = false
 layout_mode = 2
 tooltip_text = "SECRETE_SLIME_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
@@ -692,9 +727,9 @@ ActionName = "g_secrete_slime"
 visible = false
 layout_mode = 2
 tooltip_text = "SPRINT_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("32_qhyce")
 ActionName = "g_sprint"
@@ -703,9 +738,9 @@ ActionName = "g_sprint"
 visible = false
 layout_mode = 2
 tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("32_vhwax")
 ActionName = "g_toggle_mucocyst"
@@ -714,9 +749,9 @@ ActionName = "g_toggle_mucocyst"
 visible = false
 layout_mode = 2
 tooltip_text = "SIDEROPHORE_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("33_l4434")
 ActionName = "g_fire_siderophore"
 
@@ -761,6 +796,8 @@ max_value = 0.9
 step = 0.001
 show_percentage = false
 
+[connection signal="pressed" from="HBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
+[connection signal="pressed" from="HBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
@@ -769,8 +806,6 @@ show_percentage = false
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
 [connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="ToggleProcessPressed" from="ProcessPanel" to="." method="ToggleProcessPressed"]
 [connection signal="hidden" from="ProcessPanel" to="." method="OnProcessPanelClosed"]

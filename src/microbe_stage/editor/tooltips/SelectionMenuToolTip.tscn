@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl77ntlowknmp"]
+[gd_scene load_steps=9 format=3 uid="uid://bl77ntlowknmp"]
 
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="4"]
@@ -9,25 +9,12 @@
 [ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" id="7"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9"]
 
-[sub_resource type="StyleBoxFlat" id="1"]
-bg_color = Color(0, 0.129412, 0.141176, 0.980392)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="SelectionMenuTooltip" type="PanelContainer"]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0
 mouse_filter = 2
 theme = ExtResource("9")
-theme_override_styles/panel = SubResource("1")
 script = ExtResource("7")
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
 MpLabelPath = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://jjb8ei8wuuk"]
+[gd_scene load_steps=13 format=3 uid="uid://jjb8ei8wuuk"]
 
-[ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="1_ixss3"]
-[ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="2_suams"]
-[ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="3_kbqhu"]
-[ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="4_4niqg"]
+[ext_resource type="Texture2D" uid="uid://cajdq2c7gtbie" path="res://assets/themes/editorButtonNormal.png" id="1_ev1yj"]
+[ext_resource type="Texture2D" uid="uid://bjp2p4yngqfjy" path="res://assets/themes/editorButton.png" id="2_scvxn"]
+[ext_resource type="Texture2D" uid="uid://du70x3hlyfkbu" path="res://assets/themes/editorButtonDisabled.png" id="4_lslrw"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/EditorEntryButton.cs" id="5_kxl0r"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="5_vcgwd"]
 [ext_resource type="Texture2D" uid="uid://dagkk6puhnfvu" path="res://assets/textures/gui/bevel/ReproductionBar.png" id="6_nj585"]
@@ -47,24 +46,22 @@ _data = {
 
 [node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]
 custom_minimum_size = Vector2(160, 160)
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -177.0
-offset_top = -180.0
-offset_right = -17.0
-offset_bottom = -20.0
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 0.97
+anchor_right = 0.98
+anchor_bottom = 0.97
+offset_left = -160.0
+offset_top = -160.0
 grow_horizontal = 0
 grow_vertical = 0
 tooltip_text = "EDITOR_BUTTON_TOOLTIP"
 focus_mode = 0
 disabled = true
-texture_normal = ExtResource("1_ixss3")
-texture_pressed = ExtResource("2_suams")
-texture_hover = ExtResource("3_kbqhu")
-texture_disabled = ExtResource("4_4niqg")
+texture_normal = ExtResource("1_ev1yj")
+texture_pressed = ExtResource("2_scvxn")
+texture_hover = ExtResource("2_scvxn")
+texture_disabled = ExtResource("4_lslrw")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("5_kxl0r")
@@ -92,12 +89,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_kbqhu")
+texture = ExtResource("1_ev1yj")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="PointLight2D" type="PointLight2D" parent="Highlight"]
 scale = Vector2(0.845357, 0.845357)
+energy = 0.0
 texture = ExtResource("5_vcgwd")
 
 [node name="ReproductionBar" type="Control" parent="."]
@@ -112,6 +110,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BarBackground" type="TextureRect" parent="ReproductionBar"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -119,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
+offset_left = -80.0
+offset_top = -76.0
+offset_right = 81.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_nj585")
@@ -130,24 +129,25 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="AmmoniaReproductionBar" type="TextureProgressBar" parent="ReproductionBar"]
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 step = 0.1
 fill_mode = 5
+radial_fill_degrees = 180.0
 nine_patch_stretch = true
 texture_progress = ExtResource("6_nj585")
-tint_progress = Color(1, 0.627451, 0.121569, 1)
-radial_fill_degrees = 180.0
+tint_progress = Color(0.109804, 0.541176, 0.898039, 1)
 
 [node name="PhosphateReproductionBar" type="TextureProgressBar" parent="ReproductionBar"]
 layout_mode = 1
@@ -156,21 +156,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 step = 0.1
 fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("6_nj585")
-tint_progress = Color(0.690196, 0.423529, 1, 1)
 radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
+nine_patch_stretch = true
+texture_progress = ExtResource("6_nj585")
+tint_progress = Color(0.368627, 0, 0.823529, 1)
 
 [node name="AmmoniaIcon" type="TextureRect" parent="ReproductionBar"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -183,11 +184,11 @@ offset_right = 10.0
 offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_wu333")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="PhosphateIcon" type="TextureRect" parent="ReproductionBar"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -3,9 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_fhdek"]
+[ext_resource type="Texture2D" uid="uid://n6r7te1gmvr0" path="res://assets/themes/tips 8.svg" id="5_s64g0"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
-[ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="8_07qd0"]
+[ext_resource type="StyleBox" uid="uid://cjpxcavsn7n77" path="res://Button.tres" id="7_7uub3"]
+[ext_resource type="Texture2D" uid="uid://bi7tqh3o8n5kp" path="res://assets/themes/tips 5.svg" id="8_3g7w1"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="8_mt8w8"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
@@ -20,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="19"]
 [ext_resource type="Texture2D" uid="uid://ddrj66x85n0tb" path="res://assets/textures/gui/bevel/autoEvoPending.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="21"]
-[ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://ddne51q6n1ha7" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="24"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="24_ekuel"]
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="25_68vjv"]
@@ -35,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="32"]
 [ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="35"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://26stgqic3ocn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
@@ -43,71 +45,17 @@
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
 
-[sub_resource type="StyleBoxFlat" id="11"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="9"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0, 0.435294, 0.52549, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="10"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 1, 0.835294, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="12"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jiv4c"]
+texture = ExtResource("5_s64g0")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qst1k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uf4lc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("8_3g7w1")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_xodoa"]
 
@@ -423,16 +371,19 @@ FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/Margi
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="TopPanel" type="MarginContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -170.0
-offset_top = 10.0
-offset_right = 170.0
-offset_bottom = 57.0
+offset_top = 10.4143
+offset_right = 497.0
+offset_bottom = 70.4143
+grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jiv4c")
 
 [node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
 layout_mode = 2
@@ -462,14 +413,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
+theme = ExtResource("6")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/normal = ExtResource("7_7uub3")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -480,14 +426,8 @@ text = "LIGHT_LEVEL_CURRENT"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
+theme = ExtResource("6")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_qst1k")
@@ -497,14 +437,8 @@ text = "LIGHT_LEVEL_DAY"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
+theme = ExtResource("6")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_qst1k")
@@ -514,14 +448,8 @@ text = "LIGHT_LEVEL_NIGHT"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
+theme = ExtResource("6")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_qst1k")
@@ -545,6 +473,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxTexture_uf4lc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
 layout_mode = 2
@@ -585,14 +514,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -604,14 +526,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/normal = ExtResource("7_7uub3")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
@@ -622,14 +538,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/normal = ExtResource("7_7uub3")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
@@ -802,11 +712,13 @@ FinishOrNextButtonPath = NodePath("")
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 629)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -285.0
+offset_left = -298.0
 offset_bottom = 629.0
+grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 

@@ -16,12 +16,6 @@ public class NameGenerator : IRegistryType
     public List<string> PrefixesC = null!;
 
     [JsonRequired]
-    public List<string> CofixesV = null!;
-
-    [JsonRequired]
-    public List<string> CofixesC = null!;
-
-    [JsonRequired]
     public List<string> SuffixesV = null!;
 
     [JsonRequired]
@@ -58,12 +52,10 @@ public class NameGenerator : IRegistryType
                     newName = PrefixesV.Random(random) + SuffixesC.Random(random);
                     break;
                 case 2:
-                    newName = PrefixesV.Random(random) + CofixesC.Random(random) +
-                        SuffixesV.Random(random);
+                    newName = PrefixesV.Random(random) + SuffixesV.Random(random);
                     break;
                 case 3:
-                    newName = PrefixesC.Random(random) + CofixesV.Random(random) +
-                        SuffixesC.Random(random);
+                    newName = PrefixesC.Random(random) + SuffixesC.Random(random);
                     break;
                 default:
                     throw new Exception("unreachable");
@@ -81,12 +73,10 @@ public class NameGenerator : IRegistryType
                     newName = PrefixCofix.Random(random) + Suffixes.Random(random);
                     break;
                 case 2:
-                    newName = PrefixesV.Random(random) + CofixesC.Random(random) +
-                        Suffixes.Random(random);
+                    newName = PrefixesV.Random(random) + Suffixes.Random(random);
                     break;
                 case 3:
-                    newName = PrefixesC.Random(random) + CofixesV.Random(random) +
-                        Suffixes.Random(random);
+                    newName = PrefixesC.Random(random) + Suffixes.Random(random);
                     break;
                 default:
                     throw new Exception("unreachable");
@@ -123,18 +113,6 @@ public class NameGenerator : IRegistryType
         {
             throw new InvalidRegistryDataException("NameGenerator", GetType().Name,
                 "PrefixesC is empty");
-        }
-
-        if (CofixesV.Count < 1)
-        {
-            throw new InvalidRegistryDataException("NameGenerator", GetType().Name,
-                "CofixesV is empty");
-        }
-
-        if (CofixesC.Count < 1)
-        {
-            throw new InvalidRegistryDataException("NameGenerator", GetType().Name,
-                "CofixesC is empty");
         }
 
         if (SuffixesV.Count < 1)
