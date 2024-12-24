@@ -1,26 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcy1o8pg86owe"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bba0es00jmii8" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaHomePage.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="3_o2j84"]
 [ext_resource type="Texture2D" uid="uid://dcx3vsernjy4k" path="res://assets/concept_art/disturbance.jpg" id="4"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
 [node name="ThriveopediaHomePage" instance=ExtResource("1")]
-anchors_preset = 15
 script = ExtResource("2")
-
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
