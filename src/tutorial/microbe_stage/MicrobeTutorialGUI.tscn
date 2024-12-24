@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://26stgqic3ocn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
 [node name="MicrobeTutorialGUI" type="Control"]
@@ -51,7 +51,7 @@ EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
-custom_minimum_size = Vector2(450, 455)
+custom_minimum_size = Vector2(450, 400)
 layout_mode = 1
 offset_right = 450.0
 offset_bottom = 430.0
