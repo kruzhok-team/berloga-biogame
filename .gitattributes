@@ -42,3 +42,4 @@ assets/textures/gui/background_1.png* -filter=lfs diff=lfs merge=lfs -text
 assets/textures/gui/background_2.png* -filter=lfs diff=lfs merge=lfs -text
 assets/textures/gui/background_3.jpg* -filter=lfs diff=lfs merge=lfs -text
 assets/** -filter=lfs diff=lfs merge=lfs -text
+src/cutscenes/** -filter=lfs diff=lfs merge=lfs -text
