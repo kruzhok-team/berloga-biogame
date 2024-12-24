@@ -6,5 +6,5 @@ Terminal=false
 Exec=Thrive
 Name=Thrive
 Icon=Thrive
-Comment=An evolution simulation game. Take control of your species in the environment and edit your species as a whole to compete with other evolving species
+Comment=Игра-симулятор эволюции, в которой вы будете управлять своим видом в чужой среде, чтобы выжить и эволюционировать.
 Categories=Game;StrategyGame;
