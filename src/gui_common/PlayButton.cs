@@ -96,8 +96,8 @@ public partial class PlayButton : MarginContainer
         playButton.SetPressedNoSignal(paused);
         playButton.Visible = paused;
 
-        var styleBox = (StyleBoxFlat)playButton.GetThemeStylebox("normal");
-        styleBox.BgColor = PauseButtonMode ? new Color(0.067f, 1.0f, 0.835f) : new Color(0.067f, 0.169f, 0.212f);
+        // var styleBox = (StyleBoxTexture)playButton.GetThemeStylebox("normal");
+        // styleBox.BgColor = PauseButtonMode ? new Color(0.067f, 1.0f, 0.835f) : new Color(0.067f, 0.169f, 0.212f);
     }
 
     private void OnButtonUpdate()
