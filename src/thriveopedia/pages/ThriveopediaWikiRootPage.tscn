@@ -1,26 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnhgueotwqave"]
+[gd_scene load_steps=8 format=3 uid="uid://cnhgueotwqave"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bba0es00jmii8" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://7xsd76voyg3r" path="res://assets/themes/tips 6.svg" id="2_tcx0n"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="3_n4hnu"]
 [ext_resource type="Texture2D" uid="uid://bax5eq6vw1chn" path="res://assets/concept_art/flagellum-concepts.jpg" id="4"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaWikiRootPage.cs" id="5"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odgwa"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 15.0
+texture = ExtResource("2_tcx0n")
+
 [node name="ThriveopediaPage" instance=ExtResource("1")]
-anchors_preset = 15
+theme_override_styles/panel = SubResource("StyleBoxTexture_odgwa")
 script = ExtResource("5")
-
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2

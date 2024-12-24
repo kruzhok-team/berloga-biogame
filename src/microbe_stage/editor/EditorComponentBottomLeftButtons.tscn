@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
 
 [ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dtu5p01fn45ty" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bir7nnkwy1fl6" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://ienga5rrgrs0" path="res://assets/textures/gui/bevel/button.png" id="6"]
@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://bjikfykbmmyol" path="res://assets/textures/gui/bevel/clockButton.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://irfwi36xxb7k" path="res://assets/textures/gui/bevel/clockButtonActive.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://8mwewdvpgdkb" path="res://assets/textures/gui/bevel/clockButtonHover.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://jsk5sntvmlgc" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://waxpjj3uceh8" path="res://assets/textures/gui/bevel/redoButtonDisabled.png" id="12"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://qxt24jxghje" path="res://assets/textures/gui/bevel/redoButtonHover.png" id="14"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://u6xia8ogoguy" path="res://assets/textures/gui/bevel/buttonHover.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://ds5ygyi5qiybr" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://d4k6fcmyngydt" path="res://assets/textures/gui/bevel/1xSymmetry.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://dgn0a345ydfa1" path="res://assets/textures/gui/bevel/redoButtonActive.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://bacp3rllk2nfq" path="res://assets/textures/gui/bevel/buttonActive.png" id="20"]
@@ -84,9 +84,12 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="SymmetryIcon" type="TextureRect" parent="HBoxContainer/SymmetryButton"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18")
 expand_mode = 1

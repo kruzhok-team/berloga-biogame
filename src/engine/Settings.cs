@@ -302,7 +302,7 @@ public class Settings
     ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> PlayIntroVideo { get; private set; } = new(true);
+    public SettingValue<bool> PlayIntroVideo { get; set; } = new(true);
 
     /// <summary>
     ///   When true the microbe intro is played on new game

@@ -1,31 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://v2omwwjlcdsq"]
+[gd_scene load_steps=9 format=3 uid="uid://v2omwwjlcdsq"]
 
-[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="2"]
-[ext_resource type="LabelSettings" uid="uid://dsxjdgavbi2j5" path="res://src/gui_common/fonts/Body-Regular-Small-Black.tres" id="2_jn0qd"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_1t4yo"]
+[ext_resource type="Texture2D" uid="uid://deklt4qq16ogt" path="res://assets/misc/icon.png" id="2"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="2_fcv7m"]
 [ext_resource type="Script" path="res://src/thriveopedia/fossilisation/MuseumCard.cs" id="4"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="9"]
 
-[sub_resource type="StyleBoxEmpty" id="29"]
-
-[sub_resource type="StyleBoxFlat" id="27"]
-bg_color = Color(0, 0.129412, 0.141176, 0.752941)
-draw_center = false
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10cbq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+border_color = Color(0.243137, 0.513726, 0.85098, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="1"]
-bg_color = Color(0.0666667, 1, 0.835294, 1)
+bg_color = Color(0, 0.1265, 0.33, 0.156863)
 border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.243137, 0.513726, 0.85098, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry4vf"]
+font = ExtResource("2_fcv7m")
+font_size = 14
 
 [node name="MuseumCard" type="Button"]
 custom_minimum_size = Vector2(170, 182)
@@ -34,9 +36,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1110.0
 offset_bottom = -538.0
-theme_override_styles/normal = SubResource("29")
-theme_override_styles/hover = SubResource("27")
-theme_override_styles/pressed = SubResource("27")
+theme = ExtResource("1_1t4yo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10cbq")
 toggle_mode = true
 action_mode = 0
 script = ExtResource("4")
@@ -77,7 +78,7 @@ editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 1
 text = "INSERT_TITLE"
-label_settings = ExtResource("2_jn0qd")
+label_settings = SubResource("LabelSettings_ry4vf")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -87,7 +88,6 @@ layout_mode = 2
 alignment = 2
 
 [node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(14, 14)
 layout_mode = 2
 focus_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://br2qdth74t78h"]
+[gd_scene load_steps=6 format=3 uid="uid://76yfxggfbkq5"]
 
 [ext_resource type="Texture2D" uid="uid://d2rvjwrr2g3f7" path="res://assets/textures/gui/bevel/fossilisationButtonHover.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://u7bjh83fe6r3" path="res://assets/textures/gui/bevel/fossilisationButton.png" id="2"]

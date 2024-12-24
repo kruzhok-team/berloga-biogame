@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 using LauncherThriveShared;
 using Xoshiro.PRNG32;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -21,9 +22,6 @@ public partial class MainMenu : NodeWithInput
     /// </summary>
     [Export]
     public int NonMenuItemsFirst = 1;
-
-    [Export]
-    public NodePath? ThriveLogoPath;
 
     /// <summary>
     ///   Needs to be a collection of <see cref="Texture2D"/>
@@ -80,10 +78,19 @@ public partial class MainMenu : NodeWithInput
     public NodePath SocialMediaContainerPath = null!;
 
     [Export]
-    public NodePath ItchButtonPath = null!;
+    public NodePath VKButtonPath = null!;
 
     [Export]
-    public NodePath PatreonButtonPath = null!;
+    public NodePath KDButtonPath = null!;
+
+    [Export]
+    public NodePath GTOButtonPath = null!;
+
+    [Export]
+    public NodePath BerlogaButtonPath = null!;
+
+    [Export]
+    public NodePath GamesButtonPath = null!;
 
     [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
@@ -95,21 +102,6 @@ public partial class MainMenu : NodeWithInput
     public NodePath GalleryViewerPath = null!;
 
     [Export]
-    public NodePath NewsFeedPath = null!;
-
-    [Export]
-    public NodePath NewsFeedDisablerPath = null!;
-
-    [Export]
-    public NodePath PatchNotesPath = null!;
-
-    [Export]
-    public NodePath PatchNotesDisablerPath = null!;
-
-    [Export]
-    public NodePath FeedPositionerPath = null!;
-
-    [Export]
     public NodePath ThanksDialogPath = null!;
 
     [Export]
@@ -118,8 +110,6 @@ public partial class MainMenu : NodeWithInput
 #pragma warning disable CA2213
     private TextureRect background = null!;
     private Node3D? created3DBackground;
-
-    private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
@@ -127,15 +117,6 @@ public partial class MainMenu : NodeWithInput
     private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
-
-    private ThriveFeedDisplayer newsFeed = null!;
-    private Control newsFeedDisabler = null!;
-
-    private PatchNotesDisplayer patchNotes = null!;
-    private Control patchNotesDisabler = null!;
-
-    private Control feedPositioner = null!;
-
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
@@ -153,8 +134,11 @@ public partial class MainMenu : NodeWithInput
     [Export]
     private CustomWindow websiteButtonsContainer = null!;
 
-    private TextureButton itchButton = null!;
-    private TextureButton patreonButton = null!;
+    private TextureButton gtoButton = null!;
+    private TextureButton kdButton = null!;
+    private TextureButton vkButton = null!;
+    private TextureButton berlogaButton = null!;
+    private TextureButton gamesButton = null!;
 
     [Export]
     private CustomConfirmationDialog openGlPopup = null!;
@@ -222,14 +206,18 @@ public partial class MainMenu : NodeWithInput
 
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
-            SafeModeStartupHandler.AreVideosAllowed())
+            SafeModeStartupHandler.AreVideosAllowed() && !FileAccess.FileExists(Constants.LATEST_START_INFO_FILE))
         {
             // Hide menu buttons to prevent them grabbing focus during intro video
             GetCurrentMenu()?.Hide();
 
             SafeModeStartupHandler.ReportBeforeVideoPlaying();
+
             TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0), ()=>{
+                    var introScene = (IntroScene)SceneManager.Instance.LoadScene("res://src/cutscenes/Intro/IntroScene.tscn").Instantiate();
+                    SceneManager.Instance.SwitchToScene(introScene);
+                }, false, true);
         }
         else
         {
@@ -363,7 +351,6 @@ public partial class MainMenu : NodeWithInput
         // if a menu is visible
         websiteButtonsContainer.Visible = false;
         socialMediaContainer.Visible = index != uint.MaxValue;
-        feedPositioner.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
         if (index > menuArray.Count - 1 && index != uint.MaxValue)
@@ -415,36 +402,30 @@ public partial class MainMenu : NodeWithInput
     {
         if (disposing)
         {
-            if (ThriveLogoPath != null)
-            {
-                ThriveLogoPath.Dispose();
-                FreebuildButtonPath.Dispose();
-                MulticellularFreebuildButtonPath.Dispose();
-                AutoEvoExploringButtonPath.Dispose();
-                MicrobeBenchmarkButtonPath.Dispose();
-                ExitToLauncherButtonPath.Dispose();
-                CreditsContainerPath.Dispose();
-                CreditsScrollPath.Dispose();
-                LicensesDisplayPath.Dispose();
-                SteamFailedPopupPath.Dispose();
-                ModLoadFailuresPath.Dispose();
-                SafeModeWarningPath.Dispose();
-                ModsInstalledButNotEnabledWarningPath.Dispose();
-                LowPerformanceWarningPath.Dispose();
-                SocialMediaContainerPath.Dispose();
-                ItchButtonPath.Dispose();
-                PatreonButtonPath.Dispose();
-                StoreLoggedInDisplayPath.Dispose();
-                ModManagerPath.Dispose();
-                GalleryViewerPath.Dispose();
-                NewsFeedPath.Dispose();
-                NewsFeedDisablerPath.Dispose();
-                PatchNotesPath.Dispose();
-                PatchNotesDisablerPath.Dispose();
-                FeedPositionerPath.Dispose();
-                ThanksDialogPath.Dispose();
-                MenusPath.Dispose();
-            }
+            FreebuildButtonPath.Dispose();
+            MulticellularFreebuildButtonPath.Dispose();
+            AutoEvoExploringButtonPath.Dispose();
+            MicrobeBenchmarkButtonPath.Dispose();
+            ExitToLauncherButtonPath.Dispose();
+            CreditsContainerPath.Dispose();
+            CreditsScrollPath.Dispose();
+            LicensesDisplayPath.Dispose();
+            SteamFailedPopupPath.Dispose();
+            ModLoadFailuresPath.Dispose();
+            SafeModeWarningPath.Dispose();
+            ModsInstalledButNotEnabledWarningPath.Dispose();
+            LowPerformanceWarningPath.Dispose();
+            SocialMediaContainerPath.Dispose();
+            VKButtonPath.Dispose();
+            GTOButtonPath.Dispose();
+            KDButtonPath.Dispose();
+            GamesButtonPath.Dispose();
+            BerlogaButtonPath.Dispose();
+            StoreLoggedInDisplayPath.Dispose();
+            ModManagerPath.Dispose();
+            GalleryViewerPath.Dispose();
+            ThanksDialogPath.Dispose();
+            MenusPath.Dispose();
         }
 
         base.Dispose(disposing);
@@ -457,7 +438,6 @@ public partial class MainMenu : NodeWithInput
     {
         background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
-        thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         multicellularFreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
@@ -469,15 +449,20 @@ public partial class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
-        newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
-        newsFeedDisabler = GetNode<Control>(NewsFeedDisablerPath);
-        patchNotes = GetNode<PatchNotesDisplayer>(PatchNotesPath);
-        patchNotesDisabler = GetNode<Control>(PatchNotesDisablerPath);
-        feedPositioner = GetNode<Control>(FeedPositionerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
 
-        itchButton = GetNode<TextureButton>(ItchButtonPath);
-        patreonButton = GetNode<TextureButton>(PatreonButtonPath);
+        vkButton = GetNode<TextureButton>(VKButtonPath);
+        gtoButton = GetNode<TextureButton>(GTOButtonPath);
+        kdButton = GetNode<TextureButton>(KDButtonPath);
+        gamesButton = GetNode<TextureButton>(GamesButtonPath);
+        berlogaButton = GetNode<TextureButton>(BerlogaButtonPath);
+
+        // Connect pressed signal social medias
+        vkButton.Connect("pressed", new Callable(this, nameof(OnVKButtonPressed)));
+        gtoButton.Connect("pressed", new Callable(this, nameof(OnGTOButtonPressed)));
+        kdButton.Connect("pressed", new Callable(this, nameof(OnKDButtonPressed)));
+        gamesButton.Connect("pressed", new Callable(this, nameof(OnGamesButtonPressed)));
+        berlogaButton.Connect("pressed", new Callable(this, nameof(OnBerlogaButtonPressed)));
 
         menuArray?.Clear();
 
@@ -507,24 +492,12 @@ public partial class MainMenu : NodeWithInput
         // Set initial menu
         SwitchMenu();
 
-        // Easter egg message
-        thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 && !IsReturningToMenu)
             openGlPopup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
-
-        // Hide patch notes when it does not want to be shown
-        if (!Settings.Instance.ShowNewPatchNotes)
-        {
-            patchNotesDisabler.Visible = false;
-        }
-        else
-        {
-            ShowPatchInfoIfPossible();
-        }
     }
 
     /// <summary>
@@ -652,8 +625,6 @@ public partial class MainMenu : NodeWithInput
             UpdateSteamLoginText();
 
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
-            itchButton.Visible = false;
-            patreonButton.Visible = false;
 
             canShowThanks = true;
             storeBuyLink = "https://store.steampowered.com/app/1779200";
@@ -703,7 +674,6 @@ public partial class MainMenu : NodeWithInput
     /// </summary>
     private void SwitchMenu()
     {
-        thriveLogo.Hide();
 
         // Hide other menus and only show the one of the current index
         foreach (var menu in menuArray!.OfType<Control>())
@@ -713,7 +683,6 @@ public partial class MainMenu : NodeWithInput
             if (menu.GetIndex() - NonMenuItemsFirst == CurrentMenuIndex)
             {
                 menu.Show();
-                thriveLogo.Show();
             }
         }
     }
@@ -756,41 +725,6 @@ public partial class MainMenu : NodeWithInput
         }
 
         SafeModeStartupHandler.ReportGameStartSuccessful();
-    }
-
-    /// <summary>
-    ///   Updates feed visibilities if settings have been changed
-    /// </summary>
-    private void UpdateFeedVisibilities()
-    {
-        var settings = Settings.Instance;
-
-        if (!settings.ShowNewPatchNotes && patchNotesDisabler.Visible)
-        {
-            patchNotesDisabler.Visible = false;
-            newsFeedDisabler.Visible = true;
-        }
-        else if (settings.ShowNewPatchNotes && !patchNotesDisabler.Visible)
-        {
-            ShowPatchInfoIfPossible();
-        }
-    }
-
-    private void ShowPatchInfoIfPossible()
-    {
-        if (patchNotes.ShowIfNewPatchNotesExist())
-        {
-            GD.Print("We are playing a new version of Thrive for the first time, showing patch notes");
-
-            // Hide the news when patch notes are visible (and there's something to show there)
-            newsFeedDisabler.Visible = false;
-
-            patchNotesDisabler.Visible = true;
-        }
-        else
-        {
-            patchNotesDisabler.Visible = false;
-        }
     }
 
     private void WarnAboutNoEnabledMods()
@@ -851,7 +785,6 @@ public partial class MainMenu : NodeWithInput
         // Show the options
         newGameSettings.OpenFromMainMenu();
 
-        thriveLogo.Hide();
     }
 
     private void ToolsPressed()
@@ -969,10 +902,6 @@ public partial class MainMenu : NodeWithInput
     {
         options.Visible = false;
         SetCurrentMenu(0, false);
-
-        // In case news settings are changed, update that state
-        UpdateFeedVisibilities();
-        newsFeed.CheckStartFetchNews();
     }
 
     private void OnReturnFromNewGameSettings()
@@ -980,8 +909,6 @@ public partial class MainMenu : NodeWithInput
         newGameSettings.Visible = false;
 
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void OnRedirectedToOptionsMenuFromNewGameSettings()
@@ -1174,5 +1101,21 @@ public partial class MainMenu : NodeWithInput
         {
             UpdateSteamLoginText();
         }
+    }
+
+    private void OnVKButtonPressed(){
+        OnSocialMediaButtonPressed("https://vk.com/onti_genome");
+    }
+    private void OnGTOButtonPressed(){
+        OnSocialMediaButtonPressed("https://ntcontest.ru/");
+    }
+    private void OnKDButtonPressed(){
+        OnSocialMediaButtonPressed("https://talent.kruzhok.org/");
+    }
+    private void OnGamesButtonPressed(){
+        OnSocialMediaButtonPressed("https://www.rustore.ru/catalog/developer/46c13112");
+    }
+    private void OnBerlogaButtonPressed(){
+        OnSocialMediaButtonPressed("https://platform.kruzhok.org/");
     }
 }

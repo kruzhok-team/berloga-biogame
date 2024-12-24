@@ -137,6 +137,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonProperty]
     private InGameTimeManager timeManager = new InGameTimeManager();
 
+    [JsonProperty]
+    private string statsOsmoregulation = "0";
+
+    [JsonProperty]
+    private string statsEnergyProduction = "0";
+
     private PauseManager pauseManager = PauseManager.Instance;
 
     /// <summary>
@@ -625,6 +631,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     public override void OnReturnFromEditor()
     {
+        statsEnergyProduction = StatisticsManager.Instance.EnergyProduction;
+        statsOsmoregulation = StatisticsManager.Instance.Osmoregulation;
         UpdatePatchSettings();
 
         base.OnReturnFromEditor();
@@ -1417,5 +1425,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         StatisticsManager.Instance.Organells = playerSpecies.Organelles.Count.ToString();
 
         StatisticsManager.Instance.PlayerMicrobeName = playerSpecies.ToString();
+        StatisticsManager.Instance.Osmoregulation = statsOsmoregulation;
+        StatisticsManager.Instance.EnergyProduction = statsEnergyProduction;
     }
 }

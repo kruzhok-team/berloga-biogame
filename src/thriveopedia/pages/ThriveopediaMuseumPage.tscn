@@ -1,13 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0yvsh6srh74l"]
+[gd_scene load_steps=12 format=3 uid="uid://d0yvsh6srh74l"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bba0es00jmii8" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaMuseumPage.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://7xsd76voyg3r" path="res://assets/themes/tips 6.svg" id="3_8onco"]
 [ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="4"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_8ikvd"]
+[ext_resource type="Texture2D" uid="uid://cylvrwqj7nn7x" path="res://assets/themes/tips 7.svg" id="4_brc2f"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="6_5hhpq"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_klcxq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nyyxh"]
+texture = ExtResource("3_8onco")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1xam4"]
+texture = ExtResource("4_brc2f")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fybo"]
+font = ExtResource("6_5hhpq")
+
 [node name="ThriveopediaMuseumPage" instance=ExtResource("1")]
-anchors_preset = 15
+theme_override_styles/panel = SubResource("StyleBoxEmpty_klcxq")
 script = ExtResource("2")
 CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
 WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
@@ -19,18 +32,6 @@ DeleteConfirmationDialogPath = NodePath("DeleteWarning")
 DeletionFailedDialogPath = NodePath("FossilDeletionFailedDialog")
 DisplayBackground = false
 
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
 layout_mode = 2
 theme_override_constants/separation = 15
@@ -38,6 +39,7 @@ theme_override_constants/separation = 15
 [node name="SpeciesListPanel" type="PanelContainer" parent="HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_nyyxh")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel" index="0"]
 custom_minimum_size = Vector2(350, 0)
@@ -82,6 +84,7 @@ text = "OPEN_FOSSIL_FOLDER"
 
 [node name="SpeciesDetailsPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1xam4")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailsPanel" index="0"]
 custom_minimum_size = Vector2(350, 0)
@@ -109,7 +112,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "MUSEUM_WELCOME_TEXT"
-label_settings = ExtResource("4_8ikvd")
+label_settings = SubResource("LabelSettings_7fybo")
 autowrap_mode = 3
 
 [node name="UnsavedProgressWarning" parent="." index="2" instance=ExtResource("8")]

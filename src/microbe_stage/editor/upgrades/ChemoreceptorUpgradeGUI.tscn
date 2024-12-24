@@ -28,10 +28,9 @@ text = "TARGET_TYPE_COLON"
 
 [node name="TargetType" type="OptionButton" parent="."]
 layout_mode = 2
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "COMPOUNDS"
-popup/item_0/id = 0
 popup/item_1/text = "SPECIES"
 popup/item_1/id = 1
 

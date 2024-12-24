@@ -248,7 +248,7 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public MicrobeSpecies CreatePlayerSpecies()
     {
-        var species = NewMicrobeSpecies("Primum", "thrivium");
+        var species = NewMicrobeSpecies("Забавиус", "рябинелла");
         species.BecomePlayerSpecies();
 
         var workMemory1 = new List<Hex>();

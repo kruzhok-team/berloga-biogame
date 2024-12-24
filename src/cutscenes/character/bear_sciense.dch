@@ -1,0 +1,39 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(0.607843, 0.423529, 0.270588, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": ""
+},
+"default_portrait": "bear_science",
+"description": "Главный научный сотрудник в НИИ. Мудрый и эксцентричный медведь в лабораторном белом халате и очках. Он всегда готов делиться своими знаниями и исследованиями. У него шутливый характер, который помогает сделать обучение увлекательным.",
+"display_name": "Сергей Белых",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 0),
+"portraits": {
+"bear_helper": {
+"export_overrides": {
+"image": "\"res://src/cutscenes/character/bear 2.png\""
+},
+"ignore_char_scale": true,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 0.8,
+"scene": ""
+},
+"bear_science": {
+"export_overrides": {
+"image": "\"res://src/cutscenes/character/bear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+"scale": 1.0
+}
