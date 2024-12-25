@@ -159,7 +159,7 @@ func _apply_box_settings() -> void:
 
 	var sizer: Control = %Sizer
 	sizer.size = box_size
-	sizer.position = box_size * Vector2(-0.5, -1)+Vector2(0, -box_margin_bottom)
+
 
 
 ## Applies box animations settings to the scene.

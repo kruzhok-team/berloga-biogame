@@ -904,7 +904,7 @@ layout_mode = 2
 [node name="IncludeMulticellular" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-toggle_mode = false
+button_pressed = true
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]

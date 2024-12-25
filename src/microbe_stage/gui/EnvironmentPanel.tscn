@@ -1,27 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf65ovetig4om"]
+[gd_scene load_steps=22 format=3 uid="uid://cf65ovetig4om"]
 
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="1_8bbgm"]
 [ext_resource type="Script" path="res://src/microbe_stage/gui/EnvironmentPanel.cs" id="1_vxpah"]
+[ext_resource type="Texture2D" uid="uid://bi7tqh3o8n5kp" path="res://assets/themes/tips 5.svg" id="2_fl0h3"]
 [ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="2_pmqaf"]
 [ext_resource type="Texture2D" uid="uid://bxlnimt4nkhqo" path="res://assets/textures/gui/bevel/expandPanelActive.png" id="3_j0hv2"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="3_ls8f8"]
 [ext_resource type="Texture2D" uid="uid://cttqx2e3xihkj" path="res://assets/textures/gui/bevel/compressPanel.png" id="4_c57f8"]
 [ext_resource type="Texture2D" uid="uid://ce6xjoyccianl" path="res://assets/textures/gui/bevel/compressPanelActive.png" id="5_pdfn1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_s7ajg"]
 
-[sub_resource type="StyleBoxFlat" id="2"]
-bg_color = Color(0, 0.129412, 0.141176, 0.784314)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxTexture" id="5"]
-texture = ExtResource("2_pmqaf")
-region_rect = Rect2(0, 0, 20, 20)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8qkj"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+texture = ExtResource("2_fl0h3")
 
 [sub_resource type="StyleBoxTexture" id="3"]
 texture = ExtResource("2_pmqaf")
@@ -36,11 +28,11 @@ modulate_color = Color(0, 0.435294, 0.52549, 1)
 texture = ExtResource("3_j0hv2")
 region_rect = Rect2(0, 0, 20, 20)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_1u4ht"]
-
-[sub_resource type="StyleBoxTexture" id="9"]
-texture = ExtResource("4_c57f8")
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("2_pmqaf")
 region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1u4ht"]
 
 [sub_resource type="StyleBoxTexture" id="7"]
 texture = ExtResource("4_c57f8")
@@ -49,6 +41,10 @@ modulate_color = Color(0, 0.435294, 0.52549, 1)
 
 [sub_resource type="StyleBoxTexture" id="8"]
 texture = ExtResource("5_pdfn1")
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="9"]
+texture = ExtResource("4_c57f8")
 region_rect = Rect2(0, 0, 20, 20)
 
 [sub_resource type="Animation" id="Animation_s0kx8"]
@@ -182,7 +178,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -234.0
-offset_right = 199.0
+offset_right = 217.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -199,7 +195,7 @@ custom_minimum_size = Vector2(197, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("2")
+theme_override_styles/panel = SubResource("StyleBoxTexture_m8qkj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EnvironmentPanelPanel"]
 custom_minimum_size = Vector2(195, 0)
@@ -220,8 +216,10 @@ theme_override_constants/separation = 6
 [node name="Label" type="Label" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_ls8f8")
 text = "ENVIRONMENT"
 label_settings = ExtResource("1_8bbgm")
+vertical_alignment = 1
 
 [node name="EnvironmentExpandButton" type="Button" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
 custom_minimum_size = Vector2(18, 18)
@@ -229,23 +227,24 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_styles/normal = SubResource("5")
 theme_override_styles/hover = SubResource("3")
 theme_override_styles/pressed = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_1u4ht")
 
 [node name="EnvironmentCompressButton" type="Button" parent="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_styles/normal = SubResource("9")
 theme_override_styles/hover = SubResource("7")
 theme_override_styles/pressed = SubResource("8")
+theme_override_styles/normal = SubResource("9")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_1u4ht")
@@ -253,6 +252,7 @@ button_group = SubResource("ButtonGroup_1u4ht")
 [node name="HSeparator" type="HSeparator" parent="EnvironmentPanelPanel/VBoxContainer"]
 custom_minimum_size = Vector2(197, 0)
 layout_mode = 2
+theme = ExtResource("9_s7ajg")
 
 [node name="Body" type="MarginContainer" parent="EnvironmentPanelPanel/VBoxContainer"]
 layout_mode = 2

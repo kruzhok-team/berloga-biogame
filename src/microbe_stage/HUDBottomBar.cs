@@ -179,6 +179,7 @@ public partial class HUDBottomBar : HBoxContainer
 
     private void SuicideButtonPressed()
     {
+        GD.Print("Pressed!");
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OnSuicidePressed);
     }

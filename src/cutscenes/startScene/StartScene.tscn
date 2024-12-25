@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv1hwjnjdh72e"]
+[gd_scene load_steps=4 format=3 uid="uid://cv1hwjnjdh72e"]
 
 [ext_resource type="Script" path="res://src/cutscenes/startScene/StartScene.cs" id="1_3fog8"]
 [ext_resource type="Script" path="res://src/cutscenes/startScene/start_scene.gd" id="1_xc6l1"]
+[ext_resource type="Texture2D" uid="uid://cyri5a37fpavd" path="res://assets/textures/gui/background_2.png" id="2_tlgbj"]
 
 [node name="StartScene" type="Node2D"]
 script = ExtResource("1_3fog8")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_tlgbj")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Dialog" type="Node2D" parent="."]
 script = ExtResource("1_xc6l1")

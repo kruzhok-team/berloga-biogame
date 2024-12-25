@@ -1340,6 +1340,8 @@ public static class Constants
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
+    public const string DIALOGIC_LICENSE_FILE = "res://LICENSE";
+    public const string FIRST_TIME_BOOT_CONFIG = "user://first_boot.cfg";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
@@ -1466,7 +1468,7 @@ public static class Constants
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
-    public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[а-яА-ЯёЁ0-9]+) (?<epithet>[а-яА-ЯёЁ0-9]+)$";
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 

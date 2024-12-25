@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbthqg63bqkhx"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://26stgqic3ocn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" id="2"]
 
 [node name="MicrobeEditorCheatMenu" instance=ExtResource("1")]

@@ -21,7 +21,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="Berloga: Evolution"
 config/features=PackedStringArray("4.3", "C#")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://assets/misc/thrive_logo_big.png"
+boot_splash/image="res://assets/misc/icon.png"
 config/icon="res://assets/misc/icon.png"
 config/windows_native_icon="res://assets/misc/icon.ico"
 
@@ -68,14 +68,17 @@ settings/fps/force_fps=400
 
 directories/dch_directory={
 "BearHelper": "res://src/cutscenes/character/BearHelper.dch",
-"BearSciense": "res://src/cutscenes/character/BearSciense.dch"
+"BearSciense": "res://src/cutscenes/character/BearSciense.dch",
+"bear_helper": "res://src/cutscenes/character/bear_helper.dch",
+"bear_sciense": "res://src/cutscenes/character/bear_sciense.dch"
 }
 directories/dtl_directory={
 "FinalScene": "res://src/cutscenes/timelines/FinalScene.dtl",
+"IntroCutscene": "res://src/cutscenes/Intro/IntroCutscene.dtl",
 "StartScene": "res://src/cutscenes/timelines/StartScene.dtl"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://DefualtStyleDialog.tres"]
+layout/style_list=["res://DefualtStyleDialog.tres", "res://IntroStyleDialog.tres"]
 layout/default_style="res://DefualtStyleDialog.tres"
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

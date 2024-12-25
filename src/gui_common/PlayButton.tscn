@@ -1,56 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://7fwavluq5q7o"]
+[gd_scene load_steps=16 format=3 uid="uid://7fwavluq5q7o"]
 
 [ext_resource type="Texture2D" uid="uid://xrmrjmbscf2" path="res://assets/textures/gui/bevel/PauseIcon.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvahusocnb1x5" path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" id="2_yrjuc"]
 [ext_resource type="Texture2D" uid="uid://cvhok04mdyd75" path="res://assets/textures/gui/bevel/PlayIcon.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://pwxup7xkoggk" path="res://assets/textures/gui/bevel/pauseButtonHover.png" id="3_e5iic"]
+[ext_resource type="Texture2D" uid="uid://b2a7bqhb70rml" path="res://assets/textures/gui/bevel/pauseButton.png" id="4_vplse"]
 [ext_resource type="Script" path="res://src/gui_common/PlayButton.cs" id="6"]
+[ext_resource type="Texture2D" uid="uid://cnoil7e53x7gh" path="res://assets/textures/gui/bevel/pauseButtonPaused.png" id="6_br55r"]
 
-[sub_resource type="StyleBoxFlat" id="1"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 0.6, 0.537255, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="2"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0, 0.435294, 0.52549, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.00392157, 0.956863, 0.905882, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="3"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 1, 0.835294, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.00392157, 0.956863, 0.905882, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("2_yrjuc")
 
 [sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
@@ -68,23 +27,36 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxTexture" id="4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4657"]
+texture = ExtResource("3_e5iic")
 
-[sub_resource type="StyleBoxFlat" id="6"]
+[sub_resource type="StyleBoxFlat" id="3"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 0.6, 0.537255, 1)
+border_color = Color(0.00392157, 0.956863, 0.905882, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fbqwi"]
+texture = ExtResource("4_vplse")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0d3xl"]
+texture = ExtResource("2_yrjuc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1iv3"]
+texture = ExtResource("2_yrjuc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_753jg"]
+texture = ExtResource("6_br55r")
 
 [node name="PlayButton" type="MarginContainer"]
 custom_minimum_size = Vector2(25, 25)
@@ -97,13 +69,14 @@ script = ExtResource("6")
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("1")
-theme_override_styles/hover = SubResource("2")
-theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("5")
 theme_override_styles/focus = SubResource("4")
+theme_override_styles/disabled = SubResource("5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b4657")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fbqwi")
 
 [node name="Icon" type="TextureRect" parent="Pause"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -116,13 +89,14 @@ visible = false
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("6")
-theme_override_styles/hover = SubResource("2")
-theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("5")
 theme_override_styles/focus = SubResource("4")
+theme_override_styles/disabled = SubResource("5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0d3xl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m1iv3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_753jg")
 
 [node name="Icon" type="TextureRect" parent="Play"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0

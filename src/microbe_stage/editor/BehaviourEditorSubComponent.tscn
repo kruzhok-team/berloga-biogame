@@ -1,11 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://bapb4m7jw7pc8"]
+[gd_scene load_steps=9 format=3 uid="uid://bapb4m7jw7pc8"]
 
 [ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bi7tqh3o8n5kp" path="res://assets/themes/tips 5.svg" id="2_w45gi"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="3_g62sd"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.cs" id="4"]
 
-[sub_resource type="StyleBoxEmpty" id="16"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tswhb"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("2_w45gi")
 
 [sub_resource type="StyleBoxEmpty" id="39"]
 
@@ -18,7 +24,7 @@ offset_bottom = 556.0
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("3")
-theme_override_styles/panel = SubResource("16")
+theme_override_styles/panel = SubResource("StyleBoxTexture_tswhb")
 script = ExtResource("4")
 AggressionSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
 OpportunismSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")

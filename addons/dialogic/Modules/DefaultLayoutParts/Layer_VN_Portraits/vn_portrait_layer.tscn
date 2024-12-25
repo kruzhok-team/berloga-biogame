@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="1_rxdcc"]
 
 [node name="VN_PortraitLayer" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +26,8 @@ mouse_filter = 2
 
 [node name="DialogicNode_PortraitContainer1" type="Control" parent="Portraits"]
 layout_mode = 1
-anchor_right = 0.2
+anchor_left = 0.126563
+anchor_right = 0.326563
 anchor_bottom = 1.0
 offset_right = -1.52588e-05
 grow_vertical = 2
@@ -73,8 +75,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DialogicNode_PortraitContainer5" type="Control" parent="Portraits"]
 layout_mode = 1
-anchor_left = 0.8
-anchor_right = 1.0
+anchor_left = 0.722656
+anchor_right = 0.922656
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2

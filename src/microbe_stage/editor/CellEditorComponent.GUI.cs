@@ -562,6 +562,9 @@ public partial class CellEditorComponent
     private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
     {
         energyBalanceInfo = energyBalance;
+        //TODO: change
+        StatisticsManager.Instance.Osmoregulation = energyBalance.Osmoregulation.ToString();
+        StatisticsManager.Instance.EnergyProduction = energyBalance.TotalProduction.ToString();
 
         if (energyBalance.FinalBalance > 0)
         {

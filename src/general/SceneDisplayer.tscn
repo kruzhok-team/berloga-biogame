@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://ca14jcxniwmke"]
 
-[ext_resource path="res://src/general/SceneDisplayer.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/general/SceneDisplayer.cs" id="1"]
 
 [node name="SceneDisplayer" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")

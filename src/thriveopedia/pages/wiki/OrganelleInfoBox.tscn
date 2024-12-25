@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://difkxs0cysyce"]
+[gd_scene load_steps=8 format=3 uid="uid://difkxs0cysyce"]
 
 [ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="3_vcfpd"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="4_5e56e"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_2u1as"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="5_71aaq"]
 [ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/OrganelleInfoBox.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://bx240joai3755" path="res://assets/textures/gui/bevel/RequirementFulfilled.png" id="7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fybo"]
+font = ExtResource("5_71aaq")
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(330, 0)
@@ -78,7 +81,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -118,7 +121,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Processes"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -137,7 +140,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Enzymes"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -156,7 +159,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Mass"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -175,7 +178,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Size"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -194,7 +197,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -213,7 +216,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Storage"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -253,7 +256,7 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Ugrades"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")
 
 [node name="HSeparator13" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
@@ -272,4 +275,4 @@ label_settings = ExtResource("4_5e56e")
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
 layout_mode = 2
 size_flags_horizontal = 3
-label_settings = ExtResource("5_2u1as")
+label_settings = SubResource("LabelSettings_7fybo")

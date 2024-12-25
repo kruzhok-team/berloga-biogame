@@ -1,23 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://mmqt0mcw2if3"]
+[gd_scene load_steps=12 format=3 uid="uid://mmqt0mcw2if3"]
 
 [ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://csw4xjfy4y0dk" path="res://src/gui_common/fonts/Title-SemiBold-Small.tres" id="3_hb582"]
 [ext_resource type="Script" path="res://src/gui_common/charts/line/LineChart.cs" id="4"]
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="4_f7n6i"]
-[ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://c8u4uaeedwcs3" path="res://assets/textures/gui/bevel/vSeparatorUp.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://ddne51q6n1ha7" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="9"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://26stgqic3ocn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="10"]
 
 [sub_resource type="Theme" id="1"]
 default_font = ExtResource("4_f7n6i")
 default_font_size = 12
-
-[sub_resource type="StyleBoxTexture" id="2"]
-texture = ExtResource("6")
-region_rect = Rect2(0, 0, 1, 258)
 
 [sub_resource type="StyleBoxTexture" id="3"]
 texture = ExtResource("5")
@@ -118,7 +113,6 @@ theme_override_constants/separation = 0
 [node name="Line" type="VSeparator" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/separator = SubResource("2")
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
 layout_mode = 2

@@ -4,6 +4,14 @@
     "Current": {
       "Programming Team": [
         {
+          "Person": "Naibauer Sergei Alexanderovich",
+          "Lead" : true
+        },
+        {
+          "Person": "Rostovsky Alexander Evgenievich",
+          "Lead" : true
+        },
+        {
           "Person": "84634E1A607A",
           "Lead": false
         },
@@ -79,6 +87,10 @@
         }
       ],
       "Graphics Team": [
+        {
+          "Person": "Gvozdikova Inna Yuryevna",
+          "Lead" : false
+        },
         {
           "Person": "Bolsa",
           "Lead": false

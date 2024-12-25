@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://socrfv15x3ql"]
+[gd_scene load_steps=5 format=3 uid="uid://socrfv15x3ql"]
 
 [ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/OrganelleLinkButton.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_bvs72"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="3_yssuq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fybo"]
+font = ExtResource("3_yssuq")
 
 [node name="OrganelleLinkButton" type="VBoxContainer"]
 custom_minimum_size = Vector2(0, 195)
@@ -22,7 +25,7 @@ expand_icon = true
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-label_settings = ExtResource("3_bvs72")
+label_settings = SubResource("LabelSettings_7fybo")
 horizontal_alignment = 1
 autowrap_mode = 3
 

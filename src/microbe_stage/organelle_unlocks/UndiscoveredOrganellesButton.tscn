@@ -4,13 +4,13 @@
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_qkpyp"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_r1gjg"]
 
-[sub_resource type="StyleBoxFlat" id="4"]
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -40,13 +40,13 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="3"]
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -70,10 +70,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 mouse_filter = 1
-theme_override_styles/normal = SubResource("4")
+theme_override_styles/disabled = SubResource("3")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("2")
-theme_override_styles/disabled = SubResource("3")
+theme_override_styles/normal = SubResource("4")
 disabled = true
 action_mode = 0
 expand_icon = true
