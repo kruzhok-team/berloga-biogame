@@ -12,12 +12,12 @@ Overview
 
 Repository structure:
 - addons: Содержит в себе дополнения для IDE, которые устанавливаются непосредственно в проект, а не в редакор
-- assets: This folder contains all the assets such as models and other binaries. 
-- [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
-- simulation_parameters: Contains JSON files as well as C# constants for tweaking the game.
-- scripts: Utility scripts for Thrive development
-- src: The core of the game written in C# as well as Godot scenes.
-- test: Contains tests that will ensure that core parts work correctly. These don't currently exist for the Godot version.
+- assets: Эта папка содержит все ресурсы, такие как модели и другие двоичные файлы. 
+- [doc: Файлы документации.](/doc) Содержит руководство по стилю, обзор движка и другую полезную документацию.
+- simulation_parameters: Содержит файлы JSON, а также константы C# для настройки игры.
+- scripts: Утилиты для разработки "Berloga: Evolution".
+- src: Ядро игры написано на C#, а также на сценах Godot.
+- test: Содержит тесты, которые гарантируют правильную работу основных компонентов. В настоящее время их не существует для версии Godot.
 
 ### Programmers 
 Папки assets и addons были перенесены с git lfs на облако, в связи с чем их загрузка производится через скрипт LoadFiles.PS1
