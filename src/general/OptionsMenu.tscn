@@ -378,7 +378,13 @@ popup/item_1/id = 1
 popup/item_2/text = "CORRECTION_TRITANOPE"
 popup/item_2/id = 2
 
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("8")
+
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -409,11 +415,13 @@ value = 20.0
 scrollable = false
 
 [node name="DisplayBackgroundParticles" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
 [node name="Menu3DBackgroundsToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_bottom = NodePath("../HBoxContainer10/ControllerPromptType")
