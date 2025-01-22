@@ -15,31 +15,3 @@ en.po text linguist-generated=false
 *.shader text
 *.xml text
 *.*.import text
-*.asset filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-*.mkv filter=lfs diff=lfs merge=lfs -text
-*.ogg filter=lfs diff=lfs merge=lfs -text
-*.ico filter=lfs diff=lfs merge=lfs -text
-*.ttf filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text
-*.dae filter=lfs diff=lfs merge=lfs -text
-*.blend filter=lfs diff=lfs merge=lfs -text
-*.glb filter=lfs diff=lfs merge=lfs -text
-*.bin filter=lfs diff=lfs merge=lfs -text
-*.fbx filter=lfs diff=lfs merge=lfs -text
-*.material filter=lfs diff=lfs merge=lfs -text
-*.webm filter=lfs diff=lfs merge=lfs -text
-*.mesh filter=lfs diff=lfs merge=lfs -text
-*.anim filter=lfs diff=lfs merge=lfs -text
-*.otf filter=lfs diff=lfs merge=lfs -text
-*.shape filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.ogv filter=lfs diff=lfs merge=lfs -text
-addons/** -filter=lfs diff=lfs merge=lfs -text
-assets/themes/** -filter=lfs diff=lfs merge=lfs -text
-assets/textures/gui/background_1.png* -filter=lfs diff=lfs merge=lfs -text
-assets/textures/gui/background_2.png* -filter=lfs diff=lfs merge=lfs -text
-assets/textures/gui/background_3.jpg* -filter=lfs diff=lfs merge=lfs -text
-assets/** -filter=lfs diff=lfs merge=lfs -text
-src/cutscenes/** -filter=lfs diff=lfs merge=lfs -text
