@@ -96,21 +96,6 @@
             "ResourcePath": "res://assets/concept_art/lizard.jpg"
           },
           {
-            "Title": "Menu Background 1",
-            "Artist": "kertit",
-            "ResourcePath": "res://assets/textures/gui/BG_Menu01.png"
-          },
-          {
-            "Title": "Menu Background 2",
-            "Artist": "kertit",
-            "ResourcePath": "res://assets/textures/gui/BG_Menu02.png"
-          },
-          {
-            "Title": "Menu Background 3",
-            "Artist": "Zorkman",
-            "ResourcePath": "res://assets/textures/gui/BG_Menu03.png"
-          },
-          {
             "Title": "Ocean",
             "Artist": "~sciocont",
             "ResourcePath": "res://assets/concept_art/ocean.jpg"
