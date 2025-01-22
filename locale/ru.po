@@ -359,7 +359,7 @@ msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr "Стать многоклеточным ({0}/{1})"
+msgstr "Написать отчёт ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "Начать Развиваться"
