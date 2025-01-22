@@ -798,7 +798,6 @@ DialogText = "SAFE_MODE_EXPLANATION"
 custom_minimum_size = Vector2(400, 350)
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
-WindowTitle = "MOD_LOAD_ERRORS"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)

@@ -569,7 +569,7 @@ msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
@@ -587,7 +587,7 @@ msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Хемосинтезирующие белки - небольшие скопления белков внутри цитоплазмы, что могут преобразовывать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] , газообразный [thrive:compound type=\"carbondioxide\"][/thrive:compound], да воду в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе что именуется [b]Сероводородном хемосинтезе[/b]. Скорость переработки [thrive:compound type=\"glucose\"][/thrive:compound] умножается с концентрацией [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Поскольку хемосинтезирующие белки находятся непосредственно в цитоплазме, от чего и происходит [b]гликолиз[/b]."
 
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Также превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Также преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "CHEMO_SYNTHESIS"
 msgstr "Хемосинтез"
@@ -1199,7 +1199,7 @@ msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Цитоплазматический гликолиз"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "DAY_LENGTH"
 msgstr "Длина дня"
@@ -1873,7 +1873,7 @@ msgid "FERROPLAST_DESCRIPTION"
 msgstr "Металлическая энергостанция. Феропласт - двойная мембранная структура, заполненная белками и энзимами. Это -- прокариота, что была ассимилирована для использованием эукариотом-хозяином. Она способна сжигать (окислять) [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое с куда большей эффективностью, которую можно достичь с помощью рустицианина. Этот процесс, названный [b]Железной Респирацией[/b], испускает большое количество энергии, что клетка-хозяин может использовать в своих целях. Ферропласты нуждаются в [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для функционирования, и меньшие уровни содержания этих газов в среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Количество получаемой энергии прямо зависит от содержания [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде. Чем их меньше -- тем меньше производится энергии."
+msgstr "Преобразует [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Количество получаемой энергии прямо зависит от содержания [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде. Чем их меньше -- тем меньше производится энергии."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Отфильтровать предметы по категориям:"
@@ -2893,7 +2893,7 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "METRICS"
 msgstr "Включить показ производительности"
@@ -2991,13 +2991,13 @@ msgstr ""
 "\n"
 "Хемосинтезирующие белки: Производят вдвое меньше [thrive:compound type=\"glucose\"][/thrive:compound] из [thrive:compound type=\"hydrogensulfide\"], чем хемопласты, но также участвуют в гликолизе. Занимают 1 ячейку\n"
 "\n"
-"Рустицианин: Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Рустицианин: Преобразует [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Нитрогеназа: Превращает атмосферный азот и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound] в процессе анаэробного дыхания\n"
+"Нитрогеназа: Преобразует атмосферный азот и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound] в процессе анаэробного дыхания\n"
 "\n"
-"Окситоксисома: Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"Окситоксисома: Преобразует [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Термосинтаза: Производит [thrive:compound type=\"atp\"][/thrive:compound] используя температурные градиенты"
+"Термосинтаза: Преобразует [thrive:compound type=\"atp\"][/thrive:compound] используя температурные градиенты"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr "Как только поглощение завершено, поглощённые объекты удерживаются внутри мембраны для переваривания. Неперевариваемые объекты всегда будут выведены наружу, поэтому сначала убедитесь что у вас есть нужные для их переваривания мутации. Ферменты помогают перевариванию, их производят лизосомы, рекомендуется эволюционировать эту органеллу для более эффективного переваривания."
@@ -3267,7 +3267,7 @@ msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Перемешано..."
@@ -3402,7 +3402,7 @@ msgid "MORE_INFO"
 msgstr "Показать больше информации"
 
 msgid "MORE_INFO_PROMPT"
-msgstr "Нажмите [thrive:input]помощи[/thrive:input] для просмотра большего количества информации в Медвежьей Энциклопедии."
+msgstr "Нажмите конпку [thrive:input]помощи[/thrive:input] для просмотра большего количества информации в Медвежьей Энциклопедии."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Вращать стратегический вид когда курсор на границе экрана"
@@ -3620,7 +3620,7 @@ msgid "NITROGENASE_DESCRIPTION"
 msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Азотфиксирующая пластида"
@@ -3629,7 +3629,7 @@ msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
 msgstr "Отсутствует"
@@ -3918,7 +3918,7 @@ msgid "OXYTOXISOME_DESC"
 msgstr "Модифицированная метаболосома, ответственная за выработку примитивной формы токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Может быть модифицирована для выбора определенного токсина со своим собственным эффектом."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелико, стрельба все еще возможна, но урон будет уменьшен."
+msgstr "Преобразует [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелико, стрельба все еще возможна, но урон будет уменьшен."
 
 msgid "OXYTOXY_NT"
 msgstr "ОксиТоксин НТ"
@@ -4204,7 +4204,7 @@ msgstr "Выйти из игры"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
-"Хочешь бросить игру, как всё по жизни бросаешь?\n"
+"Вы уверены, что хотите выйти из игры?\n"
 "Весь несохраненный прогресс будет утерян."
 
 msgid "RANDOMIZE_SPECIES_NAME"
@@ -4405,7 +4405,7 @@ msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Преобразует [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4704,7 +4704,7 @@ msgid "SLIME_JET_DESCRIPTION"
 msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
 
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"mucilage\"][/thrive:compound]. Нажмите [thrive:input]g_secrete_slime[/thrive:input] чтобы выделить накопленную [thrive:compound type=\"mucilage\"][/thrive:compound], увеличивающую скорость клетки и замедляющую хищников."
+msgstr "Преобразует [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"mucilage\"][/thrive:compound]. Нажмите [thrive:input]g_secrete_slime[/thrive:input] чтобы выделить накопленную [thrive:compound type=\"mucilage\"][/thrive:compound], увеличивающую скорость клетки и замедляющую хищников."
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "Маленький кусок железа"
@@ -5345,7 +5345,7 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсинная Вакуоль -- вакуоль, что была модифицирована для синтеза, хранилища и секреции [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Большее количество Токсинных Вакуолей повысят скорость при которой синтезируются токсины. Может быть изменена для изменения типа синтезированного токсина."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
+msgstr "Преобразует [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
@@ -5509,7 +5509,7 @@ msgstr ""
 "\n"
 "Теперь ты можешь редактировать свой вид!\n"
 "\n"
-"Чтобы войти в редактор,нажми на мигающую кнопку."
+"Чтобы войти в редактор,нажми на светящуюся кнопку."
 
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""

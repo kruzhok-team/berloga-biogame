@@ -17,7 +17,7 @@
 "portraits": {
 "bear_helper": {
 "export_overrides": {
-"image": "\"res://src/cutscenes/character/bear 2.png\""
+"image": "\"res://assets/textures/bear 2.png\""
 },
 "ignore_char_scale": true,
 "mirror": false,
@@ -27,11 +27,11 @@
 },
 "bear_science": {
 "export_overrides": {
-"image": "\"res://src/cutscenes/character/bear.png\""
+"image": "\"res://assets/textures/bear.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),
-"scale": 1,
+"scale": 1.0,
 "scene": ""
 }
 },

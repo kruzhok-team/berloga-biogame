@@ -19,6 +19,7 @@ StatisticPanelPath = NodePath("StatisticPanel")
 
 [node name="Background" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("3_6h4yp")

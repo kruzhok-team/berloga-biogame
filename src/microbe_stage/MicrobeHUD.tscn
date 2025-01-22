@@ -332,19 +332,16 @@ anchor_bottom = 0.2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 alignment = 2
 
 [node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(247, 0)
 layout_mode = 2
 texture = ExtResource("8_2hkeb")
 expand_mode = 5
 
 [node name="PopulationData" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(247, 17)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -368,7 +365,7 @@ vertical_alignment = 1
 
 [node name="Control" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="Multicellular" type="Button" parent="HBoxContainer/Control"]
