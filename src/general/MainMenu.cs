@@ -29,12 +29,6 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public Array<Texture2D> MenuBackgrounds = null!;
 
-    /// <summary>
-    ///   Needs to be a collection of paths to scenes
-    /// </summary>
-    [Export]
-    public Array<string> Menu3DBackgroundScenes = null!;
-
     [Export]
     public NodePath FreebuildButtonPath = null!;
 
@@ -506,20 +500,10 @@ public partial class MainMenu : NodeWithInput
     private void RandomizeBackground()
     {
         var random = new XoShiRo128starstar();
+        
+        var chosenBackground = MenuBackgrounds.Random(random);
 
-        // Some of the 3D backgrounds render very incorrectly in opengl so they are disabled (even with Godot 4 this
-        // hasn't improved a lot)
-        if (Settings.Instance.Menu3DBackgroundEnabled &&
-            FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
-        {
-            SetBackgroundScene(Menu3DBackgroundScenes.Random(random));
-        }
-        else
-        {
-            var chosenBackground = MenuBackgrounds.Random(random);
-
-            SetBackground(chosenBackground);
-        }
+        SetBackground(chosenBackground);
     }
 
     private void SetBackground(Texture2D backgroundImage)
