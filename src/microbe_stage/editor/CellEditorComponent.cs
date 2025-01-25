@@ -17,6 +17,9 @@ public partial class CellEditorComponent :
     ICellEditorComponent, IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath MicrobeEditorTutorialPath = null!;
+
+    [Export]
     public bool IsMulticellularEditor;
 
     [Export]
@@ -294,6 +297,8 @@ public partial class CellEditorComponent :
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Node3D? cellPreviewVisualsRoot;
+
+    private MicrobeEditorTutorialGUI editorTutorial;
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;
@@ -387,6 +392,12 @@ public partial class CellEditorComponent :
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
 
     private bool microbePreviewMode;
+
+    [JsonProperty]
+    private bool isFirstTimeSelectedMembrane = true;
+
+    [JsonProperty]
+    private bool isFirstTimeSelectedBehavior = true;
 
     public enum SelectionMenuTab
     {
@@ -723,6 +734,8 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
+
+        editorTutorial = GetNode<MicrobeEditorTutorialGUI>(MicrobeEditorTutorialPath);
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
@@ -1562,6 +1575,7 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
                 RightPanelScrollContainerPath.Dispose();
+                MicrobeEditorTutorialPath?.Dispose();
             }
 
             previewSimulation?.Dispose();
@@ -2674,6 +2688,10 @@ public partial class CellEditorComponent :
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
+                if(isFirstTimeSelectedMembrane){
+                    editorTutorial.MembraneTutorialVisible = true;
+                    isFirstTimeSelectedMembrane = false;
+                }
                 break;
             }
 
@@ -2682,6 +2700,10 @@ public partial class CellEditorComponent :
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                if(isFirstTimeSelectedBehavior){
+                    editorTutorial.BehaviorTutorialVisible = true;
+                    isFirstTimeSelectedBehavior = false;
+                }
                 break;
             }
 

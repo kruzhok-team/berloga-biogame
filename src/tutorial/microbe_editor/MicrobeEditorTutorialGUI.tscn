@@ -23,6 +23,8 @@ theme = ExtResource("2")
 script = ExtResource("1")
 EditorEntryReportPath = NodePath("EditorEntryReport")
 PatchMapPath = NodePath("PatchMapTutorial")
+MembraneTutorialPath = NodePath("MembraneTutorial")
+BehaviorTutorialPath = NodePath("BehaviorTutorial")
 CellEditorIntroductionPath = NodePath("CellEditorIntro")
 CellEditorUndoPath = NodePath("UndoTutorial")
 CellEditorUndoHighlightPath = NodePath("UndoButtonHighlight")
@@ -81,7 +83,7 @@ WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 340)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -100,7 +102,7 @@ WindowTitle = "TUTORIAL_BEAR_HELPER"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 340)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -126,7 +128,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="RedoTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 380)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -149,7 +151,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(360, 390)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -224,7 +226,7 @@ ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="ModifyOrganelleTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 200)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -244,7 +246,7 @@ ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="FlagellumPlacementTutorial" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(375, 385)
+custom_minimum_size = Vector2(375, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -293,7 +295,7 @@ theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="ChemoreceptorPlacementTutorial" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(360, 300)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -412,7 +414,7 @@ text = "CLOSE"
 
 [node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
 visible = false
-custom_minimum_size = Vector2(260, 400)
+custom_minimum_size = Vector2(300, 400)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 0.5
@@ -463,7 +465,7 @@ anchor_bottom = 0.0
 
 [node name="AtpBalanceIntroduction" type="Control" parent="."]
 visible = false
-custom_minimum_size = Vector2(260, 420)
+custom_minimum_size = Vector2(300, 420)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 0.5
@@ -505,6 +507,38 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
+
+[node name="MembraneTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -120.0
+offset_right = 130.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_MEMBRANE_TAB_TEXT"
+
+[node name="BehaviorTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -120.0
+offset_right = 130.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_BEHAVIOR_TAB_TEXT"
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]

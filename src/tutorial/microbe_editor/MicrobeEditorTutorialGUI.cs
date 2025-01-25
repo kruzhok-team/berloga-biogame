@@ -13,6 +13,12 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public NodePath PatchMapPath = null!;
 
     [Export]
+    public NodePath MembraneTutorialPath = null!;
+
+    [Export]
+    public NodePath BehaviorTutorialPath = null!;
+
+    [Export]
     public NodePath CellEditorIntroductionPath = null!;
 
     [Export]
@@ -75,6 +81,8 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow flagellumPlacementTutorial = null!;
     private CustomWindow modifyOrganelleTutorial = null!;
     private CustomWindow atpBalanceIntroduction = null!;
+    private CustomWindow membraneTutorial = null!;
+    private CustomWindow behaviorTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -95,6 +103,42 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     ///   This is used to ensure scroll position shows elements related to active tutorials
     /// </summary>
     public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
+
+    public bool MembraneTutorialVisible{
+        get => membraneTutorial.Visible;
+        set
+        {
+            if (value == membraneTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                membraneTutorial.Show();
+            }
+            else
+            {
+                membraneTutorial.Hide();
+            }
+        }
+    }
+
+    public bool BehaviorTutorialVisible{
+        get => behaviorTutorial.Visible;
+        set
+        {
+            if (value == behaviorTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                behaviorTutorial.Show();
+            }
+            else
+            {
+                behaviorTutorial.Hide();
+            }
+        }
+    }
 
     public bool EditorEntryReportVisible
     {
@@ -384,6 +428,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
         AtpBalanceBarHighlight = GetNode<ControlHighlight>(AtpBalanceBarHighlightPath);
 
+        membraneTutorial = GetNode<CustomWindow>(MembraneTutorialPath);
+        behaviorTutorial = GetNode<CustomWindow>(BehaviorTutorialPath);
+
         ProcessMode = ProcessModeEnum.Always;
     }
 
@@ -447,6 +494,8 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
                 ModifyOrganelleTutorialPath.Dispose();
                 AtpBalanceIntroductionPath.Dispose();
                 AtpBalanceBarHighlightPath.Dispose();
+                MembraneTutorialPath.Dispose();
+                BehaviorTutorialPath.Dispose();
             }
         }
 

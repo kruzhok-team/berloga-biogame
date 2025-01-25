@@ -7593,6 +7593,14 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:509
+msgid "TUTORIAL_MICROBE_EDITOR_MEMBRANE_TAB_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:511
+msgid "TUTORIAL_MICROBE_EDITOR_BEHAVIOR_TAB_TEXT"
+msgstr ""
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:133
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
