@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bhwhg2m8ntuvx"]
 
-[ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_tp5na"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="1_73sfw"]
 
 [resource]
-font = ExtResource("1_tp5na")
+font = ExtResource("1_73sfw")

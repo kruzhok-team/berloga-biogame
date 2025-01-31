@@ -1,7 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cdmmfuswkgrko"]
 
-[ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="1_4t30u"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="1_ng8cb"]
 
 [resource]
-font = ExtResource("1_4t30u")
+font = ExtResource("1_ng8cb")
 font_size = 25
