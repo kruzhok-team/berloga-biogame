@@ -7,6 +7,8 @@ using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
+using System.Threading.Tasks;
+using APItalent;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
@@ -1034,6 +1036,13 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
+            if(HasNucleus && !editedSpecies.isAlreadySend){
+                editedSpecies.isAlreadySend = true;
+                GD.Print(editedSpecies.isAlreadySend);
+                Task.Run(async () => await SendNuclearActivityAsync());
+            }
+
+            Task.Run(async () => await SendEvolutionActivityAsync());
 
             behaviourEditor.OnFinishEditing();
 
@@ -2938,6 +2947,42 @@ public partial class CellEditorComponent :
     private void ToggleProcessList()
     {
         processListWindow.Visible = !processListWindow.Visible;
+    }
+
+    private async Task SendNuclearActivityAsync(){
+        double osmo = double.Parse(StatisticsManager.Instance.Osmoregulation);
+
+        var metrics = new Dictionary<string, double>()
+        {
+            { "osmoregulation", osmo }
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "4a7636f2-7db4-4e8a-bfe9-1a627af149b3",
+            metrics
+        )};
+        
+        await BerlogaActivity.CreateActivitiesAsync(activity);
+    }
+
+    private async Task SendEvolutionActivityAsync(){
+        GD.Print(previewMicrobeSpecies.Generation.ToString());
+
+        var metrics = new Dictionary<string, double>()
+        {
+            { "evo_count", Convert.ToDouble(previewMicrobeSpecies.Generation) }
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "fcb05cc3-1a9c-428d-a78b-fa4b58351eb1",
+            metrics
+        )};
+        
+        await BerlogaActivity.CreateActivitiesAsync(activity);
     }
 
     private class PendingAutoEvoPrediction

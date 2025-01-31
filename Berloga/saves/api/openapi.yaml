@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: talent@kruzhok.org
+  description: |-
+    Игровые сохранения пишутся пользователями Таланта для игр Берлоги.
+    Записанные в них игровые данные могут быть двух типов: JSON объект либо данные произвольной формы.
+    Тип сохранений зависит от игры. Структура JSON объекта определяется игрой.
+  title: Игровые сохранения
+  version: "0.1"
+servers:
+- description: Production Server
+  url: https://talent.kruzhok.org/gamesaves
+- description: Development Server
+  url: https://talent.test.kruzhok.org/gamesaves
+tags:
+- description: Реализовано
+  name: done
+- description: Находится в разработке
+  name: wip
+paths:
+  /saves:
+    get:
+      operationId: GamesaveList
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - explode: true
+        in: query
+        name: order_by
+        required: false
+        schema:
+          default: id_desc
+          description: Критерий сортировки.
+          enum:
+          - id_asc
+          - id_desc
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/GamesaveMeta'
+                type: array
+          description: Ok
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Список игровых сохранений пользователя
+      tags:
+      - wip
+    post:
+      operationId: GamesaveCreate
+      parameters:
+      - description: Опциональное имя сохранения
+        explode: false
+        in: header
+        name: Save-Title
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GamesaveJSON'
+        description: Данные создаваемого JSON-сохранения
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GamesaveID'
+          description: Создано JSON-сохранение
+        "400":
+          $ref: '#/components/responses/InvalidGamedataFormat'
+        "302":
+          $ref: '#/components/responses/GamedataWriteFile'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Запись нового сохранения
+      tags:
+      - wip
+  /saves/latest:
+    delete:
+      operationId: GamesaveLatestDelete
+      responses:
+        "204":
+          $ref: '#/components/responses/GamesaveDeleted'
+        "404":
+          $ref: '#/components/responses/GamesavesIsEmpty'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Удаление последнего сохранения
+      tags:
+      - done
+    get:
+      operationId: GamesaveLatestMetadata
+      responses:
+        "200":
+          $ref: '#/components/responses/GamesaveMeta'
+        "404":
+          $ref: '#/components/responses/GamesavesIsEmpty'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Чтение мета-данных последнего сохранения
+      tags:
+      - done
+  /saves/{save_id}:
+    delete:
+      operationId: GamesaveDelete
+      parameters:
+      - $ref: '#/components/parameters/save_id'
+      responses:
+        "204":
+          $ref: '#/components/responses/GamesaveDeleted'
+        "404":
+          $ref: '#/components/responses/GamesaveNotFound'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Удаление определенного сохранения
+      tags:
+      - wip
+    get:
+      operationId: GamesaveMetadata
+      parameters:
+      - $ref: '#/components/parameters/save_id'
+      responses:
+        "200":
+          $ref: '#/components/responses/GamesaveMeta'
+        "404":
+          $ref: '#/components/responses/GamesaveNotFound'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Чтение мета-данных указанного сохранения
+      tags:
+      - wip
+    parameters:
+    - $ref: '#/components/parameters/save_id'
+  /saves/latest/gamedata:
+    get:
+      operationId: GamesaveLatestGamedata
+      responses:
+        "200":
+          $ref: '#/components/responses/GamedataJSON'
+        "302":
+          $ref: '#/components/responses/GamedataFile'
+        "404":
+          $ref: '#/components/responses/GamesavesIsEmpty'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Чтение игровых данных последнего сохранения
+      tags:
+      - done
+  /saves/{save_id}/gamedata:
+    get:
+      operationId: GamesaveGamedata
+      parameters:
+      - $ref: '#/components/parameters/save_id'
+      responses:
+        "200":
+          $ref: '#/components/responses/GamedataJSON'
+        "302":
+          $ref: '#/components/responses/GamedataFile'
+        "404":
+          $ref: '#/components/responses/GamesaveNotFound'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Чтение игровых данных указанного сохранения
+      tags:
+      - wip
+    parameters:
+    - $ref: '#/components/parameters/save_id'
+    put:
+      operationId: GamesaveOverwrite
+      parameters:
+      - $ref: '#/components/parameters/save_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GamesaveJSON'
+        description: Данные создаваемого JSON-сохранения
+        required: false
+      responses:
+        "200":
+          description: JSON-сохранение обновлено
+        "400":
+          $ref: '#/components/responses/InvalidGamedataFormat'
+        "302":
+          $ref: '#/components/responses/GamedataWriteFile'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - Application: []
+      - TalentOAuth: []
+      summary: Перезапись игровых данных сохранения
+      tags:
+      - wip
+components:
+  headers:
+    X-Count:
+      description: "Общее кол-во объектов, входящих в выборку без учета пагинации."
+      explode: false
+      required: true
+      schema:
+        format: int64
+      style: simple
+  parameters:
+    offset:
+      explode: true
+      in: query
+      name: offset
+      required: false
+      schema:
+        default: 0
+        format: int32
+        type: integer
+        minumum: 0
+      style: form
+    limit:
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 20
+        format: int32
+        maximum: 100
+        minimum: 1
+        type: integer
+      style: form
+    save_id:
+      explode: false
+      in: path
+      name: save_id
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
+  responses:
+    ErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+      description: Клиентская или серверная ошибка. Ответ со статусом `4xx` / `5xx`
+    InvalidGamedataFormat:
+      description: Для используемой игры принят другой формат сохранения
+    GamesaveNotFound:
+      description: Сохранение не найдено
+    GamesavesIsEmpty:
+      description: Сохранения отсуствуют
+    GamesaveDeleted:
+      description: Сохранение удалено
+    GamesaveMeta:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GamesaveMeta'
+      description: Мета-данные сохранения
+    GamedataJSON:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GamesaveJSON'
+      description: Данные сохранения в формате JSON
+    GamedataFile:
+      description: Перенаправление на скачивание файла
+      headers:
+        Location:
+          explode: false
+          required: true
+          schema:
+            format: url
+            type: string
+          style: simple
+    GamedataWriteFile:
+      description: Перенаправление в хранилище для загрузки игровых данных
+      headers:
+        Location:
+          explode: false
+          schema:
+            format: url
+            type: string
+            X-GamesaveId:
+              schema:
+                $ref: '#/components/schemas/GamesaveID'
+          style: simple
+  schemas:
+    GamesaveID:
+      description: ID игрового сохранения.
+      format: int64
+      type: integer
+    GamesaveMeta:
+      description: Мета-данные сохранения.
+      example:
+        id: 0
+      properties:
+        id:
+          description: ID игрового сохранения.
+          format: int64
+          type: integer
+      required:
+      - id
+    GamesaveJSON:
+      additionalProperties: {}
+      description: Игровые данные в формате JSON объекта.
+    inline_object:
+      example:
+        error: error
+      properties:
+        error:
+          type: string
+      required:
+      - error
+  securitySchemes:
+    Application:
+      description: |-
+        Идентификатор приложения и, через пробел, его версия. Пример:
+
+        ```
+        Application: 5e80c45a-c45a-400d-a605-570b6fe1c458 1.39.12-rc2
+        ```
+      in: header
+      name: Application
+      type: apiKey
+    TalentOAuth:
+      bearerFormat: JWT
+      description: TalentOAuth JWT
+      scheme: bearer
+      type: http
+

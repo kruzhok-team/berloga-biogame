@@ -1,0 +1,1141 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: talent@kruzhok.org
+  description: |-
+    Сервис наград за прогресс по традициям и инструментам Берлоги.
+
+    Фильтры в эндпоинтах со списками объектов, при указывании нескольких параметров, объединяются оператором «И». В иных случаях - это указано в описании. Так как фильтры применяются все вместе, то можно собрать комбинацию под которую не попдает ни один объект. Фильтры по традициям и инструментам нужно использовать по отдельности.
+
+    Пагинация может быть представлена как параметром `offset`, так и параметром `after`. Параметр `offset` позволяет указать кол-во объектов для пропуска из читаемой выборки. В `after` указывается идентификатор, объекты с идентификатором равном или менее указанному будут исключены из выборки.
+
+    > Предпочтительно, когда есть возможность, использовать `after`. Так же надо учитывать, что допустимое значение для `offset` имеет ограничения.
+
+    # Changelog
+
+    ### 0.4
+    - Добавлен [список инструментов](#operation/InstrumentsList).
+
+    ### 0.3
+    - Добавлен [эндпоинт чтения списка испытаний](#operation/ChallengesList).
+    - Добавлен [эндпоинт чтения списка испытаний пройденных игроком или пользователем Таланта](#operation/PassedChallengesList).
+
+    ### 0.2
+    В [список наград](#operation/AwardsList) добавлено опциональное поле `applications`.
+  title: Награды Берлоги
+  version: "0.4"
+servers:
+- description: Production Server
+  url: https://talent.kruzhok.org/berloga-awards
+- description: Development Server
+  url: https://talent.test.kruzhok.org/berloga-awards
+tags:
+- description: "Операции, предназначенные для приложений"
+  name: application
+- description: "Операции, предназначенные для сайтов"
+  name: web
+paths:
+  /awards:
+    get:
+      description: "Список наград, выдаваемых за достижение уровеней по традициям\
+        \ и инструментам."
+      operationId: AwardsList
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      - description: Фильтрация по ID традиции.
+        explode: true
+        in: query
+        name: tradition_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Фильтрация по ID инструмента.
+        explode: true
+        in: query
+        name: instrument_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Порядок сортировки
+        explode: true
+        in: query
+        name: order_by
+        required: false
+        schema:
+          default: award_level
+          enum:
+          - award_level
+          - created_at_desc
+          - created_at_asc
+          - updated_at_desc
+          - updated_at_asc
+          - tradition_id
+          - instrument_id
+          type: string
+        style: form
+      - description: Включить в ответ свойство `applications`.
+        explode: true
+        in: query
+        name: with_applications
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AwardsList_200_response_inner'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      summary: Список наград
+      tags:
+      - application
+      - web
+  /challenges:
+    get:
+      operationId: ChallengesList
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ChallengesList_200_response_inner'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      summary: Список испытаний
+      tags:
+      - application
+      - web
+  /challenges/passed:
+    get:
+      description: |-
+        Параметры `player_id` и `talent_id` взаимоисключаемы.
+        При аутентификации токеном `TalentOAuth`, предустанавливается параметр `talent_id`.
+        При аутентификации токеном `BerlogaJWT`, предустанавливается параметр `player_id`.
+      operationId: PassedChallengesList
+      parameters:
+      - description: |-
+          Испытания пройденные игроками, объединенными пользователем, привязанным к указанному игроку.
+          При отсутствии привязанного пользователя, возвращаются испытания указанного игрока.
+        explode: true
+        in: query
+        name: player_id
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Испытания пройденные игроками указанного пользователя.
+        explode: true
+        in: query
+        name: talent_id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PassedChallengesList_200_response_inner'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      security:
+      - TalentOAuth: []
+      - BerlogaJWT: []
+      summary: Список пройденных испытаний
+      tags:
+      - application
+      - web
+  /instruments:
+    get:
+      operationId: InstrumentsList
+      parameters:
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/is_active'
+      - description: Идентификаторы инструментов.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: Фильтрация по ID традиций.
+        explode: true
+        in: query
+        name: t_id
+        required: false
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: Фильтрация по ID компетенций.
+        explode: true
+        in: query
+        name: c_id
+        required: false
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: Фильтрация по названию инструмента.
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Очереднось выдачи.
+        explode: true
+        in: query
+        name: order_by
+        required: false
+        schema:
+          default: id_asc
+          enum:
+          - id_asc
+          - id_desc
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Instrument'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      summary: Список инструментов
+      tags:
+      - application
+      - web
+      - admin
+    post:
+      operationId: InstrumentCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstrumentCreateRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instrument'
+          description: Инструмент создан
+        "403":
+          $ref: '#/components/responses/AdminAccessRequired'
+        "409":
+          $ref: '#/components/responses/InstrumentCompetencyIDConflict'
+        "422":
+          $ref: '#/components/responses/TraditionForInstrumentNotFound'
+      security:
+      - TalentOAuth: []
+      summary: Добавление инструмента
+      tags:
+      - admin
+  /instruments/{instrument_id}:
+    get:
+      operationId: InstrumentRead
+      parameters:
+      - $ref: '#/components/parameters/instrument_id'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instrument'
+          description: OK
+        "404":
+          $ref: '#/components/responses/InstrumentNotFound'
+      summary: Инструмент
+      tags:
+      - admin
+    parameters:
+    - $ref: '#/components/parameters/instrument_id'
+    patch:
+      operationId: InstrumentUpdate
+      parameters:
+      - $ref: '#/components/parameters/instrument_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstrumentUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instrument'
+          description: Инструмент обновлен
+        "403":
+          $ref: '#/components/responses/AdminAccessRequired'
+        "404":
+          $ref: '#/components/responses/InstrumentNotFound'
+        "409":
+          $ref: '#/components/responses/InstrumentCompetencyIDConflict'
+        "422":
+          $ref: '#/components/responses/TraditionForInstrumentNotFound'
+      security:
+      - TalentOAuth: []
+      summary: Обновление инструмента
+      tags:
+      - admin
+  /traditions:
+    get:
+      operationId: TraditionsList
+      parameters:
+      - description: Фильтрация по названию традиции.
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - $ref: '#/components/parameters/is_active'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tradition'
+                type: array
+          description: OK
+      summary: Список традиций
+      tags:
+      - application
+      - web
+      - admin
+    post:
+      operationId: TraditionCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TraditionCreateRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tradition'
+          description: Традиция создана
+        "403":
+          $ref: '#/components/responses/AdminAccessRequired'
+        "409":
+          $ref: '#/components/responses/TraditionNameConflict'
+      security:
+      - TalentOAuth: []
+      summary: Добавление традиции
+      tags:
+      - admin
+  /traditions/{tradition_id}:
+    get:
+      operationId: TraditionRead
+      parameters:
+      - $ref: '#/components/parameters/tradition_id'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tradition'
+          description: OK
+        "404":
+          $ref: '#/components/responses/TraditionNotFound'
+      summary: Традиция
+      tags:
+      - admin
+    parameters:
+    - $ref: '#/components/parameters/tradition_id'
+    patch:
+      operationId: TraditionUpdate
+      parameters:
+      - $ref: '#/components/parameters/tradition_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TraditionUpdateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tradition'
+          description: Традиция обновлена
+        "403":
+          $ref: '#/components/responses/AdminAccessRequired'
+        "404":
+          $ref: '#/components/responses/TraditionNotFound'
+        "409":
+          $ref: '#/components/responses/TraditionNameConflict'
+      security:
+      - TalentOAuth: []
+      summary: Обновление традиции
+      tags:
+      - admin
+  /traditions/{tradition_id}/instruments:
+    get:
+      operationId: TraditionInstrumentsList
+      parameters:
+      - $ref: '#/components/parameters/tradition_id'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Instrument'
+                type: array
+          description: OK
+      summary: Список инструментов традиции
+      tags:
+      - application
+      - web
+    parameters:
+    - $ref: '#/components/parameters/tradition_id'
+  /user-awards:
+    get:
+      description: "Формат возвращаемых объектов в массиве зависит от типа использ\
+        уемой авторизации. Для `BerlogaJWT` возращаются `PlayerAward`, для `TalentOAuth`\
+        \ - `TalentUserAward`."
+      operationId: UserAwardsList
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserAwardsList_200_response_inner'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      security:
+      - TalentOAuth: []
+      - BerlogaJWT: []
+      summary: Список наград пользователя
+      tags:
+      - application
+      - web
+  /user-awards/{award_id}/displayed:
+    post:
+      description: Отметка награды как продемонстрированной пользователю в приложении.
+      operationId: UserAwardDisplayed
+      parameters:
+      - explode: false
+        in: path
+        name: award_id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: OK
+      security:
+      - BerlogaJWT: []
+      summary: Отметка награды продемонстрированной
+      tags:
+      - application
+  /user-progress:
+    get:
+      description: Прогресс пользователя по традициям и инструментам.
+      operationId: UserProgressList
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      - description: Прогресс только по традициям
+        explode: true
+        in: query
+        name: traditions_only
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Прогресс по инструментам традиции
+        explode: true
+        in: query
+        name: tradition_instruments
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Прогресс по определенным традициям
+        explode: true
+        in: query
+        name: tradition_ids
+        required: false
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: Прогресс по определенным инструментам
+        explode: true
+        in: query
+        name: instrument_ids
+        required: false
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: Порядок сортировки
+        explode: true
+        in: query
+        name: order_by
+        required: false
+        schema:
+          default: created_at_desc
+          enum:
+          - created_at_desc
+          - created_at_asc
+          - updated_at_desc
+          - updated_at_asc
+          - tradition_id
+          - instrument_id
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Progress'
+                type: array
+          description: OK
+          headers:
+            X-Count:
+              $ref: '#/components/headers/X-Count'
+      security:
+      - TalentOAuth: []
+      - BerlogaJWT: []
+      summary: Прогресс пользователя
+      tags:
+      - application
+      - web
+components:
+  headers:
+    X-Count:
+      description: "Общее кол-во объектов, входящих в выборку без учета пагинации."
+      explode: false
+      required: true
+      schema:
+        format: int64
+      style: simple
+  parameters:
+    tradition_id:
+      description: Идентификатор традиции в адресе.
+      explode: false
+      in: path
+      name: tradition_id
+      required: true
+      schema:
+        format: int32
+        type: integer
+      style: simple
+    instrument_id:
+      description: Идентификатор инструмента в адресе.
+      explode: false
+      in: path
+      name: instrument_id
+      required: true
+      schema:
+        format: int32
+        type: integer
+      style: simple
+    is_active:
+      description: Фильтрация по признаку активности объектов выборки. По умолчанию
+        возвращаются только активные.
+      explode: true
+      in: query
+      name: is_active
+      required: false
+      schema:
+        default: "true"
+        enum:
+        - "true"
+        - "false"
+        - all
+        type: string
+      style: form
+    offset:
+      description: Кол-во объектов выборки для пропуска.
+      explode: true
+      in: query
+      name: offset
+      required: false
+      schema:
+        default: 0
+        format: int32
+        maximum: 200
+        type: integer
+        minumum: 0
+      style: form
+    after:
+      description: Пропуск объектов с идентификатором равном или менее указанного.
+      explode: true
+      in: query
+      name: after
+      required: false
+      schema:
+        format: int64
+        type: integer
+      style: form
+    limit:
+      description: Максимум объектов возвращаемых в теле ответа.
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 20
+        format: int32
+        maximum: 50
+        minimum: 1
+        type: integer
+      style: form
+  responses:
+    InstrumentNotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Инструмент не найден
+    InstrumentCompetencyIDConflict:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Инструмент с таким ID компетенции уже существует
+    TraditionForInstrumentNotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Необходимо использовать существующий ID традиции
+    TraditionNotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Традиция не найдена
+    TraditionNameConflict:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Традиция с таким названием уже существует
+    AdminAccessRequired:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Для доступа нужны права администратора
+  schemas:
+    ApplicationID:
+      description: Идентификатор приложения.
+      format: uuid
+      type: string
+    Award:
+      description: "Награда, выдаваемая за получение уровня по традиции или инстру\
+        менту."
+      properties:
+        id:
+          description: Идентификатор награды.
+          format: int32
+          type: integer
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        tradition_id:
+          description: ID традиции.
+          format: int32
+          type: integer
+          nullable: true
+        instrument_id:
+          description: ID инструмента.
+          format: int32
+          type: integer
+          nullable: true
+        award_level:
+          description: Уровень традиции/инструмента ассоциированный с этой наградой.
+          format: int32
+          type: integer
+        dependency_level:
+          description: "Опциональный уровень зависимой традиции/инструмента, без к\
+            оторого нельзя получить награду. При отсутствии зависимости, содержит\
+            \ `0`."
+          format: int32
+          type: integer
+        required_scores:
+          description: Кол-во баллов необходимое для достижения `award_level` и получения
+            этой награды.
+          format: float64
+          type: number
+        name:
+          description: Название награды.
+          type: string
+        description:
+          description: Описание награды.
+          type: string
+        icon_url:
+          description: URL иконки награды.
+          type: string
+      required:
+      - award_level
+      - created_at
+      - dependency_level
+      - description
+      - icon_url
+      - id
+      - instrument_id
+      - name
+      - required_scores
+      - tradition_id
+      - updated_at
+    Error:
+      example:
+        error_message: error_message
+        verbose_message: verbose_message
+      properties:
+        error_message:
+          description: "Текстовое описание ошибки. В первую очередь предназначено\
+            \ для разработчиков. Но в случае отсуствия `verbose_message` в ответе\
+            , можно использовать и `error_message`."
+          type: string
+        verbose_message:
+          description: Человеко-понятное описание ошибки. Присуствует только в некоторых
+            случаях.
+          type: string
+      required:
+      - error_message
+    Instrument:
+      description: Инструмент традиции
+      example:
+        image: https://openapi-generator.tech
+        is_active: true
+        name: name
+        description: description
+        id: 0
+        competency_id: 1
+        tradition_id: 6
+      properties:
+        id:
+          description: Идентификатор инструмента.
+          format: int32
+          type: integer
+        tradition_id:
+          description: ID традиции.
+          format: int32
+          type: integer
+        competency_id:
+          description: ID компетенции.
+          format: int32
+          type: integer
+        name:
+          description: Название инструмента.
+          type: string
+        image:
+          description: Изображение инструмента.
+          format: uri
+          type: string
+        description:
+          description: Описание инструмента.
+          type: string
+        is_active:
+          description: Активен ли инструмент.
+          type: boolean
+      required:
+      - competency_id
+      - description
+      - id
+      - image
+      - is_active
+      - name
+      - tradition_id
+    InstrumentCreateRequest:
+      description: Создание инструмента традиции
+      example:
+        image: https://openapi-generator.tech
+        name: name
+        description: description
+        competency_id: 6
+        tradition_id: 0
+      properties:
+        tradition_id:
+          description: ID традиции.
+          format: int32
+          type: integer
+        competency_id:
+          description: ID компетенции.
+          format: int32
+          type: integer
+        name:
+          description: Название инструмента.
+          type: string
+        image:
+          description: Изображение инструмента.
+          format: uri
+          type: string
+        description:
+          description: Описание инструмента.
+          type: string
+      required:
+      - competency_id
+      - description
+      - image
+      - name
+      - tradition_id
+    InstrumentUpdateRequest:
+      description: Обновление инструмента традиции
+      example:
+        image: https://openapi-generator.tech
+        is_active: true
+        name: name
+        description: description
+        competency_id: 6
+        tradition_id: 0
+      properties:
+        tradition_id:
+          description: ID традиции.
+          format: int32
+          type: integer
+        competency_id:
+          description: ID компетенции.
+          format: int32
+          type: integer
+        name:
+          description: Название инструмента.
+          type: string
+        image:
+          description: Изображение инструмента.
+          format: uri
+          type: string
+        description:
+          description: Описание инструмента.
+          type: string
+        is_active:
+          description: "Признак активности инструмента. Удаление инструмента не пр\
+            едусмотрено, но его можно скрыть, поменяв значение этого поля на false."
+          type: boolean
+    InstrumentID:
+      description: ID инструмента.
+      format: int32
+      type: integer
+      nullable: true
+    PlayerAward:
+      allOf:
+      - $ref: '#/components/schemas/UserAward'
+      - properties:
+          displayed_at:
+            description: "Дата оповещенения игрока о получении награды в приложени\
+              и. Содержит null, если награда еще не демонстрировалась игроку."
+            format: date-time
+            type: string
+            nullable: true
+        required:
+        - displayed_at
+      example:
+        displayed_at: 2000-01-23T04:56:07.000+00:00
+        awarded_at: 2000-01-23T04:56:07.000+00:00
+        award_id: 0
+    Progress:
+      description: Прогресс пользователя по традиции или инструменту.
+      example:
+        scores: 1.4658129805029452
+        instrument_id: 6
+        tradition_id: 0
+        award_level: 5
+      properties:
+        tradition_id:
+          description: ID традиции.
+          format: int32
+          type: integer
+          nullable: true
+        instrument_id:
+          description: ID инструмента.
+          format: int32
+          type: integer
+          nullable: true
+        scores:
+          description: Текущее кол-во баллов.
+          format: float64
+          type: number
+        award_level:
+          description: Текущий уровень традиции/инструмента.
+          format: int32
+          type: integer
+      required:
+      - award_level
+      - instrument_id
+      - scores
+      - tradition_id
+    TalentUserAward:
+      allOf:
+      - $ref: '#/components/schemas/UserAward'
+      - properties:
+          displayed:
+            description: Даты отображения награды в приложениях.
+            items:
+              $ref: '#/components/schemas/TalentUserAward_allOf_displayed'
+            type: array
+        required:
+        - displayed
+    Tradition:
+      description: Традиция берлоги
+      example:
+        image: https://openapi-generator.tech
+        is_active: true
+        name: name
+        description: description
+        id: 0
+      properties:
+        id:
+          description: Идентификатор традиции.
+          format: int32
+          type: integer
+        name:
+          description: Название традиции.
+          type: string
+        image:
+          description: Изображение традиции.
+          format: uri
+          type: string
+        description:
+          description: Описание традиции.
+          type: string
+        is_active:
+          description: Активна ли традиция.
+          type: boolean
+      required:
+      - description
+      - id
+      - image
+      - is_active
+      - name
+    TraditionCreateRequest:
+      description: Создание традиции берлоги
+      example:
+        image: https://openapi-generator.tech
+        name: name
+        description: description
+      properties:
+        name:
+          description: Название традиции.
+          type: string
+        image:
+          description: Изображение традиции.
+          format: uri
+          type: string
+        description:
+          description: Описание традиции.
+          type: string
+      required:
+      - description
+      - image
+      - name
+    TraditionUpdateRequest:
+      description: Обновление традиции берлоги
+      example:
+        image: https://openapi-generator.tech
+        is_active: true
+        name: name
+        description: description
+      properties:
+        name:
+          description: Название традиции.
+          type: string
+        image:
+          description: Изображение традиции.
+          format: uri
+          type: string
+        description:
+          description: Описание традиции.
+          type: string
+        is_active:
+          description: "Признак активности традиции. Удаление традиции не предусмо\
+            трено, но ее можно скрыть, поменяв значение этого поля на false."
+          type: boolean
+    TraditionID:
+      description: ID традиции.
+      format: int32
+      type: integer
+      nullable: true
+    UserAward:
+      description: "Награда, полученная игроком или пользователем Таланта за дости\
+        гнутый уровень по традиции или инструменту."
+      properties:
+        award_id:
+          description: Идентификатор награды.
+          format: int32
+          type: integer
+        awarded_at:
+          description: Дата выдачи награды системой.
+          format: date-time
+          type: string
+      required:
+      - award_id
+      - awarded_at
+    AwardsList_200_response_inner:
+      allOf:
+      - $ref: '#/components/schemas/Award'
+      - properties:
+          applications:
+            description: "Приложения, в которых реализована награда. Возвращается\
+              \ только при указании параметра `with_applications`."
+            items:
+              $ref: '#/components/schemas/ApplicationID'
+            type: array
+      example:
+        icon_url: icon_url
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        dependency_level: 5
+        required_scores: 2.3021358869347655
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        description: description
+        id: 0
+        instrument_id: 1
+        tradition_id: 6
+        award_level: 5
+        applications:
+        - null
+        - null
+    ChallengesList_200_response_inner:
+      example:
+        icon_url: icon_url
+        description: description
+        id: 0
+        applications:
+        - null
+        - null
+      properties:
+        id:
+          format: int32
+          type: integer
+        description:
+          type: string
+        icon_url:
+          description: URL иконки-изображения испытания.
+          type: string
+        applications:
+          description: "Приложения, активности из которых участвуют в испытании."
+          items:
+            $ref: '#/components/schemas/ApplicationID'
+          type: array
+      required:
+      - applications
+      - description
+      - icon_url
+      - id
+    PassedChallengesList_200_response_inner:
+      example:
+        challenge_id: 0
+        passed_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        challenge_id:
+          format: int32
+          type: integer
+        passed_at:
+          description: Дата прохождения испытания
+          format: date-time
+          type: string
+      required:
+      - challenge_id
+      - passed_at
+    UserAwardsList_200_response_inner:
+      oneOf:
+      - $ref: '#/components/schemas/PlayerAward'
+      - $ref: '#/components/schemas/TalentUserAward'
+    TalentUserAward_allOf_displayed:
+      properties:
+        application_id:
+          description: Идентификатор приложения.
+          format: uuid
+          type: string
+        displayed_at:
+          format: date-time
+          type: string
+      required:
+      - application_id
+      - displayed_at
+  securitySchemes:
+    BerlogaJWT:
+      description: "JWT, полученный эндпоинтом [issue-token](/berloga-idp/docs/#operation/IssueToken)."
+      in: header
+      name: Authorization
+      type: apiKey
+    TalentOAuth:
+      bearerFormat: JWT
+      description: "JWT, полученный [OAuth провайдером платформы Талант](/api/docs/)."
+      scheme: bearer
+      type: http
+
