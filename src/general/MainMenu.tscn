@@ -267,12 +267,6 @@ size_flags_horizontal = 0
 mouse_filter = 1
 text = "CREDITS"
 
-[node name="TalentAuth" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 1
-text = "Активности"
-
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -846,7 +840,6 @@ layout_mode = 1
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Extras" to="." method="ExtrasPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Credits" to="." method="CreditsPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/TalentAuth" to="." method="TalentAuthPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Launcher" to="." method="QuitToLauncherPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
