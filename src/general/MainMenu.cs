@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using LauncherThriveShared;
 using Xoshiro.PRNG32;
 using Newtonsoft.Json;
+using APItalent;
+using System.Text.Json;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -101,7 +104,11 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public NodePath MenusPath = null!;
 
+    [Export]
+    public NodePath ExceptionMenuPath = null!;
+
 #pragma warning disable CA2213
+    private ExceptionPopupMenu exceptionPopupMenu = null!;
     private TextureRect background = null!;
     private Node3D? created3DBackground;
     private OptionsMenu options = null!;
@@ -177,6 +184,8 @@ public partial class MainMenu : NodeWithInput
 
     public bool IsReturningToMenu { get; set; }
 
+    private AuthTokenHandler tokenHandlerInstance = AuthTokenHandler.Instance;
+
     public static void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
@@ -197,6 +206,11 @@ public partial class MainMenu : NodeWithInput
         MouseCaptureManager.ForceDisableCapture();
 
         RunMenuSetup();
+
+        //get API token
+        if(!IsReturningToMenu){
+            tokenHandlerInstance.Initialize(exceptionPopupMenu);
+        }
 
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
@@ -420,6 +434,7 @@ public partial class MainMenu : NodeWithInput
             GalleryViewerPath.Dispose();
             ThanksDialogPath.Dispose();
             MenusPath.Dispose();
+            ExceptionMenuPath.Dispose();
         }
 
         base.Dispose(disposing);
@@ -444,6 +459,7 @@ public partial class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
+        exceptionPopupMenu = GetNode<ExceptionPopupMenu>(ExceptionMenuPath);
 
         vkButton = GetNode<TextureButton>(VKButtonPath);
         gtoButton = GetNode<TextureButton>(GTOButtonPath);

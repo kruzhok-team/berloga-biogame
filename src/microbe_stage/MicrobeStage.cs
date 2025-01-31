@@ -6,6 +6,8 @@ using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
+using APItalent;
+using System.Threading.Tasks;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -142,6 +144,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [JsonProperty]
     private string statsEnergyProduction = "0";
+
+    [JsonProperty]
+    private StatisticsManager instance = StatisticsManager.Instance;
 
     private PauseManager pauseManager = PauseManager.Instance;
 
@@ -1412,7 +1417,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Localization.Translate("ESCAPE_ENGULFING");
     }
 
-    private void OnEndGameStatistics(){
+    private async void OnEndGameStatistics(){
         var playerSpecies = (MicrobeSpecies)this!.GameWorld.PlayerSpecies;
 
         StatisticsManager.Instance.InGameTime = timeManager.GetTransformCurrentTime();
@@ -1420,12 +1425,48 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         var population = this.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
         StatisticsManager.Instance.PlayerMicrobePopulation = population.ToString();
 
-        StatisticsManager.Instance.Generation = playerSpecies.Generation.ToString();
+        StatisticsManager.Instance.Generation = await GetGenMetric();// playerSpecies.Generation.ToString()
 
         StatisticsManager.Instance.Organells = playerSpecies.Organelles.Count.ToString();
 
         StatisticsManager.Instance.PlayerMicrobeName = playerSpecies.ToString();
         StatisticsManager.Instance.Osmoregulation = statsOsmoregulation;
         StatisticsManager.Instance.EnergyProduction = statsEnergyProduction;
+
+        await SendEndGameActivityAsync();
     }
+    
+    private async Task SendEndGameActivityAsync(){
+
+        var metrics = new Dictionary<string, double>()
+        {
+            { "in_game_time", timeManager.currentInGameTime }
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "e3211baa-2c0b-4fdd-bb77-277b288f5df4",
+            metrics
+        )};
+
+        await BerlogaActivity.CreateActivitiesAsync(activity);
+    }
+
+    private async Task<string> GetGenMetric(){
+
+        var responce = await Http.Get<RequiredReponce>(
+            path: $"berloga-activities/activities/{instance.ActivityList[instance.ActivityList.Count - 1].id}"            
+        );
+
+        return responce.metrics.evo_count.ToString();
+    }
+}
+
+class RequiredReponce{
+    public string context_id {get;set;}
+    public Metric metrics {get;set;}
+}
+class Metric{
+    public double evo_count {get;set;}
 }
