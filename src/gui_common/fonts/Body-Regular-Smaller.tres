@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bx7mw3uvqpo42"]
 
-[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="1_23ryk"]
+[ext_resource type="FontFile" uid="uid://dbddqc813gktp" path="res://assets/fonts/Marske.ttf" id="1_wdm8q"]
 
 [resource]
-font = ExtResource("1_23ryk")
+font = ExtResource("1_wdm8q")

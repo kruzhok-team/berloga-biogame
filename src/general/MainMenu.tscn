@@ -132,7 +132,6 @@ ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
-ExceptionMenuPath = NodePath("ExceptionPopupMenu")
 websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
 openGlPopup = NodePath("OpenGLWarningPopup")
 

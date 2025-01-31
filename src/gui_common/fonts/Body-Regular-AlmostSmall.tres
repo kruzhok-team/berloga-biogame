@@ -1,7 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://terwl7t76t4h"]
 
-[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="1_vh2fq"]
+[ext_resource type="FontFile" uid="uid://dbddqc813gktp" path="res://assets/fonts/Marske.ttf" id="1_g2d5a"]
 
 [resource]
-font = ExtResource("1_vh2fq")
+font = ExtResource("1_g2d5a")
 font_size = 15

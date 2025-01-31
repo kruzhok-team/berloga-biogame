@@ -1,7 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://brgbuduvjby6a"]
 
-[ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_vfbpd"]
+[ext_resource type="FontFile" uid="uid://chsxqqg7bpfq3" path="res://assets/fonts/thrive.ttf" id="1_cr6p7"]
 
 [resource]
-font = ExtResource("1_vfbpd")
+font = ExtResource("1_cr6p7")
 font_size = 18
