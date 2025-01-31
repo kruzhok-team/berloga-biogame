@@ -3076,7 +3076,7 @@ msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "Вы собрали достаточно данных для исследования!\n"
 "\n"
-"Чтобы продолжить, нажмите на кнопку \"Стать многоклеточным\"."
+"Чтобы продолжить, нажмите на кнопку \"Написать отчёт\"."
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
