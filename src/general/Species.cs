@@ -112,6 +112,11 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
+    // Editor didn't save data
+    // TODO: Change ASAP
+    [JsonProperty]
+    public bool isAlreadySend {get;set;} = false;
+
     [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 

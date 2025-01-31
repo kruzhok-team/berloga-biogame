@@ -517,12 +517,6 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
-    [JsonProperty]
-    public bool isAlreadySend {get;set;} = false;
-
-    [JsonProperty]
-    public double EvoCount {get;set;} = 0;
-
     [JsonIgnore]
     public override bool HasIslands =>
         editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
@@ -1041,13 +1035,13 @@ public partial class CellEditorComponent :
 
         if (!IsMulticellularEditor)
         {
-            EvoCount += 1;
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
-            if(HasNucleus && !isAlreadySend){
+            if(HasNucleus && !editedSpecies.isAlreadySend){
+                editedSpecies.isAlreadySend = true;
+                GD.Print(editedSpecies.isAlreadySend);
                 Task.Run(async () => await SendNuclearActivityAsync());
             }
 
-            GD.Print(EvoCount);
             Task.Run(async () => await SendEvolutionActivityAsync());
 
             behaviourEditor.OnFinishEditing();
@@ -2974,9 +2968,11 @@ public partial class CellEditorComponent :
     }
 
     private async Task SendEvolutionActivityAsync(){
+        GD.Print(previewMicrobeSpecies.Generation.ToString());
+
         var metrics = new Dictionary<string, double>()
         {
-            { "evo_count", EvoCount }
+            { "evo_count", Convert.ToDouble(previewMicrobeSpecies.Generation) }
         };
 
         // use ENV for context_id?
