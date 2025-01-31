@@ -35,12 +35,17 @@ script = ExtResource("1_nq0sj")
 scene = ExtResource("5_bgh2i")
 overrides = {
 "autoadvance_progressbar": "false",
+"bold_font": "\"res://assets/fonts/Marske.ttf\"",
+"bold_italics_font": "\"res://assets/fonts/Marske.ttf\"",
 "box_color_custom": "Color(1, 1, 1, 1)",
 "box_color_use_global": "false",
 "box_panel": "\"res://panel-dialogic.tres\"",
 "box_size": "Vector2(700, 300)",
+"italics_font": "\"res://assets/fonts/Marske.ttf\"",
+"name_label_font": "\"res://assets/fonts/Marske.ttf\"",
 "next_indicator_enabled": "false",
 "next_indicator_show_on_questions": "false",
+"normal_font": "\"res://assets/fonts/Marske.ttf\"",
 "typing_sounds_enabled": "false"
 }
 
