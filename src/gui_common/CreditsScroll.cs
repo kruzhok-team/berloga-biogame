@@ -712,7 +712,7 @@ public partial class CreditsScroll : Control
 
     private void UpdateStaticItemPositions()
     {
-        logo.Position = new Vector2(0, Size.Y - smoothOffset - 130);
+        logo.Position = new Vector2(0, Size.Y - smoothOffset - 350);
         revolutionaryGames.Position = new Vector2(0, Size.Y - smoothOffset + 200);
         supportedBy.Position = new Vector2(0, Size.Y - smoothOffset + 250);
         developersHeading.Position = new Vector2(0, Size.Y - smoothOffset + 325);
