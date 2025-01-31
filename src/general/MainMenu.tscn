@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene load_steps=50 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://npgtp0oq3ubh" path="res://assets/textures/gui/social_media/discordHover.png" id="40"]
 [ext_resource type="Texture2D" uid="uid://bob6rirg5u323" path="res://assets/textures/gui/social_media/facebookHover.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://bpb83abxkwuoi" path="res://assets/textures/gui/social_media/revolutionaryGames.png" id="46"]
+[ext_resource type="PackedScene" uid="uid://bv4d4xrgxem1u" path="res://src/gui_common/ExceptionPopupMenu.tscn" id="46_geors"]
 [ext_resource type="Texture2D" uid="uid://cv8wlkju42uh3" path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" id="47"]
 [ext_resource type="Texture2D" uid="uid://cyk5xafa582ww" path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" id="48"]
 [ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="49"]
@@ -107,7 +108,6 @@ grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("6")
 MenuBackgrounds = [ExtResource("3_xw7iy"), ExtResource("4_2t7c7"), ExtResource("5_1702f")]
-Menu3DBackgroundScenes = ["res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn"]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
@@ -132,6 +132,7 @@ ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
+ExceptionMenuPath = NodePath("ExceptionPopupMenu")
 websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
 openGlPopup = NodePath("OpenGLWarningPopup")
 
@@ -265,6 +266,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 text = "CREDITS"
+
+[node name="TalentAuth" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+text = "Активности"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 layout_mode = 2
@@ -775,6 +782,7 @@ offset_right = 680.0
 offset_bottom = 148.0
 HideCancelButton = true
 DialogText = "OPENGL_MODE_WARNING_EXPLANATION"
+Exclusive = false
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
@@ -793,6 +801,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
+Exclusive = false
 
 [node name="ModFailureDialog" parent="." instance=ExtResource("15")]
 custom_minimum_size = Vector2(400, 350)
@@ -815,6 +824,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
+Exclusive = false
 
 [node name="LowPerformanceDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
@@ -825,6 +835,10 @@ DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
 
+[node name="ExceptionPopupMenu" parent="." instance=ExtResource("46_geors")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Options" to="." method="OptionsPressed"]
@@ -832,6 +846,7 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Extras" to="." method="ExtrasPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Credits" to="." method="CreditsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/TalentAuth" to="." method="TalentAuthPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Launcher" to="." method="QuitToLauncherPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]

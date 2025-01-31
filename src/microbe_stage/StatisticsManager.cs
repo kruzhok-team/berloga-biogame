@@ -1,5 +1,7 @@
 using System;
-using Godot;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using APItalent;
 
 // Manager that handle in game stats
 public sealed class StatisticsManager{
@@ -24,4 +26,7 @@ public sealed class StatisticsManager{
     public string Organells {get;set;} = "0";
     public string EnergyProduction {get;set;} = "0";
     public string PlayerMicrobeName {get;set;} = "defualt";
+
+    [JsonProperty]
+    public List<ResponceCreateList> ActivityList {get;set;} = new List<ResponceCreateList>();
 }
