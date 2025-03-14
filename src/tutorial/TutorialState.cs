@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using APItalent;
 using Godot;
 using Newtonsoft.Json;
 using Tutorial;
@@ -278,7 +280,7 @@ public class TutorialState : ITutorialInput
         Enabled = true;
     }
 
-    public void OnCurrentTutorialClosed(string name)
+    public async void OnCurrentTutorialClosed(string name)
     {
         bool somethingMatched = false;
 
@@ -286,6 +288,11 @@ public class TutorialState : ITutorialInput
         {
             if (tutorial.ClosedByName != name)
                 continue;
+            
+            if(tutorial.ClosedByName == "CellEditorClosingWords"){
+                GD.Print("End main tutorial, send activity...");
+                // await SendEndTutorialActivityAsync();
+            }
 
             somethingMatched = true;
 
@@ -412,5 +419,21 @@ public class TutorialState : ITutorialInput
             ModifyOrganelleTutorial,
             AtpBalanceIntroduction,
         };
+    }
+
+    private async Task SendEndTutorialActivityAsync(){
+        var metrics = new Dictionary<string, double>()
+        {
+            { "in_game_time", 2f }
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "",
+            metrics
+        )};
+
+        await BerlogaActivity.CreateActivitiesAsync(activity);
     }
 }
