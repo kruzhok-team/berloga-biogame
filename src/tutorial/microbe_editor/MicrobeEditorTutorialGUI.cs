@@ -9,6 +9,16 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath? EditorEntryReportPath;
 
+    public void ShowEnvironmentPanel()
+    {
+        HUD.EnvironmentPanelsShow();
+    }
+	
+    public MicrobeHUD HUD { get; private set; } = null!;
+    public void setHUD(MicrobeHUD hud)
+    {
+        HUD = hud;
+    }
     [Export]
     public NodePath PatchMapPath = null!;
 

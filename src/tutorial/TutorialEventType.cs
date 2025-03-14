@@ -102,6 +102,7 @@ public enum TutorialEventType
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorTabChanged,
+    MicrobeEditorTutorialStartChanged,
 
     /// <summary>
     ///   Player selected a patch in the microbe editor, args is <see cref="PatchEventArgs"/>

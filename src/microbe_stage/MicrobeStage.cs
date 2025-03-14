@@ -419,7 +419,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReproduction(Player,
             GameWorld.Map.CurrentPatch!.BiomeTemplate);
     }
-
+    
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -474,6 +474,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             sceneInstance = scene.Instantiate();
             var editor = (MicrobeEditor)sceneInstance;
             
+            editor.setHUD(HUD);
+            editor.StartFromEditor = true;
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
         }

@@ -3007,6 +3007,7 @@ public partial class CellEditorComponent :
         
         await BerlogaActivity.CreateActivitiesAsync(activity);
     }
+    public int EvoCount { get => previewMicrobeSpecies?.Generation ?? 0; }
 
     private class PendingAutoEvoPrediction
     {

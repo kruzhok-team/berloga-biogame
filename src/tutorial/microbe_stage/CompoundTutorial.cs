@@ -13,7 +13,6 @@ public class CompoundTutorial : TutorialPhase
 
 	public CompoundTutorial()
 	{
-		UsesPlayerPositionGuidance = true;
 		CanTrigger = false;
 	}
 
