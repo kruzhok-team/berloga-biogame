@@ -128,11 +128,15 @@ GTOButtonPath = NodePath("MenuContainers/SocialMedia/GtoButton")
 BerlogaButtonPath = NodePath("MenuContainers/SocialMedia/BerlogaButton")
 GamesButtonPath = NodePath("MenuContainers/SocialMedia/GamesButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
+StoreLoggedInTalentDisplayPath = NodePath("StorePlayer_id")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
 ExceptionMenuPath = NodePath("ExceptionPopupMenu")
+TalentOutButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/TalentOut")
+TalentInButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Talent")
+SuccessDisconectTalentPopupPath = NodePath("SuccessDisconectTalentPopup")
 websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
 openGlPopup = NodePath("OpenGLWarningPopup")
 
@@ -148,6 +152,7 @@ stretch_mode = 6
 
 [node name="StoreUser" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -156,6 +161,19 @@ offset_top = 4.0
 offset_right = -721.0
 offset_bottom = 47.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+mouse_filter = 1
+text = "Logged in as: name"
+label_settings = ExtResource("7_1nsb2")
+max_lines_visible = 1
+
+[node name="StorePlayer_id" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+visible = false
+layout_mode = 0
+offset_right = 133.0
+offset_bottom = 43.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 mouse_filter = 1
@@ -242,6 +260,22 @@ size_flags_horizontal = 0
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "OPTIONS"
+
+[node name="Talent" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Войдите в свой профиль Талант, чтобы получать награды за активности в игре!"
+mouse_filter = 1
+text = "Войти в \"Талант\""
+
+[node name="TalentOut" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+text = "Выйти из Таланта"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 layout_mode = 2
@@ -833,9 +867,21 @@ ShowCloseButton = false
 visible = false
 layout_mode = 1
 
+[node name="SuccessDisconectTalentPopup" parent="." instance=ExtResource("4")]
+custom_minimum_size = Vector2(450, 0)
+HideCancelButton = true
+DialogText = "Вы успешно отсоединили профиль Таланта!"
+Movable = false
+ShowCloseButton = false
+Exclusive = false
+
+[connection signal="focus_entered" from="." to="." method="OnWindowFocusIn"]
+[connection signal="focus_exited" from="." to="." method="OnFocusExited"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Options" to="." method="OptionsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Talent" to="." method="OnTalentPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/TalentOut" to="." method="OnTalentOutPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Tools" to="." method="ToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/Extras" to="." method="ExtrasPressed"]

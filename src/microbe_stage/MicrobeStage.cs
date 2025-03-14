@@ -137,7 +137,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
     [JsonProperty]
-    private InGameTimeManager timeManager = new InGameTimeManager();
+    public InGameTimeManager timeManager = new InGameTimeManager();
 
     [JsonProperty]
     private string statsOsmoregulation = "0";

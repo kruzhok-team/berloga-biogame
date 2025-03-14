@@ -46,6 +46,9 @@ public class Http
 
         if (response.StatusCode == statusCode)
         {
+            if(String.IsNullOrEmpty(jsonResponse)){
+                return default(T);
+            }
             return JsonSerializer.Deserialize<T>(jsonResponse);
         }
 
