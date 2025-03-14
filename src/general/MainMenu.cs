@@ -1046,8 +1046,14 @@ public partial class MainMenu : NodeWithInput
 
     private async void OnTalentPressed(){
         GUICommon.Instance.PlayButtonPressSound();
-
-        await tokenHandlerInstance.Initialize(exceptionPopupMenu);
+        
+        if(String.IsNullOrEmpty(tokenHandlerInstance.AuthToken)){
+            await tokenHandlerInstance.Initialize(exceptionPopupMenu);
+        }
+        else{
+            tokenHandlerInstance.DeleteAuthData();
+        }
+        
         OS.ShellOpen(await BerlogaAuthorization.GetConnectToTalentUrl("https%3A%2F%2Ftalent.kruzhok.org%2Fdeeplink_redirect_complete"));
     }
         
