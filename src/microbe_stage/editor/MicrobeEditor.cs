@@ -63,6 +63,14 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => Localization.Translate("LOADING_MICROBE_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
+    
+    public int EvoCount
+    {
+        get
+        {
+            return cellEditorTab.EvoCount;
+        }
+    }
 
     public override void _Ready()
     {
@@ -266,6 +274,15 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override void PerformQuickSave()
     {
         SaveHelper.QuickSave(this);
+    }
+
+    public void SetTab(EditorTab tab)
+    {
+        if (selectedEditorTab == tab || editorTabSelector == null)
+            return;
+
+        selectedEditorTab = tab;
+        editorTabSelector.SetCurrentTab(tab);
     }
 
     protected override void SaveGame(string name)

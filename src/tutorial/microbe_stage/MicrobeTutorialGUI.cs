@@ -10,6 +10,7 @@ using Tutorial;
 /// </summary>
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
+    public MicrobeHUD HUD { get; private set; } = null!;
     [Export]
     public NodePath? FossilsTutorialPath = null!;
 
@@ -36,6 +37,8 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     [Export]
     public NodePath GlucoseTutorialPath = null!;
+    [Export]
+    public NodePath CompoundTutorialPath = null!;
 
     [Export]
     public NodePath StayingAlivePath = null!;
@@ -89,6 +92,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private Control microbeMovementKeyBackwards = null!;
     private CustomWindow microbeMovementPopup = null!;
     private CustomWindow glucoseTutorial = null!;
+    private CustomWindow compoundTutorial = null!;
     private CustomWindow stayingAlive = null!;
     private CustomWindow reproductionTutorial = null!;
     private CustomWindow editorButtonTutorial = null!;
@@ -102,6 +106,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
     private CustomWindow organelleDivisionTutorial = null!;
+    private bool showCompoundTutorial = false;
 #pragma warning restore CA2213
 
     [Signal]
@@ -115,11 +120,22 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public Node GUINode => this;
 
+    public void setHUD(MicrobeHUD hud)
+    {
+        HUD = hud;
+    }
+
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
+    public bool ShowCompoundTutorial { get => showCompoundTutorial; }
 
     public bool isFirstTimePaused {get;set;} = false;
+
+    public void ShowCompoundPanel()
+    {
+        HUD.CompoundPanelsShow();
+    }
 
     public bool FossilsTutorialVisible
     {
@@ -152,6 +168,11 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
+                if (!TutorialEnabledSelected)
+                {
+                    HUD.CompoundPanelsShow();
+                    HUD.EnvironmentPanelsShow();
+                }
                 microbeWelcomeMessage.Hide();
             }
         }
@@ -171,6 +192,33 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             foreach (var child in microbeMovementKeyPrompts.GetChildren().OfType<Control>())
             {
                 child.Visible = value;
+            }
+
+            if (value)
+                return;
+
+            showCompoundTutorial = true;
+            ShowCompoundPanel();
+            
+        }
+    }
+
+    public bool CompoundTutorialVisible
+    {
+        get => compoundTutorial.Visible;
+        set
+        {
+            if (value == compoundTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                showCompoundTutorial = false;
+                compoundTutorial.Show();
+            }
+            else
+            {
+                compoundTutorial.Hide();
             }
         }
     }
@@ -465,6 +513,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
         glucoseTutorial = GetNode<CustomWindow>(GlucoseTutorialPath);
+        compoundTutorial = GetNode<CustomWindow>(CompoundTutorialPath);
         stayingAlive = GetNode<CustomWindow>(StayingAlivePath);
         reproductionTutorial = GetNode<CustomWindow>(ReproductionTutorialPath);
         editorButtonTutorial = GetNode<CustomWindow>(EditorButtonTutorialPath);
@@ -482,6 +531,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
         ProcessMode = ProcessModeEnum.Always;
+        HUD?.CompoundPanelsShow();
     }
 
     public override void _Process(double delta)
@@ -535,6 +585,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
                 MicrobeMovementKeyRightPath.Dispose();
                 MicrobeMovementKeyBackwardsPath.Dispose();
                 GlucoseTutorialPath.Dispose();
+                CompoundTutorialPath.Dispose();
                 StayingAlivePath.Dispose();
                 ReproductionTutorialPath.Dispose();
                 EditorButtonTutorialPath.Dispose();

@@ -172,6 +172,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.Init(this);
         HUD.Connect("OnMulticellularPressed", Callable.From(OnEndGameStatistics));
         HoverInfo.Init(Clouds, Camera);
+        tutorialGUI.setHUD(HUD);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -190,6 +191,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+        tutorialGUI.setHUD(HUD);
     }
 
     public override void _EnterTree()
@@ -471,7 +473,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
             sceneInstance = scene.Instantiate();
             var editor = (MicrobeEditor)sceneInstance;
-
+            
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
         }

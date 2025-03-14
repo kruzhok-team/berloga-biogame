@@ -422,6 +422,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
+
+        compoundsPanel.ShowPanel = false;
+        environmentPanel.ShowPanel = false;
     }
 
     public void Init(TStage containedInStage)
