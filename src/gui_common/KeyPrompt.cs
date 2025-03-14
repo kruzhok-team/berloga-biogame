@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,190 +12,190 @@ using Newtonsoft.Json;
 /// </remarks>
 public partial class KeyPrompt : CenterContainer
 {
-    /// <summary>
-    ///   If true reacts when the user presses the key
-    /// </summary>
-    [Export]
-    public bool ShowPress = true;
+	/// <summary>
+	///   If true reacts when the user presses the key
+	/// </summary>
+	[Export]
+	public bool ShowPress = true;
 
-    /// <summary>
-    ///   Colour modulation when unpressed
-    /// </summary>
-    [Export]
-    public Color UnpressedColour = new(1, 1, 1, 1);
+	/// <summary>
+	///   Colour modulation when unpressed
+	/// </summary>
+	[Export]
+	public Color UnpressedColour = new(1, 1, 1, 1);
 
-    /// <summary>
-    ///   Colour modulation when pressed
-    /// </summary>
-    [Export]
-    public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
+	/// <summary>
+	///   Colour modulation when pressed
+	/// </summary>
+	[Export]
+	public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
 
 #pragma warning disable CA2213
-    protected TextureRect? primaryIcon;
-    protected TextureRect secondaryIcon = null!;
+	protected TextureRect? primaryIcon;
+	protected TextureRect secondaryIcon = null!;
 #pragma warning restore CA2213
 
-    private string actionName = string.Empty;
-    private StringName? resolvedActionName;
+	private string actionName = string.Empty;
+	private StringName? resolvedActionName;
 
-    private bool dirty;
+	private bool dirty;
 
-    /// <summary>
-    ///   Name of the action this key prompt shows
-    /// </summary>
-    [Export]
-    public string ActionName
-    {
-        get => actionName;
-        set
-        {
-            if (value == actionName)
-                return;
+	/// <summary>
+	///   Name of the action this key prompt shows
+	/// </summary>
+	[Export]
+	public string ActionName
+	{
+		get => actionName;
+		set
+		{
+			if (value == actionName)
+				return;
 
-            actionName = value;
-            dirty = true;
+			actionName = value;
+			dirty = true;
 
-            if (!string.IsNullOrEmpty(value))
-            {
-                resolvedActionName = new StringName(value);
-            }
-            else
-            {
-                resolvedActionName?.Dispose();
-                resolvedActionName = null;
-            }
-        }
-    }
+			if (!string.IsNullOrEmpty(value))
+			{
+				resolvedActionName = new StringName(value);
+			}
+			else
+			{
+				resolvedActionName?.Dispose();
+				resolvedActionName = null;
+			}
+		}
+	}
 
-    [JsonIgnore]
-    public StringName? ResolvedAction => resolvedActionName;
+	[JsonIgnore]
+	public StringName? ResolvedAction => resolvedActionName;
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public override void _Ready()
+	{
+		base._Ready();
 
-        primaryIcon = GetNode<TextureRect>("Primary");
-        secondaryIcon = GetNode<TextureRect>("Secondary");
+		primaryIcon = GetNode<TextureRect>("Primary");
+		secondaryIcon = GetNode<TextureRect>("Secondary");
 
-        dirty = true;
-    }
+		dirty = true;
+	}
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
+	public override void _EnterTree()
+	{
+		base._EnterTree();
 
-        // TODO: should this rather happen in _Ready and unregister happen in dispose? (seems to perform fine enough
-        // currently)
-        KeyPromptHelper.IconsChanged += OnIconsChanged;
-        InputDataList.InputsRemapped += OnIconsChanged;
-        dirty = true;
-    }
+		// TODO: should this rather happen in _Ready and unregister happen in dispose? (seems to perform fine enough
+		// currently)
+		KeyPromptHelper.IconsChanged += OnIconsChanged;
+		InputDataList.InputsRemapped += OnIconsChanged;
+		dirty = true;
+	}
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
+	public override void _ExitTree()
+	{
+		base._ExitTree();
 
-        KeyPromptHelper.IconsChanged -= OnIconsChanged;
-        InputDataList.InputsRemapped -= OnIconsChanged;
-    }
+		KeyPromptHelper.IconsChanged -= OnIconsChanged;
+		InputDataList.InputsRemapped -= OnIconsChanged;
+	}
 
-    public override void _Process(double delta)
-    {
-        // Skip processing when not visible to save quite a bit of processing time from any existing prompts
-        // Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead, this relies on
-        // the tutorial etc. to set this hidden itself.
-        if (!Visible)
-            return;
+	public override void _Process(double delta)
+	{
+		// Skip processing when not visible to save quite a bit of processing time from any existing prompts
+		// Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead, this relies on
+		// the tutorial etc. to set this hidden itself.
+		if (!Visible)
+			return;
 
-        if (dirty)
-            Refresh();
+		if (dirty)
+			Refresh();
 
-        if (!ShowPress)
-        {
-            // TODO: reset the pressed status colour if it was previously pressed?
-            return;
-        }
+		if (!ShowPress)
+		{
+			// TODO: reset the pressed status colour if it was previously pressed?
+			return;
+		}
 
-        if (resolvedActionName == null || !Input.IsActionPressed(resolvedActionName))
-        {
-            primaryIcon!.SelfModulate = UnpressedColour;
-        }
-        else
-        {
-            primaryIcon!.SelfModulate = PressedColour;
-        }
-    }
+		if (resolvedActionName == null || !Input.IsActionPressed(resolvedActionName))
+		{
+			primaryIcon!.SelfModulate = UnpressedColour;
+		}
+		else
+		{
+			primaryIcon!.SelfModulate = PressedColour;
+		}
+	}
 
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
+	public override void _Notification(int what)
+	{
+		base._Notification(what);
 
-        if (what == NotificationResized)
-        {
-            ApplySize();
-        }
-    }
+		if (what == NotificationResized)
+		{
+			ApplySize();
+		}
+	}
 
-    protected virtual void ApplySize()
-    {
-        if (primaryIcon == null)
-            return;
+	protected virtual void ApplySize()
+	{
+		if (primaryIcon == null)
+			return;
 
-        var size = Size;
-        primaryIcon.CustomMinimumSize = size;
-        secondaryIcon.CustomMinimumSize = size;
-    }
+		var size = Size;
+		primaryIcon.CustomMinimumSize = size;
+		secondaryIcon.CustomMinimumSize = size;
+	}
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            resolvedActionName?.Dispose();
-        }
+	protected override void Dispose(bool disposing)
+	{
+		if (disposing)
+		{
+			resolvedActionName?.Dispose();
+		}
 
-        base.Dispose(disposing);
-    }
+		base.Dispose(disposing);
+	}
 
-    /// <summary>
-    ///   Refreshes this buttons icon. Automatically called after being marked dirty on the next process this is
-    ///   visible.
-    /// </summary>
-    private void Refresh()
-    {
-        dirty = false;
+	/// <summary>
+	///   Refreshes this buttons icon. Automatically called after being marked dirty on the next process this is
+	///   visible.
+	/// </summary>
+	private void Refresh()
+	{
+		dirty = false;
 
-        if (primaryIcon == null)
-            return;
+		if (primaryIcon == null)
+			return;
 
-        ApplySize();
+		ApplySize();
 
-        if (string.IsNullOrEmpty(ActionName))
-        {
-            primaryIcon.Texture = null;
-            secondaryIcon.Visible = false;
-        }
-        else
-        {
-            var (primaryTexture, secondaryTexture) = KeyPromptHelper.GetTextureForAction(ActionName);
+		if (string.IsNullOrEmpty(ActionName))
+		{
+			primaryIcon.Texture = null;
+			secondaryIcon.Visible = false;
+		}
+		else
+		{
+			var (primaryTexture, secondaryTexture) = KeyPromptHelper.GetTextureForAction(ActionName);
 
-            primaryIcon.Texture = primaryTexture;
+			primaryIcon.Texture = primaryTexture;
 
-            if (secondaryTexture != null)
-            {
-                // TODO: we need to somehow scale the primary icon down when it is the mouse wheel up or down action...
+			if (secondaryTexture != null)
+			{
+				// TODO: we need to somehow scale the primary icon down when it is the mouse wheel up or down action...
 
-                secondaryIcon.Texture = secondaryTexture;
-                secondaryIcon.Visible = true;
-            }
-            else
-            {
-                secondaryIcon.Visible = false;
-            }
-        }
-    }
+				secondaryIcon.Texture = secondaryTexture;
+				secondaryIcon.Visible = true;
+			}
+			else
+			{
+				secondaryIcon.Visible = false;
+			}
+		}
+	}
 
-    private void OnIconsChanged(object? sender, EventArgs args)
-    {
-        dirty = true;
-    }
+	private void OnIconsChanged(object? sender, EventArgs args)
+	{
+		dirty = true;
+	}
 }

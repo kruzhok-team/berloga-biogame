@@ -21,9 +21,10 @@ public class CellEditorIntroduction : TutorialPhase
     {
         switch (eventType)
         {
-            case TutorialEventType.MicrobeEditorTabChanged:
+
+            case TutorialEventType.EnteredMicrobeEditor:
             {
-                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
+                if (!HasBeenShown && CanTrigger)
                 {
                     Show();
                 }
@@ -36,6 +37,27 @@ public class CellEditorIntroduction : TutorialPhase
                 if (ShownCurrently)
                 {
                     Hide();
+                }
+
+                break;
+            }
+            
+            case TutorialEventType.MicrobeEditorTabChanged:
+            {
+                var tab = ((StringEventArgs)args).Data;
+
+                if (!HasBeenShown && CanTrigger && tab == cellEditorTab)
+                {
+                    Show();
+                }
+                
+                // Hide when switched to another tab
+                if (tab != cellEditorTab)
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
                 }
 
                 break;

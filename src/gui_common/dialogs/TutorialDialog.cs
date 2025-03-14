@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -8,139 +8,139 @@ using Godot;
 /// [Tool]
 public partial class TutorialDialog : CustomWindow
 {
-    [Export]
-    public NodePath? LabelPath;
+	[Export]
+	public NodePath? LabelPath;
 
 #pragma warning disable CA2213
-    private CustomRichTextLabel? label;
+	private CustomRichTextLabel? label;
 #pragma warning restore CA2213
 
-    private string description = string.Empty;
-    private string controllerDescription = string.Empty;
+	private string description = string.Empty;
+	private string controllerDescription = string.Empty;
 
-    private ActiveInputMethod showingTextForInput;
+	private ActiveInputMethod showingTextForInput;
 
-    [Export]
-    public string Description
-    {
-        get => description;
-        set
-        {
-            description = value;
-            UpdateLabel();
-        }
-    }
+	[Export]
+	public string Description
+	{
+		get => description;
+		set
+		{
+			description = value;
+			UpdateLabel();
+		}
+	}
 
-    /// <summary>
-    ///   Alternative description used when a controller is used for the game
-    /// </summary>
-    [Export]
-    public string DescriptionForController
-    {
-        get => controllerDescription;
-        set
-        {
-            controllerDescription = value;
-            UpdateLabel();
-        }
-    }
+	/// <summary>
+	///   Alternative description used when a controller is used for the game
+	/// </summary>
+	[Export]
+	public string DescriptionForController
+	{
+		get => controllerDescription;
+		set
+		{
+			controllerDescription = value;
+			UpdateLabel();
+		}
+	}
 
-    /// <summary>
-    ///   Tweakable delay to make tutorial sequences flow more naturally.
-    /// </summary>
-    [Export]
-    public float ShowDelay { get; set; } = 0.5f;
+	/// <summary>
+	///   Tweakable delay to make tutorial sequences flow more naturally.
+	/// </summary>
+	[Export]
+	public float ShowDelay { get; set; } = 0.5f;
 
-    public override void _Ready()
-    {
-        label = GetNode<CustomRichTextLabel>(LabelPath);
+	public override void _Ready()
+	{
+		label = GetNode<CustomRichTextLabel>(LabelPath);
 
-        CheckShownTextVersion();
-        UpdateLabel();
-    }
+		CheckShownTextVersion();
+		UpdateLabel();
+	}
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
+	public override void _EnterTree()
+	{
+		base._EnterTree();
 
-        if (label != null)
-            CheckShownTextVersion();
+		if (label != null)
+			CheckShownTextVersion();
 
-        KeyPromptHelper.IconsChanged += OnInputTypeChanged;
-    }
+		KeyPromptHelper.IconsChanged += OnInputTypeChanged;
+	}
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
+	public override void _ExitTree()
+	{
+		base._ExitTree();
 
-        KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
-    }
+		KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
+	}
 
-    protected override void OnOpen()
-    {
-        base.OnOpen();
+	protected override void OnOpen()
+	{
+		base.OnOpen();
 
-        // Don't animate if currently running inside the editor
-        if (Engine.IsEditorHint())
-            return;
+		// Don't animate if currently running inside the editor
+		if (Engine.IsEditorHint())
+			return;
 
-        PivotOffset = Size / 2;
-        Scale = Vector2.Zero;
+		PivotOffset = Size / 2;
+		Scale = Vector2.Zero;
 
-        var tween = CreateTween();
-        tween.SetTrans(Tween.TransitionType.Expo);
-        tween.SetEase(Tween.EaseType.Out);
+		var tween = CreateTween();
+		tween.SetTrans(Tween.TransitionType.Expo);
+		tween.SetEase(Tween.EaseType.Out);
 
-        tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
-    }
+		tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
+	}
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            LabelPath?.Dispose();
-        }
+	protected override void Dispose(bool disposing)
+	{
+		if (disposing)
+		{
+			LabelPath?.Dispose();
+		}
 
-        base.Dispose(disposing);
-    }
+		base.Dispose(disposing);
+	}
 
-    private void UpdateLabel()
-    {
-        if (label == null)
-            return;
+	private void UpdateLabel()
+	{
+		if (label == null)
+			return;
 
-        var oldText = label.ExtendedBbcode;
+		var oldText = label.ExtendedBbcode;
 
-        string newText;
+		string newText;
 
-        if (showingTextForInput == ActiveInputMethod.Controller && !string.IsNullOrWhiteSpace(DescriptionForController))
-        {
-            newText = Localization.Translate(DescriptionForController);
-        }
-        else
-        {
-            newText = Localization.Translate(Description);
-        }
+		if (showingTextForInput == ActiveInputMethod.Controller && !string.IsNullOrWhiteSpace(DescriptionForController))
+		{
+			newText = Localization.Translate(DescriptionForController);
+		}
+		else
+		{
+			newText = Localization.Translate(Description);
+		}
 
-        // We only set the text if it is actually different to avoid an extra parsing
-        if (oldText != newText)
-            label.ExtendedBbcode = newText;
-    }
+		// We only set the text if it is actually different to avoid an extra parsing
+		if (oldText != newText)
+			label.ExtendedBbcode = newText;
+	}
 
-    private void OnInputTypeChanged(object? sender, EventArgs e)
-    {
-        CheckShownTextVersion();
-    }
+	private void OnInputTypeChanged(object? sender, EventArgs e)
+	{
+		CheckShownTextVersion();
+	}
 
-    private void CheckShownTextVersion()
-    {
-        var activeMethod = KeyPromptHelper.InputMethod;
+	private void CheckShownTextVersion()
+	{
+		var activeMethod = KeyPromptHelper.InputMethod;
 
-        if (showingTextForInput == activeMethod)
-            return;
+		if (showingTextForInput == activeMethod)
+			return;
 
-        showingTextForInput = activeMethod;
+		showingTextForInput = activeMethod;
 
-        UpdateLabel();
-    }
+		UpdateLabel();
+	}
 }

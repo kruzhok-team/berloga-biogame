@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://drlu8mhxpldnu" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://bma0vl0vhwyd0" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_s6a8v"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://26stgqic3ocn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://c2dv5bst0fl6m" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 process_mode = 3
@@ -32,6 +32,7 @@ MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
+CompoundTutorialPath = NodePath("CompoundTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
@@ -48,7 +49,6 @@ EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
-anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
 custom_minimum_size = Vector2(450, 400)
@@ -208,6 +208,23 @@ offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_COLLECT_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
+
+[node name="CompoundTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -494.0
+offset_top = -45.0
+offset_right = -144.0
+offset_bottom = 355.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "MICROBE_STAGE_COMPOUNDPANEL_TEXT"
 WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
@@ -496,6 +513,7 @@ WindowTitle = "TUTORIAL_BEAR_HELPER"
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hidden" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= ["MicrobeMovementExplain"]]
 [connection signal="hidden" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= ["GlucoseCollecting"]]
+[connection signal="hidden" from="CompoundTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundTutorial"]]
 [connection signal="hidden" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= ["DayNightTutorial"]]
 [connection signal="hidden" from="OrganelleDivisionTutorial" to="." method="OnSpecificCloseClicked" binds= ["OrganelleDivisionTutorial"]]
 [connection signal="hidden" from="BecomeMulticellularTutorial" to="." method="OnSpecificCloseClicked" binds= ["BecomeMulticellularTutorial"]]

@@ -10105,3 +10105,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
 msgid "TUTORIAL_BEAR_HELPER"
 msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:700
+msgid "MICROBE_STAGE_COMPOUNDPANEL_TEXT"
+msgstr ""

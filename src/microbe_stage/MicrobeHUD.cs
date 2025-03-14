@@ -101,6 +101,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
+    public void CompoundPanelsShow()
+    {
+        compoundsPanel.ShowPanel = true;
+    }
+    public void EnvironmentPanelsShow()
+    {
+        environmentPanel.ShowPanel = true;
+    }
+
     public override void _Ready()
     {
         base._Ready();
