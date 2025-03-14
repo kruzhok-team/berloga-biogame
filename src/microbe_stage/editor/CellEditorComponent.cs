@@ -1020,6 +1020,13 @@ public partial class CellEditorComponent :
             editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
+        GD.Print("Добавленно органелл: "+editedMicrobeOrganelles.Organelles.Count);
+
+        if(editedMicrobeOrganelles.Organelles.Count>editedSpecies.PlayerOrganellesCount){
+            editedSpecies.PlayerOrganellesCount = editedMicrobeOrganelles.Organelles.Count - editedSpecies.PlayerOrganellesCount;
+            Task.Run(async () => await SendNewOrganelleActivityAsync(editedSpecies.PlayerOrganellesCount));
+        }
+
         if (shouldUpdatePosition)
             editedProperties.RepositionToOrigin();
 
@@ -1038,7 +1045,6 @@ public partial class CellEditorComponent :
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
             if(HasNucleus && !editedSpecies.isAlreadySend){
                 editedSpecies.isAlreadySend = true;
-                GD.Print(editedSpecies.isAlreadySend);
                 Task.Run(async () => await SendNuclearActivityAsync());
             }
 
@@ -2979,6 +2985,23 @@ public partial class CellEditorComponent :
         List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
             Constants.Version,
             "fcb05cc3-1a9c-428d-a78b-fa4b58351eb1",
+            metrics
+        )};
+        
+        await BerlogaActivity.CreateActivitiesAsync(activity);
+    }
+
+    private async Task SendNewOrganelleActivityAsync(int playerOrganellesCount){
+        GD.Print(playerOrganellesCount);
+        var metrics = new Dictionary<string, double>()
+        {
+            { "player_organelles_count", Convert.ToDouble(playerOrganellesCount) }
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "a1d4121e-ff51-4be2-8500-010914336032",
             metrics
         )};
         

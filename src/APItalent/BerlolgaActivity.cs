@@ -21,24 +21,22 @@ public class BerlogaActivity{
     {
         
         var json = JsonSerializer.Serialize(activity);
-        var responce = await Http.Post<List<ResponceCreateList>>(
-            path:"berloga-activities/activities",
-            data:activity,
-            authRequire:true,
-            statusCode: HttpStatusCode.Created
-        );
-
-
-        foreach (var list in responce)
-        {
-            StatisticsManager.Instance.ActivityList.Add(list);
-            if(list.scores.HasValue){
-                double score = list.scores.Value;
-                
-                SaveStatusOverlay.Instance.CallDeferred("ShowMessage", $"Активность выполненна! Полученные очки: {score}", 2f);
-            }
-            else{
-                SaveStatusOverlay.Instance.CallDeferred("ShowMessage", $"Активность выполненна!", 2f);
+        if(!String.IsNullOrEmpty(AuthTokenHandler.Instance.AuthToken)){
+            var responce = await Http.Post<List<ResponceCreateList>>(
+                path:"berloga-activities/activities",
+                data:activity,
+                authRequire:true,
+                statusCode: HttpStatusCode.Created
+            );
+            foreach (var list in responce){
+                StatisticsManager.Instance.ActivityList.Add(list);
+                if(list.scores.HasValue){
+                    double score = list.scores.Value;
+                    SaveStatusOverlay.Instance.CallDeferred("ShowMessage", $"Активность выполненна! Полученные очки: {score}", 2f);
+                }
+                else{
+                    SaveStatusOverlay.Instance.CallDeferred("ShowMessage", $"Активность выполненна!", 2f);
+                }
             }
         }
     }

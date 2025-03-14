@@ -117,6 +117,13 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public bool isAlreadySend {get;set;} = false;
 
+    // TODO: Change ASAP
+    [JsonProperty]
+    public bool isAlreadyGroupSend {get;set;} = false;
+
+    [JsonProperty]
+    public int PlayerOrganellesCount {get;set;} = 1;
+
     [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 

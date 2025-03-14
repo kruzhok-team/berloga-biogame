@@ -8,6 +8,8 @@ using Xoshiro.PRNG32;
 using Newtonsoft.Json;
 using APItalent;
 using System.Text.Json;
+using System.Threading.Tasks;
+using System.Net;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -93,6 +95,9 @@ public partial class MainMenu : NodeWithInput
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
+    public NodePath StoreLoggedInTalentDisplayPath = null!;
+
+    [Export]
     public NodePath ModManagerPath = null!;
 
     [Export]
@@ -107,8 +112,18 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public NodePath ExceptionMenuPath = null!;
 
+    [Export]
+    public NodePath TalentOutButtonPath = null!;
+
+    [Export]
+    public NodePath TalentInButtonPath = null!;
+
+    [Export]
+    public NodePath SuccessDisconectTalentPopupPath = null!;
+
 #pragma warning disable CA2213
     private ExceptionPopupMenu exceptionPopupMenu = null!;
+    private CustomConfirmationDialog successDisconectTalentPopup = null!;
     private TextureRect background = null!;
     private Node3D? created3DBackground;
     private OptionsMenu options = null!;
@@ -125,10 +140,14 @@ public partial class MainMenu : NodeWithInput
     private Button multicellularFreebuildButton = null!;
     private Button autoEvoExploringButton = null!;
     private Button microbeBenchmarkButton = null!;
+    private Button talentOutButton = null!;
+    private Button talentInButton = null!;
 
     private Button exitToLauncherButton = null!;
 
     private Label storeLoggedInDisplay = null!;
+
+    private Label storeLoggedInTalentDisplay = null!;
 
     private Control socialMediaContainer = null!;
 
@@ -160,6 +179,8 @@ public partial class MainMenu : NodeWithInput
     private Array<Node>? menuArray;
 
     private bool introVideoPassed;
+
+    public static bool isSuccessAuth = false;
 
     private double timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
@@ -206,10 +227,12 @@ public partial class MainMenu : NodeWithInput
         MouseCaptureManager.ForceDisableCapture();
 
         RunMenuSetup();
-
-        //get API token
-        if(!IsReturningToMenu){
-            tokenHandlerInstance.Initialize(exceptionPopupMenu);
+        
+        if(isSuccessAuth){
+            talentOutButton.Visible = true;
+            talentInButton.Visible = false;
+            storeLoggedInTalentDisplay.Text = $"Ваш player_id: {AuthTokenHandler.Instance.Player_ID}";
+            storeLoggedInTalentDisplay.Visible = true;
         }
 
         // Start intro video
@@ -329,7 +352,7 @@ public partial class MainMenu : NodeWithInput
         }
     }
 
-    public override void _Notification(int notification)
+    public override async void _Notification(int notification)
     {
         base._Notification(notification);
 
@@ -337,6 +360,13 @@ public partial class MainMenu : NodeWithInput
         {
             GD.Print("Main window close signal detected");
             Invoke.Instance.Queue(QuitPressed);
+        }
+
+        // Due to the fact that we do not receive a notification about whether the player was able to enter the Talent
+        // We check this every time the user returns to the game window
+        if(notification == NotificationApplicationFocusIn){
+            GD.Print("Returning to game window signal detected");
+            await OnWindowFocusIn();
         }
     }
 
@@ -430,7 +460,11 @@ public partial class MainMenu : NodeWithInput
             GamesButtonPath.Dispose();
             BerlogaButtonPath.Dispose();
             StoreLoggedInDisplayPath.Dispose();
+            StoreLoggedInTalentDisplayPath.Dispose();
+            TalentOutButtonPath.Dispose();
+            TalentInButtonPath.Dispose();
             ModManagerPath.Dispose();
+            SuccessDisconectTalentPopupPath.Dispose();
             GalleryViewerPath.Dispose();
             ThanksDialogPath.Dispose();
             MenusPath.Dispose();
@@ -456,10 +490,14 @@ public partial class MainMenu : NodeWithInput
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
+        storeLoggedInTalentDisplay = GetNode<Label>(StoreLoggedInTalentDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         exceptionPopupMenu = GetNode<ExceptionPopupMenu>(ExceptionMenuPath);
+
+        talentOutButton = GetNode<Button>(TalentOutButtonPath);
+        talentInButton = GetNode<Button>(TalentInButtonPath);
 
         vkButton = GetNode<TextureButton>(VKButtonPath);
         gtoButton = GetNode<TextureButton>(GTOButtonPath);
@@ -492,6 +530,7 @@ public partial class MainMenu : NodeWithInput
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
+        successDisconectTalentPopup = GetNode<CustomConfirmationDialog>(SuccessDisconectTalentPopupPath);
 
         modsInstalledButNotEnabledWarning =
             GetNode<PermanentlyDismissibleDialog>(ModsInstalledButNotEnabledWarningPath);
@@ -787,7 +826,7 @@ public partial class MainMenu : NodeWithInput
 
     }
 
-    private void ToolsPressed()
+    private async void ToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(1);
@@ -1005,6 +1044,37 @@ public partial class MainMenu : NodeWithInput
         modManager.Visible = true;
     }
 
+    private async void OnTalentPressed(){
+        GUICommon.Instance.PlayButtonPressSound();
+
+        await tokenHandlerInstance.Initialize(exceptionPopupMenu);
+        OS.ShellOpen(await BerlogaAuthorization.GetConnectToTalentUrl("https%3A%2F%2Ftalent.kruzhok.org%2Fdeeplink_redirect_complete"));
+    }
+        
+    private async void OnTalentOutPressed(){
+        GUICommon.Instance.PlayButtonPressSound();
+
+        try{
+            var responce = await Http.Post<object>(
+                path: "berloga-idp/talent-oauth/disconnect",
+                authRequire: true,
+                statusCode: HttpStatusCode.NoContent
+            );
+            GD.Print("Talent disconnect!");
+            // tokenHandlerInstance.DeleteAuthData();
+            talentOutButton.Visible = false;
+            talentInButton.Visible = true;
+            storeLoggedInTalentDisplay.Visible = false;
+            // exceptionPopupMenu.OpenSuccess("Вы успешно отсоединили профиль Таланта!");
+            successDisconectTalentPopup.PopupCenteredShrink();
+            isSuccessAuth = false;
+        }
+        catch(HttpError ex){
+            GD.Print("disconnect error: "+ ex.ErrorMessage);
+            exceptionPopupMenu.OpenException(ex.ErrorMessage);
+        }
+    }
+
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
@@ -1117,5 +1187,42 @@ public partial class MainMenu : NodeWithInput
     }
     private void OnBerlogaButtonPressed(){
         OnSocialMediaButtonPressed("https://platform.kruzhok.org/");
+    }
+
+    private async Task<int?> GetTalentID(){
+        if(tokenHandlerInstance.AuthToken == null){
+            return null;
+        }
+        System.Collections.Generic.Dictionary<string, string> op = new System.Collections.Generic.Dictionary<string, string>()
+        {
+            {"get_talent_id","true"}
+        };
+        try{
+            var responce = await Http.Get<TalentUserAward>(
+                path:$"berloga-idp/player/{AuthTokenHandler.Instance.Player_ID}",
+                authRequire: true,
+                options: op
+            );
+            return responce.talent_id;
+        }
+        catch(HttpError ex){
+            GD.Print("Err: "+ex.StatusCode);
+            return null;
+        }
+    }
+
+    private async Task OnWindowFocusIn(){
+        int? talent_id = await GetTalentID();
+        if(talent_id!=null){
+            talentOutButton.Visible = true;
+            talentInButton.Visible = false;
+            storeLoggedInTalentDisplay.Text = $"Ваш player_id: {AuthTokenHandler.Instance.Player_ID}";
+            storeLoggedInTalentDisplay.Visible = true;
+            isSuccessAuth = true;
+        }
+    }
+
+    class TalentUserAward{
+        public int? talent_id {get;set;}
     }
 }
