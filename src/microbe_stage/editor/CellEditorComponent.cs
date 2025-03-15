@@ -2978,7 +2978,7 @@ public partial class CellEditorComponent :
 
         var metrics = new Dictionary<string, double>()
         {
-            { "evo_count", Convert.ToDouble(previewMicrobeSpecies.Generation) }
+            { "evo_count", Convert.ToDouble(previewMicrobeSpecies.Generation - 1) }
         };
 
         // use ENV for context_id?
