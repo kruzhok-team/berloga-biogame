@@ -84,8 +84,8 @@ public partial class EditorEntryButton : TextureButton
 
 		highlight.Hide();
 		reproductionBar.Show();
-		phosphateReproductionBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
-		ammoniaReproductionBar.TintProgress = new Color(1, 0.62f, 0.12f, 1);
+		phosphateReproductionBar.TintProgress = new Color(0.37f, 0f, 0.82f, 1);
+		ammoniaReproductionBar.TintProgress = new Color(0.11f, 0.54f, 0.9f, 1);
 		phosphateIcon.Texture = phosphatesInv;
 		ammoniaIcon.Texture = ammoniaInv;
 		buttonAnimationPlayer.Stop();
