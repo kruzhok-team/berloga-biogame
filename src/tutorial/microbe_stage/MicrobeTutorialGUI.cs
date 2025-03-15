@@ -2,12 +2,15 @@
 using System.Linq;
 using Godot;
 using Tutorial;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
 ///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
 ///   Controlled by TutorialState object
 /// </summary>
+
+[JsonObject(IsReference = true)]
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     public MicrobeHUD HUD { get; private set; } = null!;
@@ -130,6 +133,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool IsClosingAutomatically { get; set; }
     public bool ShowCompoundTutorial { get => showCompoundTutorial; }
 
+    [JsonProperty]
     public bool isFirstTimePaused {get;set;} = false;
 
     public void ShowCompoundPanel()

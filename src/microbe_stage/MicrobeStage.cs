@@ -1429,7 +1429,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         var population = this.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
         StatisticsManager.Instance.PlayerMicrobePopulation = population.ToString();
 
-        StatisticsManager.Instance.Generation = await GetGenMetric();// playerSpecies.Generation.ToString()
+        StatisticsManager.Instance.Generation = playerSpecies.Generation.ToString();
 
         StatisticsManager.Instance.Organells = playerSpecies.Organelles.Count.ToString();
 

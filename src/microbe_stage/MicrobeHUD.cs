@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Components;
 using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
+using APItalent;
 
 /// <summary>
 ///   Manages the microbe HUD
@@ -637,6 +639,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         var newColonySize = colony.ColonyMembers.Length;
 
+        if(newColonySize>=1 && (!stage.Player.Get<SpeciesMember>().Species.isAlreadyGroupSend)){
+            stage.Player.Get<SpeciesMember>().Species.isAlreadyGroupSend = true;
+
+            Task.Run(async () => await SendCreateGroupActivityAsync());
+        }
+
         if (stage.MovingToEditor)
         {
             multicellularButton.Disabled = true;
@@ -894,5 +902,23 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private async Task SendCreateGroupActivityAsync(){
+        MicrobeStage microbeStage = (MicrobeStage)this.GetParent();
+        
+        var metrics = new Dictionary<string, double>()
+        {
+            { "in_game_time", microbeStage.timeManager.currentInGameTime}
+        };
+
+        // use ENV for context_id?
+        List<GameActivity> activity = new List<GameActivity>() {new GameActivity(
+            Constants.Version,
+            "e75dfff6-4082-477a-b0ad-c434b63ac4bc",
+            metrics
+        )};
+
+        await BerlogaActivity.CreateActivitiesAsync(activity);
     }
 }
