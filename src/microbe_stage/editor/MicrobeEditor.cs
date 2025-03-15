@@ -312,15 +312,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
 	protected override void ApplyEditorTab()
 	{
-		if (!StartFromEditor)
-		{
-			// This now triggers also when loading the editor initially, but no tutorial relies on the player going back
-			// to the report tab so this shouldn't matter
-			TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged,
-				new StringEventArgs(selectedEditorTab.ToString()),
-				this);
-		}
-		else
+		// This now triggers also when loading the editor initially, but no tutorial relies on the player going back
+		// to the report tab so this shouldn't matter
+		TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged,
+			new StringEventArgs(selectedEditorTab.ToString()),
+			this);
+		if (StartFromEditor)
 		{
 			
 			TutorialState.SendEvent(TutorialEventType.MicrobeEditorTutorialStartChanged,

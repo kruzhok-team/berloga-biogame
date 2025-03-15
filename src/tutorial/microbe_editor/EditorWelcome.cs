@@ -41,8 +41,9 @@ public class EditorWelcome : TutorialPhase
             {
                 var tab = ((StringEventArgs)args).Data;
 
-                if (!HasBeenShown && CanTrigger && tab == reportTab)
+                if (!HasBeenShown && CanTrigger && tab == reportTab && readyTrigger > 0)
                 {
+                    GD.Print($"EditorWelcome: {readyTrigger}");
                     Show();
                     microbeGUI?.ShowEnvironmentPanel();
                 }

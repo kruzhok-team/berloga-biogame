@@ -1,6 +1,7 @@
 ﻿namespace Tutorial;
 
 using System;
+using Godot;
 
 /// <summary>
 ///   Tutorial for the patch map tab
@@ -30,18 +31,7 @@ public class PatchMap : TutorialPhase
                 {
                     Show();
                 }
-
-                if (ShownCurrently && tab == cellEditorTab)
-                {
-                    Hide();
-                }
-
-                break;
-            }
-
-            case TutorialEventType.MicrobeEditorPatchSelected:
-            {
-                if (ShownCurrently && ((PatchEventArgs)args).Patch != null)
+                else if (ShownCurrently && tab != patchMapTab)
                 {
                     Hide();
                 }
