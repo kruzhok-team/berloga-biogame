@@ -12,7 +12,7 @@ public class EditorWelcome : TutorialPhase
 
     private int readyTrigger;
     public override string ClosedByName => "MicrobeEditorReport";
-    public MicrobeEditorTutorialGUI? microbeGUI = null;
+    private MicrobeEditorTutorialGUI? microbeGUI;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
