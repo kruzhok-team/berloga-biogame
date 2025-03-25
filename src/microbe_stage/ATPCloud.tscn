@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkvvvp0c50omx"]
+
+[ext_resource type="Material" uid="uid://bxccofrrhkghm" path="res://src/microbe_stage/particles/burst.tres" id="1_nvtmo"]
+[ext_resource type="Texture2D" uid="uid://dke03a0uyt6n" path="res://assets/textures/background_particle.png" id="2_scssb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdqup"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.8, 1, 1)
+albedo_texture = ExtResource("2_scssb")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_6rrqh"]
+material = SubResource("StandardMaterial3D_fdqup")
+size = Vector2(3, 3)
+
+[node name="ATPCloud" type="GPUParticles3D"]
+amount = 50
+lifetime = 2.0
+process_material = ExtResource("1_nvtmo")
+draw_pass_1 = SubResource("QuadMesh_6rrqh")
