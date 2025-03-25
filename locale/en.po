@@ -7971,3 +7971,6 @@ msgstr ""
 "The Compound panel (or compound panel) is an important interface element in the game that displays the available chemical compounds in the environment. These compounds are essential for the survival and development of your microorganism."
 "\n"
 "The Compound panel is usually located at the bottom of the screen."
+
+msgid "EDITOR_POINT_CHUNK"
+msgstr "Ethio-revolutionary impulse"

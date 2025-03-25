@@ -10109,3 +10109,17 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:700
 msgid "MICROBE_STAGE_COMPOUNDPANEL_TEXT"
 msgstr ""
+
+#: ../src/simulation_parameters/microbe_stage/biomes.json:110
+#: ../src/simulation_parameters/microbe_stage/biomes.json:437
+#: ../src/simulation_parameters/microbe_stage/biomes.json:696
+#: ../src/simulation_parameters/microbe_stage/biomes.json:974
+#: ../src/simulation_parameters/microbe_stage/biomes.json:1302
+#: ../src/simulation_parameters/microbe_stage/biomes.json:1580
+#: ../src/simulation_parameters/microbe_stage/biomes.json:1839
+#: ../src/simulation_parameters/microbe_stage/biomes.json:2089
+#: ../src/simulation_parameters/microbe_stage/biomes.json:2309
+#: ../src/simulation_parameters/microbe_stage/biomes.json:2572
+#: ../src/simulation_parameters/microbe_stage/biomes.json:2912
+msgid "EDITOR_POINT_CHUNK"
+msgstr ""

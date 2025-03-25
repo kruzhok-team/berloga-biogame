@@ -369,6 +369,7 @@ public static class SpawnHelpers
             {
                 DamageAmount = 0,
                 DestroyOnTouch = chunkType.DeleteOnTouch,
+                DamageType = "chunk"
             });
         }
 
