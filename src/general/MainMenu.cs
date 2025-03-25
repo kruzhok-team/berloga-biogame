@@ -1180,7 +1180,7 @@ public partial class MainMenu : NodeWithInput
     }
 
     private void OnVKButtonPressed(){
-        OnSocialMediaButtonPressed("https://vk.com/onti_genome");
+        OnSocialMediaButtonPressed("https://vk.com/berloga_nkfp");
     }
     private void OnGTOButtonPressed(){
         OnSocialMediaButtonPressed("https://ntcontest.ru/");
@@ -1189,7 +1189,7 @@ public partial class MainMenu : NodeWithInput
         OnSocialMediaButtonPressed("https://talent.kruzhok.org/");
     }
     private void OnGamesButtonPressed(){
-        OnSocialMediaButtonPressed("https://www.rustore.ru/catalog/developer/46c13112");
+        OnSocialMediaButtonPressed("https://ntcontest.ru/tracks/nto-school/proekt-novoy-meditsiny/genomnoe-redaktirovanie/");
     }
     private void OnBerlogaButtonPressed(){
         OnSocialMediaButtonPressed("https://platform.kruzhok.org/");
