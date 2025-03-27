@@ -103,8 +103,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonIgnore]
     public static Entity PlayerEntity;
 
-    [JsonProperty]
     public static int ChunkMutationCount;
+
+    [JsonProperty]
+    public int SaveChunkMutationCount
+    {
+        get => ChunkMutationCount;
+        set => ChunkMutationCount = value;
+    }
     
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
