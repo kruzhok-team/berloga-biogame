@@ -40,8 +40,12 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     [Export]
     public NodePath GlucoseTutorialPath = null!;
+    
     [Export]
     public NodePath CompoundTutorialPath = null!;
+    
+    [Export]
+    public NodePath OmBoostTutorialPath = null!;
 
     [Export]
     public NodePath StayingAlivePath = null!;
@@ -96,6 +100,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow microbeMovementPopup = null!;
     private CustomWindow glucoseTutorial = null!;
     private CustomWindow compoundTutorial = null!;
+    private CustomWindow omBoostTutorial = null!;
     private CustomWindow stayingAlive = null!;
     private CustomWindow reproductionTutorial = null!;
     private CustomWindow editorButtonTutorial = null!;
@@ -223,6 +228,26 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             else
             {
                 compoundTutorial.Hide();
+            }
+        }
+    }
+
+
+    public bool OmBoostTutorialVisible
+    {
+        get => omBoostTutorial.Visible;
+        set
+        {
+            if (value == omBoostTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                omBoostTutorial.Show();
+            }
+            else
+            {
+                omBoostTutorial.Hide();
             }
         }
     }
@@ -518,6 +543,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
         glucoseTutorial = GetNode<CustomWindow>(GlucoseTutorialPath);
         compoundTutorial = GetNode<CustomWindow>(CompoundTutorialPath);
+        omBoostTutorial = GetNode<CustomWindow>(OmBoostTutorialPath);
         stayingAlive = GetNode<CustomWindow>(StayingAlivePath);
         reproductionTutorial = GetNode<CustomWindow>(ReproductionTutorialPath);
         editorButtonTutorial = GetNode<CustomWindow>(EditorButtonTutorialPath);
@@ -590,6 +616,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
                 MicrobeMovementKeyBackwardsPath.Dispose();
                 GlucoseTutorialPath.Dispose();
                 CompoundTutorialPath.Dispose();
+                OmBoostTutorialPath.Dispose();
                 StayingAlivePath.Dispose();
                 ReproductionTutorialPath.Dispose();
                 EditorButtonTutorialPath.Dispose();

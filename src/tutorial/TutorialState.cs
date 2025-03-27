@@ -43,6 +43,9 @@ public class TutorialState : ITutorialInput
     public CompoundTutorial CompoundTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public OmBoostTutorial OmBoostTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new();
 
     [JsonProperty]
@@ -395,6 +398,7 @@ public class TutorialState : ITutorialInput
             MicrobeMovementExplanation,
             GlucoseCollecting,
             CompoundTutorial,
+            OmBoostTutorial,
             MicrobePressEditorButton,
             MicrobeStayingAlive,
             MicrobeReproduction,

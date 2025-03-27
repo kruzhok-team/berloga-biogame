@@ -34,6 +34,11 @@ public enum TutorialEventType
     MicrobePlayerCompounds,
 
     /// <summary>
+    ///   Reports the player compound amounts while they are alive, args is <see cref="EventArgs.Empty"/>
+    /// </summary>
+    MicrobeOmBoost,
+
+    /// <summary>
     ///   Reports the player colony status while they are alive, args is <see cref="MicrobeColonyEventArgs"/>
     /// </summary>
     MicrobePlayerColony,

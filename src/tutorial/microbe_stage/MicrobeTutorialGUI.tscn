@@ -33,6 +33,7 @@ MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
 CompoundTutorialPath = NodePath("CompoundTutorial")
+OmBoostTutorialPath = NodePath("OmBoostTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
@@ -225,6 +226,23 @@ offset_bottom = 355.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_COMPOUNDPANEL_TEXT"
+WindowTitle = "TUTORIAL_BEAR_SCIENCE"
+
+[node name="OmBoostTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -494.0
+offset_top = -45.0
+offset_right = -144.0
+offset_bottom = 355.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "MICROBE_STAGE_OM_BUSTER_TEXT"
 WindowTitle = "TUTORIAL_BEAR_SCIENCE"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
@@ -514,6 +532,7 @@ WindowTitle = "TUTORIAL_BEAR_HELPER"
 [connection signal="hidden" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= ["MicrobeMovementExplain"]]
 [connection signal="hidden" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= ["GlucoseCollecting"]]
 [connection signal="hidden" from="CompoundTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundTutorial"]]
+[connection signal="hidden" from="OmBoostTutorial" to="." method="OnSpecificCloseClicked" binds= ["OmBoostTutorial"]]
 [connection signal="hidden" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= ["DayNightTutorial"]]
 [connection signal="hidden" from="OrganelleDivisionTutorial" to="." method="OnSpecificCloseClicked" binds= ["OrganelleDivisionTutorial"]]
 [connection signal="hidden" from="BecomeMulticellularTutorial" to="." method="OnSpecificCloseClicked" binds= ["BecomeMulticellularTutorial"]]

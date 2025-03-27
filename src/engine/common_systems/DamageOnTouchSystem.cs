@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -96,9 +97,12 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
         if (damageTouch.DestroyOnTouch)
         {
             // Add editor point if editor chunk destroy on touch
-            if(damageTouch.ChunkName == "EDITOR_POINT_CHUNK" && entity == MicrobeStage.PlayerEntity){
+            if (damageTouch.ChunkName == "EDITOR_POINT_CHUNK" && entity == MicrobeStage.PlayerEntity) {
+                MicrobeStage.GetTutorialState.SendEvent(TutorialEventType.MicrobeOmBoost,
+                    EventArgs.Empty, this);
                 MicrobeStage.ChunkMutationCount++;
             }
+
             return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount,
                 damageTouch.DamageType, subShape);
         }

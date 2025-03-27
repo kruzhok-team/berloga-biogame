@@ -10110,6 +10110,10 @@ msgstr ""
 msgid "MICROBE_STAGE_COMPOUNDPANEL_TEXT"
 msgstr ""
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:700
+msgid "MICROBE_STAGE_OM_BUSTER_TEXT"
+msgstr ""
+
 #: ../src/simulation_parameters/microbe_stage/biomes.json:110
 #: ../src/simulation_parameters/microbe_stage/biomes.json:437
 #: ../src/simulation_parameters/microbe_stage/biomes.json:696

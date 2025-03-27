@@ -103,6 +103,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonIgnore]
     public static Entity PlayerEntity;
 
+    public static TutorialState GetTutorialState;
+
     public static int ChunkMutationCount;
 
     [JsonProperty]
@@ -174,6 +176,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Start a new game if started directly from MicrobeStage.tscn
         CurrentGame ??= GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
+        GetTutorialState = TutorialState;
         ResolveNodeReferences();
 
         var simulationParameters = SimulationParameters.Instance;
