@@ -53,19 +53,21 @@ public partial class MutationPointsBar : HBoxContainer
 
 	public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)
 	{
+		float newCurrentPoints = MicrobeStage.ChunkMutationCount>0 ? currentMutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : currentMutationPoints;
+		float newPossiblePoints = MicrobeStage.ChunkMutationCount>0 ? possibleMutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : possibleMutationPoints;
 		if (tween)
 		{
-			GUICommon.Instance.TweenBarValue(mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS,
+			GUICommon.Instance.TweenBarValue(mutationPointsBar, newPossiblePoints, Constants.BASE_MUTATION_POINTS+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS),
 				0.5f);
-			GUICommon.Instance.TweenBarValue(mutationPointsSubtractBar, currentMutationPoints,
-				Constants.BASE_MUTATION_POINTS, 0.7f);
+			GUICommon.Instance.TweenBarValue(mutationPointsSubtractBar, newCurrentPoints,
+				Constants.BASE_MUTATION_POINTS+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS), 0.7f);
 		}
 		else
 		{
-			mutationPointsBar.Value = possibleMutationPoints;
-			mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-			mutationPointsSubtractBar.Value = currentMutationPoints;
-			mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+			mutationPointsBar.Value = MicrobeStage.ChunkMutationCount>0 ? possibleMutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : possibleMutationPoints;
+			mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS);
+			mutationPointsSubtractBar.Value = newCurrentPoints;
+			mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS);
 		}
 
 		mutationPointsSubtractBar.SelfModulate = possibleMutationPoints < 0 ?
@@ -76,6 +78,8 @@ public partial class MutationPointsBar : HBoxContainer
 	public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, float currentMutationPoints,
 		float possibleMutationPoints)
 	{
+		float newCurrentPoints = MicrobeStage.ChunkMutationCount>0 ? currentMutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : currentMutationPoints;
+		float newPossiblePoints = MicrobeStage.ChunkMutationCount>0 ? possibleMutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : possibleMutationPoints;
 		if (freebuilding)
 		{
 			mutationPointsArrow.Hide();
@@ -91,8 +95,8 @@ public partial class MutationPointsBar : HBoxContainer
 				mutationPointsArrow.Show();
 				resultingMutationPointsLabel.Show();
 
-				currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
-				resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+				currentMutationPointsLabel.Text = $"({newCurrentPoints:F0}";
+				resultingMutationPointsLabel.Text = $"{newPossiblePoints:F0})";
 				baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
 			}
 			else
@@ -100,7 +104,7 @@ public partial class MutationPointsBar : HBoxContainer
 				mutationPointsArrow.Hide();
 				resultingMutationPointsLabel.Hide();
 
-				currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
+				currentMutationPointsLabel.Text = $"{newCurrentPoints:F0}";
 				baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
 			}
 		}

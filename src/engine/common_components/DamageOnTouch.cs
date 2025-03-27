@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 public struct DamageOnTouch
 {
     /// <summary>
+    ///   The name of cureent chunk
+    /// </summary>
+    public string ChunkName;
+
+    /// <summary>
     ///   The name of the caused damage type this deals
     /// </summary>
     public string DamageType;

@@ -95,6 +95,10 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
     {
         if (damageTouch.DestroyOnTouch)
         {
+            // Add editor point if editor chunk destroy on touch
+            if(damageTouch.ChunkName == "EDITOR_POINT_CHUNK" && entity == MicrobeStage.PlayerEntity){
+                MicrobeStage.ChunkMutationCount++;
+            }
             return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount,
                 damageTouch.DamageType, subShape);
         }

@@ -457,9 +457,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public bool CheckEnoughMPForAction(int cost)
     {
+        int mutationPointsWithChunk = MicrobeStage.ChunkMutationCount>0 ? MutationPoints+(MicrobeStage.ChunkMutationCount*Constants.CHUNK_MUTATION_POINTS) : MutationPoints;
         // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
         // MP in a single go, and those wouldn't work without this freebuilding check here
-        if (MutationPoints < cost && !FreeBuilding)
+        if (mutationPointsWithChunk < cost && !FreeBuilding)
         {
             // Flash the MP bar and play sound
             OnInsufficientMP();

@@ -16,6 +16,12 @@ public static class Constants
     ///   Used to prevent lag causing massive simulation instability spikes (due to resource consumption etc. scaling
     ///   but storage not scaling)
     /// </summary>
+    public const int CHUNK_MUTATION_POINTS = 5;
+
+    /// <summary>
+    ///   Used to prevent lag causing massive simulation instability spikes (due to resource consumption etc. scaling
+    ///   but storage not scaling)
+    /// </summary>
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>

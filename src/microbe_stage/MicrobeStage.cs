@@ -99,6 +99,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive;
 
+    // Enity for damage system see DamageOnTouchSystem
+    [JsonIgnore]
+    public static Entity PlayerEntity;
+
+    [JsonProperty]
+    public static int ChunkMutationCount;
+    
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
@@ -745,6 +752,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 }
             }
         }
+        
+        // After return from editor we reset count
+        ChunkMutationCount = 0;
     }
 
     public override void OnSuicide()
@@ -835,6 +845,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Reset any cheat state if there was some active
         CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
+        PlayerEntity = Player;
     }
 
     protected override void OnGameStarted()
