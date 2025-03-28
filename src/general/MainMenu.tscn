@@ -128,11 +128,15 @@ GTOButtonPath = NodePath("MenuContainers/SocialMedia/GtoButton")
 BerlogaButtonPath = NodePath("MenuContainers/SocialMedia/BerlogaButton")
 GamesButtonPath = NodePath("MenuContainers/SocialMedia/GamesButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
+StoreLoggedInTalentDisplayPath = NodePath("StorePlayer_id")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 MenusPath = NodePath("MenuContainers/Menus")
 ExceptionMenuPath = NodePath("ExceptionPopupMenu")
+TalentOutButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/TalentOut")
+TalentInButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Talent")
+SuccessDisconectTalentPopupPath = NodePath("SuccessDisconectTalentPopup")
 websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
 openGlPopup = NodePath("OpenGLWarningPopup")
 
@@ -658,7 +662,7 @@ stretch_mode = 5
 [node name="GamesButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "Больше наших игр"
+tooltip_text = "Профиль \"Геномное редактирование\""
 texture_normal = ExtResource("19_xmt8y")
 texture_pressed = ExtResource("20_j7m0p")
 texture_hover = ExtResource("20_j7m0p")
