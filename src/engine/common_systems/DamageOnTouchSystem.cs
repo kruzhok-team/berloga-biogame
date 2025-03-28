@@ -101,6 +101,7 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
                 MicrobeStage.GetTutorialState.SendEvent(TutorialEventType.MicrobeOmBoost,
                     EventArgs.Empty, this);
                 MicrobeStage.ChunkMutationCount++;
+                SaveStatusOverlay.Instance.CallDeferred("ShowMessage", $"Очки эволюции: +{Constants.CHUNK_MUTATION_POINTS}", 2f);
             }
 
             return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount,
