@@ -189,6 +189,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.Connect("OnMulticellularPressed", Callable.From(OnEndGameStatistics));
         HoverInfo.Init(Clouds, Camera);
         tutorialGUI.setHUD(HUD);
+        ChunkMutationCount = 0;
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();

@@ -97,7 +97,7 @@ public partial class MutationPointsBar : HBoxContainer
 
 				currentMutationPointsLabel.Text = $"({newCurrentPoints:F0}";
 				resultingMutationPointsLabel.Text = $"{newPossiblePoints:F0})";
-				baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+				baseMutationPointsLabel.Text = $"/ {newCurrentPoints:F0}";
 			}
 			else
 			{
@@ -105,7 +105,7 @@ public partial class MutationPointsBar : HBoxContainer
 				resultingMutationPointsLabel.Hide();
 
 				currentMutationPointsLabel.Text = $"{newCurrentPoints:F0}";
-				baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+				baseMutationPointsLabel.Text = $"/ {newCurrentPoints:F0}";
 			}
 		}
 	}
