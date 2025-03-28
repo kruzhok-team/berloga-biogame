@@ -927,6 +927,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
 
         ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
+        PlayerEntity = Player;
     }
 
     protected override void OnCanEditStatusChanged(bool canEdit)
