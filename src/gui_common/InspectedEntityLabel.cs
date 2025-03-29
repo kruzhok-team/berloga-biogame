@@ -19,6 +19,9 @@ public partial class InspectedEntityLabel : HBoxContainer
         this.icon = icon;
 
         textLabel = new Label { SizeFlagsHorizontal = SizeFlags.ExpandFill };
+        
+        var fontFile = GD.Load<FontFile>("res://assets/fonts/Marske.ttf");
+        textLabel.AddThemeFontOverride("font", fontFile);
         SetText(text);
     }
 
@@ -61,6 +64,8 @@ public partial class InspectedEntityLabel : HBoxContainer
             return;
 
         descriptionLabel = new Label();
+        var fontFile = GD.Load<FontFile>("res://assets/fonts/Marske.ttf");
+        descriptionLabel.AddThemeFontOverride("font", fontFile);
         AddChild(descriptionLabel);
     }
 }
